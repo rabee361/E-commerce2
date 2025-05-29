@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MaterialEdit</class>
+ <widget class="QDialog" name="MaterialEdit">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>460</width>
+    <height>334</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>تعديل المادة</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>graphics/icon.xpm</normaloff>graphics/icon.xpm</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="8" column="0">
+       <widget class="QLabel" name="date_label">
+        <property name="text">
+         <string>التاريخ:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="unit_combobox">
+        <item>
+         <property name="text">
+          <string>كغ</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ليتر</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>قطعة</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="code_label_3">
+        <property name="text">
+         <string>الواحدة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="name_en_label">
+        <property name="text">
+         <string>اسم المادة الانجليزي:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="name_label">
+        <property name="text">
+         <string>اسم المادة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="code_label">
+        <property name="text">
+         <string>الكود:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="code_lineEdit"/>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLineEdit" name="date_lineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="code_label_2">
+        <property name="text">
+         <string>الكمية:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="name_lineEdit"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="id_label">
+        <property name="text">
+         <string>معرف المادة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="name_en_lineEdit"/>
+      </item>
+      <item row="9" column="1">
+       <widget class="QPushButton" name="save_btn">
+        <property name="text">
+         <string>حفظ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>السعر التقديري:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLineEdit" name="default_price_lineEdit"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="id_lineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="quantity_lineEdit"/>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>ل.س</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

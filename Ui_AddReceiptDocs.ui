@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddReceiptDocs</class>
+ <widget class="QDialog" name="AddReceiptDocs">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>416</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>إضافة سند استلام</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="5">
+    <widget class="QComboBox" name="materials_combobox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>150</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="6">
+    <widget class="QLabel" name="target_warehouse_label">
+     <property name="text">
+      <string>المستودع الهدف:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="6">
+    <widget class="QLabel" name="rejection_warehouse_label">
+     <property name="text">
+      <string>مستودع الرفض:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="5">
+    <widget class="QComboBox" name="rejection_warehouse_combobox"/>
+   </item>
+   <item row="2" column="6">
+    <widget class="QLabel" name="quantity_label">
+     <property name="text">
+      <string>الكمية:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1" colspan="6">
+    <widget class="QPushButton" name="save_btn">
+     <property name="text">
+      <string>حفظ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="6">
+    <widget class="QLabel" name="material_label">
+     <property name="text">
+      <string>المادة:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="5">
+    <widget class="QComboBox" name="target_warehouse_combobox"/>
+   </item>
+   <item row="2" column="5">
+    <widget class="QLineEdit" name="quantity_input"/>
+   </item>
+   <item row="2" column="2">
+    <widget class="QComboBox" name="units_combobox"/>
+   </item>
+   <item row="0" column="6">
+    <widget class="QLabel" name="date_label">
+     <property name="text">
+      <string>التاريخ:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QDateEdit" name="date_input"/>
+   </item>
+   <item row="5" column="6">
+    <widget class="QLabel" name="quantity_label_2">
+     <property name="text">
+      <string>رقم الفاتورة المرتبطة:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="5">
+    <widget class="QLineEdit" name="invoice_number_input">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:black;
+background-color:white;
+border:solid 1px;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QPushButton" name="show_invoice_btn">
+     <property name="text">
+      <string>عرض الفاتورة</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="pick_invoice_btn">
+     <property name="text">
+      <string>اختيار فاتورة</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="select_target_warehouse_btn">
+     <property name="text">
+      <string>...اختيار</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="select_rejection_warehouse_btn">
+     <property name="text">
+      <string>...اختيار</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="select_material_btn">
+     <property name="text">
+      <string>...اختيار</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

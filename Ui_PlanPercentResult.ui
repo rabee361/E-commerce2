@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PlanPercentResult</class>
+ <widget class="QDialog" name="PlanPercentResult">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1211</width>
+    <height>632</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>النتيجة</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>graphics/icon.xpm</normaloff>graphics/icon.xpm</iconset>
+  </property>
+  <property name="accessibleName">
+   <string>SimplePlanResult</string>
+  </property>
+  <widget class="QTableWidget" name="plan_percent_result_table">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>1191</width>
+     <height>581</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <column>
+    <property name="text">
+     <string>المنتج</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>الوجبة</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>القطع في الوجبة</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>المادة الأولية</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>الكمية المطلوبة</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>الكمية المتوفرة</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>الكمية المتبقية</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>النتيجة</string>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="export_btn">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>596</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>80</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>تصدير</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>1136</x>
+     <y>600</y>
+     <width>41</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>الهدف:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="target_input">
+   <property name="geometry">
+    <rect>
+     <x>940</x>
+     <y>600</y>
+     <width>191</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="target_btn">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>600</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>حساب النتيجة</string>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>target_input</tabstop>
+  <tabstop>target_btn</tabstop>
+  <tabstop>export_btn</tabstop>
+  <tabstop>plan_percent_result_table</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

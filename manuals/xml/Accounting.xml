@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AccountingChart>
+    <!-- الأصول -->
+    <Account code="11" name="أصول ثابتة">
+        <Account code="111" name="أراضي"/>
+        <Account code="1112" name="مباني وإنشاءات ومرافق وطرق"/>
+        <Account code="113" name="آلات ومعدات"/>
+        <Account code="114" name="وسائل نقل وانتقال"/>
+        <Account code="115" name="عدد وأدوات"/>
+        <Account code="117" name="ثروة حيوانية ومائية"/>
+        <Account code="118" name=""/>
+    </Account>
+
+    <Account code="12" name="مشروعات تحت التنفيذ">
+        <Account code="121" name="أراضي"/>
+        <Account code="1211" name="مباني وإنشاءات ومرافق وطرق"/>
+        <Account code="1212" name="آلات ومعدات"/>
+        <Account code="1213" name="وسائل نقل وانتقال"/>
+        <Account code="1214" name="عدد وأدوات"/>
+        <Account code="1215" name="أثاث وتجهيزات مكتبية"/>
+        <Account code="1216" name="ثروة حيوانية ومائية"/>
+        <Account code="1217" name=""/>
+        <Account code="122" name="إنفاق استثماري">
+            <Account code="1221" name="دفعات مقدمة"/>
+            <Account code="1222" name="اعتمادات مستنديه لشراء أصول ثابتة"/>
+        </Account>
+    </Account>
+
+    <Account code="13" name="استثمارات طويلة الأجل">
+        <Account code="131" name="استثمارات عقارية"/>
+        <Account code="132" name="استثمارات في أسهم في شركات تابعة"/>
+        <Account code="133" name="استثمارات في أسهم في شركات شقيقة"/>
+        <Account code="134" name="استثمارات في أسهم في شركات أخرى"/>
+        <Account code="135" name="استثمارات في سندات"/>
+        <Account code="136" name="استثمارات في وثائق استثمار"/>
+        <Account code="137" name=""/>
+    </Account>
+
+    <Account code="14" name="قروض وأرصدة مدينة طويلة الأجل">
+        <Account code="141" name="قروض لشركات قابضة/ تابعة/ شقيقة"/>
+        <Account code="142" name="قروض لجهات أخرى"/>
+        <Account code="143" name=""/>
+    </Account>
+
+    <Account code="15" name="أصول أخرى">
+        <Account code="151" name="أصول غير ملموسة">
+            <Account code="1511" name="شهرة"/>
+            <Account code="1512" name="براءات اختراع/ علامات تجارية/ حقوق امتياز وتأليف"/>
+            <Account code="1513" name="تكاليف التطوير"/>
+            <Account code="1514" name=""/>
+        </Account>
+        <Account code="152" name="نفقات مرسلة">
+            <Account code="1521" name="نفقات تحديث فروع ومعارض النشاط التجاري"/>
+            <Account code="1522" name="مساهمة المنشأة في إنشاء أصول غير مملوكة لها وتخدم أغراضها"/>
+            <Account code="1523" name="مقابل حق الانتفاع بمقار عن طريق الشراء بالجدك"/>
+        </Account>
+        <Account code="153" name="نفقات مؤجلة">
+            <Account code="1531" name="نفقات تأسيس"/>
+            <Account code="1532" name="نفقات ما قبل بدء الإنتاج/ التشغيل"/>
+            <Account code="1533" name="حملة إعلانية"/>
+        </Account>
+    </Account>
+
+    <Account code="16" name="مخزون">
+        <Account code="161" name="مخزن خامات ومواد ووقود وقطع غيار">
+            <Account code="1611" name="مخزن الخامات"/>
+            <Account code="1612" name="مخزن الوقود والزيوت"/>
+            <Account code="1613" name="مخزن قطع الغيار والمهمات"/>
+            <Account code="1614" name="مخزن مواد التعبئة والتغليف"/>
+            <Account code="1615" name="مخزن المخلفات والخردة"/>
+            <Account code="1616" name="مخزون مواد وقطع غيار تحت التكوين"/>
+        </Account>
+        <Account code="162" name="مخزون إنتاج غير تام"/>
+        <Account code="163" name="مخزون إنتاج تام"/>
+        <Account code="164" name="مخزون بضائع مشتراة بغرض البيع"/>
+        <Account code="165" name="مخزون لدى الغير"/>
+        <Account code="166" name="اعتمادات مستنديه لشراء سلع وخدمات"/>
+    </Account>
+
+    <Account code="17" name="عملاء وأوراق قبض وحسابات مدينة">
+        <Account code="171" name="عملاء"/>
+        <Account code="172" name="أوراق قبض"/>
+        <Account code="173" name="حسابات مدينة لدى الشركات القابضة/ التابعة/ الشقيقة"/>
+        <Account code="174" name="حسابات مدينة لدى المصالح والهيئات">
+            <Account code="1741" name="مصلحة الجمارك (أمانات)"/>
+            <Account code="1742" name="مصلحة الضرائب على المبيعات (ضريبة على المدخلات تحت التسوية)"/>
+            <Account code="1743" name="مصلحة الضرائب العامة (مبالغ مخصومة من الشركة بمعرفة الغير)"/>
+        </Account>
+        <Account code="175" name="إيرادات مستحقة التحصيل"/>
+        <Account code="176" name="مصروفات مدفوعة مقدما"/>
+        <Account code="177" name="حسابات مدينة أخرى"/>
+    </Account>
+
+    <Account code="18" name="استثمارات وأوراق مالية متداولة">
+        <Account code="181" name="اسهم"/>
+        <Account code="182" name="سندات"/>
+        <Account code="183" name="وثائق استثمار"/>
+        <Account code="184" name="أذون خزانه"/>
+        <Account code="185" name=""/>
+    </Account>
+
+    <Account code="19" name="نقدية بالبنوك والصندوق">
+        <Account code="191" name="ودائع بالبنوك لأجل أو بإخطار سابق"/>
+        <Account code="192" name="غطاء حسابات ضمان"/>
+        <Account code="193" name="حسابات جارية بالبنوك"/>
+        <Account code="194" name="نقدية بالصندوق"/>
+    </Account>
+
+    <!-- حقوق الملكية والالتزامات -->
+    <Account code="2" name="حقوق الملكية والالتزامات">
+        <Account code="21" name="رأس المال المدفوع">
+            <Account code="211" name="رأس المال المصدر"/>
+            <Account code="212" name="أقساط لم يطلب سدادها"/>
+            <Account code="213" name="أقساط متأخر سدادها"/>
+        </Account>
+        <Account code="22" name="احتياطيات">
+            <Account code="221" name="احتياطي قانوني"/>
+            <Account code="222" name="احتياطي نظامي"/>
+            <Account code="223" name="احتياطي رأسمالي"/>
+            <Account code="224" name="احتياطي أخرى"/>
+        </Account>
+        <Account code="23" name="أرباح (خسائر) مرحلة"/>
+        <Account code="24" name="(اسهم الخزينة)"/>
+        <Account code="25" name="التزامات طويلة الأجل">
+            <Account code="251" name="قروض طويلة الأجل من شركات قابضة / تابعة / شقيقة"/>
+            <Account code="252" name="قروض طويلة الأجل من البنوك"/>
+            <Account code="253" name="قروض طويلة الأجل من جهات أخرى"/>
+            <Account code="254" name="سندات"/>
+            <Account code="255" name=""/>
+        </Account>
+    </Account>
+
+    <!-- المخصصات -->
+    <Account code="26" name="مخصصات">
+        <Account code="261" name="مخصص إهلاك أصول ثابتة">
+            <Account code="2611" name="مزروعات معمرة قابلة للإهلاك"/>
+            <Account code="2612" name="مباني وإنشاءات ومرافق وطرق"/>
+            <Account code="2613" name="آلات ومعدات"/>
+            <Account code="2614" name="وسائل نقل وانتقال"/>
+            <Account code="2615" name="عدد وأدوات"/>
+            <Account code="2616" name="أثاث وتجهيزات مكتبية"/>
+            <Account code="2617" name="ثروة حيوانية ومائية"/>
+            <Account code="2618" name=""/>
+        </Account>
+        <Account code="262" name="مخصص هبوط أسعار مخزون الإنتاج غير التام"/>
+        <Account code="263" name="مخصص هبوط أسعار مخزون الإنتاج التام"/>
+        <Account code="264" name="مخصص هبوط أسعار مخزون البضائع المشتراة"/>
+        <Account code="265" name="مخصص هبوط أسعار الأوراق المالية"/>
+        <Account code="266" name="مخصص الديون المشكوك في تحصيلها"/>
+        <Account code="267" name="مخصص الضرائب المتنازع عليها"/>
+        <Account code="268" name="مخصص المطالبات والمنازعات"/>
+        <Account code="269" name="مخصصات أخرى"/>
+    </Account>
+
+    <!-- بنوك دائنة -->
+    <Account code="27" name="بنوك دائنة">
+        <Account code="271" name="سحب على المكشوف"/>
+        <Account code="272" name="تمويل اعتمادات مستنديه"/>
+        <Account code="273" name="قروض قصيرة الأجل"/>
+    </Account>
+
+    <!-- موردون وأوراق دفع وحسابات دائنه -->
+    <Account code="28" name="موردون وأوراق دفع وحسابات دائنه">
+        <Account code="281" name="موردون"/>
+        <Account code="282" name="أوراق دفع"/>
+        <Account code="283" name="حسابات دائنه للشركات القابضة / التابعة / الشقيقة"/>
+        <Account code="284" name="حسابات دائنه للمصالح والهيئات">
+            <Account code="2841" name="مصلحة الجمارك"/>
+            <Account code="2842" name="مصلحة الضرائب على المبيعات"/>
+            <Account code="2843" name="مصلحة الضرائب العامة"/>
+            <Account code="2844" name="مصلحة الضرائب العقارية"/>
+            <Account code="2845" name="الهيئة القومية للتأمين الاجتماعي"/>
+            <Account code="2846" name="هيئات تأمينية أخرى"/>
+        </Account>
+        <Account code="285" name="دائنو التوزيعات"/>
+        <Account code="286" name="مصروفات مستحقة السداد"/>
+        <Account code="287" name="إيرادات محصلة مقدما"/>
+        <Account code="288" name="أرباح مبيعات تقسيط مؤجلة (تخص أعوام لاحقة)"/>
+        <Account code="289" name="حسابات دائنه أخرى"/>
+    </Account>
+
+    <!-- حسابات قائمة الدخل وتوزيعات الأرباح -->
+    <Account code="29" name="حسابات قائمة الدخل وتوزيعات الأرباح">
+        <Account code="291" name="حسابات قائمة الدخل">
+            <Account code="2911" name="حساب تكلفة إنتاج او شراء الوحدات المباعة"/>
+            <Account code="2912" name="حساب المتاجرة"/>
+            <Account code="2913" name="حساب الأرباح والخسائر"/>
+        </Account>
+        <Account code="292" name="حساب توزيع الأرباح والخسائر"/>
+    </Account>
+
+    <!-- التكاليف والمصروفات -->
+    <Account code="3" name="التكاليف والمصروفات">
+        <Account code="31" name="خدمات ومواد ووقود وقطع غيار">
+            <Account code="311" name="خامات ومدخلات إنتاج"/>
+            <Account code="312" name="وقود وزيوت"/>
+            <Account code="313" name="قطع غيار ومهمات"/>
+            <Account code="314" name="مواد تعبئة وتغليف"/>
+            <Account code="315" name="كهرباء ومياه"/>
+            <Account code="316" name="أدوات كتابية"/>
+        </Account>
+        <Account code="32" name="أجور">
+            <Account code="321" name="أجور نقدية"/>
+            <Account code="322" name="مزايا عينية"/>
+            <Account code="323" name="تأمينات اجتماعية"/>
+        </Account>
+        <Account code="33" name="مصروفات">
+            <Account code="331" name="خدمات مشتراة">
+                <Account code="3311" name="مصروفات صيانة"/>
+                <Account code="3312" name="مصروفات تشغيل لدى الغير ومقاولي الباطن"/>
+                <Account code="3313" name="مصروفات أبحاث وتجارب"/>
+                <Account code="3314" name="مصروفات دعاية وإعلان ونشر وطبع وعلاقات عامة واستقبال"/>
+            </Account>
+            <Account code="332" name="الإهلاك والاستهلاك">
+                <Account code="3321" name="إهلاك الأصول الثابتة"/>
+                <Account code="3322" name="استهلاك الأصول غير الملموسة والنفقات المرسملة"/>
+            </Account>
+            <Account code="333" name="فوائد"/>
+            <Account code="334" name="إيجار عقارية (أراضى – مباني)"/>
+            <Account code="335" name="ضرائب عقارية"/>
+            <Account code="336" name="ضرائب غير مباشرة"/>
+            <Account code="337" name=""/>
+        </Account>
+    </Account>
+
+    <!-- مشتريات بضائع بغرض البيع -->
+    <Account code="34" name="مشتريات بضائع بغرض البيع"/>
+
+    <!-- الإيرادات -->
+    <Account code="4" name="الإيرادات">
+        <Account code="41" name="إيرادات النشاط">
+            <Account code="411" name="إجمالي مبيعات إنتاج تام">
+                <Account code="4111" name="مردودات داخلة من مبيعات سنوات سابقة"/>
+                <Account code="4112" name="مرتجعات مبيعات"/>
+                <Account code="4113" name="خصم مسموح به"/>
+                <Account code="4114" name="مسموحات مبيعات"/>
+            </Account>
+            <Account code="412" name="إجمالي مبيعات بضائع مشتراة">
+                <Account code="4121" name="مردودات داخلة من مبيعات سنوات سابقة"/>
+                <Account code="4122" name="مرتجعات مبيعات"/>
+                <Account code="4123" name="خصم مسموح به"/>
+                <Account code="4124" name="مسموحات مبيعات"/>
+            </Account>
+            <Account code="413" name="أرباح مبيعات تقسيط تخص العام">
+                <Account code="4131" name="أرباح مبيعات إنتاج تام بالتقسيط"/>
+                <Account code="4132" name="أرباح مبيعات بضائع (مشتراة) بالتقسيط"/>
+            </Account>
+            <Account code="414" name="خدمات مباعة"/>
+            <Account code="415" name="إيرادات تشغيل للغير"/>
+            <Account code="416" name="عائد عقود تأجير تمويلي"/>
+            <Account code="417" name="إيرادات النشاط الأخرى"/>
+        </Account>
+        <Account code="42" name="منح وإعانات"/>
+        <Account code="43" name="إيرادات استثمار وفوائد">
+            <Account code="431" name="إيرادات استثمارات مالية من شركات قابضة"/>
+            <Account code="432" name="إيرادات استثمارات مالية من شركات شقيقة"/>
+            <Account code="433" name="إيرادات استثمارات مالية أخرى"/>
+            <Account code="434" name="فوائد قروض لشركات قابضة / تابعة / شقيقة"/>
+            <Account code="435" name="فوائد دائنه أخرى"/>
+        </Account>
+        <Account code="44" name="إيرادات وأرباح أخرى">
+            <Account code="441" name="مخصصات وانتفى الغرض منها"/>
+            <Account code="442" name="ديون سبق إعدامها"/>
+            <Account code="443" name="أرباح بيع أوراق مالية"/>
+            <Account code="444" name="إيرادات وأرباح متنوعة">
+                <Account code="4441" name="أرباح بيع مخلفات"/>
+                <Account code="4442" name="أرباح بيع خدمات ومواد وقطع غيار"/>
+                <Account code="4443" name="تعويضات وغرامات"/>
+                <Account code="4444" name="عمولات"/>
+                <Account code="4445" name="إيجارات دائنه"/>
+                <Account code="4446" name=""/>
+            </Account>
+            <Account code="445" name="أرباح فروق العملة"/>
+            <Account code="446" name="إيرادات سنوية سابقة"/>
+            <Account code="447" name="أرباح رأسمالية"/>
+            <Account code="448" name="إيرادات وأرباح غير عادية"/>
+        </Account>
+    </Account>
+</AccountingChart>

@@ -1,0 +1,1972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Mer</class>
+ <widget class="QMainWindow" name="Mer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1244</width>
+    <height>774</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Epsilon</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../.designer/backup/graphics/icon.xpm</normaloff>../.designer/backup/graphics/icon.xpm</iconset>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background: white; /* Default background */
+}
+
+QMainWindow::before {
+    content: &quot;&quot;;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    background-color: red;
+    z-index: -1; /* Push behind other widgets */
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_13">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="stats_groupbox">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 13px;
+    color: #000000; /* DodgerBlue */
+}
+
+QLineEdit {
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 13px;
+    color: #000000; /* DodgerBlue */
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_14">
+       <item row="4" column="0" colspan="2">
+        <widget class="QGroupBox" name="chart_table">
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string>table</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>130</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="title">
+          <string>الموارد البشرية</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="1" column="4">
+           <widget class="QLabel" name="label_16">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>الحاليين:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_11">
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>الأقسام :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="departments_count">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="label_9">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>الموظفين :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_10">
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>طلبات التوظيف:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="employ_request_count">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QLabel" name="label_17">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>السابقين:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="employees_count">
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="current_employees_count">
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QLabel" name="former_employees_count">
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>130</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="title">
+          <string>المواد</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="7" column="0">
+           <widget class="QLabel" name="groupped_materials_count">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>المواد :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string> التركيبية:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" rowspan="4" colspan="2">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>المجموعات:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="materials_count">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2" rowspan="2">
+           <widget class="QLabel" name="groupped_materials_label">
+            <property name="text">
+             <string> التجميعية:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" rowspan="3">
+           <widget class="QLabel" name="composite_materials_count">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" rowspan="2">
+           <widget class="QLabel" name="groups_count">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="4">
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>55</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string>اخر  حركة مستودعية</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="6">
+           <widget class="QLabel" name="label_21">
+            <property name="text">
+             <string>المادة :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLineEdit" name="from_warehouse">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>إلى :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="8">
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>الكمية :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_22">
+            <property name="text">
+             <string>من :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QLineEdit" name="material">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="9">
+           <widget class="QLineEdit" name="quantity">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLineEdit" name="to_warehouse">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="10">
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>التاريخ :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="11">
+           <widget class="QLineEdit" name="last_material_movement_date">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="2" rowspan="2" colspan="2">
+        <widget class="QGroupBox" name="alerts">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string>تنبيهات</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="4">
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>55</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string>اخر عملية تصنيع</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>المادة :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="manufacture_material">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>الكمية :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLineEdit" name="manufature_quantity">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="label_2">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>المستودع :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLineEdit" name="manufature_warehouse">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string>التاريخ :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QLineEdit" name="manufacture_date">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>130</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="title">
+          <string>الفواتير</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="3" column="2">
+           <widget class="QLabel" name="label_15">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>أخرى:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4">
+           <widget class="QLabel" name="label_6">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>مرتجع شراء:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QLabel" name="invoice_output_count">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QLabel" name="invoice_buy_return_count">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QLabel" name="invoice_sell_return_count">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="invoice_sell_count">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QLabel" name="invoice_other_count">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QLabel" name="label_4">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>مرتجع مبيع:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="invoice_input_count">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_7">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>مدخلات:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="label_8">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>مخرجات:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="label_3">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>مبيع:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLabel" name="invoice_buy_count">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QLabel" name="label_5">
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>شراء:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>130</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="title">
+          <string>مراكز الكلفة</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="2" column="0">
+           <widget class="QLabel" name="normal_center_count">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_14">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>عادي :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>تجميعية :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="distribution_center_count">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="aggregation_center_count">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>توزيعية :</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_25">
+            <property name="text">
+             <string>اختر مخطط:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="select_chart_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="select_chart_btn">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>موافق</string>
+            </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+            <property name="flat">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>310</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="calculator_groupBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>390</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>390</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="chat_groupbox">
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string>chat</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="groupBox_9">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QGroupBox {
+	border: none;
+	background-color: white;
+}</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QPushButton" name="send_message_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+       border:0 solid #CCCCCC;
+}</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>icons/message.png</normaloff>icons/message.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>24</width>
+                 <height>24</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="message_input">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QLineEdit {
+                border-radius: 12px;
+                border: 1px solid #CCCCCC;
+                padding: 8px 15px;
+                font-family: &quot;Segoe UI&quot;;
+                font-size: 12px;
+            }</string>
+               </property>
+               <property name="placeholderText">
+                <string>Type a message...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QScrollArea" name="messagesScrollArea">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>348</width>
+               <height>477</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="0">
+               <widget class="QWidget" name="widget" native="true">
+                <property name="styleSheet">
+                 <string notr="true">background-color: white;</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_12">
+                 <item row="0" column="0">
+                  <layout class="QVBoxLayout" name="messagesLayout">
+                   <property name="spacing">
+                    <number>5</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>10</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>10</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>10</number>
+                   </property>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="clock_label">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000; /* DodgerBlue */
+    background-color: #FFFFFF;
+    border: 2px solid #B0C4DE; /* LightSteelBlue */
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+}</string>
+         </property>
+         <property name="text">
+          <string>12/12/2024</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="date_label">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    font-family: &quot;Segoe UI&quot;;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000; /* DodgerBlue */
+    background-color: #FFFFFF;
+    border: 2px solid #B0C4DE; /* LightSteelBlue */
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+}</string>
+         </property>
+         <property name="text">
+          <string>12:34 AM</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1244</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>ملف</string>
+    </property>
+    <addaction name="option_new"/>
+    <addaction name="option_open"/>
+    <addaction name="option_connect_to_database"/>
+    <addaction name="option_database_backup"/>
+    <addaction name="option_users"/>
+    <addaction name="option_settings"/>
+    <addaction name="option_synchronizer"/>
+    <addaction name="option_exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_warehouses">
+    <property name="title">
+     <string>مستودعات</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>فواتير</string>
+    </property>
+    <addaction name="option_invoices_view"/>
+    <addaction name="option_new_invoice"/>
+    <addaction name="option_customers"/>
+    <addaction name="option_suppliers"/>
+    <addaction name="option_customers_invoices"/>
+    <addaction name="option_suppliers_invoices"/>
+    <addaction name="option_receipt_vouchers"/>
+    <addaction name="option_payment_vouchers"/>
+    <addaction name="option_material_receipt_docs"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>خطط</string>
+    </property>
+    <addaction name="option_simple_plan"/>
+    <addaction name="option_percent_plan"/>
+    <addaction name="option_sales_plan"/>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>تقارير</string>
+    </property>
+    <widget class="QMenu" name="menu_8">
+     <property name="title">
+      <string>..تقارير مخزون</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/warehouse.png</normaloff>icons/warehouse.png</iconset>
+     </property>
+     <addaction name="option_inventory"/>
+     <addaction name="option_material_move_report"/>
+     <addaction name="option_quantities_report"/>
+     <addaction name="option_reorder_report"/>
+     <addaction name="option_value_report"/>
+    </widget>
+    <widget class="QMenu" name="menu_HR">
+     <property name="title">
+      <string>...تقارير موارد بشرية</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/administrator.png</normaloff>icons/administrator.png</iconset>
+     </property>
+     <addaction name="option_department_report"/>
+     <addaction name="option_position_report"/>
+     <addaction name="action_6"/>
+     <addaction name="action_7"/>
+     <addaction name="action_8"/>
+    </widget>
+    <widget class="QMenu" name="option_product_profit_report_2">
+     <property name="title">
+      <string>...تقارير مبيعات</string>
+     </property>
+     <addaction name="action_13"/>
+     <addaction name="option_sell_price_report_2"/>
+     <addaction name="option_sales_report"/>
+    </widget>
+    <widget class="QMenu" name="menu_11">
+     <property name="title">
+      <string>...تقارير مشتريات</string>
+     </property>
+     <addaction name="action_16"/>
+     <addaction name="action_17"/>
+     <addaction name="action_15"/>
+    </widget>
+    <widget class="QMenu" name="menu_12">
+     <property name="title">
+      <string>...تقارير إدارية</string>
+     </property>
+     <addaction name="action_18"/>
+     <addaction name="action_19"/>
+    </widget>
+    <addaction name="option_aggregator"/>
+    <addaction name="option_auto_aggregator"/>
+    <addaction name="option_product_sales"/>
+    <addaction name="option_sales_target"/>
+    <addaction name="menu_8"/>
+    <addaction name="option_client_report"/>
+    <addaction name="option_supplier_report"/>
+    <addaction name="option_product_profit_report_2"/>
+    <addaction name="menu_11"/>
+    <addaction name="menu_HR"/>
+    <addaction name="menu_12"/>
+    <addaction name="action_10"/>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>مساعدة</string>
+    </property>
+    <addaction name="option_about"/>
+   </widget>
+   <widget class="QMenu" name="menu_7">
+    <property name="title">
+     <string>تصنيع</string>
+    </property>
+    <addaction name="option_manufacure"/>
+    <addaction name="option_expenses"/>
+    <addaction name="option_fix"/>
+    <addaction name="option_machines_and_resources"/>
+   </widget>
+   <widget class="QMenu" name="menu_accounts">
+    <property name="title">
+     <string>حسابات</string>
+    </property>
+    <widget class="QMenu" name="option_financial_statements">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="title">
+      <string>...مالية</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/cash.png</normaloff>icons/cash.png</iconset>
+     </property>
+     <addaction name="option_financial_statements_settings"/>
+     <addaction name="option_financial_statements_report"/>
+    </widget>
+    <widget class="QMenu" name="menu_2">
+     <property name="title">
+      <string>...سندات القيد</string>
+     </property>
+     <addaction name="action_3"/>
+     <addaction name="action_4"/>
+     <addaction name="option_journal"/>
+    </widget>
+    <addaction name="option_accounts_guide"/>
+    <addaction name="option_account_balance"/>
+    <addaction name="menu_2"/>
+    <addaction name="option_final_accounts"/>
+    <addaction name="option_period_opening_journal_entry"/>
+    <addaction name="option_daily_journal"/>
+    <addaction name="option_ledger"/>
+    <addaction name="option_trial_balance"/>
+    <addaction name="option_account_movements"/>
+    <addaction name="option_loans"/>
+    <addaction name="option_financial_statements"/>
+   </widget>
+   <widget class="QMenu" name="menu_9">
+    <property name="title">
+     <string>مواد</string>
+    </property>
+    <addaction name="option_groups"/>
+    <addaction name="option_materials"/>
+    <addaction name="option_price_management"/>
+    <addaction name="option_units"/>
+   </widget>
+   <widget class="QMenu" name="menu_10">
+    <property name="title">
+     <string>مراكز</string>
+    </property>
+    <addaction name="option_cost_centers"/>
+    <addaction name="option_cost_centers_reports"/>
+   </widget>
+   <widget class="QMenu" name="menuHR">
+    <property name="title">
+     <string>HR</string>
+    </property>
+    <addaction name="option_HR"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_9"/>
+   <addaction name="menu_accounts"/>
+   <addaction name="menu_warehouses"/>
+   <addaction name="menu_10"/>
+   <addaction name="menu_7"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_5"/>
+   <addaction name="menu_6"/>
+   <addaction name="menuHR"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="option_new">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/plus.png</normaloff>icons/plus.png</iconset>
+   </property>
+   <property name="text">
+    <string>...جديد</string>
+   </property>
+  </action>
+  <action name="option_open">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/file.png</normaloff>icons/file.png</iconset>
+   </property>
+   <property name="text">
+    <string>...فتح</string>
+   </property>
+  </action>
+  <action name="option_raw">
+   <property name="text">
+    <string>...أولية</string>
+   </property>
+  </action>
+  <action name="option_invoices_in">
+   <property name="text">
+    <string>...فواتير الشراء</string>
+   </property>
+  </action>
+  <action name="option_invoices_out">
+   <property name="text">
+    <string>...فواتير المبيع</string>
+   </property>
+  </action>
+  <action name="option_exchange">
+   <property name="text">
+    <string>...سعر الصرف</string>
+   </property>
+  </action>
+  <action name="option_simple_plan">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/graphic_report.png</normaloff>icons/graphic_report.png</iconset>
+   </property>
+   <property name="text">
+    <string>...خطة انتاج بسيطة</string>
+   </property>
+  </action>
+  <action name="option_percent_plan">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/project_stats.png</normaloff>icons/project_stats.png</iconset>
+   </property>
+   <property name="text">
+    <string>...خطة انتاج بالنسبة المئوية</string>
+   </property>
+  </action>
+  <action name="option_aggregator">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/resources.png</normaloff>icons/resources.png</iconset>
+   </property>
+   <property name="text">
+    <string>...حاجة المواد الأولية</string>
+   </property>
+  </action>
+  <action name="option_auto_aggregator">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/task_report.png</normaloff>icons/task_report.png</iconset>
+   </property>
+   <property name="text">
+    <string>...حاجة المواد الأولية للخطة السنوية</string>
+   </property>
+  </action>
+  <action name="option_pro_mat_price">
+   <property name="text">
+    <string>... المنتجات والمواد الفعالة وأسعارها</string>
+   </property>
+  </action>
+  <action name="option_about">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/help.png</normaloff>icons/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>...حول</string>
+   </property>
+  </action>
+  <action name="option_manufacure">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/hammer.png</normaloff>icons/hammer.png</iconset>
+   </property>
+   <property name="text">
+    <string>...التصنيع</string>
+   </property>
+  </action>
+  <action name="option_cost">
+   <property name="text">
+    <string>...تكليف</string>
+   </property>
+  </action>
+  <action name="option_exit">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/sign_out.png</normaloff>icons/sign_out.png</iconset>
+   </property>
+   <property name="text">
+    <string>خروج</string>
+   </property>
+  </action>
+  <action name="option_warehouse_variables">
+   <property name="text">
+    <string>...ضبط المتغيرات</string>
+   </property>
+  </action>
+  <action name="option_connect_to_database">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/connect_to_database.png</normaloff>icons/connect_to_database.png</iconset>
+   </property>
+   <property name="text">
+    <string>...اتصال بقاعدة بيانات</string>
+   </property>
+  </action>
+  <action name="option_customers">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/clients.png</normaloff>icons/clients.png</iconset>
+   </property>
+   <property name="text">
+    <string>...الزبائن</string>
+   </property>
+  </action>
+  <action name="option_database_backup">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/batch_process.png</normaloff>icons/batch_process.png</iconset>
+   </property>
+   <property name="text">
+    <string>...النسخ الاحتياطي والاستعادة</string>
+   </property>
+  </action>
+  <action name="option_raw_move">
+   <property name="text">
+    <string>...تقرير حركة للمواد الأولية</string>
+   </property>
+  </action>
+  <action name="option_lab">
+   <property name="text">
+    <string>...المخبر</string>
+   </property>
+  </action>
+  <action name="option_research">
+   <property name="text">
+    <string>...البحث والتطوير</string>
+   </property>
+  </action>
+  <action name="option_product_sales">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/money_bag.png</normaloff>icons/money_bag.png</iconset>
+   </property>
+   <property name="text">
+    <string>...تقرير مبيعات منتج</string>
+   </property>
+  </action>
+  <action name="option_client_report">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/clients.png</normaloff>icons/clients.png</iconset>
+   </property>
+   <property name="text">
+    <string>...تقرير زبون</string>
+   </property>
+  </action>
+  <action name="option_receipt_vouchers">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/dispatch_order.png</normaloff>icons/dispatch_order.png</iconset>
+   </property>
+   <property name="text">
+    <string>...سندات القبض</string>
+   </property>
+  </action>
+  <action name="option_sales_plan">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/project.png</normaloff>icons/project.png</iconset>
+   </property>
+   <property name="text">
+    <string>...خطة المبيعات</string>
+   </property>
+  </action>
+  <action name="option_sales_target">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/project.png</normaloff>icons/project.png</iconset>
+   </property>
+   <property name="text">
+    <string>...تقرير هدف مبيعات</string>
+   </property>
+  </action>
+  <action name="option_expenses">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/coin_dollar _silver.png</normaloff>icons/coin_dollar _silver.png</iconset>
+   </property>
+   <property name="text">
+    <string>...المصاريف</string>
+   </property>
+  </action>
+  <action name="option_fix">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/equipment.png</normaloff>icons/equipment.png</iconset>
+   </property>
+   <property name="text">
+    <string>...صيانة العمليات</string>
+   </property>
+  </action>
+  <action name="option_accounts_guide">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/clipboard.png</normaloff>icons/clipboard.png</iconset>
+   </property>
+   <property name="text">
+    <string>...دليل الحسابات</string>
+   </property>
+  </action>
+  <action name="option_settings">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/menu.png</normaloff>icons/menu.png</iconset>
+   </property>
+   <property name="text">
+    <string>...خيارات</string>
+   </property>
+  </action>
+  <action name="option_groups">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/set_parent.png</normaloff>icons/set_parent.png</iconset>
+   </property>
+   <property name="text">
+    <string>...المجموعات</string>
+   </property>
+  </action>
+  <action name="option_materials">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/resources.png</normaloff>icons/resources.png</iconset>
+   </property>
+   <property name="text">
+    <string>...المواد</string>
+   </property>
+  </action>
+  <action name="option_warehouses">
+   <property name="text">
+    <string>...المستودعات</string>
+   </property>
+  </action>
+  <action name="option_price_management">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/coin_dollar.png</normaloff>icons/coin_dollar.png</iconset>
+   </property>
+   <property name="text">
+    <string>...إدارة الأسعار</string>
+   </property>
+  </action>
+  <action name="option_units">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/balance.png</normaloff>icons/balance.png</iconset>
+   </property>
+   <property name="text">
+    <string>...إدارة الواحدات</string>
+   </property>
+  </action>
+  <action name="option_cost_centers">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/dispatch.png</normaloff>icons/dispatch.png</iconset>
+   </property>
+   <property name="text">
+    <string>...مراكز الكلفة</string>
+   </property>
+  </action>
+  <action name="option_new_invoice">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/add.png</normaloff>icons/add.png</iconset>
+   </property>
+   <property name="text">
+    <string>...فاتورة جديدة</string>
+   </property>
+  </action>
+  <action name="option_customers_invoices">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/grades_report.png</normaloff>icons/grades_report.png</iconset>
+   </property>
+   <property name="text">
+    <string>...فواتير الزبائن</string>
+   </property>
+  </action>
+  <action name="option_HR">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/administrator.png</normaloff>icons/administrator.png</iconset>
+   </property>
+   <property name="text">
+    <string>...مدير الموارد البشرية</string>
+   </property>
+  </action>
+  <action name="option_machines_and_resources">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/factory.png</normaloff>icons/factory.png</iconset>
+   </property>
+   <property name="text">
+    <string>...الآلات والموارد</string>
+   </property>
+  </action>
+  <action name="option_final_accounts">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/report2.png</normaloff>icons/report2.png</iconset>
+   </property>
+   <property name="text">
+    <string>...الحسابات الختامية</string>
+   </property>
+  </action>
+  <action name="option_period_start">
+   <property name="text">
+    <string>...بضاعة أول مدة</string>
+   </property>
+  </action>
+  <action name="option_period_opening_journal_entry">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/task_report.png</normaloff>icons/task_report.png</iconset>
+   </property>
+   <property name="text">
+    <string>...القيد الافتتاحي</string>
+   </property>
+  </action>
+  <action name="option_cost_centers_reports">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/dispatch_order.png</normaloff>icons/dispatch_order.png</iconset>
+   </property>
+   <property name="text">
+    <string>...تقارير مراكز الكلفة</string>
+   </property>
+  </action>
+  <action name="option_daily_journal">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/business-report.png</normaloff>icons/business-report.png</iconset>
+   </property>
+   <property name="text">
+    <string>...دفتر اليومية</string>
+   </property>
+  </action>
+  <action name="option_ledger">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/bookkeeper.png</normaloff>icons/bookkeeper.png</iconset>
+   </property>
+   <property name="text">
+    <string>...دفتر الاستاذ</string>
+   </property>
+  </action>
+  <action name="option_trial_balance">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/balance.png</normaloff>icons/balance.png</iconset>
+   </property>
+   <property name="text">
+    <string>...ميزان المراجعة</string>
+   </property>
+  </action>
+  <action name="option_account_movements">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/motion_path.png</normaloff>icons/motion_path.png</iconset>
+   </property>
+   <property name="text">
+    <string>...حركة الحساب</string>
+   </property>
+  </action>
+  <action name="option_financial_statements_settings">
+   <property name="text">
+    <string>...إدارة القوائم</string>
+   </property>
+  </action>
+  <action name="option_synchronizer">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/refresh.png</normaloff>icons/refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>...مزامنة</string>
+   </property>
+  </action>
+  <action name="option_financial_statements_report">
+   <property name="text">
+    <string>...تقرير القوائم المالية</string>
+   </property>
+  </action>
+  <action name="option_manufacure_standards">
+   <property name="text">
+    <string>...نماذج التصنيع القياسية</string>
+   </property>
+  </action>
+  <action name="option_material_receipt_docs">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/papers.png</normaloff>icons/papers.png</iconset>
+   </property>
+   <property name="text">
+    <string>...سندات الاستلام</string>
+   </property>
+  </action>
+  <action name="actionss">
+   <property name="text">
+    <string>ss</string>
+   </property>
+  </action>
+  <action name="option_warehouse_variables_2">
+   <property name="text">
+    <string>...ضبط المتغيرات</string>
+   </property>
+  </action>
+  <action name="option_warehouses_2">
+   <property name="text">
+    <string>المستودعات...</string>
+   </property>
+  </action>
+  <action name="option_invoices_view">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/invoice.png</normaloff>icons/invoice.png</iconset>
+   </property>
+   <property name="text">
+    <string>...استعراض الفواتير</string>
+   </property>
+  </action>
+  <action name="option_users">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/administrator.png</normaloff>icons/administrator.png</iconset>
+   </property>
+   <property name="text">
+    <string>...مستخدمون</string>
+   </property>
+  </action>
+  <action name="option_payment_vouchers">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/payment.png</normaloff>icons/payment.png</iconset>
+   </property>
+   <property name="text">
+    <string>...سندات الدفع</string>
+   </property>
+  </action>
+  <action name="option_suppliers">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/suppliers.png</normaloff>icons/suppliers.png</iconset>
+   </property>
+   <property name="text">
+    <string>...الموردون</string>
+   </property>
+  </action>
+  <action name="option_supplier_report">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/suppliers.png</normaloff>icons/suppliers.png</iconset>
+   </property>
+   <property name="text">
+    <string>...تقرير مورد</string>
+   </property>
+  </action>
+  <action name="option_suppliers_invoices">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/report2.png</normaloff>icons/report2.png</iconset>
+   </property>
+   <property name="text">
+    <string>...فواتير الموردين</string>
+   </property>
+  </action>
+  <action name="option_loans">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/payment.png</normaloff>icons/payment.png</iconset>
+   </property>
+   <property name="text">
+    <string>القروض</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>...تقارير الانحراف</string>
+   </property>
+  </action>
+  <action name="option_product_profit_report">
+   <property name="text">
+    <string>...تقارير أرباح منتج</string>
+   </property>
+  </action>
+  <action name="option_sell_price_report">
+   <property name="text">
+    <string>...تكاليف المبيع</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>...تكاليف الشراء</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>...سند قبض</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>...سند دفع</string>
+   </property>
+  </action>
+  <action name="option_journal">
+   <property name="text">
+    <string>...سندات القيد</string>
+   </property>
+  </action>
+  <action name="option_inventory">
+   <property name="text">
+    <string>...تقرير جرد</string>
+   </property>
+  </action>
+  <action name="option_material_move_report">
+   <property name="text">
+    <string>...تقرير حركة المواد</string>
+   </property>
+  </action>
+  <action name="option_quantities_report">
+   <property name="text">
+    <string>...متجهة الكميات</string>
+   </property>
+  </action>
+  <action name="option_reorder_report">
+   <property name="text">
+    <string>...تقرير إعادة الطلب</string>
+   </property>
+  </action>
+  <action name="option_value_report">
+   <property name="text">
+    <string>...تقرير القيمة</string>
+   </property>
+  </action>
+  <action name="option_department_report">
+   <property name="text">
+    <string>...تقرير قسم</string>
+   </property>
+  </action>
+  <action name="action_6">
+   <property name="text">
+    <string>...تقرير موظف</string>
+   </property>
+  </action>
+  <action name="action_7">
+   <property name="text">
+    <string>...تقرير رواتب</string>
+   </property>
+  </action>
+  <action name="action_8">
+   <property name="text">
+    <string>...تقرير تأمينات</string>
+   </property>
+  </action>
+  <action name="action_10">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/hammer.png</normaloff>icons/hammer.png</iconset>
+   </property>
+   <property name="text">
+    <string>...تقارير تصنيع</string>
+   </property>
+  </action>
+  <action name="action_11">
+   <property name="text">
+    <string>...تقارير مبيعات</string>
+   </property>
+  </action>
+  <action name="action_13">
+   <property name="text">
+    <string>...تقارير أرباح منتج</string>
+   </property>
+  </action>
+  <action name="option_sell_price_report_2">
+   <property name="text">
+    <string>...تكاليف المبيع</string>
+   </property>
+  </action>
+  <action name="option_sales_report">
+   <property name="text">
+    <string>...تقرير إجمالي</string>
+   </property>
+  </action>
+  <action name="action_15">
+   <property name="text">
+    <string>...تقرير إجمالي</string>
+   </property>
+  </action>
+  <action name="action_16">
+   <property name="text">
+    <string>...تقارير أرباح منتج</string>
+   </property>
+  </action>
+  <action name="action_17">
+   <property name="text">
+    <string>...تكاليف الشراء</string>
+   </property>
+  </action>
+  <action name="action_18">
+   <property name="text">
+    <string>...الأداء الشهري لقسم</string>
+   </property>
+  </action>
+  <action name="action_19">
+   <property name="text">
+    <string>...تحليل الاتجاهات</string>
+   </property>
+  </action>
+  <action name="option_account_balance">
+   <property name="text">
+    <string>أرصدة الحسابات</string>
+   </property>
+  </action>
+  <action name="option_position_report">
+   <property name="text">
+    <string>...تقرير منصب وظيفي</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

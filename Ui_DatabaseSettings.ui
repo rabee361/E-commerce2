@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DatabaseSettings</class>
+ <widget class="QDialog" name="DatabaseSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>496</width>
+    <height>376</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>الاتصال بقاعدة بيانات بعيدة</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icons/connect_to_database.png</normaloff>icons/connect_to_database.png</iconset>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>المنفذ:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="username_input">
+     <property name="text">
+      <string>root</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>المخدم:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="7" colspan="2">
+    <widget class="QPushButton" name="new_db_btn">
+     <property name="text">
+      <string>قاعدة بيانات جديدة</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QPushButton" name="connect_db_btn">
+     <property name="styleSheet">
+      <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:1.863, fx:0.5, fy:0.5, stop:0 rgba(0, 183, 0, 255), stop:1 rgba(255, 255, 255, 255));
+color:rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>اتصال</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3">
+    <widget class="QPushButton" name="delete_db_btn">
+     <property name="styleSheet">
+      <string notr="true">background-color:qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:1.863, fx:0.5, fy:0.5, stop:0 rgba(255, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>حذف</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1" rowspan="2" colspan="8">
+    <widget class="QListWidget" name="databases_list"/>
+   </item>
+   <item row="8" column="4">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="7" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>200</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="8" column="6">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>كلمة المرور:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>اسم المستخدم:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="password_input">
+     <property name="text">
+      <string>root</string>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="port_input">
+     <property name="text">
+      <string>3306</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>قواعد البيانات:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="server_input">
+     <property name="text">
+      <string>localhost</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QPushButton" name="connect_btn">
+     <property name="maximumSize">
+      <size>
+       <width>9999999</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>اتصال بالمخدم</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QPushButton" name="password_btn">
+     <property name="maximumSize">
+      <size>
+       <width>20</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: transparent;
+    border: none;
+    color: black;
+	font-size: 24px;
+    padding: 0px;
+}
+
+QPushButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+QPushButton:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icons/eye_closed.png</normaloff>icons/eye_closed.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

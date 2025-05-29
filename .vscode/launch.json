@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Ui_Mer_Logic",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/Ui_Mer_Logic.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+    ]
+}

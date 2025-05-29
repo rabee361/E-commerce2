@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PeriodStartJournalEntries</class>
+ <widget class="QDialog" name="PeriodStartJournalEntries">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1420</width>
+    <height>744</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>القيد الافتتاحي</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_8">
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="JournalEntry">
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <property name="spacing">
+          <number>1</number>
+         </property>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="filter_creditor_checkbox">
+           <property name="text">
+            <string>دائن</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QCheckBox" name="filter_by_account_checkbox">
+           <property name="text">
+            <string>ترشيح حسب الحساب</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2" rowspan="2">
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>106</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="4" column="0" colspan="4">
+          <widget class="QTreeWidget" name="accounts_tree">
+           <column>
+            <property name="text">
+             <string>الرمز</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>الحساب</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>المعرف</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="filter_debtor_checkbox">
+           <property name="text">
+            <string>مدين</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QCheckBox" name="filter_by_date_checkbox">
+           <property name="text">
+            <string>ترشيح حسب التاريخ</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="4">
+          <widget class="QCalendarWidget" name="calendar">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>200</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="text">
+            <string>إدارة الحسابات</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="2" column="1">
+          <widget class="QPushButton" name="update_journal_entry_item_btn">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #C8E6C9;
+    color: black;
+    border: 1px solid #81C784;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #A5D6A7;
+}
+
+QPushButton:pressed {
+    background-color: #81C784;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>حفظ</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="4">
+          <widget class="QGroupBox" name="groupBox_4">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="title">
+            <string>تعديل</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="4" colspan="2">
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>الحساب المقابل:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="5" colspan="4">
+             <widget class="QLineEdit" name="value_input"/>
+            </item>
+            <item row="3" column="5" colspan="4">
+             <widget class="QComboBox" name="journal_entry_cost_center_combobox">
+              <property name="minimumSize">
+               <size>
+                <width>110</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="3" colspan="2">
+             <widget class="QLabel" name="label_11">
+              <property name="text">
+               <string>مركز الكلفة:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>17</width>
+                <height>128</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="journal_entry_item_account_combobox">
+              <property name="minimumSize">
+               <size>
+                <width>110</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="9">
+             <widget class="QComboBox" name="journal_entry_item_currency_combobox"/>
+            </item>
+            <item row="2" column="1" colspan="2">
+             <widget class="QComboBox" name="journal_entry_item_type_combobox"/>
+            </item>
+            <item row="0" column="6">
+             <widget class="QComboBox" name="journal_entry_item_opposite_account_combobox">
+              <property name="minimumSize">
+               <size>
+                <width>110</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_12">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>النسب:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <widget class="QLabel" name="label_10">
+              <property name="text">
+               <string>القيمة:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1" rowspan="2" colspan="9">
+             <widget class="QTableWidget" name="journal_entry_distributive_cost_center_accounts_table">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>150</height>
+               </size>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::AllEditTriggers</set>
+              </property>
+              <property name="showDropIndicator" stdset="0">
+               <bool>false</bool>
+              </property>
+              <property name="dragDropOverwriteMode">
+               <bool>false</bool>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="showGrid">
+               <bool>true</bool>
+              </property>
+              <attribute name="horizontalHeaderVisible">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderStretchLastSection">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>المعرف</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>معرف الحساب</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>اسم الحساب</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>النسبة</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>القيمة</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>الحساب:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>البيان:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QPushButton" name="select_account_btn">
+              <property name="text">
+               <string>...اختيار</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" colspan="9">
+             <widget class="QTextEdit" name="journal_entry_item_statement_input">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>100</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>مجموع النسب:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_9">
+              <property name="text">
+               <string>الطبيعة:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="2" colspan="4">
+             <widget class="QLineEdit" name="journal_entry_distributive_cost_center_accounts_total_percentage_input">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: white;
+color: black;
+border: black solid 1px;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="9">
+             <widget class="QPushButton" name="select_opposite_account_btn">
+              <property name="text">
+               <string>...اختيار</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="9">
+             <widget class="QPushButton" name="select_cost_center_btn">
+              <property name="text">
+               <string>...اختيار</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QPushButton" name="add_journal_entry_item_btn">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #FFF9C4;
+    color: #000000;
+    border: 1px solid #E0E0E0;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #FFECB3;
+}
+
+QPushButton:pressed {
+    background-color: #FFE082;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>...إضافة عنصر</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QPushButton" name="delete_journal_entry_item_btn">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #FFCDD2;
+    color: black;
+    border: 1px solid #E57373;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #EF9A9A;
+}
+
+QPushButton:pressed {
+    background-color: #E57373;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>حذف</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="0" colspan="4">
+          <widget class="QTableWidget" name="journal_entries_items_table">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Sunken</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="showDropIndicator" stdset="0">
+            <bool>false</bool>
+           </property>
+           <property name="dragDropOverwriteMode">
+            <bool>false</bool>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::SingleSelection</enum>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <property name="verticalScrollMode">
+            <enum>QAbstractItemView::ScrollPerPixel</enum>
+           </property>
+           <property name="horizontalScrollMode">
+            <enum>QAbstractItemView::ScrollPerPixel</enum>
+           </property>
+           <property name="sortingEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>المعرف</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>معرف سند القيد</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>معرف الحساب</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>الحساب</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>مدين</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>دائن</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>البيان</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>معرف العملة</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>العملة</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>معرف الحساب المقابل</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>الحساب المقابل</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <item row="0" column="0" colspan="4">
+          <widget class="QTableWidget" name="journals_entries_table">
+           <property name="focusPolicy">
+            <enum>Qt::StrongFocus</enum>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Sunken</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="showDropIndicator" stdset="0">
+            <bool>false</bool>
+           </property>
+           <property name="dragDropOverwriteMode">
+            <bool>false</bool>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::SingleSelection</enum>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <property name="verticalScrollMode">
+            <enum>QAbstractItemView::ScrollPerPixel</enum>
+           </property>
+           <property name="horizontalScrollMode">
+            <enum>QAbstractItemView::ScrollPerPixel</enum>
+           </property>
+           <property name="sortingEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>المعرف</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>التاريخ</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>معرف العملة</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>العملة</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>تاريخ التسجيل</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="4">
+          <widget class="QGroupBox" name="groupBox_3">
+           <property name="title">
+            <string>تعديل</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <property name="spacing">
+             <number>1</number>
+            </property>
+            <item row="0" column="3">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>العملة:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="2">
+             <widget class="QDateEdit" name="journal_entry_date_input">
+              <property name="displayFormat">
+               <string>dd/M/yyyy</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>التاريخ:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QComboBox" name="journal_entry_currency_combobox"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>54</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="update_journal_entry_btn">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #C8E6C9;
+    color: black;
+    border: 1px solid #81C784;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #A5D6A7;
+}
+
+QPushButton:pressed {
+    background-color: #81C784;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>حفظ</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QPushButton" name="delete_journal_entry_btn">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #FFCDD2;
+    color: black;
+    border: 1px solid #E57373;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #EF9A9A;
+}
+
+QPushButton:pressed {
+    background-color: #E57373;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>حذف</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QPushButton" name="add_journal_entry_btn">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #FFF9C4;
+    color: #000000;
+    border: 1px solid #E0E0E0;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #FFECB3;
+}
+
+QPushButton:pressed {
+    background-color: #FFE082;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>...إضافة قيد</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

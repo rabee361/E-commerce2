@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NewInvoice</class>
+ <widget class="QDialog" name="NewInvoice">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1156</width>
+    <height>655</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>فاتورة جديدة</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>graphics/icon.xpm</normaloff>graphics/icon.xpm</iconset>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="1" colspan="2">
+    <widget class="QTableWidget" name="items_table">
+     <column>
+      <property name="text">
+       <string>معرف المادة</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>المادة</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>الكود</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>الكمية</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>الواحدة</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>السعر الإفرادي</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>السعر الافرادي (دولار)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>السعر الإجمالي</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>السعر الاجمالي (دولار)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>عملة الشراء</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>400</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="exchange_input">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="currency_input">
+        <item>
+         <property name="text">
+          <string>ل.س</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>دولار</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLineEdit" name="code_input">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="4">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>البائع:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLineEdit" name="number_input">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>العملة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>سعر الصرف المعتمد:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QPushButton" name="add_btn">
+        <property name="text">
+         <string>إضافة</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label_6">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>التاريخ:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="3">
+       <widget class="QLineEdit" name="seller_input"/>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>المادة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLineEdit" name="quantity_input">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="5" rowspan="5">
+       <widget class="QTableWidget" name="suggestions_table">
+        <property name="maximumSize">
+         <size>
+          <width>800</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <column>
+         <property name="text">
+          <string>المعرف</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>الكود</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>المادة</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QDateEdit" name="date_input">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="4">
+       <widget class="QLabel" name="label_10">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>البيان:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="6">
+       <widget class="QLabel" name="last_buy_input">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>اخر شراء:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="label_5">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>الواحدة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="3">
+       <widget class="QLineEdit" name="statement_input"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>كغ</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ليتر</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>قطعة</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>رقم الفاتورة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="3">
+       <widget class="QLineEdit" name="unit_price_input">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>الكمية:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="4">
+       <widget class="QLabel" name="label_3">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>السعر الإفرادي:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="save_btn">
+     <property name="text">
+      <string>حفظ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="delete_btn">
+     <property name="maximumSize">
+      <size>
+       <width>60</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>مسح</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

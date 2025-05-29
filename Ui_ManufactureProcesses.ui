@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ManufactureProcesses</class>
+ <widget class="QDialog" name="ManufactureProcesses">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>984</width>
+    <height>559</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>التصنيع</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>graphics/icon.xpm</normaloff>graphics/icon.xpm</iconset>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>305</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="1">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>305</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1" colspan="4">
+       <widget class="QTableWidget" name="manu_processes_table">
+        <column>
+         <property name="text">
+          <string>المعرف</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>التاريخ</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>الوجبة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>القيمة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>معرف العملة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>العملة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>الحالة</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QPushButton" name="export_btn">
+        <property name="text">
+         <string>تصدير</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="new_manu_btn">
+        <property name="text">
+         <string>...جديد</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QTreeWidget" name="materials_tree">
+        <column>
+         <property name="text">
+          <string>المجموعة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>المادة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>معرف المادة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>معرف المجموعة</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="delete_manu_btn">
+        <property name="text">
+         <string>الغاء العملية</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

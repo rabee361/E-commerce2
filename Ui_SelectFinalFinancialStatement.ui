@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SelectFinalFinancialStatement</class>
+ <widget class="QWidget" name="SelectFinalFinancialStatement">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>645</width>
+    <height>503</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>645</width>
+    <height>503</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>645</width>
+    <height>503</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>اختيار قائمة مالية ختامية</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>11</y>
+     <width>621</width>
+     <height>68</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>68</height>
+    </size>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="title">
+    <string>البحث عن قائمة مالية</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="financial_statement_name_input"/>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="search_financial_statement_btn">
+      <property name="text">
+       <string>بحث</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>624</width>
+     <height>403</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>624</width>
+     <height>400</height>
+    </size>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="title">
+    <string>اختيار قائمة مالية ختامية</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0" colspan="3">
+     <widget class="QTableWidget" name="financial_statement_table">
+      <column>
+       <property name="text">
+        <string>المعرف</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>الاسم</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>439</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="cancel_btn">
+      <property name="text">
+       <string>الغاء</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="save_final_financial_statement_btn">
+      <property name="text">
+       <string>حفظ</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

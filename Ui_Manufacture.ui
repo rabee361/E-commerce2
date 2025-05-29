@@ -1,0 +1,2444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Manufacture</class>
+ <widget class="QDialog" name="Manufacture">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1183</width>
+    <height>717</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>تصنيع</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>graphics/icon.xpm</normaloff>graphics/icon.xpm</iconset>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="2" column="0">
+    <widget class="QTableWidget" name="manufacture_details_table">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>200</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>البند</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="textAlignment">
+       <set>AlignTrailing|AlignVCenter</set>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>الكلفة</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="textAlignment">
+       <set>AlignTrailing|AlignVCenter</set>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>معرف العملة</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="textAlignment">
+       <set>AlignTrailing|AlignVCenter</set>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>العملة</string>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="textAlignment">
+       <set>AlignTrailing|AlignVCenter</set>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="buttons_groupbox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="save_btn">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #FFFFFF;  /* Green */
+    border: none;
+    color: #4CAF50;  /* White */
+    font-weight: bold;
+    font-size: 14px;  /* Adjust the font size as desired */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+
+QPushButton:hover {
+    background-color: #F5F5F5;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>حفظ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="manufacture_btn">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #4CAF50;  /* Green */
+    border: none;
+    color: #FFFFFF;  /* White */
+    font-weight: bold;
+    font-size: 14px;  /* Adjust the font size as desired */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+
+QPushButton:hover {
+    background-color: #45a049;  /* Darker Green */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+QPushButton:pressed {
+    background-color: #3e8e41;  /* Even Darker Green */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}</string>
+        </property>
+        <property name="text">
+         <string>تصنيع</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="status_bar_label">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QToolBox" name="toolBox">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="tabSpacing">
+      <number>6</number>
+     </property>
+     <widget class="QWidget" name="page">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1165</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>المواد المصنعة</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="quantities_groupbox">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_11">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>المادة المنتجة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="produced_material_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="2">
+           <widget class="QPushButton" name="select_produced_material_btn">
+            <property name="text">
+             <string>...اختيار</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="label_27">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>التركيبة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6" colspan="2">
+           <widget class="QComboBox" name="composition_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="8" colspan="2">
+           <widget class="QPushButton" name="select_composition_btn">
+            <property name="text">
+             <string>...اختيار</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="10" colspan="2">
+           <widget class="QPushButton" name="add_composition_material_btn">
+            <property name="text">
+             <string>...تغيير تركيبة المادة</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" rowspan="2">
+           <widget class="QLabel" name="label_5">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>الكمية المعيارية:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4" rowspan="2" colspan="2">
+           <widget class="QLabel" name="label_16">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="8" rowspan="2" colspan="2">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="12" rowspan="2">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>عدد ساعات العمل المعيارية:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="14" rowspan="2">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>عدد الوجبات المعيارية:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="16" rowspan="2">
+           <widget class="QPushButton" name="add_produced_material_btn">
+            <property name="text">
+             <string>➕ اضافة</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="QLineEdit" name="standard_quantity1_input">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QComboBox" name="standard_unit1_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5" colspan="2">
+           <widget class="QLineEdit" name="standard_quantity2_input">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QComboBox" name="standard_unit2_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="9" colspan="2">
+           <widget class="QLineEdit" name="standard_quantity3_input">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="11">
+           <widget class="QComboBox" name="standard_unit3_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="13">
+           <widget class="QLineEdit" name="standard_work_hours_input">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="15">
+           <widget class="QLineEdit" name="standard_new_batches_count">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFFF;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" rowspan="2">
+           <widget class="QLabel" name="label_6">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>الكمية المصنعة/التالفة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4" rowspan="2" colspan="2">
+           <widget class="QLabel" name="label_17">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="8" rowspan="2" colspan="2">
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="12" rowspan="2">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>عدد ساعات العمل الفعلي:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="14" rowspan="2">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>رقم الوجبة:</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="16" rowspan="2">
+           <widget class="QPushButton" name="remove_material">
+            <property name="text">
+             <string>❌ حذف</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="produced_quantity1_input">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string>background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="damaged_quantity1_input">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string>background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QComboBox" name="produced_unit1_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="5">
+           <widget class="QLineEdit" name="produced_quantity2_input">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="6">
+           <widget class="QLineEdit" name="damaged_quantity1_input_2">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string>background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="7">
+           <widget class="QComboBox" name="produced_unit2_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="9">
+           <widget class="QLineEdit" name="produced_quantity3_input">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="10">
+           <widget class="QLineEdit" name="damaged_quantity1_input_3">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string>background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="11">
+           <widget class="QComboBox" name="produced_unit3_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="13">
+           <widget class="QLineEdit" name="working_hours_input">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string>background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="15">
+           <widget class="QLineEdit" name="batch_number_input">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFFF;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="17">
+           <widget class="QTreeWidget" name="produced_materials_tree">
+            <column>
+             <property name="text">
+              <string>معرف المادة</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>المادة</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الكمية 1</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>معرف الواحدة 1</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الواجدة 1</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الكمية 2</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>معرف الواحدة 2</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الواحدة 2</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الكمية 3</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>معرف الواجدة 3</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الواحدة 3</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الساعات</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الوجبات</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>رقم الوجبة</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الواحدة الافتراضية</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <property name="geometry">
+       <rect>
+        <x>-177</x>
+        <y>0</y>
+        <width>1325</width>
+        <height>314</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>خصائص التصنيع</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="dates_invoices_groupbox">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_13">
+          <item row="0" column="3">
+           <widget class="QGroupBox" name="machines">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="title">
+             <string>النداخل الزمني للآلات</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_12">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_13">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>عند مشاركة آلة لتصنيع أكثر من مادة استخدم:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="sum_machine_times_radio">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>الحساب باستخدام مجموع الآوقات</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QRadioButton" name="maximum_machine_time_radio">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>الحساب باستخدام الوقت الأعظمي</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QGroupBox" name="invoices_groupbox">
+            <property name="maximumSize">
+             <size>
+              <width>250</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="title">
+             <string>:حساب سعر المواد الأولية حسب</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="5" column="0">
+              <widget class="QLineEdit" name="explicit_raw_materials_price_input">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_21">
+               <property name="text">
+                <string>لكل 1</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" colspan="2">
+              <widget class="QRadioButton" name="material_exact_invoice_radio">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="toolTip">
+                <string>يتم استخدام هذه الطريقة للعمليات التي تسجل في المعمل بشكل آلي</string>
+               </property>
+               <property name="toolTipDuration">
+                <number>10</number>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>القاتورة الفعلية للمادة</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="2">
+              <widget class="QRadioButton" name="material_last_purchase_radio">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>حسب سعر آخر فاتورة</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QComboBox" name="explicit_raw_materials_currency_combobox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" colspan="2">
+              <widget class="QRadioButton" name="material_explicit_value_radio">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="toolTip">
+                <string>يتم استخدام هذه الطريقة للعمليات التي تسجل في المعمل بشكل آلي</string>
+               </property>
+               <property name="toolTipDuration">
+                <number>10</number>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>استخدام القيمة التالية:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" colspan="2">
+              <widget class="QRadioButton" name="material_invoices_average_radio">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>متوسط جميع الفواتير</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="3">
+              <widget class="QRadioButton" name="material_invoices_average_till_pollout_radio">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>متوسط الفواتير حتى تاريخ الاخراج </string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="QComboBox" name="explicit_raw_materials_unit_combobox">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QGroupBox" name="expenses_groupbox">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="title">
+             <string>:توزيع المصاريف حسب</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="0" column="0">
+              <widget class="QComboBox" name="expenses_type_combobox">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QRadioButton" name="quantity_expenses_radio">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>الكمية</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="no_expenses_radio">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>بدون مصاريف</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QRadioButton" name="hours_expenses_radio">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>ساعات العمل</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QComboBox" name="radio_quantity_unit_expenses_combobox">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="groupBox">
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="title">
+             <string>معلومات التصنيع</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>تاريخ عملية التصنيع:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDateEdit" name="manufacture_date_input">
+               <property name="maximumSize">
+                <size>
+                 <width>252</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy/M/d</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_20">
+               <property name="text">
+                <string>عملة التصنيع:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QComboBox" name="currency_combobox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>تاريخ تخريج المواد الأولية:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDateEdit" name="ingredients_pullout_date_input">
+               <property name="maximumSize">
+                <size>
+                 <width>252</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy/M/d</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4" colspan="2">
+              <widget class="QPushButton" name="currencies_and_exchange_btn">
+               <property name="text">
+                <string>إدارة العملات وأسعار الصرف</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_24">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>تاريخ صلاحية المنتج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QDateEdit" name="material_production_date_input">
+               <property name="maximumSize">
+                <size>
+                 <width>252</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy/M/d</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_22">
+               <property name="text">
+                <string>طريقة الإخراج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QComboBox" name="ingredients_pullout_method_combobox">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="3">
+              <widget class="QLabel" name="label_26">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>مركز الكلفة:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="4">
+              <widget class="QComboBox" name="cost_center_combobox">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="6">
+              <widget class="QPushButton" name="select_cost_center_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>حساب وسيط الإخراج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="mid_account_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QPushButton" name="select_mid_account_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="3">
+              <widget class="QLabel" name="label_25">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>حساب وسيط الادخال:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="4">
+              <widget class="QComboBox" name="mid_account_input_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="6">
+              <widget class="QPushButton" name="select_mid_input_account_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>حساب الإخراج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="ingredients_pullout_account_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QPushButton" name="select_pullout_account_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3">
+              <widget class="QLabel" name="label_10">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>حساب  الادخال:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="4">
+              <widget class="QComboBox" name="account_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="maxVisibleItems">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="6">
+              <widget class="QPushButton" name="select_account_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>مستودع الإخراج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QComboBox" name="output_warehouse_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="QPushButton" name="select_output_warehouse_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="3">
+              <widget class="QLabel" name="label_14">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>مستودع الإدخال:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="4">
+              <widget class="QComboBox" name="input_warehouse_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="6">
+              <widget class="QPushButton" name="select_input_warehouse_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_28">
+               <property name="text">
+                <string>مستودع التلف:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QComboBox" name="damaged_warehouse_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="2">
+              <widget class="QPushButton" name="select_damaged_warehouse_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="3">
+              <widget class="QLabel" name="label_29">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>حساب  الادخال:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="4">
+              <widget class="QComboBox" name="damaged_account_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="maxVisibleItems">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="5" colspan="2">
+              <widget class="QPushButton" name="select_damaged_account_btn">
+               <property name="text">
+                <string>...اختيار</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QCheckBox" name="generate_journal_entry">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>توليد سند قيد</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QCheckBox" name="add_material_to_warehouse_checkbox">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>إضافة المادة إلى المستودع</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1165</width>
+        <height>283</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>مستودعات المواد</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="material_warehouses_table">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>المادة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف المادة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>مستودع الادخال</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1165</width>
+        <height>283</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>المواد</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QTreeWidget" name="composition_tree">
+         <property name="minimumSize">
+          <size>
+           <width>900</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="verticalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="horizontalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="headerHidden">
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>المعرف</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>رمز المادة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>اسم المادة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الكمية في النموذج</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف الواحدة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الواحدة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الكمية المصنعة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف الواحدة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الواحدة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الكلفة الإفرادية</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+            <kerning>true</kerning>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الكلفة الإجمالية</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف العملة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>العملة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف المستودع</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>المستودع</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف حساب المستودع</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>متوفرة في المستودع</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف الواحدة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الواحدة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>المسحوب</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>النقص</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="page_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1165</width>
+        <height>283</height>
+       </rect>
+      </property>
+      <attribute name="label">
+       <string>الآلات</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="machines_table">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::DoubleClicked</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="verticalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="horizontalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>معرف الآلة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الالة</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف النمط</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>النمط</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>المدة بالساعات</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>المدة بالدقائق</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>استخدام حصري</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>النسبة %</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف الحساب</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الحساب</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>معرف الحساب المقابل</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>الحساب المقابل</string>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

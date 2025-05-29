@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manuals>
+    <accounts manual_name="Syria" name="النظام المحاسبي الموحد السوري">
+        <account code="11" name="أصول ثابتة" type_col="normal">
+            <account code="111" name="أراضي" type_col="normal"/>
+            <account code="1112" name="مباني وإنشاءات ومرافق وطرق" type_col="normal"/>
+            <account code="113" name="آلات ومعدات" type_col="normal"/>
+            <account code="114" name="وسائل نقل وانتقال" type_col="normal"/>
+            <account code="115" name="عدد وأدوات" type_col="normal"/>
+            <account code="117" name="ثروة حيوانية ومائية" type_col="normal"/>
+            <account code="118" name="" type_col="normal"/>
+        </account>
+
+        <account code="12" name="مشروعات تحت التنفيذ" type_col="normal">
+            <account code="121" name="أراضي" type_col="normal"/>
+            <account code="1211" name="مباني وإنشاءات ومرافق وطرق" type_col="normal"/>
+            <account code="1212" name="آلات ومعدات" type_col="normal"/>
+            <account code="1213" name="وسائل نقل وانتقال" type_col="normal"/>
+            <account code="1214" name="عدد وأدوات" type_col="normal"/>
+            <account code="1215" name="أثاث وتجهيزات مكتبية" type_col="normal"/>
+            <account code="1216" name="ثروة حيوانية ومائية" type_col="normal"/>
+            <account code="1217" name="" type_col="normal"/>
+            <account code="122" name="إنفاق استثماري" type_col="normal">
+                <account code="1221" name="دفعات مقدمة" type_col="normal"/>
+                <account code="1222" name="اعتمادات مستنديه لشراء أصول ثابتة" type_col="normal"/>
+            </account>
+        </account>
+
+        <account code="13" name="استثمارات طويلة الأجل" type_col="normal">
+            <account code="131" name="استثمارات عقارية" type_col="normal"/>
+            <account code="132" name="استثمارات في أسهم في شركات تابعة" type_col="normal"/>
+            <account code="133" name="استثمارات في أسهم في شركات شقيقة" type_col="normal"/>
+            <account code="134" name="استثمارات في أسهم في شركات أخرى" type_col="normal"/>
+            <account code="135" name="استثمارات في سندات" type_col="normal"/>
+            <account code="136" name="استثمارات في وثائق استثمار" type_col="normal"/>
+            <account code="137" name="" type_col="normal"/>
+        </account>
+
+        <account code="14" name="قروض وأرصدة مدينة طويلة الأجل" type_col="normal">
+            <account code="141" name="قروض لشركات قابضة/ تابعة/ شقيقة" type_col="normal"/>
+            <account code="142" name="قروض لجهات أخرى" type_col="normal"/>
+            <account code="143" name="" type_col="normal"/>
+        </account>
+
+        <account code="15" name="أصول أخرى" type_col="normal">
+            <account code="151" name="أصول غير ملموسة" type_col="normal">
+                <account code="1511" name="شهرة" type_col="normal"/>
+                <account code="1512" name="براءات اختراع/ علامات تجارية/ حقوق امتياز وتأليف" type_col="normal"/>
+                <account code="1513" name="تكاليف التطوير" type_col="normal"/>
+                <account code="1514" name="" type_col="normal"/>
+            </account>
+            <account code="152" name="نفقات مرسلة" type_col="normal">
+                <account code="1521" name="نفقات تحديث فروع ومعارض النشاط التجاري" type_col="normal"/>
+                <account code="1522" name="مساهمة المنشأة في إنشاء أصول غير مملوكة لها وتخدم أغراضها" type_col="normal"/>
+                <account code="1523" name="مقابل حق الانتفاع بمقار عن طريق الشراء بالجدك" type_col="normal"/>
+            </account>
+            <account code="153" name="نفقات مؤجلة" type_col="normal">
+                <account code="1531" name="نفقات تأسيس" type_col="normal"/>
+                <account code="1532" name="نفقات ما قبل بدء الإنتاج/ التشغيل" type_col="normal"/>
+                <account code="1533" name="حملة إعلانية" type_col="normal"/>
+            </account>
+        </account>
+
+        <account code="16" name="مخزون" type_col="normal">
+            <account code="161" name="مخزن خامات ومواد ووقود وقطع غيار" type_col="normal">
+                <account code="1611" name="مخزن الخامات" type_col="normal"/>
+                <account code="1612" name="مخزن الوقود والزيوت" type_col="normal"/>
+                <account code="1613" name="مخزن قطع الغيار والمهمات" type_col="normal"/>
+                <account code="1614" name="مخزن مواد التعبئة والتغليف" type_col="normal"/>
+                <account code="1615" name="مخزن المخلفات والخردة" type_col="normal"/>
+                <account code="1616" name="مخزون مواد وقطع غيار تحت التكوين" type_col="normal"/>
+            </account>
+            <account code="162" name="مخزون إنتاج غير تام" type_col="normal"/>
+            <account code="163" name="مخزون إنتاج تام" type_col="normal"/>
+            <account code="164" name="مخزون بضائع مشتراة بغرض البيع" type_col="normal"/>
+            <account code="165" name="مخزون لدى الغير" type_col="normal"/>
+            <account code="166" name="اعتمادات مستنديه لشراء سلع وخدمات" type_col="normal"/>
+        </account>
+
+        <account code="17" name="عملاء وأوراق قبض وحسابات مدينة" type_col="normal">
+            <account code="171" name="عملاء" type_col="normal"/>
+            <account code="172" name="أوراق قبض" type_col="normal"/>
+            <account code="173" name="حسابات مدينة لدى الشركات القابضة/ التابعة/ الشقيقة" type_col="normal"/>
+            <account code="174" name="حسابات مدينة لدى المصالح والهيئات" type_col="normal">
+                <account code="1741" name="مصلحة الجمارك (أمانات)" type_col="normal"/>
+                <account code="1742" name="مصلحة الضرائب على المبيعات (ضريبة على المدخلات تحت التسوية)" type_col="normal"/>
+                <account code="1743" name="مصلحة الضرائب العامة (مبالغ مخصومة من الشركة بمعرفة الغير)" type_col="normal"/>
+            </account>
+            <account code="175" name="إيرادات مستحقة التحصيل" type_col="normal"/>
+            <account code="176" name="مصروفات مدفوعة مقدما" type_col="normal"/>
+            <account code="177" name="حسابات مدينة أخرى" type_col="normal"/>
+        </account>
+
+        <account code="18" name="استثمارات وأوراق مالية متداولة" type_col="normal">
+            <account code="181" name="اسهم" type_col="normal"/>
+            <account code="182" name="سندات" type_col="normal"/>
+            <account code="183" name="وثائق استثمار" type_col="normal"/>
+            <account code="184" name="أذون خزانه" type_col="normal"/>
+            <account code="185" name="" type_col="normal"/>
+        </account>
+
+        <account code="19" name="نقدية بالبنوك والصندوق" type_col="normal">
+            <account code="191" name="ودائع بالبنوك لأجل أو بإخطار سابق" type_col="normal"/>
+            <account code="192" name="غطاء حسابات ضمان" type_col="normal"/>
+            <account code="193" name="حسابات جارية بالبنوك" type_col="normal"/>
+            <account code="194" name="نقدية بالصندوق" type_col="normal"/>
+        </account>
+
+        <!-- حقوق الملكية والالتزامات -->
+        <account code="2" name="حقوق الملكية والالتزامات" type_col="normal">
+            <account code="21" name="رأس المال المدفوع" type_col="normal">
+                <account code="211" name="رأس المال المصدر" type_col="normal"/>
+                <account code="212" name="أقساط لم يطلب سدادها" type_col="normal"/>
+                <account code="213" name="أقساط متأخر سدادها" type_col="normal"/>
+            </account>
+            <account code="22" name="احتياطيات" type_col="normal">
+                <account code="221" name="احتياطي قانوني" type_col="normal"/>
+                <account code="222" name="احتياطي نظامي" type_col="normal"/>
+                <account code="223" name="احتياطي رأسمالي" type_col="normal"/>
+                <account code="224" name="احتياطي أخرى" type_col="normal"/>
+            </account>
+            <account code="23" name="أرباح (خسائر) مرحلة" type_col="normal"/>
+            <account code="24" name="(اسهم الخزينة)" type_col="normal"/>
+            <account code="25" name="التزامات طويلة الأجل" type_col="normal">
+                <account code="251" name="قروض طويلة الأجل من شركات قابضة / تابعة / شقيقة" type_col="normal"/>
+                <account code="252" name="قروض طويلة الأجل من البنوك" type_col="normal"/>
+                <account code="253" name="قروض طويلة الأجل من جهات أخرى" type_col="normal"/>
+                <account code="254" name="سندات" type_col="normal"/>
+                <account code="255" name="" type_col="normal"/>
+            </account>
+        </account>
+
+        <!-- المخصصات -->
+        <account code="26" name="مخصصات" type_col="normal">
+            <account code="261" name="مخصص إهلاك أصول ثابتة" type_col="normal">
+                <account code="2611" name="مزروعات معمرة قابلة للإهلاك" type_col="normal"/>
+                <account code="2612" name="مباني وإنشاءات ومرافق وطرق" type_col="normal"/>
+                <account code="2613" name="آلات ومعدات" type_col="normal"/>
+                <account code="2614" name="وسائل نقل وانتقال" type_col="normal"/>
+                <account code="2615" name="عدد وأدوات" type_col="normal"/>
+                <account code="2616" name="أثاث وتجهيزات مكتبية" type_col="normal"/>
+                <account code="2617" name="ثروة حيوانية ومائية" type_col="normal"/>
+                <account code="2618" name="" type_col="normal"/>
+            </account>
+            <account code="262" name="مخصص هبوط أسعار مخزون الإنتاج غير التام" type_col="normal"/>
+            <account code="263" name="مخصص هبوط أسعار مخزون الإنتاج التام" type_col="normal"/>
+            <account code="264" name="مخصص هبوط أسعار مخزون البضائع المشتراة" type_col="normal"/>
+            <account code="265" name="مخصص هبوط أسعار الأوراق المالية" type_col="normal"/>
+            <account code="266" name="مخصص الديون المشكوك في تحصيلها" type_col="normal"/>
+            <account code="267" name="مخصص الضرائب المتنازع عليها" type_col="normal"/>
+            <account code="268" name="مخصص المطالبات والمنازعات" type_col="normal"/>
+            <account code="269" name="مخصصات أخرى" type_col="normal"/>
+        </account>
+
+        <!-- بنوك دائنة -->
+        <account code="27" name="بنوك دائنة" type_col="normal">
+            <account code="271" name="سحب على المكشوف" type_col="normal"/>
+            <account code="272" name="تمويل اعتمادات مستنديه" type_col="normal"/>
+            <account code="273" name="قروض قصيرة الأجل" type_col="normal"/>
+        </account>
+
+        <!-- موردون وأوراق دفع وحسابات دائنه -->
+        <account code="28" name="موردون وأوراق دفع وحسابات دائنه" type_col="normal">
+            <account code="281" name="موردون" type_col="normal"/>
+            <account code="282" name="أوراق دفع" type_col="normal"/>
+            <account code="283" name="حسابات دائنه للشركات القابضة / التابعة / الشقيقة" type_col="normal"/>
+            <account code="284" name="حسابات دائنه للمصالح والهيئات" type_col="normal">
+                <account code="2841" name="مصلحة الجمارك" type_col="normal"/>
+                <account code="2842" name="مصلحة الضرائب على المبيعات" type_col="normal"/>
+                <account code="2843" name="مصلحة الضرائب العامة" type_col="normal"/>
+                <account code="2844" name="مصلحة الضرائب العقارية" type_col="normal"/>
+                <account code="2845" name="الهيئة القومية للتأمين الاجتماعي" type_col="normal"/>
+                <account code="2846" name="هيئات تأمينية أخرى" type_col="normal"/>
+            </account>
+            <account code="285" name="دائنو التوزيعات" type_col="normal"/>
+            <account code="286" name="مصروفات مستحقة السداد" type_col="normal"/>
+            <account code="287" name="إيرادات محصلة مقدما" type_col="normal"/>
+            <account code="288" name="أرباح مبيعات تقسيط مؤجلة (تخص أعوام لاحقة)" type_col="normal"/>
+            <account code="289" name="حسابات دائنه أخرى" type_col="normal"/>
+        </account>
+
+        <!-- حسابات قائمة الدخل وتوزيعات الأرباح -->
+        <account code="29" name="حسابات قائمة الدخل وتوزيعات الأرباح" type_col="normal">
+            <account code="291" name="حسابات قائمة الدخل" type_col="normal">
+                <account code="2911" name="حساب تكلفة إنتاج او شراء الوحدات المباعة" type_col="normal"/>
+                <account code="2912" name="حساب المتاجرة" type_col="normal"/>
+                <account code="2913" name="حساب الأرباح والخسائر" type_col="normal"/>
+            </account>
+            <account code="292" name="حساب توزيع الأرباح والخسائر" type_col="normal"/>
+        </account>
+
+        <!-- التكاليف والمصروفات -->
+        <account code="3" name="التكاليف والمصروفات" type_col="normal">
+            <account code="31" name="خدمات ومواد ووقود وقطع غيار" type_col="normal">
+                <account code="311" name="خامات ومدخلات إنتاج" type_col="normal"/>
+                <account code="312" name="وقود وزيوت" type_col="normal"/>
+                <account code="313" name="قطع غيار ومهمات" type_col="normal"/>
+                <account code="314" name="مواد تعبئة وتغليف" type_col="normal"/>
+                <account code="315" name="كهرباء ومياه" type_col="normal"/>
+                <account code="316" name="أدوات كتابية" type_col="normal"/>
+            </account>
+            <account code="32" name="أجور" type_col="normal">
+                <account code="321" name="أجور نقدية" type_col="normal"/>
+                <account code="322" name="مزايا عينية" type_col="normal"/>
+                <account code="323" name="تأمينات اجتماعية" type_col="normal"/>
+            </account>
+            <account code="33" name="مصروفات" type_col="normal">
+                <account code="331" name="خدمات مشتراة" type_col="normal">
+                    <account code="3311" name="مصروفات صيانة" type_col="normal"/>
+                    <account code="3312" name="مصروفات تشغيل لدى الغير ومقاولي الباطن" type_col="normal"/>
+                    <account code="3313" name="مصروفات أبحاث وتجارب" type_col="normal"/>
+                    <account code="3314" name="مصروفات دعاية وإعلان ونشر وطبع وعلاقات عامة واستقبال" type_col="normal"/>
+                </account>
+                <account code="332" name="الإهلاك والاستهلاك" type_col="normal">
+                    <account code="3321" name="إهلاك الأصول الثابتة" type_col="normal"/>
+                    <account code="3322" name="استهلاك الأصول غير الملموسة والنفقات المرسملة" type_col="normal"/>
+                </account>
+                <account code="333" name="فوائد" type_col="normal"/>
+                <account code="334" name="إيجار عقارية (أراضى – مباني)" type_col="normal"/>
+                <account code="335" name="ضرائب عقارية" type_col="normal"/>
+                <account code="336" name="ضرائب غير مباشرة" type_col="normal"/>
+                <account code="337" name="" type_col="normal"/>
+            </account>
+        </account>
+
+        <!-- مشتريات بضائع بغرض البيع -->
+        <account code="34" name="مشتريات بضائع بغرض البيع" type_col="normal"/>
+
+        <!-- الإيرادات -->
+        <account code="4" name="الإيرادات" type_col="normal">
+            <account code="41" name="إيرادات النشاط" type_col="normal">
+                <account code="411" name="إجمالي مبيعات إنتاج تام" type_col="normal">
+                    <account code="4111" name="مردودات داخلة من مبيعات سنوات سابقة" type_col="normal"/>
+                    <account code="4112" name="مرتجعات مبيعات" type_col="normal"/>
+                    <account code="4113" name="خصم مسموح به" type_col="normal"/>
+                    <account code="4114" name="مسموحات مبيعات" type_col="normal"/>
+                </account>
+                <account code="412" name="إجمالي مبيعات بضائع مشتراة" type_col="normal">
+                    <account code="4121" name="مردودات داخلة من مبيعات سنوات سابقة" type_col="normal"/>
+                    <account code="4122" name="مرتجعات مبيعات" type_col="normal"/>
+                    <account code="4123" name="خصم مسموح به" type_col="normal"/>
+                    <account code="4124" name="مسموحات مبيعات" type_col="normal"/>
+                </account>
+                <account code="413" name="أرباح مبيعات تقسيط تخص العام" type_col="normal">
+                    <account code="4131" name="أرباح مبيعات إنتاج تام بالتقسيط" type_col="normal"/>
+                    <account code="4132" name="أرباح مبيعات بضائع (مشتراة) بالتقسيط" type_col="normal"/>
+                </account>
+                <account code="414" name="خدمات مباعة" type_col="normal"/>
+                <account code="415" name="إيرادات تشغيل للغير" type_col="normal"/>
+                <account code="416" name="عائد عقود تأجير تمويلي" type_col="normal"/>
+                <account code="417" name="إيرادات النشاط الأخرى" type_col="normal"/>
+            </account>
+            <account code="42" name="منح وإعانات" type_col="normal"/>
+            <account code="43" name="إيرادات استثمار وفوائد" type_col="normal">
+                <account code="431" name="إيرادات استثمارات مالية من شركات قابضة" type_col="normal"/>
+                <account code="432" name="إيرادات استثمارات مالية من شركات شقيقة" type_col="normal"/>
+                <account code="433" name="إيرادات استثمارات مالية أخرى" type_col="normal"/>
+                <account code="434" name="فوائد قروض لشركات قابضة / تابعة / شقيقة" type_col="normal"/>
+                <account code="435" name="فوائد دائنه أخرى" type_col="normal"/>
+            </account>
+            <account code="44" name="إيرادات وأرباح أخرى" type_col="normal">
+                <account code="441" name="مخصصات وانتفى الغرض منها" type_col="normal"/>
+                <account code="442" name="ديون سبق إعدامها" type_col="normal"/>
+                <account code="443" name="أرباح بيع أوراق مالية" type_col="normal"/>
+                <account code="444" name="إيرادات وأرباح متنوعة" type_col="normal">
+                    <account code="4441" name="أرباح بيع مخلفات" type_col="normal"/>
+                    <account code="4442" name="أرباح بيع خدمات ومواد وقطع غيار" type_col="normal"/>
+                    <account code="4443" name="تعويضات وغرامات" type_col="normal"/>
+                    <account code="4444" name="عمولات" type_col="normal"/>
+                    <account code="4445" name="إيجارات دائنه" type_col="normal"/>
+                    <account code="4446" name="" type_col="normal"/>
+                </account>
+                <account code="445" name="أرباح فروق العملة" type_col="normal"/>
+                <account code="446" name="إيرادات سنوية سابقة" type_col="normal"/>
+                <account code="447" name="أرباح رأسمالية" type_col="normal"/>
+                <account code="448" name="إيرادات وأرباح غير عادية" type_col="normal"/>
+            </account>
+        </account>
+            
+    </accounts>
+</manuals>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NewProduct</class>
+ <widget class="QDialog" name="NewProduct">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>612</width>
+    <height>414</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>اضافة منتج</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>graphics/icon.xpm</normaloff>graphics/icon.xpm</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="9" column="4">
+       <widget class="QComboBox" name="exchange_combobox"/>
+      </item>
+      <item row="11" column="4">
+       <widget class="QLineEdit" name="discount_1_input"/>
+      </item>
+      <item row="4" column="4">
+       <widget class="QLineEdit" name="workhours_input"/>
+      </item>
+      <item row="14" column="1">
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Maximum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>30</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="11" column="6">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>حسم:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="6">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>السعر بالليرة السورية:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>الكمية الجاهزة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="6">
+       <widget class="QLabel" name="label_16">
+        <property name="text">
+         <string>السعر بعد الحسم بالليرة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="4">
+       <widget class="QLineEdit" name="discount_1_result_sp">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="0">
+       <widget class="QPushButton" name="save_btn">
+        <property name="text">
+         <string>إضافة</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="name_en_input"/>
+      </item>
+      <item row="9" column="6">
+       <widget class="QLabel" name="label_15">
+        <property name="text">
+         <string>سعر الصرف المعتمد:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Maximum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>30</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="4" column="6">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>ساعات العمل المعيارية:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="4">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Maximum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>30</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="8" column="4">
+       <widget class="QLineEdit" name="price_input"/>
+      </item>
+      <item row="5" column="6">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>المطلوب السنوي:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="4">
+       <spacer name="verticalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Maximum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>30</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLineEdit" name="ready_input"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>عدد الحبات:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="4">
+       <widget class="QLineEdit" name="year_require_input"/>
+      </item>
+      <item row="3" column="4">
+       <widget class="QLineEdit" name="quantity_input">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLineEdit" name="price_input_usd"/>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>الاسم:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>الاسم الانجليزي:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLineEdit" name="name_input"/>
+      </item>
+      <item row="3" column="6">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>عدد القطع:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="4">
+       <widget class="QLineEdit" name="discount_1_result_usd">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLineEdit" name="code_input"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLineEdit" name="pills_input">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>السعر بالدولار:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="6">
+       <widget class="QLabel" name="label_17">
+        <property name="text">
+         <string>السعر بعد الحسم بالدولار:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>الرمز:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

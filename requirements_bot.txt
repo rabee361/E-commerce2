@@ -1,0 +1,13 @@
+PySide6
+mysql-connector-python>=8.0.0
+llama-cpp-python>=0.2.0
+chromadb
+langchain-community
+langchain-core
+langchain-text-splitters
+pypdf
+pandas
+openpyxl>=3.0.0
+python-docx
+google-generativeai>=0.3.0
+

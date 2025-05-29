@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ExpensesSettings</class>
+ <widget class="QDialog" name="ExpensesSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>453</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>أنواع المصاريف</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="3">
+    <widget class="QLabel" name="label_2">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>الحساب الافتراضي:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="4">
+    <widget class="QTableWidget" name="expenses_types_table">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="showDropIndicator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="dragEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <property name="horizontalScrollMode">
+      <enum>QAbstractItemView::ScrollPerPixel</enum>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>المعرف</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>الاسم</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>معرف الحساب</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>الحساب</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>معرف الحساب المقابل</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>الحساب المقابل</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>يدخل في مصاريف التصنيع</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLineEdit" name="name_input"/>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <widget class="QComboBox" name="accounts_combobox"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QPushButton" name="delete_expense_btn">
+     <property name="text">
+      <string>حذف</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="select_opposite_accounts_btn">
+     <property name="text">
+      <string>...اختيار</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="select_accounts_btn">
+     <property name="text">
+      <string>...اختيار</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="label">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>اسم المصروف:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1" colspan="2">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>131</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QComboBox" name="opposite_accounts_combobox"/>
+   </item>
+   <item row="2" column="3">
+    <widget class="QLabel" name="label_3">
+     <property name="maximumSize">
+      <size>
+       <width>99999</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>الحساب المقابل الافتراضي:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="add_expense_btn">
+     <property name="text">
+      <string>إضافة</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QCheckBox" name="calculated_in_manufacture_checkbox">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>يدخل في مصاريف التصنيع</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
