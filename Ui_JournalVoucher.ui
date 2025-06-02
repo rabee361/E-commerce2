@@ -38,6 +38,112 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>الحساب:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="account_combobox">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="select_account_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>الحساب المقابل:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QComboBox" name="opposite_account_combobox">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QToolButton" name="select_opposite_account_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>القيمة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLineEdit" name="value_input"/>
+      </item>
+      <item row="0" column="8">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>العملة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="9">
+       <widget class="QComboBox" name="currency_combobox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
@@ -45,7 +151,41 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="9">
+      <item row="1" column="1" colspan="9">
+       <widget class="QTextEdit" name="journal_entry_item_statement_input">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>70</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_11">
+        <property name="text">
+         <string>مركز الكلفة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="journal_entry_cost_center_combobox"/>
+      </item>
+      <item row="2" column="2">
+       <widget class="QToolButton" name="select_cost_center_btn_2">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="8" colspan="2">
+       <widget class="QPushButton" name="add_journal_entry_item">
+        <property name="text">
+         <string>حفظ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="10">
        <widget class="QTableWidget" name="journal_entry_items_table">
         <property name="editTriggers">
          <set>QAbstractItemView::AllEditTriggers</set>
@@ -88,22 +228,12 @@
         </attribute>
         <column>
          <property name="text">
-          <string>المعرف</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>معرف الحساب</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
           <string>اسم الحساب</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>القيمة</string>
+          <string>اسم الحساب المقابل</string>
          </property>
         </column>
         <column>
@@ -111,71 +241,19 @@
           <string>العملة</string>
          </property>
         </column>
+        <column>
+         <property name="text">
+          <string>القيمة</string>
+         </property>
+        </column>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QComboBox" name="opposite_account_combobox">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-        background-color: #fafafa;
-        border: 1px solid lightgrey;		
-		height: 22px;
-		color: black;
-    }
-    QComboBox::drop-down {
-        border: none;
-    }</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="account_combobox">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-        background-color: #fafafa;
-        border: 1px solid lightgrey;		
-		height: 22px;
-		color: black;
-    }
-    QComboBox::drop-down {
-        border: none;
-    }</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="2">
-       <widget class="QLabel" name="label_15">
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_14">
         <property name="text">
-         <string>دائن:</string>
+         <string>مدين:</string>
         </property>
        </widget>
-      </item>
-      <item row="0" column="8">
-       <widget class="QLineEdit" name="value_input"/>
       </item>
       <item row="4" column="1">
        <widget class="QLineEdit" name="journal_entry_distributive_cost_center_accounts_total_percentage_input_3">
@@ -189,81 +267,10 @@ border: black solid 1px;</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <widget class="QToolButton" name="select_opposite_account_btn">
+      <item row="4" column="2">
+       <widget class="QLabel" name="label_15">
         <property name="text">
-         <string>🔎</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_11">
-        <property name="text">
-         <string>مركز الكلفة:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="8">
-       <widget class="QLineEdit" name="journal_entry_distributive_cost_center_accounts_total_percentage_input">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: white;
-color: black;
-border: black solid 1px;</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>القيمة:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="journal_entry_cost_center_combobox"/>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>الحساب المقابل:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="7">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>الرصيد النهائي:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>الحساب:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>العملة:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_14">
-        <property name="text">
-         <string>مدين:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="select_account_btn">
-        <property name="text">
-         <string>🔎</string>
+         <string>دائن:</string>
         </property>
        </widget>
       </item>
@@ -279,36 +286,34 @@ border: black solid 1px;</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="2">
-       <widget class="QToolButton" name="select_cost_center_btn_2">
+      <item row="4" column="7">
+       <widget class="QLabel" name="label_13">
         <property name="text">
-         <string>🔎</string>
+         <string>الرصيد النهائي:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="8">
-       <widget class="QTextEdit" name="journal_entry_item_statement_input">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>70</height>
-         </size>
+      <item row="4" column="8" colspan="2">
+       <widget class="QLineEdit" name="journal_entry_distributive_cost_center_accounts_total_percentage_input">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: white;
+color: black;
+border: black solid 1px;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>التاريخ:</string>
         </property>
        </widget>
       </item>
       <item row="2" column="4">
-       <widget class="QComboBox" name="currency_combobox">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="8">
-       <widget class="QPushButton" name="add_journal_entry_item">
-        <property name="text">
-         <string>حفظ</string>
-        </property>
-       </widget>
+       <widget class="QDateEdit" name="date_input"/>
       </item>
      </layout>
     </widget>

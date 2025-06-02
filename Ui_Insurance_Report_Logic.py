@@ -34,7 +34,6 @@ class Ui_Insurance_Report_Logic(object):
         self.ui.filter_combobox.currentIndexChanged.connect(lambda: self.setFilterType())
         self.ui.to_date.setDate(QDate.currentDate())
         self.ui.calc_btn.clicked.connect(lambda: self.calculate())
-        self.fetchSalaryBlocks()
 
     def setFilterType(self):
         filter_type = self.ui.filter_combobox.currentData()
@@ -47,8 +46,8 @@ class Ui_Insurance_Report_Logic(object):
             self.ui.from_date.setDisabled(True)
             self.ui.to_date.setDisabled(True)
 
-    def fetchSalaryBlocks(self):
-        salary_blocks = self.database_operations.fetchSalaryBlocks()
+    def fetchInsuranceBlocks(self):
+        salary_blocks = self.database_operations.fetchInsurancePayrollsDetails()
         for salary_block in salary_blocks:
             self.ui.salary_block_combobox.addItem(salary_block[1], salary_block[0])
 
@@ -65,5 +64,5 @@ class Ui_Insurance_Report_Logic(object):
         pass
 
     def calculate(self):
-        insurance_blocks = self.database_operations.fetchInsurancePayrolls()
+        insurance_blocks = self.database_operations.fetchInsurancePayrollsDetails()
 

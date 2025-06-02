@@ -1,3 +1,4 @@
+from tabnanny import check
 import win32api
 import datetime
 import xlsxwriter
@@ -36,4 +37,56 @@ class Ui_Salary_Report_Logic(object):
         window.exec()
 
     def initialize(self):
-        pass
+        self.fetchDepartments()
+        self.fetchPositions()
+        self.fetchCurrencies()
+        self.ui.calculate_btn.clicked.connect(lambda: self.calculate())
+        self.ui.select_department_btn.clicked.connect(lambda: self.openSelectDepartmentWindow())
+        self.ui.select_position_btn.clicked.connect(lambda: self.openSelectPositionWindow())
+
+    def openSelectDepartmentWindow(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'departments')
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.department_combobox.count()):
+                if self.ui.department_combobox.itemData(i)[0] == result['id']:
+                    self.ui.department_combobox.setCurrentIndex(i)
+                    break
+
+    def openSelectPositionWindow(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'positions',checkable=True)
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.position_combobox.count()):
+                if self.ui.position_combobox.itemData(i)[0] == result['id']:
+                    self.ui.position_combobox.setCurrentIndex(i)
+                    break
+
+    def fetchDepartments(self):
+        departments = self.database_operations.fetchDepartments()
+        for department in departments:
+            id = department[0]
+            name = department[1]
+            self.ui.department_combobox.addItem(name, id)
+
+    def fetchPositions(self):
+        positions = self.database_operations.fetchPositions()
+        for position in positions:
+            id = position[0]
+            position_name = position[1]
+            self.ui.position_combobox.addItem(position_name, id)
+
+    def fetchCurrencies(self):
+        currencies = self.database_operations.fetchCurrencies()
+        for currency in currencies:
+            id = currency['id']
+            name = currency['name']
+            display_text = str(name)
+            data = id
+            self.ui.currency_combobox.addItem(display_text, data)
+
+    def calculate(self):
+        department_id = self.ui.department_combobox.currentData()
+        position_id = self.ui.position_combobox.currentData()
+        currency_id = self.ui.currency_combobox.currentData()
+        

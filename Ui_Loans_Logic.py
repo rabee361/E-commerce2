@@ -1,4 +1,5 @@
 import Colors
+import win32con
 from DatabaseOperations import DatabaseOperations
 from PyQt5.QtCore import Qt, QDate
 from PyQt5.QtWidgets import QDialog, QTreeWidgetItem, QSizePolicy, QCheckBox, QPushButton, QVBoxLayout, QGridLayout, QFrame
@@ -8,6 +9,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtCore import QTranslator
 from Ui_Loans import Ui_Loans
+from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QDoubleValidator
 import win32api
 from datetime import datetime
@@ -26,8 +28,8 @@ class Ui_Loans_Logic(QDialog):
         window = QDialog()
         self.ui.setupUi(window)
         window.setWindowIcon(QIcon('icons/bookkeeper.png'))
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):
@@ -174,57 +176,45 @@ class Ui_Loans_Logic(QDialog):
                 self.ui.payments_table.setItem(row, 3, QTableWidgetItem(str(loan_id)))
                 self.ui.payments_table.setItem(row, 4, QTableWidgetItem(str(date_col)))
 
-    def clearLoanInput(self):
-        self.ui.loan_name_input.clear()
-        self.ui.loan_amount_input.clear()
-        self.ui.currency_combobox.setCurrentIndex(0)
-        self.ui.loan_date_input.setDate(QDate.currentDate())
-        self.ui.account_combobox.setCurrentIndex(0)
-        self.ui.opposite_account_combobox.setCurrentIndex(0)
-        self.ui.loan_cycle_combobox.setCurrentIndex(0)
-        self.ui.loan_interest_input.clear()
-
-    def clearLoanPaymentInput(self):
-        self.ui.payment_amount_input.clear()
-        self.ui.payment_currency_combobox.setCurrentIndex(0)
-        self.ui.payment_date_input.setDate(QDate.currentDate())
-
     def removeLoan(self):
-        loan = self.ui.loans_table.item(self.ui.loans_table.currentRow(), 0).text()
+        loan = self.ui.loans_table.item(self.ui.loans_table.currentRow(), 0)
         if loan:
-            loan_payments = self.database_operations.fetchLoanPayments(loan_id=loan)
+            loan_payments = self.database_operations.fetchLoanPayments(loan_id=loan.text())
             if not loan_payments:
-                win32api.MessageBox(0, self.language_manager.translate("DELETE_CONFIRM"), self.language_manager.translate("ALERT"))
-                self.database_operations.removeLoan(loan)
+                message_result = win32api.MessageBox(0, self.language_manager.translate("DELETE_CONFIRM"), self.language_manager.translate("ALERT"), win32con.MB_YESNO)
+                if message_result == win32con.IDYES:
+                    self.database_operations.removeLoan(loan.text())
                 self.fetchLoans()
-                self.clearLoanInput()
+                self.clearLoanInputs()
             else:
-                win32api.MessageBox(0, self.language_manager.translate("DELETE_ERROR"), self.language_manager.translate("ALERT"))
+                win32api.MessageBox(0, self.language_manager.translate("LOAN_HAS_PAYMENTS"), self.language_manager.translate("ALERT"))
         else:
             pass
 
     def updateLoan(self):
-        loan_id = self.ui.loans_table.item(self.ui.loans_table.currentRow(), 0).text()
-        name = self.ui.loan_name_input.text()
-        amount = self.ui.loan_amount_input.text() 
-        date = self.ui.loan_date_input.text()
-        account_id = self.ui.account_combobox.currentData()
-        opposite_account_id = self.ui.opposite_account_combobox.currentData()
-        currency_id = self.ui.currency_combobox.currentData()
-        cycle = self.ui.loan_cycle_combobox.currentData()
-        interest = self.ui.loan_interest_input.text()
+        loan = self.ui.loans_table.item(self.ui.loans_table.currentRow(), 0)
+        if loan:
+            loan_id = loan.text()
+            name = self.ui.loan_name_input.text()
+            amount = self.ui.loan_amount_input.text() 
+            date = self.ui.loan_date_input.text()
+            account_id = self.ui.account_combobox.currentData()
+            opposite_account_id = self.ui.opposite_account_combobox.currentData()
+            currency_id = self.ui.currency_combobox.currentData()
+            cycle = self.ui.loan_cycle_combobox.currentData()
+            interest = self.ui.loan_interest_input.text()
 
-        self.database_operations.updateLoan(loan_id, name, amount, date, account_id, opposite_account_id, cycle, currency_id, interest)
-        try:
-            journal_entry = self.database_operations.fetchJournalEntries(origin_type="loan", origin_id=loan_id)
-            if journal_entry:
-                self.database_operations.removeJournalEntriesItems(journal_entry[0]['id'])
-                self.database_operations.removeJournalEntry(journal_entry[0]['id'])
-        except:
-            pass
+            self.database_operations.updateLoan(loan_id, name, amount, date, account_id, opposite_account_id, cycle, currency_id, interest)
+            try:
+                journal_entry = self.database_operations.fetchJournalEntries(origin_type="loan", origin_id=loan_id)
+                if journal_entry:
+                    self.database_operations.removeJournalEntriesItems(journal_entry[0]['id'])
+                    self.database_operations.removeJournalEntry(journal_entry[0]['id'])
+            except:
+                pass
 
-        self.addLoanJournalEntry(loan_id)
-        self.fetchLoans() 
+            self.addLoanJournalEntry(loan_id)
+            self.fetchLoans() 
 
     def addLoanPayment(self):
         loan_id = self.ui.loans_table.item(self.ui.loans_table.currentRow(), 0).text()
@@ -235,7 +225,6 @@ class Ui_Loans_Logic(QDialog):
             payment_id = self.database_operations.addLoanPayment(loan_id, date_col, amount, currency)
             self.fetchLoanPayments()
             self.addPaymentJournalEntry(payment_id)
-            self.clearLoanPaymentInput()
         else:
             pass
 
@@ -260,7 +249,7 @@ class Ui_Loans_Logic(QDialog):
             payment_id = payment.text()
             self.database_operations.removeLoanPayment(payment_id)
             self.fetchLoanPayments()
-            self.clearLoanPaymentInput()
+            self.clearLoanInputPayments()
         else:
             pass
 
@@ -311,3 +300,18 @@ class Ui_Loans_Logic(QDialog):
                 self.database_operations.addJournalEntryItem(entry_id, currency, 'creditor', statment, account_id, opposite_account_id, amount)
         except:
             win32api.MessageBox(0, "ERROR", "ERROR", 0)
+
+    def clearLoanInputs(self):
+        self.ui.loan_name_input.clear()
+        self.ui.loan_amount_input.clear()
+        self.ui.loan_date_input.setDate(QDate.currentDate())
+        self.ui.loan_interest_input.clear()
+        self.ui.currency_combobox.setCurrentIndex(0)
+        self.ui.account_combobox.setCurrentIndex(0)
+        self.ui.opposite_account_combobox.setCurrentIndex(0)
+        self.ui.loan_cycle_combobox.setCurrentIndex(0)
+
+    def clearLoanInputPayments(self):
+        self.ui.payment_amount_input.clear()
+        self.ui.payment_date_input.setDate(QDate.currentDate())
+        self.ui.payment_currency_combobox.setCurrentIndex(0)

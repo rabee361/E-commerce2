@@ -114,7 +114,7 @@
          <item row="1" column="1">
           <widget class="QPushButton" name="remove_loan_payment_btn">
            <property name="text">
-            <string>❌ حذف</string>
+            <string>حذف</string>
            </property>
           </widget>
          </item>
@@ -226,7 +226,7 @@
          <item row="1" column="0">
           <widget class="QPushButton" name="add_loan_btn">
            <property name="text">
-            <string>➕ اضافة</string>
+            <string>اضافة</string>
            </property>
           </widget>
          </item>
@@ -246,7 +246,7 @@
          <item row="1" column="1">
           <widget class="QPushButton" name="remove_loan_btn">
            <property name="text">
-            <string>❌ حذف </string>
+            <string>حذف </string>
            </property>
           </widget>
          </item>
@@ -259,15 +259,15 @@
          <string>معلومات القرض</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_5">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_5">
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="loan_amount_input"/>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>الاسم:</string>
+            <string>الحساب المقابل:</string>
            </property>
           </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="loan_name_input"/>
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_9">
@@ -276,8 +276,29 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="3" colspan="2">
-          <widget class="QComboBox" name="currency_combobox"/>
+         <item row="5" column="1">
+          <widget class="QDateEdit" name="loan_date_input"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>الاسم:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QComboBox" name="account_combobox">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QComboBox" name="opposite_account_combobox">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_11">
@@ -286,8 +307,32 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="loan_amount_input"/>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>ملاحظات:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>الفائدة:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="loan_notes_input"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="loan_name_input"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>التاريخ:</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="2">
           <widget class="QLabel" name="label_12">
@@ -296,82 +341,37 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="3" colspan="2">
+          <widget class="QComboBox" name="currency_combobox"/>
+         </item>
          <item row="1" column="3" colspan="2">
           <widget class="QComboBox" name="loan_cycle_combobox"/>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_13">
-           <property name="text">
-            <string>الفائدة:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
+         <item row="3" column="1">
           <widget class="QLineEdit" name="loan_interest_input"/>
          </item>
-         <item row="2" column="2">
+         <item row="3" column="2">
           <widget class="QLabel" name="label_6">
            <property name="text">
             <string>الحساب:</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="3">
-          <widget class="QComboBox" name="account_combobox">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="4">
-          <widget class="QPushButton" name="select_account_btn">
+         <item row="4" column="4">
+          <widget class="QToolButton" name="select_opposite_account_btn">
            <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>ملاحظات:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="loan_notes_input"/>
-         </item>
-         <item row="3" column="2">
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>الحساب المقابل:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3">
-          <widget class="QComboBox" name="opposite_account_combobox">
-           <property name="enabled">
-            <bool>false</bool>
+            <string>🔎</string>
            </property>
           </widget>
          </item>
          <item row="3" column="4">
-          <widget class="QPushButton" name="select_opposite_account_btn">
+          <widget class="QToolButton" name="select_account_btn">
            <property name="text">
-            <string>...اختيار</string>
+            <string>🔎</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>التاريخ:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QDateEdit" name="loan_date_input"/>
-         </item>
-         <item row="4" column="4">
+         <item row="5" column="3">
           <widget class="QPushButton" name="save_loan_btn">
            <property name="text">
             <string>حفظ</string>
@@ -443,7 +443,7 @@
          <item row="2" column="4">
           <widget class="QPushButton" name="add_loan_payment_btn">
            <property name="text">
-            <string>➕ إضافة</string>
+            <string>إضافة</string>
            </property>
           </widget>
          </item>

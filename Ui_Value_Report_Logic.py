@@ -9,7 +9,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 
 
-class Ui_Insurance_Report_Logic(object):
+class Ui_Value_Report_Logic(object):
     def __init__(self, sqlconnector):
         super().__init__()
         self.sqlconnector = sqlconnector

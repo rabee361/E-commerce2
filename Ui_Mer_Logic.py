@@ -23,19 +23,24 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap
 from Colors import light_yellow_color
-from Ui_Configuration_Logic import Ui_Configuration_Logic
 from FileManager import FileManager
 from SqliteConnector import SqliteConnector
+from StyleApplicator import StyleApplicator
 from Ui_Account_Movements_Logic import Ui_Account_Movements_Logic
 from Ui_Accounts_Logic import Ui_Accounts_Logic
 from Ui_Clients_Logic import Ui_Clients_Logic
 from Ui_ClientReport_Logic import Ui_ClientReport_Logic
+from Ui_Configuration_Logic import Ui_Configuration_Logic
 from Ui_CostCentersReport_logic import Ui_CostCentersReport_Logic
 from Ui_CostCenters_Logic import Ui_CostCenters_Logic
+from Ui_Insurance_Report_Logic import Ui_Insurance_Report_Logic
+from Ui_Employee_Report_Logic import Ui_Employee_Report_Logic
+from Ui_Salary_Report_Logic import Ui_Salary_Report_Logic
+from Ui_Position_Report_Logic import Ui_Position_Report_Logic
 from Ui_CostProcesses_Logic import Ui_CostProcesses_Logic
 from Ui_DailyJournal_Logic import Ui_DailyJournal_Logic
+from Ui_Value_Report_Logic import Ui_Value_Report_Logic
 from Ui_Department_Report_Logic import Ui_Department_Report_Logic
-from Ui_Position_Report_Logic import Ui_Position_Report_Logic
 from Ui_DatabaseBackupRestore_Logic import Ui_DatabaseBackupRestore_Logic
 from Ui_DatabaseSettings_Logic import Ui_DatabaseSettings_Logic
 from Ui_Users_Logic import Ui_Users_Logic
@@ -53,8 +58,6 @@ from Ui_Groups_Logic import Ui_Groups_Logic
 from Ui_HR_Logic import Ui_HR_Logic
 from Ui_InvoiceView_Logic import Ui_InvoiceView_Logic
 from Ui_SalesReport_Logic import Ui_SalesReport_Logic
-from Ui_SalesReport_Logic import Ui_SalesReport_Logic
-from Ui_SalesReport_Logic import Ui_SalesReport_Logic
 from Ui_ProductProfitReport_Logic import Ui_ProductProfitReport_Logic
 from Ui_InvoicesList_Logic import Ui_InvoicesList_Logic
 from Ui_Journal_Logic import Ui_Journal_Logic
@@ -70,6 +73,7 @@ from Ui_PriceManagement_Logic import Ui_PricesManagement_Logic
 from Ui_ProductSales_Logic import Ui_ProductSales_Logic
 from Ui_NewInvoice_Logic import *
 from Ui_About_Logic import Ui_About_Logic
+from Ui_JournalVoucher_Logic import Ui_JournalVoucher_Logic
 from Ui_Sales_Target_Logic import Ui_Sales_Target_Logic
 from Ui_Sales_Target_Report_Logic import Ui_Sales_Target_Report_Logic
 from Ui_Settings_Logic import Ui_Settings_Logic
@@ -132,17 +136,17 @@ class Ui_Mer_Logic(QObject):
     def showUi(self):
         app = QApplication(sys.argv)
         window = QMainWindow()
+        # StyleApplicator.apply_global_style()
         self.filemanager = FileManager()
         self.app = app
         self.window = window
         self.ui.setupUi(window)
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize()
         window.showMaximized()
         self.windows_manager = WindowsManager(app)
         self.showToolBar()
         window.closeEvent = self.closeAllWindows
-
         app.installEventFilter(self)
         app.exec()
 
@@ -185,10 +189,10 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_suppliers.setShortcut(QKeySequence("Alt+F4"))
         self.ui.option_expenses.triggered.connect(lambda: self.openExpensesWindow())
         self.ui.option_expenses.setShortcut(QKeySequence("Ctrl+F9"))
-        self.ui.option_receipt_vouchers.triggered.connect(lambda: self.openPaymentsWindow('receipt'))
-        self.ui.option_receipt_vouchers.setShortcut(QKeySequence("Alt+F7"))
-        self.ui.option_payment_vouchers.triggered.connect(lambda: self.openPaymentsWindow('payment'))
-        self.ui.option_payment_vouchers.setShortcut(QKeySequence("Alt+F8"))
+        self.ui.option_invoice_receipt_vouchers.triggered.connect(lambda: self.openPaymentsWindow('receipt'))
+        self.ui.option_invoice_receipt_vouchers.setShortcut(QKeySequence("Alt+F7"))
+        self.ui.option_invoice_payment_vouchers.triggered.connect(lambda: self.openPaymentsWindow('payment'))
+        self.ui.option_invoice_payment_vouchers.setShortcut(QKeySequence("Alt+F8"))
         self.ui.option_customers_invoices.triggered.connect(lambda: self.openClientsInvoicesWindow(client_type='customer'))
         self.ui.option_customers_invoices.setShortcut(QKeySequence("Alt+F5"))
         self.ui.option_suppliers_invoices.triggered.connect(lambda: self.openClientsInvoicesWindow(client_type='supplier'))
@@ -239,6 +243,9 @@ class Ui_Mer_Logic(QObject):
         self.ui.menu_warehouses.aboutToShow.connect(lambda: self.openWarehousesList())
         self.ui.option_reorder_report.triggered.connect(lambda: self.openReOrderMaterialReportWindow())
         self.ui.option_department_report.triggered.connect(lambda: self.openDepartmentReportWindow())
+        self.ui.option_inusrance_report.triggered.connect(lambda: self.openInsuranceReportWindow())
+        self.ui.option_employee_report.triggered.connect(lambda: self.openEmployeeReportWindow())
+        self.ui.option_salary_report.triggered.connect(lambda: self.openSalaryReportWindow())
         self.ui.option_position_report.triggered.connect(lambda: self.openPositionReportWindow())
         self.ui.menu_accounts.aboutToShow.connect(lambda: self.openFinalAccountsList())
         self.ui.menu_accounts.aboutToShow.connect(lambda: self.openFinancialStatementsList())
@@ -258,6 +265,10 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_machines_and_resources.setShortcut(QKeySequence("Ctrl+F11"))
         self.ui.option_journal.triggered.connect(lambda: self.openJournalWindow())
         self.ui.option_journal.setShortcut(QKeySequence("F6"))
+        self.ui.option_receipt_vouchers.triggered.connect(lambda: self.openReceiptVouchersWindow())
+        self.ui.option_receipt_vouchers.setShortcut(QKeySequence("Alt+F7"))
+        self.ui.option_payment_vouchers.triggered.connect(lambda: self.openPaymentVouchersWindow())
+        self.ui.option_payment_vouchers.setShortcut(QKeySequence("Alt+F8"))
         self.ui.option_account_balance.triggered.connect(lambda: self.openAccountBalanceWindow())
         # self.ui.option_account_balance.setShortcut(QKeySequence("F6"))
         self.ui.option_final_accounts.triggered.connect(lambda: self.openFinalAccountsWindow())
@@ -278,6 +289,7 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_material_receipt_docs.setShortcut(QKeySequence("Alt+F9"))
         self.ui.option_inventory.triggered.connect(lambda: self.openWarehouseMoveWindow())
         self.ui.option_inventory.setShortcut(QKeySequence("Alt+6")) 
+        self.ui.option_value_report.triggered.connect(lambda: self.openValueReportWindow())
         # self.ui.users_btn.clicked.connect(lambda: self.openUsersWindow())
         # self.ui.option_currencies.triggered.connect(lambda: self.openCurrenciesWindow())
         # self.ui.unit_management_btn.clicked.connect(lambda: self.openUnitsWindow())
@@ -379,7 +391,6 @@ class Ui_Mer_Logic(QObject):
             # Connect signals
             self.chat_component.message_sent.connect(self.handleUserMessage)
             # self.chatbot.response_ready.connect(self.handleBotResponse)
-            
                 
     def handleUserMessage(self, message):
         """Handle new message from the user"""
@@ -394,8 +405,6 @@ class Ui_Mer_Logic(QObject):
 
     def openSelectInventoryTypeWindow(self):
         Ui_Configuration_Logic(self.sql_connector).showUi()
-
-
 
     def openMaterialMoveReportWindow(self):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
@@ -412,6 +421,12 @@ class Ui_Mer_Logic(QObject):
     def openWarehouseMoveWindow(self):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
             Ui_InventoryReport_Logic(self.sql_connector).showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
+    def openValueReportWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            Ui_Value_Report_Logic(self.sql_connector).showUi()
         else:
             win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
 
@@ -1241,6 +1256,24 @@ class Ui_Mer_Logic(QObject):
         else:
             win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
 
+    def openInsuranceReportWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            Ui_Insurance_Report_Logic(self.sql_connector).showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
+    def openEmployeeReportWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            Ui_Employee_Report_Logic(self.sql_connector).showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
+    def openSalaryReportWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            Ui_Salary_Report_Logic(self.sql_connector).showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
     def openWarehousesWindow(self):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
             if self.windows_manager.checkIfWindowIsOpen('WarehousesWindow'):
@@ -1328,6 +1361,24 @@ class Ui_Mer_Logic(QObject):
                 self.windows_manager.raiseWindow('JournalWindow')
             else:
                 Ui_Journal_Logic(self.sql_connector).showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
+    def openReceiptVouchersWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            if self.windows_manager.checkIfWindowIsOpen('ReceiptVouchersWindow'):
+                self.windows_manager.raiseWindow('ReceiptVouchersWindow')
+            else:
+                Ui_JournalVoucher_Logic(self.sql_connector, 'receipt').showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
+    def openPaymentVouchersWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            if self.windows_manager.checkIfWindowIsOpen('PaymentVouchersWindow'):
+                self.windows_manager.raiseWindow('PaymentVouchersWindow')
+            else:
+                Ui_JournalVoucher_Logic(self.sql_connector, 'payment').showUi()
         else:
             win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
 

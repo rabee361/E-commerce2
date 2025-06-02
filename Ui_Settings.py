@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Settings(object):
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
-        Settings.resize(950, 950)
-        Settings.setMinimumSize(QtCore.QSize(883, 0))
-        Settings.setMaximumSize(QtCore.QSize(950, 950))
+        Settings.resize(735, 669)
+        Settings.setMinimumSize(QtCore.QSize(0, 0))
+        Settings.setMaximumSize(QtCore.QSize(1857564, 1857546))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("icons/menu.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Settings.setWindowIcon(icon)
