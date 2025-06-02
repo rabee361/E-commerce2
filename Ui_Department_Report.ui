@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>715</width>
-    <height>400</height>
+    <width>982</width>
+    <height>617</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -32,12 +32,21 @@
    <iconset>
     <normaloff>icons/coin_dollar.png</normaloff>icons/coin_dollar.png</iconset>
   </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0" colspan="2">
     <widget class="QGroupBox" name="groupBox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
      <property name="layoutDirection">
       <enum>Qt::RightToLeft</enum>
      </property>
@@ -45,6 +54,13 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="5">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>إلى:</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_3">
         <property name="maximumSize">
@@ -58,13 +74,29 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="4">
+       <widget class="QDateEdit" name="from_date"/>
+      </item>
+      <item row="0" column="8">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>343</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item row="0" column="1">
        <widget class="QComboBox" name="department_combobox"/>
       </item>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="select_department_btn">
+      <item row="0" column="7">
+       <widget class="QPushButton" name="calculate_btn">
         <property name="text">
-         <string>🔎</string>
+         <string>حساب</string>
         </property>
        </widget>
       </item>
@@ -81,98 +113,91 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QDateEdit" name="from_date"/>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>إلى:</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="6">
        <widget class="QDateEdit" name="to_date"/>
       </item>
-      <item row="0" column="7">
-       <widget class="QPushButton" name="calculate_btn">
+      <item row="0" column="2">
+       <widget class="QToolButton" name="select_department_btn">
         <property name="text">
-         <string>حساب</string>
+         <string>🔎</string>
         </property>
        </widget>
-      </item>
-      <item row="0" column="8">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>343</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QGroupBox" name="groupBox_2">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
      <property name="title">
       <string>GroupBox</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QGroupBox" name="avg_salary_chart">
+      <item row="1" column="3">
+       <widget class="QGroupBox" name="salary_change_chart">
         <property name="title">
-         <string>GroupBox</string>
+         <string/>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QGroupBox" name="chart1_3">
+      <item row="0" column="3">
+       <widget class="QGroupBox" name="avg_salary_chart">
         <property name="title">
-         <string>GroupBox</string>
+         <string/>
         </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="department_info">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <widget class="QTableWidget" name="tableWidget">
+           <column>
+            <property name="text">
+             <string>#</string>
+            </property>
+            <property name="textAlignment">
+             <set>AlignTrailing|AlignVCenter</set>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>القيمة</string>
+            </property>
+            <property name="textAlignment">
+             <set>AlignTrailing|AlignVCenter</set>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>العملة</string>
+            </property>
+            <property name="textAlignment">
+             <set>AlignTrailing|AlignVCenter</set>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QGroupBox" name="chart1_2">
-        <property name="title">
-         <string>GroupBox</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
        <widget class="QGroupBox" name="employee_num_chart">
         <property name="title">
-         <string>GroupBox</string>
+         <string/>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="save_btn">
-     <property name="text">
-      <string>تفاصيل</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>161</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

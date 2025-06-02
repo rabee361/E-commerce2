@@ -41,7 +41,7 @@ class Ui_Department_Report_Logic(object):
     def initialize(self):
         self.ui.from_date.setDate(QDate.currentDate())
         self.ui.to_date.setDate(QDate.currentDate())
-        self.ui.select_department_btn.clicked.connect(lambda: self.openSelectDepartmentPositionWindow())
+        self.ui.select_department_btn.clicked.connect(lambda: self.openSelectDepartmentWindow())
         self.fetchDepartments()
         self.ui.calculate_btn.clicked.connect(lambda: self.calculate())
         self.fetchAvgSalary()
@@ -49,7 +49,7 @@ class Ui_Department_Report_Logic(object):
         self.fetchEmployeeNum()
         self.fetchSalaryChange()
         
-    def openSelectDepartmentPositionWindow(self):
+    def openSelectDepartmentWindow(self):
         data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'departments')
         result = data_picker.showUi()
         if result is not None:
@@ -59,17 +59,17 @@ class Ui_Department_Report_Logic(object):
                     break
 
     def fetchDepartments(self):
-        departments = self.database_operations.fetchDepartments()
-        for department in departments:
-            id = department['id']
-            name = department['name']
+        dapartments = self.database_operations.fetchDepartments()
+        for dapartment in dapartments:
+            id = dapartment[0]
+            name = dapartment[1]
             self.ui.department_combobox.addItem(name, id)
 
     def fetchAvgSalary(self):
         # Get department filter if selected
         department = ''
-        if hasattr(self, 'position_id') and self.position_id:
-            department = self.position_id
+        if hasattr(self, 'department_id') and self.department_id:
+            department = self.department_id
         elif self.ui.department_combobox.currentData():
             department = self.ui.department_combobox.currentData()
         
@@ -162,7 +162,7 @@ class Ui_Department_Report_Logic(object):
         chart.addAxis(axis_y, Qt.AlignLeft)
         series.attachAxis(axis_y)
         
-        # Set legend visibility and department
+        # Set legend visibility and position
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignBottom)
         
@@ -294,7 +294,7 @@ class Ui_Department_Report_Logic(object):
         chart.addAxis(axis_y, Qt.AlignLeft)
         series.attachAxis(axis_y)
         
-        # Set legend visibility and department
+        # Set legend visibility and position
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignBottom)
         

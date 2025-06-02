@@ -379,6 +379,15 @@
         "INVOICE_TYPE_ADD":"Add",
         "INVOICE_TYPE_REDUCE":"Reduce",
 
+        "MENU_JOURNAL":"Journal",
+        "MENU_FINAL_ACCOUNTS":"Final Accounts",
+        "MENU_TRIAL_BALANCE":"Trial Balance",
+        "MENU_DAILY_JOURNAL":"Daily Journal",
+        "MENU_LEDGER":"Ledger",
+        "MENU_PERIOD_OPENING_JOURNAL_ENTRY":"Period Opening Journal Entry",
+        "MENU_ACCOUNT_MOVEMENT":"Account Movement",
+        "MENU_LOANS":"Loans",
+
         "PRICING_METHOD_MEDIAN": "Median",
         "PRICING_METHOD_MAX_PRICE": "Max Price",
         "PRICING_METHOD_LAST_BUY": "Last Buy",
@@ -702,6 +711,8 @@
         "SUPPLIER_INVOICES": "فواتير الموردين",
         "PAYMENTS_VOUCHERS": "سندات الدفع",
         "RECEIPTS_VOUCHERS": "سندات القبض",
+        "INVOICE_PAYMENTS_VOUCHERS": "سداد مبلغ الفواتير",
+        "INVOICE_RECEIPTS_VOUCHERS":"قبض مبلغ الفواتير",
         "EXCHANGE_RATE": "التعادل",
 
         "ID": "المعرف",
@@ -925,6 +936,16 @@
         "INVOICE_SETTINGS_AFFECTS_WAREHOUSE": "التأثير على المستودع",
         "INVOICE_TYPE_ADD":"إضافة",
         "INVOICE_TYPE_REDUCE":"إنقاص",
+
+        "MENU_ACCOUNTS_GUIDE":"دليل الحسابات",
+        "MENU_JOURNAL":"سندات القيد",
+        "MENU_FINAL_ACCOUNTS":"الحسابات الختامية",
+        "MENU_PERIOD_OPENING_JOURNAL_ENTRY":"القيد الافتتاحي",
+        "MENU_DAILY_JOURNAL":"دفتر اليومية",
+        "MENU_LEDGER":"دفتر الاستاذ",
+        "MENU_TRIAL_BALANCE":"ميزان المراجعة",
+        "MENU_ACCOUNT_MOVEMENT":"حركة الحساب",
+        "MENU_LOANS":"القروض",
 
         "PRICING_METHOD_MEDIAN": "الوسيط",  
         "PRICING_METHOD_MAX_PRICE": "السعر الأعلى",

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1125</width>
-    <height>815</height>
+    <height>794</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -2061,7 +2061,7 @@ height:20;</string>
                 <x>0</x>
                 <y>0</y>
                 <width>380</width>
-                <height>638</height>
+                <height>617</height>
                </rect>
               </property>
               <attribute name="label">
@@ -2153,7 +2153,7 @@ height:20;</string>
              <x>0</x>
              <y>0</y>
              <width>677</width>
-             <height>604</height>
+             <height>583</height>
             </rect>
            </property>
            <attribute name="label">
@@ -3660,7 +3660,7 @@ height:20;</string>
                 <x>0</x>
                 <y>0</y>
                 <width>380</width>
-                <height>638</height>
+                <height>617</height>
                </rect>
               </property>
               <attribute name="label">
@@ -3922,7 +3922,7 @@ height:20;</string>
              <x>0</x>
              <y>0</y>
              <width>677</width>
-             <height>631</height>
+             <height>610</height>
             </rect>
            </property>
            <attribute name="label">
@@ -6023,7 +6023,7 @@ height:20;</string>
              <x>0</x>
              <y>0</y>
              <width>1083</width>
-             <height>631</height>
+             <height>610</height>
             </rect>
            </property>
            <attribute name="label">
@@ -6609,7 +6609,7 @@ height:20;</string>
              <x>0</x>
              <y>0</y>
              <width>1083</width>
-             <height>658</height>
+             <height>637</height>
             </rect>
            </property>
            <attribute name="label">
@@ -6634,7 +6634,7 @@ height:20;</string>
                <string>التأمينات</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_80">
-               <item row="0" column="0" colspan="2">
+               <item row="0" column="0" colspan="3">
                 <widget class="QGroupBox" name="groupBox_22">
                  <property name="title">
                   <string/>
@@ -6653,8 +6653,18 @@ height:20;</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QDateEdit" name="insurance_from_date_input"/>
+                  <item row="0" column="4">
+                   <widget class="QLabel" name="label_94">
+                    <property name="maximumSize">
+                     <size>
+                      <width>9999999</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>تاريخ أسعار الصرف:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="0" column="2">
                    <widget class="QLabel" name="label_87">
@@ -6672,23 +6682,13 @@ height:20;</string>
                   <item row="0" column="3">
                    <widget class="QDateEdit" name="insurance_to_date_input"/>
                   </item>
-                  <item row="1" column="0" colspan="2">
-                   <widget class="QLabel" name="label_94">
-                    <property name="maximumSize">
-                     <size>
-                      <width>9999999</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>تاريخ أسعار الصرف:</string>
-                    </property>
-                   </widget>
+                  <item row="0" column="1">
+                   <widget class="QDateEdit" name="insurance_from_date_input"/>
                   </item>
-                  <item row="1" column="3">
+                  <item row="0" column="5">
                    <widget class="QDateEdit" name="insurance_exchange_price_date_input"/>
                   </item>
-                  <item row="1" column="4">
+                  <item row="0" column="6">
                    <spacer name="horizontalSpacer_52">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -6701,7 +6701,7 @@ height:20;</string>
                     </property>
                    </spacer>
                   </item>
-                  <item row="1" column="5">
+                  <item row="0" column="7">
                    <widget class="QPushButton" name="insurance_calculate_btn">
                     <property name="minimumSize">
                      <size>
@@ -6717,7 +6717,7 @@ height:20;</string>
                  </layout>
                 </widget>
                </item>
-               <item row="1" column="0" colspan="2">
+               <item row="1" column="0" colspan="3">
                 <widget class="QTreeWidget" name="insurance_result_tree">
                  <column>
                   <property name="text">
@@ -6791,6 +6791,13 @@ height:20;</string>
                 </spacer>
                </item>
                <item row="2" column="1">
+                <widget class="QPushButton" name="insurance_report">
+                 <property name="text">
+                  <string>...تقارير</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
                 <widget class="QPushButton" name="insurance_process_btn">
                  <property name="text">
                   <string>صرف التأمينات المحددة</string>
@@ -7205,7 +7212,7 @@ height:20;</string>
              <x>0</x>
              <y>0</y>
              <width>538</width>
-             <height>631</height>
+             <height>610</height>
             </rect>
            </property>
            <attribute name="label">
@@ -8407,7 +8414,7 @@ height:20;</string>
              <x>0</x>
              <y>0</y>
              <width>1083</width>
-             <height>602</height>
+             <height>581</height>
             </rect>
            </property>
            <attribute name="label">

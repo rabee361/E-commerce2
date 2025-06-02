@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>InventoryReport</class>
- <widget class="QDialog" name="InventoryReport">
+ <class>Salary_Report</class>
+ <widget class="QDialog" name="Salary_Report">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>الحسابات الختامية</string>
+   <string>تقرير الراتب</string>
   </property>
   <property name="layoutDirection">
    <enum>Qt::RightToLeft</enum>

@@ -13,7 +13,6 @@ from LanguageManager import LanguageManager
 from PyQt5.QtCore import QTranslator
 import win32con 
 from PyQt5.QtGui import QIcon
-# from CheckableComboBox import CheckableComboBox
 
 
 class Ui_MaterialMoveReport_Logic(object):
@@ -36,8 +35,8 @@ class Ui_MaterialMoveReport_Logic(object):
         window_material_report.setWindowState(Qt.WindowMaximized)
         self.ui.setupUi(window_material_report)
         window_material_report.setWindowIcon(QIcon('icons/motion_path.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_material_report)
+        self.initialize()
         window_material_report.exec()
 
     def initialize(self):
@@ -71,6 +70,8 @@ class Ui_MaterialMoveReport_Logic(object):
         self.ui.calc_btn.clicked.connect(lambda: self.calculate())
         self.ui.export_btn.clicked.connect(lambda: self.exportToExcel())
         self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow())
+        self.ui.select_from_warehouse_btn.clicked.connect(lambda: self.openSelectFromWarehouse())
+        self.ui.select_to_warehouse_btn.clicked.connect(lambda: self.openSelectToWarehouse())
         self.ui.materials_combobox.currentIndexChanged.connect(lambda: self.clearSummary())
         self.ui.currency_combobox.currentIndexChanged.connect(lambda: self.displaySummary())
 
@@ -106,31 +107,19 @@ class Ui_MaterialMoveReport_Logic(object):
             }
             
     def fetchWarehouses(self):
-        # Make the existing comboboxes inherit from CheckableComboBox
-        self.ui.from_warehouse_combobox.__class__ = CheckableComboBox
-        self.ui.to_warehouse_combobox.__class__ = CheckableComboBox
-        
-        # Initialize CheckableComboBox specific attributes
-        for combobox in [self.ui.from_warehouse_combobox, self.ui.to_warehouse_combobox]:
-            combobox.__init__()
-            combobox.setEditable(True)
-            combobox.lineEdit().setReadOnly(True)
-            palette = combobox.palette()
-            palette.setBrush(QPalette.Base, palette.button())
-            combobox.lineEdit().setPalette(palette)
-            combobox.setItemDelegate(CheckableComboBox.Delegate())
-            combobox.model().dataChanged.connect(combobox.updateText)
-            combobox.lineEdit().installEventFilter(combobox)
-            combobox.closeOnLineEditClick = False
-            combobox.view().viewport().installEventFilter(combobox)
+        pass
 
-        # Populate both comboboxes with warehouses
-        warehouses = self.database_operations.fetchWarehouses()
-        for warehouse in warehouses:
-            id = warehouse['id']
-            name = warehouse['name']
-            self.ui.from_warehouse_combobox.addItem(name, id)
-            self.ui.to_warehouse_combobox.addItem(name, id)
+    def openSelectFromWarehouse(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True)
+        result = data_picker.showUi()
+        if result is not None:
+            self.ui.from_warehouse_combobox.setCurrentIndex(self.ui.from_warehouse_combobox.findData(result['id']))
+
+    def openSelectToWarehouse(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True)
+        result = data_picker.showUi()
+        if result is not None:
+            self.ui.to_warehouse_combobox.setCurrentIndex(self.ui.to_warehouse_combobox.findData(result['id']))
 
     def clearSummary(self):
         for key in self.material_summary:

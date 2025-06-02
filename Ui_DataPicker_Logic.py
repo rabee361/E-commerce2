@@ -43,7 +43,7 @@ class Ui_DataPicker_Logic(QDialog):
     - DatabaseOperations class with appropriate fetch methods
     - Ui_DataPicker.ui file with basic widgets
     '''
-    def __init__(self, sql_connector, table_name=None, columns=None, linked_table=None, linked_columns=None, search_column=None, include_none_option=False, exclusions=None , only_include=None, group_materials_id=None, warehouse_id=None, client_id=None , client_type=None, criterias={}, default_id=None):
+    def __init__(self, sql_connector, table_name=None, columns=None, linked_table=None, linked_columns=None, search_column=None, include_none_option=False, exclusions=None , only_include=None, group_materials_id=None, warehouse_id=None, client_id=None , client_type=None, criterias={}, default_id=None, checkable=False):
         super().__init__()
         self.sql_connector = sql_connector
         self.database_operations = DatabaseOperations(sql_connector)
@@ -58,10 +58,11 @@ class Ui_DataPicker_Logic(QDialog):
         self.exclusions = exclusions if exclusions else []
         self.only_include = only_include if only_include else []
         self.default_id = default_id
+        self.checkable = checkable
 
         # Column configurations - just simple lists of column names
-        self.columns = columns if columns else ['id', 'name']
-        self.linked_columns = linked_columns if linked_columns else ['id', 'name']
+        self.columns = columns if columns else ['id', 'name', 'checkable']
+        self.linked_columns = linked_columns if linked_columns else ['id', 'name', 'checkable']
 
         # Linked table attributes
         self.linked_table = linked_table
@@ -86,6 +87,9 @@ class Ui_DataPicker_Logic(QDialog):
     def initialize(self, window):
         # Setup primary table
         self.setupTable(self.ui.result_table, self.columns)
+
+        if self.checkable:
+            self.ui.result_table.hideColumn(2)
 
         self.ui.result_table.itemDoubleClicked.connect(lambda: self.setSelectedItem(window))
 

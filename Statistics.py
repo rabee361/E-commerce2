@@ -28,7 +28,7 @@ class Statistics():
         self.ui.select_chart_btn.clicked.connect(self.showChart)
         try:
             self.fetchInvoicesCount()
-            self.fetchEmployeesCount()
+            # self.fetchEmployeesCount()
             self.fetchDepartmentsCount()
             self.fetchEmploymentRequestsCount()
             self.fetchGroupsCount()

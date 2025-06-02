@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Sales_Target_Report</class>
- <widget class="QDialog" name="Sales_Target_Report">
+ <class>Value_Report</class>
+ <widget class="QDialog" name="Value_Report">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -10,11 +10,11 @@
     <x>0</x>
     <y>0</y>
     <width>1238</width>
-    <height>538</height>
+    <height>534</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>تقرير هدف المبيعات</string>
+   <string>تقرير القيمة</string>
   </property>
   <property name="layoutDirection">
    <enum>Qt::RightToLeft</enum>
@@ -29,11 +29,11 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="1" column="1">
+      <item row="1" column="0">
        <widget class="QTableWidget" name="clients_table">
         <column>
          <property name="text">
-          <string>القسم</string>
+          <string>المادة</string>
          </property>
          <property name="font">
           <font>
@@ -47,31 +47,7 @@
         </column>
         <column>
          <property name="text">
-          <string>المبلغ</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QTableWidget" name="governorates_table">
-        <property name="maximumSize">
-         <size>
-          <width>350</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <column>
-         <property name="text">
-          <string>المسمى الوظيفي</string>
+          <string>القيمة</string>
          </property>
          <property name="font">
           <font>
@@ -85,31 +61,7 @@
         </column>
         <column>
          <property name="text">
-          <string>المبلغ</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QTableWidget" name="comparison_table">
-        <property name="maximumSize">
-         <size>
-          <width>280</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <column>
-         <property name="text">
-          <string>تاريخ التأمين</string>
+          <string>المتوسط</string>
          </property>
          <property name="font">
           <font>
@@ -123,7 +75,21 @@
         </column>
         <column>
          <property name="text">
-          <string>المبلغ</string>
+          <string>كمية الموجود</string>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>اخر شراء</string>
          </property>
          <property name="font">
           <font>
@@ -138,19 +104,6 @@
        </widget>
       </item>
      </layout>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="export_btn">
-     <property name="maximumSize">
-      <size>
-       <width>1677750</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>تصدير</string>
-     </property>
     </widget>
    </item>
    <item row="0" column="0">
@@ -168,30 +121,47 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
+      <item row="0" column="3">
        <widget class="QLabel" name="label_2">
-        <property name="maximumSize">
-         <size>
-          <width>40</width>
-          <height>16777215</height>
-         </size>
-        </property>
         <property name="text">
-         <string>العام:</string>
+         <string>المستودع:</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="year_combobox">
-        <property name="maximumSize">
+      <item row="0" column="14">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
          <size>
-          <width>70</width>
-          <height>16777215</height>
+          <width>764</width>
+          <height>20</height>
          </size>
         </property>
+       </spacer>
+      </item>
+      <item row="0" column="11">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>العملة:</string>
+        </property>
        </widget>
       </item>
-      <item row="0" column="2">
+      <item row="0" column="9">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>إلى:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="8">
+       <widget class="QDateEdit" name="from_date"/>
+      </item>
+      <item row="0" column="12">
+       <widget class="QComboBox" name="currencies_combobox"/>
+      </item>
+      <item row="0" column="0">
        <widget class="QLabel" name="label_3">
         <property name="maximumSize">
          <size>
@@ -200,12 +170,31 @@
          </size>
         </property>
         <property name="text">
-         <string>المنصب:</string>
+         <string>المادة:</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
-       <widget class="QComboBox" name="position_combobox">
+      <item row="0" column="7">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>من:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="10">
+       <widget class="QDateEdit" name="to_date"/>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="material_combobox">
         <property name="minimumSize">
          <size>
           <width>100</width>
@@ -232,39 +221,7 @@
        </widget>
       </item>
       <item row="0" column="4">
-       <widget class="QToolButton" name="select_position_btn">
-        <property name="text">
-         <string>🔎</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="label">
-        <property name="maximumSize">
-         <size>
-          <width>40</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>القسم:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QComboBox" name="department_combobox">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
+       <widget class="QComboBox" name="warehouses_combobox">
         <property name="styleSheet">
          <string notr="true">QComboBox {
         background-color: #fafafa;
@@ -278,14 +235,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="7">
-       <widget class="QToolButton" name="select_department_btn">
-        <property name="text">
-         <string>🔎</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="8">
+      <item row="0" column="13">
        <widget class="QPushButton" name="calc_btn">
         <property name="maximumSize">
          <size>
@@ -298,18 +248,19 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="9">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="select_material_btn">
+        <property name="text">
+         <string>🔎</string>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>764</width>
-          <height>20</height>
-         </size>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QToolButton" name="select_warehouse_btn">
+        <property name="text">
+         <string>🔎</string>
         </property>
-       </spacer>
+       </widget>
       </item>
      </layout>
     </widget>

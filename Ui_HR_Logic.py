@@ -6,6 +6,7 @@ import sys
 from Ui_Calculator_Logic import Ui_Calculator_Logic
 from Ui_Journal_Logic import Ui_Journal_Logic
 from ToolbarManager import ToolbarManager
+from Ui_Insurance_Report_Logic import Ui_Insurance_Report_Logic
 import win32con
 from Ui_Currencies_Logic import Ui_Currencies_Logic
 from Ui_DBPassword_Logic import Ui_DBPassword_Logic
@@ -388,6 +389,7 @@ class Ui_HR_Logic(QObject):
         self.ui.insurance_exchange_price_date_input.setDate(QDate.currentDate())
         self.ui.insurance_calculate_btn.clicked.connect(lambda: self.calculateInsurance())
         self.ui.insurance_process_btn.clicked.connect(lambda: self.processInsurances())
+        self.ui.insurance_report.clicked.connect(lambda: self.openInsuranceReportWindow())
         self.ui.insurance_payroll_tree.clicked.connect(lambda: self.fetchInsurancePayrollDetails())
 
         self.setFormatDate()
@@ -4645,6 +4647,9 @@ class Ui_HR_Logic(QObject):
             root_item.addChild(employee_root_item)
 
         self.ui.insurance_result_tree.addTopLevelItem(root_item)
+
+    def openInsuranceReportWindow(self):
+        Ui_InsuranceReport_Logic(self.sql_connector).showUi()
 
     def processInsurances(self):
         messagebox_result = win32api.MessageBox(None, self.language_manager.translate('INSURANCE_ALERT_MULTIPLE_JOURNAL_ENTRIES'), self.language_manager.translate('ALERT'), MB_YESNO)

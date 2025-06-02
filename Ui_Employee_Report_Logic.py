@@ -10,7 +10,6 @@ from LanguageManager import LanguageManager
 from PyQt5.QtCore import QTranslator
 import win32con 
 from PyQt5.QtGui import QIcon
-from CheckableComboBox import CheckableComboBox
 from PyQt5.QtChart import QChart, QChartView, QBarSet, QBarSeries, QValueAxis, QBarCategoryAxis, QLineSeries, QDateTimeAxis
 from PyQt5.QtCore import Qt, QDateTime, QDate
 from collections import defaultdict

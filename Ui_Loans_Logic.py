@@ -174,13 +174,32 @@ class Ui_Loans_Logic(QDialog):
                 self.ui.payments_table.setItem(row, 3, QTableWidgetItem(str(loan_id)))
                 self.ui.payments_table.setItem(row, 4, QTableWidgetItem(str(date_col)))
 
+    def clearLoanInput(self):
+        self.ui.loan_name_input.clear()
+        self.ui.loan_amount_input.clear()
+        self.ui.currency_combobox.setCurrentIndex(0)
+        self.ui.loan_date_input.setDate(QDate.currentDate())
+        self.ui.account_combobox.setCurrentIndex(0)
+        self.ui.opposite_account_combobox.setCurrentIndex(0)
+        self.ui.loan_cycle_combobox.setCurrentIndex(0)
+        self.ui.loan_interest_input.clear()
+
+    def clearLoanPaymentInput(self):
+        self.ui.payment_amount_input.clear()
+        self.ui.payment_currency_combobox.setCurrentIndex(0)
+        self.ui.payment_date_input.setDate(QDate.currentDate())
+
     def removeLoan(self):
         loan = self.ui.loans_table.item(self.ui.loans_table.currentRow(), 0).text()
         if loan:
-            win32api.MessageBox(0, self.language_manager.translate("DELETE_CONFIRM"), self.language_manager.translate("ALERT"))
-            self.database_operations.removeLoan(loan)
-            self.fetchLoans()
-
+            loan_payments = self.database_operations.fetchLoanPayments(loan_id=loan)
+            if not loan_payments:
+                win32api.MessageBox(0, self.language_manager.translate("DELETE_CONFIRM"), self.language_manager.translate("ALERT"))
+                self.database_operations.removeLoan(loan)
+                self.fetchLoans()
+                self.clearLoanInput()
+            else:
+                win32api.MessageBox(0, self.language_manager.translate("DELETE_ERROR"), self.language_manager.translate("ALERT"))
         else:
             pass
 
@@ -216,6 +235,7 @@ class Ui_Loans_Logic(QDialog):
             payment_id = self.database_operations.addLoanPayment(loan_id, date_col, amount, currency)
             self.fetchLoanPayments()
             self.addPaymentJournalEntry(payment_id)
+            self.clearLoanPaymentInput()
         else:
             pass
 
@@ -240,6 +260,7 @@ class Ui_Loans_Logic(QDialog):
             payment_id = payment.text()
             self.database_operations.removeLoanPayment(payment_id)
             self.fetchLoanPayments()
+            self.clearLoanPaymentInput()
         else:
             pass
 

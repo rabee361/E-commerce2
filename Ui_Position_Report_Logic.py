@@ -66,7 +66,7 @@ class Ui_Position_Report_Logic(object):
             self.ui.position_combobox.addItem(name, id)
 
     def fetchAvgSalary(self):
-        # Get position filter if selected
+        # Get department filter if selected
         position = ''
         if hasattr(self, 'position_id') and self.position_id:
             position = self.position_id
@@ -176,19 +176,19 @@ class Ui_Position_Report_Logic(object):
         # Set the layout to the groupbox
         self.ui.avg_salary_chart.setLayout(layout)
         
-    def fetchPositionInfo(self):
+    def fetchDepartmentInfo(self):
         pass
         
     def fetchEmployeeNum(self):
-        # Get position filter if selected
-        position_id = ''
-        if hasattr(self, 'position_id') and self.position_id:
-            position_id = self.position_id
-        elif self.ui.position_combobox.currentData():
-            position_id = self.ui.position_combobox.currentData()
+        # Get department filter if selected
+        department_id = ''
+        if hasattr(self, 'department_id') and self.department_id:
+            department_id = self.department_id
+        elif self.ui.department_combobox.currentData():
+            department_id = self.ui.department_combobox.currentData()
             
-        # Fetch employees for the selected position
-        employees = self.database_operations.fetchEmployees(position_id=position_id)
+        # Fetch employees for the selected department
+        employees = self.database_operations.fetchEmployees(department_id=department_id)
         
         # Create a timeline chart of employee count
         self.createEmployeeTimelineChart(employees)
@@ -198,7 +198,7 @@ class Ui_Position_Report_Logic(object):
 
     def calculate(self):
         self.fetchAvgSalary()
-        self.fetchPositionInfo()
+        self.fetchDepartmentInfo()
         self.fetchEmployeeNum()
         self.fetchSalaryChange()
         

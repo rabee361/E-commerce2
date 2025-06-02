@@ -42,11 +42,11 @@ class Ui_Settings_Logic(QDialog):
     def showUi(self):
         window = QDialog()
         self.ui.setupUi(window)
+        self.language_manager.load_translated_ui(self.ui, window)
         self.initialize(window)
         window.exec()
 
     def initialize(self, window):
-        self.language_manager.load_translated_ui(self.ui, window)
         self.ui.first_period_date_input.setDisplayFormat("dd-MM-yyyy")
         self.ui.last_period_date_input.setDisplayFormat("dd-MM-yyyy")
         self.ui.operations_fixation_date_input.setDisplayFormat("dd-MM-yyyy")
@@ -66,6 +66,7 @@ class Ui_Settings_Logic(QDialog):
         self.ui.select_mid_input_account_btn.clicked.connect(lambda: self.openSelectAccountWindow(self.ui.mid_input_account))
         self.ui.select_output_account_btn.clicked.connect(lambda: self.openSelectAccountWindow(self.ui.output_account))
         self.ui.select_input_account_btn.clicked.connect(lambda: self.openSelectAccountWindow(self.ui.input_account))
+        self.ui.select_damaged_materials_warehouse_btn.clicked.connect(lambda: self.openSelectWarehouseWindow())
 
         self.ui.default_capital_account_combobox.setEnabled(False)
         self.ui.warehouses_combobox.setEnabled(False)
@@ -195,6 +196,8 @@ class Ui_Settings_Logic(QDialog):
         mid_input_account = self.ui.mid_input_account.currentData()
         output_account = self.ui.output_account.currentData()
         input_account = self.ui.input_account.currentData()
+        
+        damaged_materials_warehouse = self.ui.damaged_materials_warehouse_combobox.currentData()
 
         if (first_period):
             self.database_operations.saveSetting('first_period', first_period)
@@ -218,6 +221,8 @@ class Ui_Settings_Logic(QDialog):
             self.database_operations.saveSetting('output_account', output_account)
         if (input_account):
             self.database_operations.saveSetting('input_account', input_account)
+        if (damaged_materials_warehouse):
+            self.database_operations.saveSetting('damaged_materials_warehouse', damaged_materials_warehouse)
 
     def fetchWarehouses(self):
         warehouses = self.database_operations.fetchWarehouses()
@@ -241,6 +246,15 @@ class Ui_Settings_Logic(QDialog):
             for i in range(self.ui.warehouses_combobox.count()):
                 if self.ui.warehouses_combobox.itemData(i)[0] == result['id']:
                     self.ui.warehouses_combobox.setCurrentIndex(i)
+                    break
+
+    def openSelectDamagedWarehouseWindow(self):
+        data_picker = Ui_DataPicker_Logic(self.sql_connector, 'warehouses')
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.damaged_materials_warehouse_combobox.count()):
+                if self.ui.damaged_materials_warehouse_combobox.itemData(i)[0] == result['id']:
+                    self.ui.damaged_materials_warehouse_combobox.setCurrentIndex(i)
                     break
 
     def fetchAccounts(self):

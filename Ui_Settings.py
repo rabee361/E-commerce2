@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Settings(object):
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
-        Settings.resize(883, 687)
+        Settings.resize(950, 950)
         Settings.setMinimumSize(QtCore.QSize(883, 0))
-        Settings.setMaximumSize(QtCore.QSize(883, 746))
+        Settings.setMaximumSize(QtCore.QSize(950, 950))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("icons/menu.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Settings.setWindowIcon(icon)
@@ -29,73 +29,166 @@ class Ui_Settings(object):
         self.groupBox_6.setObjectName("groupBox_6")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.groupBox_6)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.label_13 = QtWidgets.QLabel(self.groupBox_6)
-        self.label_13.setObjectName("label_13")
-        self.gridLayout_5.addWidget(self.label_13, 4, 0, 1, 1)
-        self.input_account = QtWidgets.QComboBox(self.groupBox_6)
-        self.input_account.setEnabled(False)
-        self.input_account.setObjectName("input_account")
-        self.gridLayout_5.addWidget(self.input_account, 7, 1, 1, 1)
-        self.label_15 = QtWidgets.QLabel(self.groupBox_6)
-        self.label_15.setObjectName("label_15")
-        self.gridLayout_5.addWidget(self.label_15, 7, 0, 1, 1)
-        self.select_capital_account_btn = QtWidgets.QPushButton(self.groupBox_6)
-        self.select_capital_account_btn.setMaximumSize(QtCore.QSize(75, 16777215))
-        self.select_capital_account_btn.setObjectName("select_capital_account_btn")
-        self.gridLayout_5.addWidget(self.select_capital_account_btn, 0, 2, 1, 1)
-        self.select_output_account_btn = QtWidgets.QPushButton(self.groupBox_6)
-        self.select_output_account_btn.setMaximumSize(QtCore.QSize(75, 16777215))
-        self.select_output_account_btn.setObjectName("select_output_account_btn")
-        self.gridLayout_5.addWidget(self.select_output_account_btn, 8, 2, 1, 1)
-        self.label_8 = QtWidgets.QLabel(self.groupBox_6)
-        self.label_8.setObjectName("label_8")
-        self.gridLayout_5.addWidget(self.label_8, 1, 0, 1, 1)
-        self.mid_output_account = QtWidgets.QComboBox(self.groupBox_6)
-        self.mid_output_account.setEnabled(False)
-        self.mid_output_account.setObjectName("mid_output_account")
-        self.gridLayout_5.addWidget(self.mid_output_account, 2, 1, 2, 1)
-        self.default_capital_account_combobox = QtWidgets.QComboBox(self.groupBox_6)
-        self.default_capital_account_combobox.setEnabled(False)
-        self.default_capital_account_combobox.setObjectName("default_capital_account_combobox")
-        self.gridLayout_5.addWidget(self.default_capital_account_combobox, 0, 1, 1, 1)
-        self.select_period_start_account_btn = QtWidgets.QPushButton(self.groupBox_6)
-        self.select_period_start_account_btn.setMaximumSize(QtCore.QSize(75, 16777215))
-        self.select_period_start_account_btn.setObjectName("select_period_start_account_btn")
-        self.gridLayout_5.addWidget(self.select_period_start_account_btn, 1, 2, 1, 1)
-        self.select_input_account_btn = QtWidgets.QPushButton(self.groupBox_6)
-        self.select_input_account_btn.setMaximumSize(QtCore.QSize(75, 16777215))
-        self.select_input_account_btn.setObjectName("select_input_account_btn")
-        self.gridLayout_5.addWidget(self.select_input_account_btn, 7, 2, 1, 1)
-        self.label_12 = QtWidgets.QLabel(self.groupBox_6)
-        self.label_12.setObjectName("label_12")
-        self.gridLayout_5.addWidget(self.label_12, 2, 0, 1, 1)
-        self.label_14 = QtWidgets.QLabel(self.groupBox_6)
-        self.label_14.setObjectName("label_14")
-        self.gridLayout_5.addWidget(self.label_14, 8, 0, 1, 1)
-        self.mid_input_account = QtWidgets.QComboBox(self.groupBox_6)
-        self.mid_input_account.setEnabled(False)
-        self.mid_input_account.setObjectName("mid_input_account")
-        self.gridLayout_5.addWidget(self.mid_input_account, 4, 1, 1, 1)
         self.label_7 = QtWidgets.QLabel(self.groupBox_6)
         self.label_7.setObjectName("label_7")
         self.gridLayout_5.addWidget(self.label_7, 0, 0, 1, 1)
+        self.default_capital_account_combobox = QtWidgets.QComboBox(self.groupBox_6)
+        self.default_capital_account_combobox.setEnabled(False)
+        self.default_capital_account_combobox.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
+        self.default_capital_account_combobox.setObjectName("default_capital_account_combobox")
+        self.gridLayout_5.addWidget(self.default_capital_account_combobox, 0, 1, 1, 1)
+        self.select_capital_account_btn = QtWidgets.QToolButton(self.groupBox_6)
+        self.select_capital_account_btn.setObjectName("select_capital_account_btn")
+        self.gridLayout_5.addWidget(self.select_capital_account_btn, 0, 2, 1, 1)
+        self.label_8 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_8.setObjectName("label_8")
+        self.gridLayout_5.addWidget(self.label_8, 1, 0, 1, 1)
         self.default_period_start_account_combobox = QtWidgets.QComboBox(self.groupBox_6)
         self.default_period_start_account_combobox.setEnabled(False)
+        self.default_period_start_account_combobox.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
         self.default_period_start_account_combobox.setObjectName("default_period_start_account_combobox")
         self.gridLayout_5.addWidget(self.default_period_start_account_combobox, 1, 1, 1, 1)
-        self.output_account = QtWidgets.QComboBox(self.groupBox_6)
-        self.output_account.setEnabled(False)
-        self.output_account.setObjectName("output_account")
-        self.gridLayout_5.addWidget(self.output_account, 8, 1, 1, 1)
-        self.select_mid_input_account_btn = QtWidgets.QPushButton(self.groupBox_6)
-        self.select_mid_input_account_btn.setMaximumSize(QtCore.QSize(75, 16777215))
-        self.select_mid_input_account_btn.setObjectName("select_mid_input_account_btn")
-        self.gridLayout_5.addWidget(self.select_mid_input_account_btn, 4, 2, 1, 1)
-        self.select_mid_output_account_btn = QtWidgets.QPushButton(self.groupBox_6)
-        self.select_mid_output_account_btn.setMaximumSize(QtCore.QSize(75, 16777215))
+        self.select_period_start_account_btn = QtWidgets.QToolButton(self.groupBox_6)
+        self.select_period_start_account_btn.setObjectName("select_period_start_account_btn")
+        self.gridLayout_5.addWidget(self.select_period_start_account_btn, 1, 2, 1, 1)
+        self.label_12 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_12.setObjectName("label_12")
+        self.gridLayout_5.addWidget(self.label_12, 2, 0, 1, 1)
+        self.mid_output_account = QtWidgets.QComboBox(self.groupBox_6)
+        self.mid_output_account.setEnabled(False)
+        self.mid_output_account.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
+        self.mid_output_account.setObjectName("mid_output_account")
+        self.gridLayout_5.addWidget(self.mid_output_account, 2, 1, 1, 1)
+        self.select_mid_output_account_btn = QtWidgets.QToolButton(self.groupBox_6)
         self.select_mid_output_account_btn.setObjectName("select_mid_output_account_btn")
         self.gridLayout_5.addWidget(self.select_mid_output_account_btn, 2, 2, 1, 1)
-        self.gridLayout_7.addWidget(self.groupBox_6, 0, 0, 2, 1)
+        self.label_13 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_13.setObjectName("label_13")
+        self.gridLayout_5.addWidget(self.label_13, 3, 0, 1, 1)
+        self.mid_input_account = QtWidgets.QComboBox(self.groupBox_6)
+        self.mid_input_account.setEnabled(False)
+        self.mid_input_account.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
+        self.mid_input_account.setObjectName("mid_input_account")
+        self.gridLayout_5.addWidget(self.mid_input_account, 3, 1, 1, 1)
+        self.select_mid_input_account_btn = QtWidgets.QToolButton(self.groupBox_6)
+        self.select_mid_input_account_btn.setObjectName("select_mid_input_account_btn")
+        self.gridLayout_5.addWidget(self.select_mid_input_account_btn, 3, 2, 1, 1)
+        self.label_15 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_15.setObjectName("label_15")
+        self.gridLayout_5.addWidget(self.label_15, 4, 0, 1, 1)
+        self.input_account = QtWidgets.QComboBox(self.groupBox_6)
+        self.input_account.setEnabled(False)
+        self.input_account.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
+        self.input_account.setObjectName("input_account")
+        self.gridLayout_5.addWidget(self.input_account, 4, 1, 1, 1)
+        self.select_input_account_btn = QtWidgets.QToolButton(self.groupBox_6)
+        self.select_input_account_btn.setObjectName("select_input_account_btn")
+        self.gridLayout_5.addWidget(self.select_input_account_btn, 4, 2, 1, 1)
+        self.label_14 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_14.setObjectName("label_14")
+        self.gridLayout_5.addWidget(self.label_14, 5, 0, 1, 1)
+        self.output_account = QtWidgets.QComboBox(self.groupBox_6)
+        self.output_account.setEnabled(False)
+        self.output_account.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
+        self.output_account.setObjectName("output_account")
+        self.gridLayout_5.addWidget(self.output_account, 5, 1, 1, 1)
+        self.select_output_account_btn = QtWidgets.QToolButton(self.groupBox_6)
+        self.select_output_account_btn.setObjectName("select_output_account_btn")
+        self.gridLayout_5.addWidget(self.select_output_account_btn, 5, 2, 1, 1)
+        self.label_16 = QtWidgets.QLabel(self.groupBox_6)
+        self.label_16.setObjectName("label_16")
+        self.gridLayout_5.addWidget(self.label_16, 6, 0, 1, 1)
+        self.damaged_materials_warehouse_combobox = QtWidgets.QComboBox(self.groupBox_6)
+        self.damaged_materials_warehouse_combobox.setEnabled(False)
+        self.damaged_materials_warehouse_combobox.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
+        self.damaged_materials_warehouse_combobox.setObjectName("damaged_materials_warehouse_combobox")
+        self.gridLayout_5.addWidget(self.damaged_materials_warehouse_combobox, 6, 1, 1, 1)
+        self.select_damaged_materials_warehouse_btn = QtWidgets.QToolButton(self.groupBox_6)
+        self.select_damaged_materials_warehouse_btn.setObjectName("select_damaged_materials_warehouse_btn")
+        self.gridLayout_5.addWidget(self.select_damaged_materials_warehouse_btn, 6, 2, 1, 1)
+        self.gridLayout_7.addWidget(self.groupBox_6, 1, 0, 2, 1)
+        self.save_btn = QtWidgets.QPushButton(Settings)
+        self.save_btn.setStyleSheet("")
+        self.save_btn.setObjectName("save_btn")
+        self.gridLayout_7.addWidget(self.save_btn, 7, 1, 1, 1)
+        self.cancel_btn = QtWidgets.QPushButton(Settings)
+        self.cancel_btn.setStyleSheet("")
+        self.cancel_btn.setObjectName("cancel_btn")
+        self.gridLayout_7.addWidget(self.cancel_btn, 7, 0, 1, 1)
+        self.groupBox_5 = QtWidgets.QGroupBox(Settings)
+        self.groupBox_5.setMinimumSize(QtCore.QSize(0, 75))
+        self.groupBox_5.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.groupBox_5.setObjectName("groupBox_5")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_5)
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.double_journal_entries_radio = QtWidgets.QRadioButton(self.groupBox_5)
+        self.double_journal_entries_radio.setChecked(True)
+        self.double_journal_entries_radio.setObjectName("double_journal_entries_radio")
+        self.gridLayout_6.addWidget(self.double_journal_entries_radio, 2, 0, 1, 1)
+        self.individual_journal_entries_radio = QtWidgets.QRadioButton(self.groupBox_5)
+        self.individual_journal_entries_radio.setObjectName("individual_journal_entries_radio")
+        self.gridLayout_6.addWidget(self.individual_journal_entries_radio, 3, 0, 1, 1)
+        self.label_6 = QtWidgets.QLabel(self.groupBox_5)
+        self.label_6.setMinimumSize(QtCore.QSize(250, 0))
+        self.label_6.setObjectName("label_6")
+        self.gridLayout_6.addWidget(self.label_6, 1, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.groupBox_5, 4, 1, 1, 1)
         self.groupBox_3 = QtWidgets.QGroupBox(Settings)
         self.groupBox_3.setMaximumSize(QtCore.QSize(427, 16777215))
         self.groupBox_3.setObjectName("groupBox_3")
@@ -122,18 +215,7 @@ class Ui_Settings(object):
         item = QtWidgets.QTableWidgetItem()
         self.manufacture_halls_table.setHorizontalHeaderItem(4, item)
         self.manufacture_halls_table.verticalHeader().setVisible(False)
-        self.gridLayout_4.addWidget(self.manufacture_halls_table, 3, 0, 1, 3)
-        self.add_manufacture_hall_warehouse = QtWidgets.QPushButton(self.groupBox_3)
-        self.add_manufacture_hall_warehouse.setMaximumSize(QtCore.QSize(95, 16777215))
-        self.add_manufacture_hall_warehouse.setObjectName("add_manufacture_hall_warehouse")
-        self.gridLayout_4.addWidget(self.add_manufacture_hall_warehouse, 2, 2, 1, 1)
-        self.label_5 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_5.setMaximumSize(QtCore.QSize(70, 16777215))
-        self.label_5.setObjectName("label_5")
-        self.gridLayout_4.addWidget(self.label_5, 1, 0, 1, 1)
-        self.warehouses_combobox = QtWidgets.QComboBox(self.groupBox_3)
-        self.warehouses_combobox.setObjectName("warehouses_combobox")
-        self.gridLayout_4.addWidget(self.warehouses_combobox, 1, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.manufacture_halls_table, 4, 0, 1, 3)
         self.accounts_combobox = QtWidgets.QComboBox(self.groupBox_3)
         self.accounts_combobox.setEnabled(False)
         self.accounts_combobox.setStyleSheet("background-color: white;\n"
@@ -145,74 +227,25 @@ class Ui_Settings(object):
 "border-style: none;\n"
 "height:20;")
         self.accounts_combobox.setObjectName("accounts_combobox")
-        self.gridLayout_4.addWidget(self.accounts_combobox, 2, 1, 1, 1)
-        self.select_warehouse_btn = QtWidgets.QPushButton(self.groupBox_3)
-        self.select_warehouse_btn.setObjectName("select_warehouse_btn")
-        self.gridLayout_4.addWidget(self.select_warehouse_btn, 1, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.accounts_combobox, 3, 1, 1, 1)
+        self.warehouses_combobox = QtWidgets.QComboBox(self.groupBox_3)
+        self.warehouses_combobox.setObjectName("warehouses_combobox")
+        self.gridLayout_4.addWidget(self.warehouses_combobox, 1, 1, 1, 1)
+        self.add_manufacture_hall_warehouse = QtWidgets.QPushButton(self.groupBox_3)
+        self.add_manufacture_hall_warehouse.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.add_manufacture_hall_warehouse.setObjectName("add_manufacture_hall_warehouse")
+        self.gridLayout_4.addWidget(self.add_manufacture_hall_warehouse, 3, 2, 1, 1)
         self.remove_manufacture_hall_warehouse = QtWidgets.QPushButton(self.groupBox_3)
         self.remove_manufacture_hall_warehouse.setObjectName("remove_manufacture_hall_warehouse")
-        self.gridLayout_4.addWidget(self.remove_manufacture_hall_warehouse, 4, 2, 1, 1)
-        self.gridLayout_7.addWidget(self.groupBox_3, 2, 0, 3, 1)
-        self.groupBox_2 = QtWidgets.QGroupBox(Settings)
-        self.groupBox_2.setLayoutDirection(QtCore.Qt.RightToLeft)
-        self.groupBox_2.setObjectName("groupBox_2")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox_2)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.operations_fixation_date_input = QtWidgets.QDateEdit(self.groupBox_2)
-        self.operations_fixation_date_input.setObjectName("operations_fixation_date_input")
-        self.gridLayout_2.addWidget(self.operations_fixation_date_input, 2, 1, 1, 2)
-        self.last_period_date_input = QtWidgets.QDateEdit(self.groupBox_2)
-        self.last_period_date_input.setObjectName("last_period_date_input")
-        self.gridLayout_2.addWidget(self.last_period_date_input, 1, 1, 1, 2)
-        self.first_period_date_input = QtWidgets.QDateEdit(self.groupBox_2)
-        self.first_period_date_input.setObjectName("first_period_date_input")
-        self.gridLayout_2.addWidget(self.first_period_date_input, 0, 1, 1, 2)
-        self.label_2 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_2.setObjectName("label_2")
-        self.gridLayout_2.addWidget(self.label_2, 0, 0, 1, 1)
-        self.label_3 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_3.setObjectName("label_3")
-        self.gridLayout_2.addWidget(self.label_3, 1, 0, 1, 1)
-        self.label_4 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_4.setObjectName("label_4")
-        self.gridLayout_2.addWidget(self.label_4, 2, 0, 1, 1)
-        self.gridLayout_7.addWidget(self.groupBox_2, 2, 1, 1, 1)
-        self.groupBox_5 = QtWidgets.QGroupBox(Settings)
-        self.groupBox_5.setMinimumSize(QtCore.QSize(0, 75))
-        self.groupBox_5.setLayoutDirection(QtCore.Qt.RightToLeft)
-        self.groupBox_5.setObjectName("groupBox_5")
-        self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_5)
-        self.gridLayout_6.setObjectName("gridLayout_6")
-        self.double_journal_entries_radio = QtWidgets.QRadioButton(self.groupBox_5)
-        self.double_journal_entries_radio.setChecked(True)
-        self.double_journal_entries_radio.setObjectName("double_journal_entries_radio")
-        self.gridLayout_6.addWidget(self.double_journal_entries_radio, 2, 0, 1, 1)
-        self.individual_journal_entries_radio = QtWidgets.QRadioButton(self.groupBox_5)
-        self.individual_journal_entries_radio.setObjectName("individual_journal_entries_radio")
-        self.gridLayout_6.addWidget(self.individual_journal_entries_radio, 3, 0, 1, 1)
-        self.label_6 = QtWidgets.QLabel(self.groupBox_5)
-        self.label_6.setMinimumSize(QtCore.QSize(250, 0))
-        self.label_6.setObjectName("label_6")
-        self.gridLayout_6.addWidget(self.label_6, 1, 0, 1, 1)
-        self.gridLayout_7.addWidget(self.groupBox_5, 3, 1, 1, 1)
-        self.groupBox_7 = QtWidgets.QGroupBox(Settings)
-        self.groupBox_7.setObjectName("groupBox_7")
-        self.gridLayout_8 = QtWidgets.QGridLayout(self.groupBox_7)
-        self.gridLayout_8.setObjectName("gridLayout_8")
-        self.perpetual_option_radio = QtWidgets.QRadioButton(self.groupBox_7)
-        self.perpetual_option_radio.setEnabled(False)
-        self.perpetual_option_radio.setStyleSheet("color: Black")
-        self.perpetual_option_radio.setObjectName("perpetual_option_radio")
-        self.gridLayout_8.addWidget(self.perpetual_option_radio, 2, 0, 1, 1)
-        self.periodic_option_radio = QtWidgets.QRadioButton(self.groupBox_7)
-        self.periodic_option_radio.setEnabled(False)
-        self.periodic_option_radio.setStyleSheet("color: Black")
-        self.periodic_option_radio.setObjectName("periodic_option_radio")
-        self.gridLayout_8.addWidget(self.periodic_option_radio, 1, 0, 1, 1)
-        self.label_9 = QtWidgets.QLabel(self.groupBox_7)
-        self.label_9.setObjectName("label_9")
-        self.gridLayout_8.addWidget(self.label_9, 0, 0, 1, 1)
-        self.gridLayout_7.addWidget(self.groupBox_7, 4, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.remove_manufacture_hall_warehouse, 5, 2, 1, 1)
+        self.label_5 = QtWidgets.QLabel(self.groupBox_3)
+        self.label_5.setMaximumSize(QtCore.QSize(70, 16777215))
+        self.label_5.setObjectName("label_5")
+        self.gridLayout_4.addWidget(self.label_5, 1, 0, 1, 1)
+        self.select_warehouse_btn = QtWidgets.QToolButton(self.groupBox_3)
+        self.select_warehouse_btn.setObjectName("select_warehouse_btn")
+        self.gridLayout_4.addWidget(self.select_warehouse_btn, 1, 2, 1, 1)
+        self.gridLayout_7.addWidget(self.groupBox_3, 3, 0, 3, 1)
         self.groupBox_4 = QtWidgets.QGroupBox(Settings)
         self.groupBox_4.setObjectName("groupBox_4")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox_4)
@@ -247,51 +280,25 @@ class Ui_Settings(object):
         self.api_keys_btn.setMaximumSize(QtCore.QSize(250, 16777215))
         self.api_keys_btn.setObjectName("api_keys_btn")
         self.gridLayout_3.addWidget(self.api_keys_btn, 1, 3, 1, 1)
-        self.gridLayout_7.addWidget(self.groupBox_4, 5, 0, 1, 2)
-        self.cancel_btn = QtWidgets.QPushButton(Settings)
-        self.cancel_btn.setStyleSheet("QPushButton {\n"
-"    background-color: #FFCDD2;\n"
-"    color: black;\n"
-"    border: 1px solid #E57373;\n"
-"    border-radius: 2px;\n"
-"    padding: 8px 16px;\n"
-"    font-family: Arial;\n"
-"    font-size: 14px;\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #EF9A9A;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #E57373;\n"
-"}\n"
-"")
-        self.cancel_btn.setObjectName("cancel_btn")
-        self.gridLayout_7.addWidget(self.cancel_btn, 6, 0, 1, 1)
-        self.save_btn = QtWidgets.QPushButton(Settings)
-        self.save_btn.setStyleSheet("QPushButton {\n"
-"    background-color: #C8E6C9;\n"
-"    color: black;\n"
-"    border: 1px solid #81C784;\n"
-"    border-radius: 2px;\n"
-"    padding: 8px 16px;\n"
-"    font-family: Arial;\n"
-"    font-size: 14px;\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #A5D6A7;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #81C784;\n"
-"}\n"
-"")
-        self.save_btn.setObjectName("save_btn")
-        self.gridLayout_7.addWidget(self.save_btn, 6, 1, 1, 1)
+        self.gridLayout_7.addWidget(self.groupBox_4, 6, 0, 1, 2)
+        self.groupBox_7 = QtWidgets.QGroupBox(Settings)
+        self.groupBox_7.setObjectName("groupBox_7")
+        self.gridLayout_8 = QtWidgets.QGridLayout(self.groupBox_7)
+        self.gridLayout_8.setObjectName("gridLayout_8")
+        self.perpetual_option_radio = QtWidgets.QRadioButton(self.groupBox_7)
+        self.perpetual_option_radio.setEnabled(False)
+        self.perpetual_option_radio.setStyleSheet("color: Black")
+        self.perpetual_option_radio.setObjectName("perpetual_option_radio")
+        self.gridLayout_8.addWidget(self.perpetual_option_radio, 2, 0, 1, 1)
+        self.periodic_option_radio = QtWidgets.QRadioButton(self.groupBox_7)
+        self.periodic_option_radio.setEnabled(False)
+        self.periodic_option_radio.setStyleSheet("color: Black")
+        self.periodic_option_radio.setObjectName("periodic_option_radio")
+        self.gridLayout_8.addWidget(self.periodic_option_radio, 1, 0, 1, 1)
+        self.label_9 = QtWidgets.QLabel(self.groupBox_7)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout_8.addWidget(self.label_9, 0, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.groupBox_7, 5, 1, 1, 1)
         self.groupBox = QtWidgets.QGroupBox(Settings)
         self.groupBox.setObjectName("groupBox")
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox)
@@ -316,7 +323,31 @@ class Ui_Settings(object):
         self.currency_management_btn = QtWidgets.QPushButton(self.groupBox)
         self.currency_management_btn.setObjectName("currency_management_btn")
         self.gridLayout.addWidget(self.currency_management_btn, 1, 2, 1, 1)
-        self.gridLayout_7.addWidget(self.groupBox, 0, 1, 2, 1)
+        self.gridLayout_7.addWidget(self.groupBox, 3, 1, 1, 1)
+        self.groupBox_2 = QtWidgets.QGroupBox(Settings)
+        self.groupBox_2.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox_2)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.last_period_date_input = QtWidgets.QDateEdit(self.groupBox_2)
+        self.last_period_date_input.setObjectName("last_period_date_input")
+        self.gridLayout_2.addWidget(self.last_period_date_input, 1, 1, 1, 2)
+        self.label_4 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout_2.addWidget(self.label_4, 2, 0, 1, 1)
+        self.label_3 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_2.addWidget(self.label_3, 1, 0, 1, 1)
+        self.operations_fixation_date_input = QtWidgets.QDateEdit(self.groupBox_2)
+        self.operations_fixation_date_input.setObjectName("operations_fixation_date_input")
+        self.gridLayout_2.addWidget(self.operations_fixation_date_input, 2, 1, 1, 2)
+        self.first_period_date_input = QtWidgets.QDateEdit(self.groupBox_2)
+        self.first_period_date_input.setObjectName("first_period_date_input")
+        self.gridLayout_2.addWidget(self.first_period_date_input, 0, 1, 1, 2)
+        self.label_2 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_2.addWidget(self.label_2, 0, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.groupBox_2, 1, 1, 2, 1)
 
         self.retranslateUi(Settings)
         QtCore.QMetaObject.connectSlotsByName(Settings)
@@ -325,18 +356,26 @@ class Ui_Settings(object):
         _translate = QtCore.QCoreApplication.translate
         Settings.setWindowTitle(_translate("Settings", "خيارات"))
         self.groupBox_6.setTitle(_translate("Settings", "الحسابات الافتراضية"))
-        self.label_13.setText(_translate("Settings", "حساب وسيط الادخال الافتراضي:"))
-        self.label_15.setText(_translate("Settings", "حساب الادخال الافتراضي:"))
-        self.select_capital_account_btn.setText(_translate("Settings", "...اختيار"))
-        self.select_output_account_btn.setText(_translate("Settings", "...اختيار"))
-        self.label_8.setText(_translate("Settings", "حساب أول مدة الافتراضي:"))
-        self.select_period_start_account_btn.setText(_translate("Settings", "...اختيار"))
-        self.select_input_account_btn.setText(_translate("Settings", "...اختيار"))
-        self.label_12.setText(_translate("Settings", "حساب وسيط الاخراج الافتراضي:"))
-        self.label_14.setText(_translate("Settings", "حساب الاخراج الافتراضي:"))
         self.label_7.setText(_translate("Settings", "حساب رأس المال الافتراضي:"))
-        self.select_mid_input_account_btn.setText(_translate("Settings", "...اختيار"))
-        self.select_mid_output_account_btn.setText(_translate("Settings", "...اختيار"))
+        self.select_capital_account_btn.setText(_translate("Settings", "🔎"))
+        self.label_8.setText(_translate("Settings", "حساب أول مدة الافتراضي:"))
+        self.select_period_start_account_btn.setText(_translate("Settings", "🔎"))
+        self.label_12.setText(_translate("Settings", "حساب وسيط الاخراج الافتراضي:"))
+        self.select_mid_output_account_btn.setText(_translate("Settings", "🔎"))
+        self.label_13.setText(_translate("Settings", "حساب وسيط الادخال الافتراضي:"))
+        self.select_mid_input_account_btn.setText(_translate("Settings", "🔎"))
+        self.label_15.setText(_translate("Settings", "حساب الادخال الافتراضي:"))
+        self.select_input_account_btn.setText(_translate("Settings", "🔎"))
+        self.label_14.setText(_translate("Settings", "حساب الاخراج الافتراضي:"))
+        self.select_output_account_btn.setText(_translate("Settings", "🔎"))
+        self.label_16.setText(_translate("Settings", "مستودع التلف الافتراضي:"))
+        self.select_damaged_materials_warehouse_btn.setText(_translate("Settings", "🔎"))
+        self.save_btn.setText(_translate("Settings", "حفظ"))
+        self.cancel_btn.setText(_translate("Settings", "إلغاء"))
+        self.groupBox_5.setTitle(_translate("Settings", "سندات القيد"))
+        self.double_journal_entries_radio.setText(_translate("Settings", "سندات مزدوجة"))
+        self.individual_journal_entries_radio.setText(_translate("Settings", "سندات فردية"))
+        self.label_6.setText(_translate("Settings", "يتم حفظ سندات القيد المولده آلياً بشكل:"))
         self.groupBox_3.setTitle(_translate("Settings", "صالات التصنيع"))
         item = self.manufacture_halls_table.horizontalHeaderItem(0)
         item.setText(_translate("Settings", "المعرف"))
@@ -349,21 +388,9 @@ class Ui_Settings(object):
         item = self.manufacture_halls_table.horizontalHeaderItem(4)
         item.setText(_translate("Settings", "الحساب"))
         self.add_manufacture_hall_warehouse.setText(_translate("Settings", "إضافة"))
-        self.label_5.setText(_translate("Settings", "المستودعات:"))
-        self.select_warehouse_btn.setText(_translate("Settings", "...اختيار"))
         self.remove_manufacture_hall_warehouse.setText(_translate("Settings", "حذف"))
-        self.groupBox_2.setTitle(_translate("Settings", "تواريخ افتراضية"))
-        self.label_2.setText(_translate("Settings", "تاريخ أول مدة:"))
-        self.label_3.setText(_translate("Settings", "تاريخ آخر مدة:"))
-        self.label_4.setText(_translate("Settings", "تاريخ تثبيت العمليات:"))
-        self.groupBox_5.setTitle(_translate("Settings", "سندات القيد"))
-        self.double_journal_entries_radio.setText(_translate("Settings", "سندات مزدوجة"))
-        self.individual_journal_entries_radio.setText(_translate("Settings", "سندات فردية"))
-        self.label_6.setText(_translate("Settings", "يتم حفظ سندات القيد المولده آلياً بشكل:"))
-        self.groupBox_7.setTitle(_translate("Settings", "الجرد"))
-        self.perpetual_option_radio.setText(_translate("Settings", "جرد مستمر"))
-        self.periodic_option_radio.setText(_translate("Settings", "جرد دوري"))
-        self.label_9.setText(_translate("Settings", "نوع الجرد:"))
+        self.label_5.setText(_translate("Settings", "المستودعات:"))
+        self.select_warehouse_btn.setText(_translate("Settings", "🔎"))
         self.groupBox_4.setTitle(_translate("Settings", "إعدادات أخرى"))
         self.float_point_setting_btn.setText(_translate("Settings", "إعدادات  الفاصلة العائمة"))
         self.set_warehouses_variables_btn.setText(_translate("Settings", "ضبط متغيرات المستودعات"))
@@ -373,10 +400,16 @@ class Ui_Settings(object):
         self.shortcut_settings_btn.setText(_translate("Settings", "إعدادات الاختصارات"))
         self.invoices_settings_btn.setText(_translate("Settings", "ضبط افتراضيات الفواتير"))
         self.api_keys_btn.setText(_translate("Settings", "ضبط المفاتيح"))
-        self.cancel_btn.setText(_translate("Settings", "إلغاء"))
-        self.save_btn.setText(_translate("Settings", "حفظ"))
+        self.groupBox_7.setTitle(_translate("Settings", "الجرد"))
+        self.perpetual_option_radio.setText(_translate("Settings", "جرد مستمر"))
+        self.periodic_option_radio.setText(_translate("Settings", "جرد دوري"))
+        self.label_9.setText(_translate("Settings", "نوع الجرد:"))
         self.groupBox.setTitle(_translate("Settings", "افتراضيات"))
         self.label.setText(_translate("Settings", "العملة الافتراضية:"))
         self.label_11.setText(_translate("Settings", "⚠️ قد تحتاج إلى إعادة التشغيل"))
         self.label_10.setText(_translate("Settings", "اللغة الافتراضية:"))
         self.currency_management_btn.setText(_translate("Settings", "...إدارة العملات"))
+        self.groupBox_2.setTitle(_translate("Settings", "تواريخ افتراضية"))
+        self.label_4.setText(_translate("Settings", "تاريخ تثبيت العمليات:"))
+        self.label_3.setText(_translate("Settings", "تاريخ آخر مدة:"))
+        self.label_2.setText(_translate("Settings", "تاريخ أول مدة:"))

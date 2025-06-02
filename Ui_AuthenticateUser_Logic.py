@@ -19,7 +19,7 @@ class Ui_AuthenticateUser_Logic(QDialog):
         super().__init__()
         self.sql_connector = sql_connector
         self.database_operations = DatabaseOperations(sql_connector)
-        self.ui = Ui_AuthenticateUser()
+        self.ui = Ui_AuthenticateUser() 
         self.key = 'YourVerySecretKey123456789012345' # can be set to any 32 bytes string
         self.translator = QTranslator()
         self.language_manager = LanguageManager(self.translator)
@@ -37,6 +37,7 @@ class Ui_AuthenticateUser_Logic(QDialog):
     def initialize(self, window):
         self.ui.password_input.setEchoMode(self.ui.password_input.Password)
         self.ui.login_btn.clicked.connect(lambda: self.authenticateUser(window))
+        self.ui.cancel_btn.clicked.connect(lambda: self.cancelLogin(window))
         self.ui.password_btn.clicked.connect(self.togglePasswordVisibility)
         self.current_user = ''
         self.fetchUsers()
@@ -61,6 +62,9 @@ class Ui_AuthenticateUser_Logic(QDialog):
         global current_user
         return current_user
 
+    def cancelLogin(self, window):
+        window.accept()
+
     def authenticateUser(self, window):
         global current_user # to access the current user in this methid and assign it
         username = self.ui.user_combobox.currentText()
@@ -80,5 +84,3 @@ class Ui_AuthenticateUser_Logic(QDialog):
                     win32api.MessageBox(0, self.language_manager.translate('INVALID_USERNAME_OR_PASSWORD_ERROR'), self.language_manager.translate('ERROR'))
             except Exception as e:
                 win32api.MessageBox(0, self.language_manager.translate('CHECKING_PASSWORD_ERROR'), self.language_manager.translate('ERROR'))
-
-        print(user)

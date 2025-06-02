@@ -25,8 +25,8 @@ class Ui_InventoryReport_Logic(QDialog):
         window.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         window.setWindowState(Qt.WindowMaximized)
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)   
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):
@@ -61,7 +61,7 @@ class Ui_InventoryReport_Logic(QDialog):
             
             # Process each material move
             for material_move in warehouse_moves:
-                if material_move['move_quantity'] and material_move['material_id'] != 0:
+                if material_move['material_id'] and material_move['move_quantity'] and material_move['material_id'] != 0:
                     material_id = material_move['material_id']
                     
                     # Initialize material in dictionary if not exists
@@ -72,7 +72,6 @@ class Ui_InventoryReport_Logic(QDialog):
                             'unit': material_move['unit_name'],
                             'quantity': 0
                         }
-                    
                     # Update quantity based on warehouse role (source or destination)
                     if material_move['source_warehouse'] == warehouse_id:
                         # Material leaving the warehouse
@@ -80,7 +79,7 @@ class Ui_InventoryReport_Logic(QDialog):
                     elif material_move['destination_warehouse'] == warehouse_id:
                         # Material entering the warehouse
                         materials[material_id]['quantity'] += material_move['move_quantity']
-            
+                
             # Display results in table
             for material_id, material_data in materials.items():
                 row = self.ui.results_table.rowCount()
