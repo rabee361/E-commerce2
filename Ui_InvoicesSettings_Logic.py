@@ -24,8 +24,8 @@ class Ui_InvoicesSettings_Logic(QDialog):
         window = QDialog()
         window.setWindowModality(QtCore.Qt.WindowModal)
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):
@@ -189,11 +189,13 @@ class Ui_InvoicesSettings_Logic(QDialog):
         ]
 
         for i, (name, label_key) in enumerate(account_combos):
-            label_widget = QtWidgets.QLabel(self.language_manager.translate( label_key))
+            label_widget = QtWidgets.QLabel(self.language_manager.translate(label_key))
             combo = QtWidgets.QComboBox()
             combo.setObjectName(name)
             combo.setEnabled(False)
-            select_btn = QtWidgets.QPushButton(self.language_manager.translate( "INVOICE_SETTINGS_SELECT"))
+            combo.setStyleSheet("QComboBox {\n        background-color: #fafafa;\n        border: 1px solid lightgrey;		\n		height: 22px;\n		color: black;\n    }\n    QComboBox::drop-down {\n        border: none;\n    }")
+            select_btn = QtWidgets.QToolButton()
+            select_btn.setText("🔎")
             select_btn.setObjectName(f"{name}_select_btn")
             select_btn.clicked.connect(lambda checked, cb=combo: self.openSelectAccountWindow(cb))
             default_accounts_layout.addWidget(label_widget, i, 0)
@@ -274,9 +276,8 @@ class Ui_InvoicesSettings_Logic(QDialog):
         affects_warehouse_label = QtWidgets.QLabel(self.language_manager.translate( "INVOICE_SETTINGS_AFFECTS_WAREHOUSE"))
         affects_warehouse_combobox = QtWidgets.QComboBox()
         affects_warehouse_combobox.setObjectName(f"{prefix}{tab_name}_affects_on_warehouse_combobox")
-        affects_warehouse_combobox.addItem(self.language_manager.translate( "INVOICE_SETTINGS_NONE"), None)
-        for value in [self.language_manager.translate( "INVOICE_TYPE_REDUCE"), self.language_manager.translate( "INVOICE_TYPE_ADD")]:
-            affects_warehouse_combobox.addItem(value, value)
+        for item in [(self.language_manager.translate( "INVOICE_TYPE_REDUCE"), "reduce"), (self.language_manager.translate( "INVOICE_TYPE_ADD"), "add")]:
+            affects_warehouse_combobox.addItem(item[0], item[1])
             
         # Add returned checkbox
         returned_checkbox = QtWidgets.QCheckBox(self.language_manager.translate("INVOICE_SETTINGS_RETURNED"))

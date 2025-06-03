@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>669</height>
+    <width>717</width>
+    <height>659</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -300,7 +300,7 @@
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>75</height>
+       <height>0</height>
       </size>
      </property>
      <property name="layoutDirection">
@@ -571,6 +571,12 @@ height:20;</string>
    </item>
    <item row="5" column="1">
     <widget class="QGroupBox" name="groupBox_7">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>100</height>
+      </size>
+     </property>
      <property name="title">
       <string>الجرد</string>
      </property>

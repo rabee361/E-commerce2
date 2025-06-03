@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Settings(object):
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
-        Settings.resize(735, 669)
+        Settings.resize(717, 659)
         Settings.setMinimumSize(QtCore.QSize(0, 0))
         Settings.setMaximumSize(QtCore.QSize(1857564, 1857546))
         icon = QtGui.QIcon()
@@ -172,7 +172,7 @@ class Ui_Settings(object):
         self.cancel_btn.setObjectName("cancel_btn")
         self.gridLayout_7.addWidget(self.cancel_btn, 7, 0, 1, 1)
         self.groupBox_5 = QtWidgets.QGroupBox(Settings)
-        self.groupBox_5.setMinimumSize(QtCore.QSize(0, 75))
+        self.groupBox_5.setMinimumSize(QtCore.QSize(0, 0))
         self.groupBox_5.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.groupBox_5.setObjectName("groupBox_5")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_5)
@@ -282,6 +282,7 @@ class Ui_Settings(object):
         self.gridLayout_3.addWidget(self.api_keys_btn, 1, 3, 1, 1)
         self.gridLayout_7.addWidget(self.groupBox_4, 6, 0, 1, 2)
         self.groupBox_7 = QtWidgets.QGroupBox(Settings)
+        self.groupBox_7.setMinimumSize(QtCore.QSize(0, 100))
         self.groupBox_7.setObjectName("groupBox_7")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.groupBox_7)
         self.gridLayout_8.setObjectName("gridLayout_8")

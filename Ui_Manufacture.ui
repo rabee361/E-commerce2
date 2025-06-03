@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1183</width>
-    <height>717</height>
+    <width>1436</width>
+    <height>907</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -113,7 +113,7 @@
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>50</height>
+       <height>75</height>
       </size>
      </property>
      <property name="title">
@@ -164,7 +164,7 @@ QPushButton:hover {
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
-    background-color: #4CAF50;  /* Green */
+    background-color: #f44611;
     border: none;
     color: #FFFFFF;  /* White */
     font-weight: bold;
@@ -179,12 +179,12 @@ QPushButton:hover {
 }
 
 QPushButton:hover {
-    background-color: #45a049;  /* Darker Green */
+    background-color: #cc3406;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 QPushButton:pressed {
-    background-color: #3e8e41;  /* Even Darker Green */
+    background-color: #bd2f04;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }</string>
         </property>
@@ -222,8 +222,8 @@ QPushButton:pressed {
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1165</width>
-        <height>301</height>
+        <width>1418</width>
+        <height>463</height>
        </rect>
       </property>
       <attribute name="label">
@@ -245,55 +245,81 @@ QPushButton:pressed {
           <string/>
          </property>
          <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_15">
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>المادة المنتجة:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="produced_material_combobox">
+          <item row="6" column="11">
+           <widget class="QComboBox" name="produced_unit3_combobox">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="minimumSize">
              <size>
-              <width>100</width>
-              <height>0</height>
+              <width>0</width>
+              <height>20</height>
              </size>
             </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="select_produced_material_btn">
+            <property name="text">
+             <string>🔎</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QLineEdit" name="damaged_quantity1_input">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">QComboBox {
-        background-color: #fafafa;
-        border: 1px solid lightgrey;		
-		height: 22px;
-		color: black;
-    }
-    QComboBox::drop-down {
-        border: none;
-    }</string>
+             <string>background: #FFD8C0;
+color: black;
+border: 0px</string>
             </property>
-           </widget>
-          </item>
-          <item row="0" column="2" colspan="2">
-           <widget class="QPushButton" name="select_produced_material_btn">
             <property name="text">
-             <string>...اختيار</string>
+             <string/>
             </property>
            </widget>
           </item>
-          <item row="0" column="5">
-           <widget class="QLabel" name="label_27">
+          <item row="6" column="8">
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="16" rowspan="3">
+           <widget class="QPushButton" name="add_produced_material_btn">
+            <property name="text">
+             <string>اضافة</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="16" rowspan="2">
+           <widget class="QPushButton" name="remove_material">
+            <property name="text">
+             <string>حذف</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" rowspan="3">
+           <widget class="QLabel" name="label_5">
             <property name="maximumSize">
              <size>
               <width>200</width>
@@ -301,11 +327,101 @@ QPushButton:pressed {
              </size>
             </property>
             <property name="text">
-             <string>التركيبة:</string>
+             <string>الكمية المعيارية:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="6" colspan="2">
+          <item row="3" column="7">
+           <widget class="QComboBox" name="standard_unit2_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" rowspan="2">
+           <widget class="QLabel" name="label_6">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>الكمية المصنعة/التالفة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="5" colspan="2">
+           <widget class="QLineEdit" name="standard_quantity2_input">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="5">
+           <widget class="QLineEdit" name="produced_quantity2_input">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="14" rowspan="3">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>عدد الوجبات المعيارية:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
            <widget class="QComboBox" name="composition_combobox">
             <property name="enabled">
              <bool>false</bool>
@@ -332,81 +448,7 @@ QPushButton:pressed {
             </property>
            </widget>
           </item>
-          <item row="0" column="8" colspan="2">
-           <widget class="QPushButton" name="select_composition_btn">
-            <property name="text">
-             <string>...اختيار</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="10" colspan="2">
-           <widget class="QPushButton" name="add_composition_material_btn">
-            <property name="text">
-             <string>...تغيير تركيبة المادة</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" rowspan="2">
-           <widget class="QLabel" name="label_5">
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>الكمية المعيارية:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="4" rowspan="2" colspan="2">
-           <widget class="QLabel" name="label_16">
-            <property name="maximumSize">
-             <size>
-              <width>20</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>=</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="8" rowspan="2" colspan="2">
-           <widget class="QLabel" name="label_18">
-            <property name="text">
-             <string>=</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="12" rowspan="2">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>عدد ساعات العمل المعيارية:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="14" rowspan="2">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>عدد الوجبات المعيارية:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="16" rowspan="2">
-           <widget class="QPushButton" name="add_produced_material_btn">
-            <property name="text">
-             <string>➕ اضافة</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="2">
+          <item row="3" column="1" colspan="2">
            <widget class="QLineEdit" name="standard_quantity1_input">
             <property name="enabled">
              <bool>false</bool>
@@ -432,31 +474,21 @@ border: 0px
             </property>
            </widget>
           </item>
-          <item row="2" column="3">
-           <widget class="QComboBox" name="standard_unit1_combobox">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
+          <item row="0" column="5">
+           <widget class="QLabel" name="label_27">
+            <property name="maximumSize">
              <size>
-              <width>0</width>
-              <height>20</height>
+              <width>200</width>
+              <height>16777215</height>
              </size>
             </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFFFD0;
-color: black;
-border: 0px
-
-</string>
+            <property name="text">
+             <string>التركيبة:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="5" colspan="2">
-           <widget class="QLineEdit" name="standard_quantity2_input">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+          <item row="6" column="6">
+           <widget class="QLineEdit" name="damaged_quantity2_input">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -465,86 +497,42 @@ border: 0px
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
+              <width>100</width>
               <height>16777215</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background: #FFFFD0;
+             <string>background: #FFD8C0;
 color: black;
-border: 0px
-
-</string>
+border: 0px</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="7">
-           <widget class="QComboBox" name="standard_unit2_combobox">
+          <item row="6" column="9">
+           <widget class="QLineEdit" name="produced_quantity3_input">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFFFD0;
-color: black;
-border: 0px
-
-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="9" colspan="2">
-           <widget class="QLineEdit" name="standard_quantity3_input">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
+              <width>80</width>
               <height>20</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
+              <width>100</width>
               <height>16777215</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background: #FFFFD0;
+             <string notr="true">background: #FFD8C0;
 color: black;
-border: 0px
-
-</string>
+border: 0px</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="11">
-           <widget class="QComboBox" name="standard_unit3_combobox">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFFFD0;
-color: black;
-border: 0px
-
-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="13">
+          <item row="3" column="13">
            <widget class="QLineEdit" name="standard_work_hours_input">
             <property name="enabled">
              <bool>false</bool>
@@ -570,8 +558,15 @@ border: 0px
             </property>
            </widget>
           </item>
-          <item row="2" column="15">
-           <widget class="QLineEdit" name="standard_new_batches_count">
+          <item row="0" column="7">
+           <widget class="QToolButton" name="select_composition_btn">
+            <property name="text">
+             <string>🔎</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="11">
+           <widget class="QComboBox" name="standard_unit3_combobox">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -581,86 +576,16 @@ border: 0px
               <height>20</height>
              </size>
             </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="styleSheet">
-             <string notr="true">background: #FFFFFF;
+             <string notr="true">background: #FFFFD0;
 color: black;
-border: 0px</string>
+border: 0px
+
+</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" rowspan="2">
-           <widget class="QLabel" name="label_6">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>الكمية المصنعة/التالفة:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="4" rowspan="2" colspan="2">
-           <widget class="QLabel" name="label_17">
-            <property name="maximumSize">
-             <size>
-              <width>20</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>=</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="8" rowspan="2" colspan="2">
-           <widget class="QLabel" name="label_19">
-            <property name="text">
-             <string>=</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="12" rowspan="2">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>عدد ساعات العمل الفعلي:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="14" rowspan="2">
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>رقم الوجبة:</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="16" rowspan="2">
-           <widget class="QPushButton" name="remove_material">
-            <property name="text">
-             <string>❌ حذف</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
+          <item row="6" column="1">
            <widget class="QLineEdit" name="produced_quantity1_input">
             <property name="minimumSize">
              <size>
@@ -681,17 +606,83 @@ border: 0px</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="2">
-           <widget class="QLineEdit" name="damaged_quantity1_input">
+          <item row="3" column="9" colspan="2">
+           <widget class="QLineEdit" name="standard_quantity3_input">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>40</width>
+              <width>0</width>
               <height>20</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>80</width>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>المادة المنتجة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="12" rowspan="2">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>عدد ساعات العمل الفعلي:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QComboBox" name="standard_unit1_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFD0;
+color: black;
+border: 0px
+
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="10">
+           <widget class="QLineEdit" name="damaged_quantity3_input">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
               <height>16777215</height>
              </size>
             </property>
@@ -700,12 +691,9 @@ border: 0px</string>
 color: black;
 border: 0px</string>
             </property>
-            <property name="text">
-             <string/>
-            </property>
            </widget>
           </item>
-          <item row="4" column="3">
+          <item row="6" column="3">
            <widget class="QComboBox" name="produced_unit1_combobox">
             <property name="enabled">
              <bool>false</bool>
@@ -723,178 +711,7 @@ border: 0px</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="5">
-           <widget class="QLineEdit" name="produced_quantity2_input">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>80</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFD8C0;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="6">
-           <widget class="QLineEdit" name="damaged_quantity1_input_2">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string>background: #FFD8C0;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="7">
-           <widget class="QComboBox" name="produced_unit2_combobox">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFD8C0;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="9">
-           <widget class="QLineEdit" name="produced_quantity3_input">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>80</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFD8C0;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="10">
-           <widget class="QLineEdit" name="damaged_quantity1_input_3">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string>background: #FFD8C0;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="11">
-           <widget class="QComboBox" name="produced_unit3_combobox">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFD8C0;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="13">
-           <widget class="QLineEdit" name="working_hours_input">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string>background: #FFD8C0;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="15">
-           <widget class="QLineEdit" name="batch_number_input">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background: #FFFFFF;
-color: black;
-border: 0px</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0" colspan="17">
+          <item row="7" column="0" colspan="17">
            <widget class="QTreeWidget" name="produced_materials_tree">
             <column>
              <property name="text">
@@ -922,6 +739,14 @@ border: 0px</string>
             </column>
             <column>
              <property name="text">
+              <string>الكمية التالفة 1</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
               <string>معرف الواحدة 1</string>
              </property>
              <property name="textAlignment">
@@ -930,7 +755,7 @@ border: 0px</string>
             </column>
             <column>
              <property name="text">
-              <string>الواجدة 1</string>
+              <string>الواحدة 1</string>
              </property>
              <property name="textAlignment">
               <set>AlignTrailing|AlignVCenter</set>
@@ -939,6 +764,14 @@ border: 0px</string>
             <column>
              <property name="text">
               <string>الكمية 2</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الكمية التالفة 2</string>
              </property>
              <property name="textAlignment">
               <set>AlignTrailing|AlignVCenter</set>
@@ -963,6 +796,14 @@ border: 0px</string>
             <column>
              <property name="text">
               <string>الكمية 3</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignTrailing|AlignVCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>الكمية التالفة 3</string>
              </property>
              <property name="textAlignment">
               <set>AlignTrailing|AlignVCenter</set>
@@ -1018,6 +859,189 @@ border: 0px</string>
             </column>
            </widget>
           </item>
+          <item row="6" column="13">
+           <widget class="QLineEdit" name="working_hours_input">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string>background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="7">
+           <widget class="QComboBox" name="produced_unit2_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFD8C0;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="9">
+           <widget class="QPushButton" name="add_composition_material_btn">
+            <property name="text">
+             <string>...تغيير تركيبة المادة</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="15">
+           <widget class="QLineEdit" name="batch_number_input">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFFF;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="12" rowspan="3">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>عدد ساعات العمل المعيارية:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="produced_material_combobox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="8">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="15">
+           <widget class="QLineEdit" name="standard_new_batches_count">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background: #FFFFFF;
+color: black;
+border: 0px</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="14" rowspan="2">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>رقم الوجبة:</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QLabel" name="label_16">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="4">
+           <widget class="QLabel" name="label_17">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>=</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1026,10 +1050,10 @@ border: 0px</string>
      <widget class="QWidget" name="page_2">
       <property name="geometry">
        <rect>
-        <x>-177</x>
+        <x>0</x>
         <y>0</y>
-        <width>1325</width>
-        <height>314</height>
+        <width>1418</width>
+        <height>463</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1336,97 +1360,6 @@ border: 0px</string>
              <string>معلومات التصنيع</string>
             </property>
             <layout class="QGridLayout" name="gridLayout">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>تاريخ عملية التصنيع:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QDateEdit" name="manufacture_date_input">
-               <property name="maximumSize">
-                <size>
-                 <width>252</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="displayFormat">
-                <string>yyyy/M/d</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QLabel" name="label_20">
-               <property name="text">
-                <string>عملة التصنيع:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="4">
-              <widget class="QComboBox" name="currency_combobox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="maximumSize">
-                <size>
-                 <width>150</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>تاريخ تخريج المواد الأولية:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QDateEdit" name="ingredients_pullout_date_input">
-               <property name="maximumSize">
-                <size>
-                 <width>252</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="displayFormat">
-                <string>yyyy/M/d</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="4" colspan="2">
-              <widget class="QPushButton" name="currencies_and_exchange_btn">
-               <property name="text">
-                <string>إدارة العملات وأسعار الصرف</string>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_24">
                <property name="maximumSize">
@@ -1437,6 +1370,20 @@ border: 0px</string>
                </property>
                <property name="text">
                 <string>تاريخ صلاحية المنتج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_20">
+               <property name="text">
+                <string>عملة التصنيع:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QComboBox" name="ingredients_pullout_method_combobox">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
                </property>
               </widget>
              </item>
@@ -1456,44 +1403,64 @@ border: 0px</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_22">
-               <property name="text">
-                <string>طريقة الإخراج:</string>
+             <item row="8" column="4">
+              <widget class="QComboBox" name="damaged_account_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
                </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QComboBox" name="ingredients_pullout_method_combobox">
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+               <property name="maxVisibleItems">
+                <number>10</number>
+               </property>
               </widget>
              </item>
-             <item row="3" column="3">
-              <widget class="QLabel" name="label_26">
+             <item row="1" column="4" colspan="2">
+              <widget class="QPushButton" name="currencies_and_exchange_btn">
+               <property name="text">
+                <string>إدارة العملات وأسعار الصرف</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="5">
+              <widget class="QToolButton" name="select_cost_center_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="5">
+              <widget class="QToolButton" name="select_input_warehouse_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_3">
                <property name="maximumSize">
                 <size>
-                 <width>100</width>
+                 <width>150</width>
                  <height>16777215</height>
                 </size>
                </property>
                <property name="text">
-                <string>مركز الكلفة:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="4">
-              <widget class="QComboBox" name="cost_center_combobox">
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="6">
-              <widget class="QPushButton" name="select_cost_center_btn">
-               <property name="text">
-                <string>...اختيار</string>
+                <string>تاريخ تخريج المواد الأولية:</string>
                </property>
               </widget>
              </item>
@@ -1521,12 +1488,177 @@ border: 0px</string>
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
               </widget>
              </item>
-             <item row="4" column="2">
-              <widget class="QPushButton" name="select_mid_account_btn">
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_22">
                <property name="text">
-                <string>...اختيار</string>
+                <string>طريقة الإخراج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="4">
+              <widget class="QComboBox" name="input_warehouse_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="4">
+              <widget class="QComboBox" name="mid_account_input_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="label_28">
+               <property name="text">
+                <string>مستودع التلف:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="5">
+              <widget class="QToolButton" name="select_account_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="3">
+              <widget class="QLabel" name="label_26">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>مركز الكلفة:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QComboBox" name="damaged_warehouse_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_23">
+               <property name="text">
+                <string>حساب الإخراج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>مستودع الإخراج:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="2">
+              <widget class="QToolButton" name="select_damaged_warehouse_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="4">
+              <widget class="QComboBox" name="account_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+               <property name="maxVisibleItems">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="QToolButton" name="select_output_warehouse_btn">
+               <property name="text">
+                <string>🔎</string>
                </property>
               </widget>
              </item>
@@ -1543,232 +1675,20 @@ border: 0px</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="4">
-              <widget class="QComboBox" name="mid_account_input_combobox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="6">
-              <widget class="QPushButton" name="select_mid_input_account_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_23">
-               <property name="text">
-                <string>حساب الإخراج:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QComboBox" name="ingredients_pullout_account_combobox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="2">
-              <widget class="QPushButton" name="select_pullout_account_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="3">
-              <widget class="QLabel" name="label_10">
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>حساب  الادخال:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="4">
-              <widget class="QComboBox" name="account_combobox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="maxVisibleItems">
-                <number>10</number>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="6">
-              <widget class="QPushButton" name="select_account_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>مستودع الإخراج:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QComboBox" name="output_warehouse_combobox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="2">
-              <widget class="QPushButton" name="select_output_warehouse_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="3">
-              <widget class="QLabel" name="label_14">
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>مستودع الإدخال:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="4">
-              <widget class="QComboBox" name="input_warehouse_combobox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="6">
-              <widget class="QPushButton" name="select_input_warehouse_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="0">
-              <widget class="QLabel" name="label_28">
-               <property name="text">
-                <string>مستودع التلف:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="1">
-              <widget class="QComboBox" name="damaged_warehouse_combobox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="2">
-              <widget class="QPushButton" name="select_damaged_warehouse_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="3">
-              <widget class="QLabel" name="label_29">
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>حساب  الادخال:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="4">
-              <widget class="QComboBox" name="damaged_account_combobox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="maxVisibleItems">
-                <number>10</number>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="5" colspan="2">
-              <widget class="QPushButton" name="select_damaged_account_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
-              <widget class="QCheckBox" name="generate_journal_entry">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_4">
                <property name="maximumSize">
                 <size>
                  <width>150</width>
                  <height>16777215</height>
                 </size>
                </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
                <property name="text">
-                <string>توليد سند قيد</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
+                <string>تاريخ عملية التصنيع:</string>
                </property>
               </widget>
              </item>
-             <item row="8" column="1">
+             <item row="9" column="1">
               <widget class="QCheckBox" name="add_material_to_warehouse_checkbox">
                <property name="maximumSize">
                 <size>
@@ -1787,6 +1707,209 @@ border: 0px</string>
                </property>
               </widget>
              </item>
+             <item row="4" column="2">
+              <widget class="QToolButton" name="select_mid_account_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDateEdit" name="manufacture_date_input">
+               <property name="maximumSize">
+                <size>
+                 <width>252</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy/M/d</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QComboBox" name="currency_combobox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDateEdit" name="ingredients_pullout_date_input">
+               <property name="maximumSize">
+                <size>
+                 <width>252</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="displayFormat">
+                <string>yyyy/M/d</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QToolButton" name="select_pullout_account_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QCheckBox" name="generate_journal_entry">
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>توليد سند قيد</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="4">
+              <widget class="QComboBox" name="cost_center_combobox">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="3">
+              <widget class="QLabel" name="label_29">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>حساب  الادخال:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QComboBox" name="output_warehouse_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="ingredients_pullout_account_combobox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3">
+              <widget class="QLabel" name="label_10">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>حساب  الادخال:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="5">
+              <widget class="QToolButton" name="select_mid_input_account_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="3">
+              <widget class="QLabel" name="label_14">
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>مستودع الإدخال:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="5">
+              <widget class="QToolButton" name="select_damaged_account_btn">
+               <property name="text">
+                <string>🔎</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
@@ -1800,8 +1923,8 @@ border: 0px</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1165</width>
-        <height>283</height>
+        <width>1418</width>
+        <height>463</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1876,8 +1999,8 @@ border: 0px</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1165</width>
-        <height>283</height>
+        <width>1418</width>
+        <height>463</height>
        </rect>
       </property>
       <attribute name="label">
@@ -2220,8 +2343,8 @@ border: 0px</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1165</width>
-        <height>283</height>
+        <width>1418</width>
+        <height>463</height>
        </rect>
       </property>
       <attribute name="label">

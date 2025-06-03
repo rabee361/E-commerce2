@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QDialog, QVBoxLayout
 from PyQt5.QtCore import QCoreApplication, QTranslator
 from PyQt5.QtGui import QPainter
 from PyQt5.QtChart import QChart, QChartView, QBarSeries, QBarSet, QBarCategoryAxis, QValueAxis
+from Ui_DataPicker_Logic import Ui_DataPicker_Logic
 
 from DatabaseOperations import DatabaseOperations
 from UiStyles import UiStyles
@@ -30,7 +31,7 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
     def initialize(self, window_activation):
         # Connect buttons to their respective functions
         self.ui.calc_btn.clicked.connect(self.show_quantities_chart)
-        self.ui.select_product_btn.clicked.connect(self.select_product)
+        self.ui.select_product_btn.clicked.connect(self.openSelectProductWindow)
         
         # Connect combobox change to show chart automatically
         self.ui.product_combobox.currentIndexChanged.connect(self.show_quantities_chart)
@@ -46,10 +47,14 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
         for product in products:
             self.ui.product_combobox.addItem(product['name'], product['id'])
     
-    def select_product(self):
-        # This function would typically open a product selection dialog
-        # For now, we'll just use the combobox
-        pass
+    def openSelectProductWindow(self):
+        data_picker = Ui_DataPicker_Logic(self.sql_connector, 'groupped_materials')
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.product_combobox.count()):
+                if self.ui.product_combobox.itemData(i)[0] == result['id']:
+                    self.ui.product_combobox.setCurrentIndex(i)
+                    break
     
     def show_quantities_chart(self):
         # Get selected product ID

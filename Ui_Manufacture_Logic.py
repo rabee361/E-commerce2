@@ -108,6 +108,9 @@ class Ui_Manufacture_Logic(QDialog):
         self.ui.produced_quantity1_input.textEdited.connect(lambda: self.updateQuantities())
         self.ui.produced_quantity2_input.textEdited.connect(lambda: self.updateQuantities())
         self.ui.produced_quantity3_input.textEdited.connect(lambda: self.updateQuantities())
+        self.ui.damaged_quantity1_input.textEdited.connect(lambda: self.updateQuantities())
+        self.ui.damaged_quantity2_input.textEdited.connect(lambda: self.updateQuantities())
+        self.ui.damaged_quantity3_input.textEdited.connect(lambda: self.updateQuantities())
 
         
         # Connect functions to add_produced_material_btn
@@ -160,9 +163,9 @@ class Ui_Manufacture_Logic(QDialog):
 
 
     def hideColumns(self):
-        self.ui.produced_materials_tree.setColumnHidden(3, True)
-        self.ui.produced_materials_tree.setColumnHidden(6, True)
-        self.ui.produced_materials_tree.setColumnHidden(9, True)
+        self.ui.produced_materials_tree.setColumnHidden(4, True)
+        self.ui.produced_materials_tree.setColumnHidden(8, True)
+        self.ui.produced_materials_tree.setColumnHidden(12, True)
 
 
     def openAddCompositionMaterialWindow(self):
@@ -290,24 +293,27 @@ class Ui_Manufacture_Logic(QDialog):
                 top_item.setText(1, material_name)
 
             # Set light blue background for material id and name
-            for i in range(14):
+            for i in range(17):
                 top_item.setBackground(i, QtGui.QColor("#E6F3FF"))
 
             # Update or create standard quantities row (yellow background)
             standard_item = top_item.child(0) if top_item.childCount() > 0 else QtWidgets.QTreeWidgetItem(top_item)
             standard_item.setText(0, "Standard")
             standard_item.setText(2, self.ui.standard_quantity1_input.text() if self.ui.standard_quantity1_input.text() else "")
-            standard_item.setText(3, str(self.ui.standard_unit1_combobox.currentData()) if self.ui.standard_unit1_combobox.currentData() else "")
-            standard_item.setText(4, self.ui.standard_unit1_combobox.currentText() if self.ui.standard_unit1_combobox.currentText() else "")
-            standard_item.setText(5, self.ui.standard_quantity2_input.text() if self.ui.standard_quantity2_input.text() else "")
-            standard_item.setText(6, str(self.ui.standard_unit2_combobox.currentData()) if self.ui.standard_unit2_combobox.currentData() else "")
-            standard_item.setText(7, self.ui.standard_unit2_combobox.currentText() if self.ui.standard_unit2_combobox.currentText() else "")
-            standard_item.setText(8, self.ui.standard_quantity3_input.text() if self.ui.standard_quantity3_input.text() else "")
-            standard_item.setText(9, str(self.ui.standard_unit3_combobox.currentData()) if self.ui.standard_unit3_combobox.currentData() else "")
-            standard_item.setText(10, self.ui.standard_unit3_combobox.currentText() if self.ui.standard_unit3_combobox.currentText() else "")
-            standard_item.setText(11, self.ui.standard_work_hours_input.text() if self.ui.standard_work_hours_input.text() else "0")
-            standard_item.setText(12, self.ui.standard_new_batches_count.text() if self.ui.standard_new_batches_count.text() else "")
-            standard_item.setText(14, str(material_default_unit) if material_default_unit is not None else "")
+            standard_item.setText(3, "")
+            standard_item.setText(4, str(self.ui.standard_unit1_combobox.currentData()) if self.ui.standard_unit1_combobox.currentData() else "")
+            standard_item.setText(5, self.ui.standard_unit1_combobox.currentText() if self.ui.standard_unit1_combobox.currentText() else "")
+            standard_item.setText(6, self.ui.standard_quantity2_input.text() if self.ui.standard_quantity2_input.text() else "")
+            standard_item.setText(7, "")
+            standard_item.setText(8, str(self.ui.standard_unit2_combobox.currentData()) if self.ui.standard_unit2_combobox.currentData() else "")
+            standard_item.setText(9, self.ui.standard_unit2_combobox.currentText() if self.ui.standard_unit2_combobox.currentText() else "")
+            standard_item.setText(10, self.ui.standard_quantity3_input.text() if self.ui.standard_quantity3_input.text() else "")
+            standard_item.setText(11, "")
+            standard_item.setText(12, str(self.ui.standard_unit3_combobox.currentData()) if self.ui.standard_unit3_combobox.currentData() else "")
+            standard_item.setText(13, self.ui.standard_unit3_combobox.currentText() if self.ui.standard_unit3_combobox.currentText() else "")
+            standard_item.setText(14, self.ui.standard_work_hours_input.text() if self.ui.standard_work_hours_input.text() else "0")
+            standard_item.setText(15, self.ui.standard_new_batches_count.text() if self.ui.standard_new_batches_count.text() else "")
+            standard_item.setText(17, str(material_default_unit) if material_default_unit is not None else "")
             
             for i in range(standard_item.columnCount()):
                 standard_item.setBackground(i, QtGui.QColor("#FFFFD0"))
@@ -316,17 +322,20 @@ class Ui_Manufacture_Logic(QDialog):
             produced_item = top_item.child(1) if top_item.childCount() > 1 else QtWidgets.QTreeWidgetItem(top_item)
             produced_item.setText(0, "Produced")
             produced_item.setText(2, self.ui.produced_quantity1_input.text() if self.ui.produced_quantity1_input.text() else "")
-            produced_item.setText(3, str(self.ui.produced_unit1_combobox.currentData()) if self.ui.produced_unit1_combobox.currentData() else "")
-            produced_item.setText(4, self.ui.produced_unit1_combobox.currentText() if self.ui.produced_unit1_combobox.currentText() else "")
-            produced_item.setText(5, self.ui.produced_quantity2_input.text() if self.ui.produced_quantity2_input.text() else "")
-            produced_item.setText(6, str(self.ui.produced_unit2_combobox.currentData()) if self.ui.produced_unit2_combobox.currentData() else "")
-            produced_item.setText(7, self.ui.produced_unit2_combobox.currentText() if self.ui.produced_unit2_combobox.currentText() else "")
-            produced_item.setText(8, self.ui.produced_quantity3_input.text() if self.ui.produced_quantity3_input.text() else "")
-            produced_item.setText(9, str(self.ui.produced_unit3_combobox.currentData()) if self.ui.produced_unit3_combobox.currentData() else "")
-            produced_item.setText(10, self.ui.produced_unit3_combobox.currentText() if self.ui.produced_unit3_combobox.currentText() else "")
-            produced_item.setText(11, self.ui.working_hours_input.text() if self.ui.working_hours_input.text() else "0")
-            produced_item.setText(13, self.ui.batch_number_input.text() if self.ui.batch_number_input.text() else "")
-            produced_item.setText(14, str(material_default_unit) if material_default_unit is not None else "")
+            produced_item.setText(3, self.ui.damaged_quantity1_input.text() if self.ui.damaged_quantity1_input.text() else "")
+            produced_item.setText(4, str(self.ui.produced_unit1_combobox.currentData()) if self.ui.produced_unit1_combobox.currentData() else "")
+            produced_item.setText(5, self.ui.produced_unit1_combobox.currentText() if self.ui.produced_unit1_combobox.currentText() else "")
+            produced_item.setText(6, self.ui.produced_quantity2_input.text() if self.ui.produced_quantity2_input.text() else "")
+            produced_item.setText(7, self.ui.damaged_quantity2_input.text() if self.ui.damaged_quantity2_input.text() else "")
+            produced_item.setText(8, str(self.ui.produced_unit2_combobox.currentData()) if self.ui.produced_unit2_combobox.currentData() else "")
+            produced_item.setText(9, self.ui.produced_unit2_combobox.currentText() if self.ui.produced_unit2_combobox.currentText() else "")
+            produced_item.setText(10, self.ui.produced_quantity3_input.text() if self.ui.produced_quantity3_input.text() else "")
+            produced_item.setText(11, self.ui.damaged_quantity3_input.text() if self.ui.damaged_quantity3_input.text() else "")
+            produced_item.setText(12, str(self.ui.produced_unit3_combobox.currentData()) if self.ui.produced_unit3_combobox.currentData() else "")
+            produced_item.setText(13, self.ui.produced_unit3_combobox.currentText() if self.ui.produced_unit3_combobox.currentText() else "")
+            produced_item.setText(14, self.ui.working_hours_input.text() if self.ui.working_hours_input.text() else "0")
+            produced_item.setText(16, self.ui.batch_number_input.text() if self.ui.batch_number_input.text() else "")
+            produced_item.setText(17, str(material_default_unit) if material_default_unit is not None else "")
             for i in range(produced_item.columnCount()):
                 produced_item.setBackground(i, QtGui.QColor("#FFD8C0"))
 
@@ -436,9 +445,9 @@ class Ui_Manufacture_Logic(QDialog):
             top_item = root.child(i)
             if top_item.childCount() > 0:
                 child_item = top_item.child(0)
-                unit1 = child_item.text(3)
-                unit2 = child_item.text(6)
-                unit3 = child_item.text(9)
+                unit1 = child_item.text(4)
+                unit2 = child_item.text(8)
+                unit3 = child_item.text(12)
 
             enabled_options = 0
             for i in range(self.ui.radio_quantity_unit_expenses_combobox.count()):
@@ -951,6 +960,9 @@ class Ui_Manufacture_Logic(QDialog):
             quantity1 = self.ui.produced_quantity1_input.text()
             quantity2 = self.ui.produced_quantity2_input.text()
             quantity3 = self.ui.produced_quantity3_input.text()
+            damaged_quantity1 = self.ui.damaged_quantity1_input.text()
+            damaged_quantity2 = self.ui.damaged_quantity2_input.text()
+            damaged_quantity3 = self.ui.damaged_quantity3_input.text()
             standard_work_hours = self.ui.standard_work_hours_input.text()
             standard_quantity1 = self.ui.standard_quantity1_input.text()
             standard_quantity2 = self.ui.standard_quantity2_input.text()
@@ -959,51 +971,63 @@ class Ui_Manufacture_Logic(QDialog):
             suggested_work_hours = None
             standart_produced_batches_count = None
 
-            if str(caller).lower() == 'produced_quantity1_input':
-                if quantity1:
+            if str(caller).lower() == 'produced_quantity1_input' or str(caller).lower() == 'damaged_quantity1_input':
+                if quantity1 and damaged_quantity1:
                     if unit1_to_unit2_rate:
                         quantity2 = float(quantity1) * float(unit1_to_unit2_rate)
+                        damaged_quantity2 = float(damaged_quantity1) * float(unit1_to_unit2_rate)
                         self.ui.produced_quantity2_input.setText(str(round(quantity2,4)))
+                        self.ui.damaged_quantity2_input.setText(str(round(damaged_quantity2,4)))
 
                     if unit1_to_unit3_rate:
                         quantity3 = float(quantity1) * float(unit1_to_unit3_rate)
+                        damaged_quantity3 = float(damaged_quantity1) * float(unit1_to_unit3_rate)
                         self.ui.produced_quantity3_input.setText(str(round(quantity3, 4)))
+                        self.ui.damaged_quantity3_input.setText(str(round(damaged_quantity3, 4)))
 
-                if quantity1 and standard_quantity1:
-                    standart_produced_batches_count = float(quantity1) / float(standard_quantity1)
+                if quantity1 and damaged_quantity1 and standard_quantity1:
+                    standart_produced_batches_count = (float(quantity1) + float(damaged_quantity1)) / float(standard_quantity1)
                     if standard_work_hours:
-                        suggested_work_hours = float(standard_work_hours) * float(quantity1) / float(standard_quantity1)
+                        suggested_work_hours = float(standard_work_hours) * (float(quantity1) + float(damaged_quantity1)) / float(standard_quantity1)
 
-            elif str(caller).lower() == 'produced_quantity2_input':
-                if quantity2:
+            elif str(caller).lower() == 'produced_quantity2_input' or str(caller).lower() == 'damaged_quantity2_input':
+                if damaged_quantity2 and quantity2:
                     if unit1_to_unit2_rate:
                         quantity1 = float(quantity2) * (1 / float(unit1_to_unit2_rate))
+                        damaged_quantity1 = float(damaged_quantity2) * (1 / float(unit1_to_unit2_rate))
                         self.ui.produced_quantity1_input.setText(str(round(quantity1, 4)))
+                        self.ui.damaged_quantity1_input.setText(str(round(damaged_quantity1, 4)))
 
                     if unit1_to_unit3_rate and float(unit1_to_unit2_rate) != '':
                         unit2_to_unit3_rate = (1 / float(unit1_to_unit2_rate)) / (1 / float(unit1_to_unit3_rate))
                         quantity3 = float(quantity2) * unit2_to_unit3_rate
+                        damaged_quantity3 = float(damaged_quantity2) * unit2_to_unit3_rate
                         self.ui.produced_quantity3_input.setText(str(round(quantity3, 4)))
+                        self.ui.damaged_quantity3_input.setText(str(round(damaged_quantity3, 4)))
 
-                if quantity2 and standard_quantity2:
-                    standart_produced_batches_count = float(quantity1) / float(standard_quantity1)
+                if quantity2 and damaged_quantity2 and standard_quantity2:
+                    standart_produced_batches_count = float(quantity1 + float(damaged_quantity1)) / float(standard_quantity1)
                     if standard_work_hours:
-                        suggested_work_hours = float(standard_work_hours) * float(quantity2) / float(standard_quantity2)
+                        suggested_work_hours = float(standard_work_hours) * float(quantity2 + float(damaged_quantity2)) / float(standard_quantity2)
 
-            elif str(caller).lower() == 'produced_quantity3_input':
+            elif str(caller).lower() == 'produced_quantity3_input' or str(caller).lower() == 'damaged_quantity3_input':
                 if quantity3 and float(unit1_to_unit3_rate):
                     quantity1 = float(quantity3) * (1 / float(unit1_to_unit3_rate))
+                    damaged_quantity1 = float(damaged_quantity3) * (1 / float(unit1_to_unit3_rate))
                     self.ui.produced_quantity1_input.setText(str(round(quantity1, 4)))
+                    self.ui.damaged_quantity1_input.setText(str(round(damaged_quantity1, 4)))
 
                 if unit1_to_unit2_rate and float(unit1_to_unit3_rate):
                     unit3_to_unit2_rate = unit1_to_unit2_rate / float(unit1_to_unit3_rate)
                     quantity2 = float(quantity3) * unit3_to_unit2_rate
+                    damaged_quantity2 = float(damaged_quantity3) * unit3_to_unit2_rate
                     self.ui.produced_quantity2_input.setText(str(round(quantity2, 4)))
+                    self.ui.damaged_quantity2_input.setText(str(round(damaged_quantity2, 4)))
 
-                if quantity3 and standard_quantity3:
-                    standart_produced_batches_count = float(quantity1) / float(standard_quantity1)
+                if quantity3 and damaged_quantity3 and standard_quantity3:
+                    standart_produced_batches_count = (float(quantity1) + float(damaged_quantity1)) / float(standard_quantity1)
                     if standard_work_hours:
-                        suggested_work_hours = float(standard_work_hours) * float(quantity3) / float(standard_quantity3)
+                        suggested_work_hours = float(standard_work_hours) * (float(quantity3) + float(damaged_quantity3)) / float(standard_quantity3)
 
             if suggested_work_hours:
                 self.ui.working_hours_input.setText(str(suggested_work_hours))
@@ -1565,7 +1589,7 @@ class Ui_Manufacture_Logic(QDialog):
         batch_number = self.ui.batch_number_input.text()
 
         expenses_type = self.ui.expenses_type_combobox.currentData()
-        quantity_unit_expenses = self.ui.radio_quantity_unit_expenses_combobox.currentData()
+        quantity_unit_expenses = self.ui.radio_quantity_unit_expenses_combobox.currentData() or ''
         # currency = self.ui.currency_combobox.currentData()
         ingredients_pullout_method = self.ui.ingredients_pullout_method_combobox.currentData()
         ingredients_pullout_account = self.ui.ingredients_pullout_account_combobox.currentData()
@@ -1599,17 +1623,20 @@ class Ui_Manufacture_Logic(QDialog):
         for i in range(root.childCount()):
             item = root.child(i)
             material_id = item.text(0)
-            produced_quantities_and_units = {
-                    "quantity1": {"amount": item.child(1).text(2), "unit": item.child(1).text(3)},
-                    "quantity2": {"amount": item.child(1).text(5), "unit": item.child(1).text(6)},
-                    "quantity3": {"amount": item.child(1).text(8), "unit": item.child(1).text(9)}
+            produced_quantities_and_units = { 
+                    "quantity1": {"amount": item.child(1).text(2), "unit": item.child(1).text(4)},
+                    "quantity2": {"amount": item.child(1).text(6), "unit": item.child(1).text(8)},
+                    "quantity3": {"amount": item.child(1).text(10), "unit": item.child(1).text(12)},
+                    "damaged_quantity1": {"amount": item.child(1).text(3), "unit": item.child(1).text(4)},
+                    "damaged_quantity2": {"amount": item.child(1).text(7), "unit": item.child(1).text(8)},
+                    "damaged_quantity3": {"amount": item.child(1).text(11), "unit": item.child(1).text(12)}
             }
 
             # Read referential quantities from child 0
             referential_quantities = {
-                "quantity1": {"amount": item.child(0).text(2), "unit": item.child(0).text(3)},
-                "quantity2": {"amount": item.child(0).text(5), "unit": item.child(0).text(6)},
-                "quantity3": {"amount": item.child(0).text(8), "unit": item.child(0).text(9)}
+                "quantity1": {"amount": item.child(0).text(2), "unit": item.child(0).text(4)},
+                "quantity2": {"amount": item.child(0).text(5), "unit": item.child(0).text(8)},
+                "quantity3": {"amount": item.child(0).text(8), "unit": item.child(0).text(12)}
             }
 
             # Read working hours from col 10 for children 0 and 1
@@ -1999,13 +2026,13 @@ class Ui_Manufacture_Logic(QDialog):
             item = root.child(i)
             produced_material_id = item.text(0)
             produced_quantity1 = item.child(1).text(2)
-            produced_unit1 = item.child(1).text(3)
-            produced_quantity2 = item.child(1).text(5)
-            produced_unit2 = item.child(1).text(6)
-            produced_quantity3 = item.child(1).text(8)
-            produced_unit3 = item.child(1).text(9)
+            produced_unit1 = item.child(1).text(4)
+            produced_quantity2 = item.child(1).text(6)
+            produced_unit2 = item.child(1).text(8)
+            produced_quantity3 = item.child(1).text(10)
+            produced_unit3 = item.child(1).text(12)
 
-            default_unit = item.child(1).text(14)
+            default_unit = item.child(1).text(16)
 
             quantity = None
             if produced_unit1 and int(default_unit) == int(produced_unit1):

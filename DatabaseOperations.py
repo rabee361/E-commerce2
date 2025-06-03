@@ -420,58 +420,16 @@ class DatabaseOperations(object):
             "       `invoices`.`currency`, "
             "       `currencies`.`name` AS `invoice_currency_name`, "
             "       `clients`.`name`, "
-            "       `clients`.`id` AS `client_id`, "
-            "       (CASE WHEN `invoices`.`paid` = 0 "
-            "             THEN COALESCE((SELECT SUM(COALESCE(`invoice_items`.`equilivance_price`, 0) "
-            "                                 - COALESCE(`invoice_items`.`discount`, 0) "
-            "                                 + COALESCE(`invoice_items`.`addition`, 0) "
-            "                                 - COALESCE(`invoice_items`.`gifts_discount`, 0)) "
-            "                            FROM `invoice_items` "
-            "                            WHERE `invoice_items`.`invoice_id` = `invoices`.`id`), 0) "
-            "             ELSE NULL "
-            "        END) "
-            "        + "
-            "        (SELECT COALESCE(SUM(CASE "
-            "                            WHEN `invoices_discounts_additions`.`type_col` = 'discount' "
-            "                                 AND `invoices_discounts_additions`.`currency` IS NOT NULL "
-            "                            THEN -1 * `invoices_discounts_additions`.`equilivance` "
-            "                            WHEN `invoices_discounts_additions`.`type_col` = 'discount' "
-            "                                 AND `invoices_discounts_additions`.`currency` IS NULL "
-            "                            THEN -1 * `invoices_discounts_additions`.`equilivance` / 100 * "
-            "                                 COALESCE((SELECT SUM(COALESCE(`invoice_items`.`equilivance_price`, 0) "
-            "                                                  - COALESCE(`invoice_items`.`discount`, 0) "
-            "                                                  + COALESCE(`invoice_items`.`addition`, 0) "
-            "                                                  - COALESCE(`invoice_items`.`gifts_discount`, 0)) "
-            "                                           FROM `invoice_items` "
-            "                                           WHERE `invoice_items`.`invoice_id` = `invoices`.`id`), 0) "
-            "                            WHEN `invoices_discounts_additions`.`type_col` = 'addition' "
-            "                                 AND `invoices_discounts_additions`.`currency` IS NOT NULL "
-            "                            THEN `invoices_discounts_additions`.`equilivance` "
-            "                            WHEN `invoices_discounts_additions`.`type_col` = 'addition' "
-            "                                 AND `invoices_discounts_additions`.`currency` IS NULL "
-            "                            THEN `invoices_discounts_additions`.`equilivance` / 100 * "
-            "                                 COALESCE((SELECT SUM(COALESCE(`invoice_items`.`equilivance_price`, 0) "
-            "                                                  - COALESCE(`invoice_items`.`discount`, 0) "
-            "                                                  + COALESCE(`invoice_items`.`addition`, 0) "
-            "                                                  - COALESCE(`invoice_items`.`gifts_discount`, 0)) "
-            "                                           FROM `invoice_items` "
-            "                                           WHERE `invoice_items`.`invoice_id` = `invoices`.`id`), 0) "
-            "                            ELSE 0 "
-            "                            END), 0) "
-            "         FROM `invoices_discounts_additions` "
-            "         WHERE `invoices_discounts_additions`.`invoice_id` = `invoices`.`id`) "
-            "         AS `invoice_value`, "
-            "         COALESCE((SELECT SUM(`equilivance`) FROM `payments` WHERE `invoice_id` = `invoices`.`id`), 0) "
-            "         AS `paid_ammount` "
-            "FROM `invoices` "
-            "LEFT JOIN `clients` ON `invoices`.`client` = `clients`.`id` "
-            "JOIN `currencies` ON `invoices`.`currency` = `currencies`.`id` "
-            "JOIN `invoice_types` ON `invoices`.`type_col` = `invoice_types`.`id` "
-            "WHERE `invoices`.`date_col` = COALESCE(NULLIF('" + str(date_filter) + "', ''), `invoices`.`date_col`) "
-            "  AND ((COALESCE(NULLIF('', ''), `invoices`.`client`) IS NOT NULL "
+            "       `clients`.`id` AS `client_id` "
+            "       FROM `invoices` "
+            "       LEFT JOIN `clients` ON `invoices`.`client` = `clients`.`id` "
+            "       LEFT JOIN `currencies` ON `invoices`.`currency` = `currencies`.`id` "
+            "       JOIN `invoice_types` ON `invoices`.`type_col` = `invoice_types`.`id` "
+            "       WHERE `invoices`.`date_col` = COALESCE(NULLIF('" + str(date_filter) + "', ''), `invoices`.`date_col`) "
+            "       AND ((COALESCE(NULLIF('', ''), `invoices`.`client`) IS NOT NULL "
             "        AND `invoices`.`client` = COALESCE(NULLIF('" + str(client_filter) + "', ''), `invoices`.`client`)) "
             "       OR (COALESCE(NULLIF('" + str(client_filter) + "', ''), `invoices`.`client`) IS NULL)) "
-            "  AND `invoices`.`type_col` = COALESCE(NULLIF('" + str(type_filter) + "', ''), `invoices`.`type_col`)"
+            "       AND `invoices`.`type_col` = COALESCE(NULLIF('" + str(type_filter) + "', ''), `invoices`.`type_col`)"
         )
         print(query)
         self.cursor.execute(query)
@@ -494,7 +452,7 @@ class DatabaseOperations(object):
         print("DATABASE> Fetch invoice #" + str(invoice_id))
 
         # Fetch invoice data
-        query = "SELECT `invoices`.*, `clients`.`name` as client_name, `currencies`.`name` as currency_name FROM invoices LEFT JOIN `clients` ON `invoices`.`client` = `clients`.`id` JOIN `currencies` ON `invoices`.`currency` = `currencies`.`id` WHERE invoices.id = '" + str(invoice_id) + "'"
+        query = "SELECT `invoices`.*, `clients`.`name` as client_name, `currencies`.`name` as currency_name FROM invoices LEFT JOIN `clients` ON `invoices`.`client` = `clients`.`id` LEFT JOIN `currencies` ON `invoices`.`currency` = `currencies`.`id` WHERE invoices.id = '" + str(invoice_id) + "'"
 
         self.cursor.execute(query)
         invoice = self.cursor.fetchone()
@@ -1059,10 +1017,10 @@ class DatabaseOperations(object):
 
         query = "INSERT INTO `manufacture` (`pullout_date`, `date_col`, `expenses_type`, `material_pricing_method`, `expenses_cost`, `currency`, `machines_operation_cost`, `salaries_cost`, `mid_account`, `mid_account_input`, `account`, `composition_materials_cost`, `quantity_unit_expenses`, `expenses_distribution`, `ingredients_pullout_method`, `ingredients_pullout_account`, `working_hours`) VALUES ('" + str(
             ingredients_pullout_date) + "', '" + str(manufacture_date) + "', '" + str(expenses_type) + "', '" + str(
-            material_pricing_method) + "', '" + str(expenses_cost) + "', '" + str(currency) + "', " + str(
-            machines_operation_cost) + ", " + str(salaries_cost) + ", '" + str(
-            mid_account) + "', '" + str(mid_account_input) + "', '" + str(account) + "', " + str(composition_materials_cost) + ", " + str(
-            quantity_unit_expenses) + ", '" + str(expenses_distribution) + "', '" + str(
+            material_pricing_method) + "', '" + str(expenses_cost) + "', '" + str(currency) + "', '" + str(
+            machines_operation_cost) + "', '" + str(salaries_cost) + "', '" + str(
+            mid_account) + "', '" + str(mid_account_input) + "', '" + str(account) + "', '" + str(composition_materials_cost) + "', '" + str(
+            quantity_unit_expenses) + "', '" + str(expenses_distribution) + "', '" + str(
             ingredients_pullout_method) + "', '" + str(ingredients_pullout_account)+  "', '" + str(working_hours) + "')"
 
         print(query)
@@ -1075,10 +1033,13 @@ class DatabaseOperations(object):
 
             # Produced quantities
             quantity1 = material["quantities_and_units"]["quantity1"]["amount"] if material["quantities_and_units"]["quantity1"]["amount"] is not None else ''
+            damaged_quantity1 = material["quantities_and_units"]["damaged_quantity1"]["amount"] if material["quantities_and_units"]["damaged_quantity1"]["amount"] is not None else ''
             unit1 = material["quantities_and_units"]["quantity1"]["unit"] if material["quantities_and_units"]["quantity1"]["unit"] is not None else ''
             quantity2 = material["quantities_and_units"]["quantity2"]["amount"] if material["quantities_and_units"]["quantity2"]["amount"] is not None else ''
+            damaged_quantity2 = material["quantities_and_units"]["damaged_quantity2"]["amount"] if material["quantities_and_units"]["damaged_quantity2"]["amount"] is not None else ''
             unit2 = material["quantities_and_units"]["quantity2"]["unit"] if material["quantities_and_units"]["quantity2"]["unit"] is not None else ''
             quantity3 = material["quantities_and_units"]["quantity3"]["amount"] if material["quantities_and_units"]["quantity3"]["amount"] is not None else ''
+            damaged_quantity3 = material["quantities_and_units"]["damaged_quantity3"]["amount"] if material["quantities_and_units"]["damaged_quantity3"]["amount"] is not None else ''
             unit3 = material["quantities_and_units"]["quantity3"]["unit"] if material["quantities_and_units"]["quantity3"]["unit"] is not None else ''
 
             # Referential quantities
@@ -1095,7 +1056,7 @@ class DatabaseOperations(object):
 
             # Batch
             batch = material["batch"] if material["batch"] is not None else ''
-            query = "INSERT INTO `manufacture_produced_materials` (`manufacture_id`, `material_id`, `quantity1`, `unit1`, `quantity2`, `unit2`, `quantity3`, `unit3`, `working_hours`, `batch`, `referential_quantity1`, `referential_quantity2`, `referential_quantity3`, `referential_working_hours`, `production_date`, `warehouse`) VALUES ('" + str(manufacture_id) + "', '" + str(material_id) + "', NULLIF('" + str(quantity1) + "', ''), NULLIF('" + str(unit1) + "', ''), NULLIF('" + str(quantity2) + "', ''), NULLIF('" + str(unit2) + "', ''), NULLIF('" + str(quantity3) + "', ''), NULLIF('" + str(unit3) + "', ''), NULLIF('" + str(working_hours_produced) + "', ''), NULLIF('" + str(batch) + "', ''), NULLIF('" + str(ref_quantity1) + "', ''), NULLIF('" + str(ref_quantity2) + "', ''), NULLIF('" + str(ref_quantity3) + "', ''), NULLIF('" + str(working_hours_ref) + "', ''), NULLIF('" + str(production_date) + "', ''), NULLIF('" + str(warehouse_id) + "', ''))"
+            query = "INSERT INTO `manufacture_produced_materials` (`manufacture_id`, `material_id`, `quantity1`, `damaged_quantity1`, `unit1`, `quantity2`, `damaged_quantity2`, `unit2`, `quantity3`, `damaged_quantity3`, `unit3`, `working_hours`, `batch`, `referential_quantity1`, `referential_quantity2`, `referential_quantity3`, `referential_working_hours`, `production_date`, `warehouse`) VALUES ('" + str(manufacture_id) + "', '" + str(material_id) + "', NULLIF('" + str(quantity1) + "', ''), NULLIF('" + str(damaged_quantity1) + "', ''), NULLIF('" + str(unit1) + "', ''), NULLIF('" + str(quantity2) + "', ''), NULLIF('" + str(damaged_quantity2) + "', ''), NULLIF('" + str(unit2) + "', ''), NULLIF('" + str(quantity3) + "', ''), NULLIF('" + str(damaged_quantity3) + "', ''), NULLIF('" + str(unit3) + "', ''), NULLIF('" + str(working_hours_produced) + "', ''), NULLIF('" + str(batch) + "', ''), NULLIF('" + str(ref_quantity1) + "', ''), NULLIF('" + str(ref_quantity2) + "', ''), NULLIF('" + str(ref_quantity3) + "', ''), NULLIF('" + str(working_hours_ref) + "', ''), NULLIF('" + str(production_date) + "', ''), NULLIF('" + str(warehouse_id) + "', ''))"
             print(query)
             self.cursor.execute(query)
 
@@ -4476,18 +4437,18 @@ class DatabaseOperations(object):
             current_quantity) + "',''), `max_quantity`=NULLIF('" + str(
             max_quantity) + "',''), `min_quantity`=NULLIF('" + str(
             min_quantity) + "',''), `request_limit`=NULLIF('" + str(request_limit) + "',''), `gift`=NULLIF('" + str(
-            gift) + "',''), `gift_for`=NULLIF('" + str(gift_for) + "',''), `price1_desc`='" + str(
-            price1_desc) + "', `price1_1`=NULLIF('" + str(price1_1) + "',''), `price1_2`=NULLIF('" + str(
-            price1_2) + "',''), `price1_3`=NULLIF('" + str(price1_3) + "',''), `price2_desc`='" + str(
-            price2_desc) + "', `price2_1`=NULLIF('" + str(price2_1) + "',''), `price2_2`=NULLIF('" + str(
-            price2_2) + "',''), `price2_3`=NULLIF('" + str(price2_3) + "',''), `price3_desc`='" + str(
-            price3_desc) + "', `price3_1`=NULLIF('" + str(price3_1) + "',''), `price3_2`=NULLIF('" + str(
-            price3_2) + "',''), `price3_3`=NULLIF('" + str(price3_3) + "',''), `price4_desc`='" + str(
-            price4_desc) + "', `price4_1`=NULLIF('" + str(price4_1) + "',''), `price4_2`=NULLIF('" + str(
-            price4_2) + "',''), `price4_3`=NULLIF('" + str(price4_3) + "',''), `price5_desc`='" + str(
-            price5_desc) + "', `price5_1`=NULLIF('" + str(price5_1) + "',''), `price5_2`=NULLIF('" + str(
-            price5_2) + "',''), `price5_3`=NULLIF('" + str(price5_3) + "',''), `price6_desc`='" + str(
-            price6_desc) + "', `price6_1`=NULLIF('" + str(price6_1) + "',''), `price6_2`=NULLIF('" + str(
+            gift) + "',''), `gift_for`=NULLIF('" + str(gift_for) + "',''), `price1_desc`=NULLIF('" + str(
+            price1_desc) + "',''), `price1_1`=NULLIF('" + str(price1_1) + "',''), `price1_2`=NULLIF('" + str(
+            price1_2) + "',''), `price1_3`=NULLIF('" + str(price1_3) + "',''), `price2_desc`=NULLIF('" + str(
+            price2_desc) + "',''), `price2_1`=NULLIF('" + str(price2_1) + "',''), `price2_2`=NULLIF('" + str(
+            price2_2) + "',''), `price2_3`=NULLIF('" + str(price2_3) + "',''), `price3_desc`=NULLIF('" + str(
+            price3_desc) + "',''), `price3_1`=NULLIF('" + str(price3_1) + "',''), `price3_2`=NULLIF('" + str(
+            price3_2) + "',''), `price3_3`=NULLIF('" + str(price3_3) + "',''), `price4_desc`=NULLIF('" + str(
+            price4_desc) + "',''), `price4_1`=NULLIF('" + str(price4_1) + "',''), `price4_2`=NULLIF('" + str(
+            price4_2) + "',''), `price4_3`=NULLIF('" + str(price4_3) + "',''), `price5_desc`=NULLIF('" + str(
+            price5_desc) + "',''), `price5_1`=NULLIF('" + str(price5_1) + "',''), `price5_2`=NULLIF('" + str(
+            price5_2) + "',''), `price5_3`=NULLIF('" + str(price5_3) + "',''), `price6_desc`=NULLIF('" + str(
+            price6_desc) + "',''), `price6_1`=NULLIF('" + str(price6_1) + "',''), `price6_2`=NULLIF('" + str(
             price6_2) + "',''), `price6_3`=NULLIF('" + str(price6_3) + "',''), `expiray`=NULLIF('" + str(
             expiray) + "',''), `price1_1_unit`='" + str(price1_1_unit) + "', `price2_1_unit`='" + str(
             price2_1_unit) + "', `price3_1_unit`='" + str(price3_1_unit) + "', `price4_1_unit`='" + str(
@@ -6019,8 +5980,8 @@ class DatabaseOperations(object):
         return rows
 
     @check_permission('hr_insurance', 'r')
-    def fetchInsurancePayrollsDetails(self, insurance_payroll_id='') -> list:
-        query = "SELECT hr_insurance_block_entries.id, hr_insurance_block_entries.insurance_block_id, hr_insurance_block_entries.employee_id, hr_insurance_block_entries.cycles, hr_insurance_block_entries.value_col, hr_insurance_block_entries.currency, hr_employees.name, currencies.name AS currency_name, hr_insurance_blocks.from_date, hr_insurance_blocks.to_date FROM hr_insurance_block_entries LEFT JOIN hr_employees ON hr_insurance_block_entries.employee_id = hr_employees.id LEFT JOIN currencies ON hr_insurance_block_entries.currency = currencies.id LEFT JOIN hr_insurance_blocks ON hr_insurance_block_entries.insurance_block_id = hr_insurance_blocks.id WHERE hr_insurance_block_entries.insurance_block_id = ('" + str(insurance_payroll_id) + "');"
+    def fetchInsurancePayrollsDetails(self, from_date='', to_date='') -> list:
+        query = "SELECT hr_insurance_block_entries.id, hr_insurance_block_entries.insurance_block_id, hr_insurance_block_entries.employee_id, hr_insurance_block_entries.cycles, hr_insurance_block_entries.value_col, hr_insurance_block_entries.currency, hr_employees.name, currencies.name AS currency_name, hr_insurance_blocks.from_date, hr_insurance_blocks.to_date FROM hr_insurance_block_entries LEFT JOIN hr_employees ON hr_insurance_block_entries.employee_id = hr_employees.id LEFT JOIN currencies ON hr_insurance_block_entries.currency = currencies.id LEFT JOIN hr_insurance_blocks ON hr_insurance_block_entries.insurance_block_id = hr_insurance_blocks.id WHERE hr_insurance_blocks.from_date >= '" + str(from_date) + "'" + " AND hr_insurance_blocks.to_date <= '" + str(to_date) + "'"
 
         # print(query)
         self.cursor.execute(query)
@@ -7187,7 +7148,7 @@ class DatabaseOperations(object):
         if warehouse_code is None:
             return []
 
-        query = "SELECT `material_moves`.*, `material_moves`.quantity as move_quantity, COALESCE(`source_warehouse`.material_id, `destination_warehouse`.material_id) as material_id, COALESCE(`source_warehouse`.quantity, `destination_warehouse`.quantity) as quantity, COALESCE(`source_warehouse`.unit, `destination_warehouse`.unit) as unit, `materials`.`name` AS `material_name`, `units`.`name` AS `unit_name` FROM `material_moves` LEFT JOIN `" + str(warehouse_code) + "` AS `source_warehouse` ON `material_moves`.`source_warehouse_entry_id` = `source_warehouse`.`id` LEFT JOIN `" + str(warehouse_code) + "` AS `destination_warehouse` ON `material_moves`.`destination_warehouse_entry_id` = `destination_warehouse`.`id` LEFT JOIN `materials` ON COALESCE(`source_warehouse`.material_id, `destination_warehouse`.material_id) = `materials`.`id` LEFT JOIN `units` ON COALESCE(`source_warehouse`.unit, `destination_warehouse`.unit) = `units`.`id` WHERE (`material_moves`.`source_warehouse` = '" + str(warehouse_id) + "' OR `material_moves`.`source_warehouse` IS NULL) AND `material_moves`.`date_col` <= '" + str(to_date) + "'"
+        query = "SELECT `material_moves`.*, `material_moves`.quantity as move_quantity, COALESCE(`source_warehouse`.material_id, `destination_warehouse`.material_id) as material_id, COALESCE(`source_warehouse`.quantity, `destination_warehouse`.quantity) as quantity, COALESCE(`source_warehouse`.unit, `destination_warehouse`.unit) as unit, `materials`.`name` AS `material_name`, `units`.`name` AS `unit_name` FROM `material_moves` LEFT JOIN `" + str(warehouse_code) + "` AS `source_warehouse` ON `material_moves`.`source_warehouse_entry_id` = `source_warehouse`.`id` LEFT JOIN `" + str(warehouse_code) + "` AS `destination_warehouse` ON `material_moves`.`destination_warehouse_entry_id` = `destination_warehouse`.`id` LEFT JOIN `materials` ON COALESCE(`source_warehouse`.material_id, `destination_warehouse`.material_id) = `materials`.`id` LEFT JOIN `units` ON COALESCE(`source_warehouse`.unit, `destination_warehouse`.unit) = `units`.`id` WHERE (`material_moves`.`source_warehouse` = '" + str(warehouse_id) + "' OR `material_moves`.`destination_warehouse` = '" + str(warehouse_id) + "') AND `material_moves`.`date_col` <= '" + str(to_date) + "'"
         print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()

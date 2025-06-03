@@ -40,8 +40,8 @@ class Ui_InvoiceView_Logic(QDialog):
         window.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         window.setWindowState(Qt.WindowMaximized)
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         if self.invoice_id:
             window.setObjectName(f'InvoiceView_{self.invoice_number}')
             window.setWindowTitle(f'{self.language_manager.translate( "INVOICE_VIEW")} {self.invoice_number}')
@@ -80,27 +80,31 @@ class Ui_InvoiceView_Logic(QDialog):
         self.setMaterialDefaults()
 
         # hide data columns in additions-discount table
-        # self.ui.discounts_additions_table.hideColumn(0)
-        # self.ui.discounts_additions_table.hideColumn(1)
-        # self.ui.discounts_additions_table.hideColumn(3)
-        # self.ui.discounts_additions_table.hideColumn(5)
-        # self.ui.discounts_additions_table.hideColumn(7)
-        # self.ui.discounts_additions_table.hideColumn(10)
-        # self.ui.discounts_additions_table.hideColumn(12)
+        self.ui.discounts_additions_table.hideColumn(0)
+        self.ui.discounts_additions_table.hideColumn(1)
+        self.ui.discounts_additions_table.hideColumn(3)
+        self.ui.discounts_additions_table.hideColumn(5)
+        self.ui.discounts_additions_table.hideColumn(7)
+        self.ui.discounts_additions_table.hideColumn(10)
+        self.ui.discounts_additions_table.hideColumn(12)
 
         # hide data columns in materials table
         # self.ui.materials_table.hideColumn(0)
-        # self.ui.materials_table.hideColumn(1)
-        # self.ui.materials_table.hideColumn(4)
-        # self.ui.materials_table.hideColumn(7)
-        # self.ui.materials_table.hideColumn(10)
-        # self.ui.materials_table.hideColumn(12)
-        # self.ui.materials_table.hideColumn(15)
-        # self.ui.materials_table.hideColumn(18)
-        # self.ui.materials_table.hideColumn(20)
-        # self.ui.materials_table.hideColumn(29)
-        # self.ui.materials_table.hideColumn(31)
-        self.ui.materials_table.hideColumn(42)  # Output way
+        self.ui.materials_table.hideColumn(1)
+        self.ui.materials_table.hideColumn(4)
+        self.ui.materials_table.hideColumn(7)
+        self.ui.materials_table.hideColumn(10)
+        self.ui.materials_table.hideColumn(12)
+        self.ui.materials_table.hideColumn(15)
+        self.ui.materials_table.hideColumn(18)
+        self.ui.materials_table.hideColumn(20)
+        self.ui.materials_table.hideColumn(24)
+        self.ui.materials_table.hideColumn(28)
+        self.ui.materials_table.hideColumn(34)
+        self.ui.materials_table.hideColumn(36)
+        self.ui.materials_table.hideColumn(39)
+        self.ui.materials_table.hideColumn(42)
+        self.ui.materials_table.hideColumn(43)
 
         # add values to payment method combobox and paid combobox
         self.ui.payment_method_combobox.clear()
@@ -145,6 +149,7 @@ class Ui_InvoiceView_Logic(QDialog):
         self.ui.select_discount_addition_cost_center_btn.clicked.connect(lambda: self.openSelectDiscountAdditionCostCenterWindow())
         self.ui.select_material_warehouse_btn.clicked.connect(lambda: self.openSelectMaterialWarehouseWindow())
         self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow())
+        self.ui.select_warehouse_entry_btn.clicked.connect(lambda: self.openSelectWarehouseEntryWindow())
         self.ui.select_material_discount_account_btn.clicked.connect(lambda: self.openSelectMaterialDiscountAccountWindow())
         self.ui.select_material_addition_account_btn.clicked.connect(lambda: self.openSelectMaterialAdditionAccountWindow())
         self.ui.select_warehouse_btn.clicked.connect(lambda: self.openSelectWarehouseWindow())
@@ -248,7 +253,7 @@ class Ui_InvoiceView_Logic(QDialog):
         self.ui.invoice_currency_combobox.currentIndexChanged.connect(
             lambda: self.updateMaterialRowValues(update_all=True)
         )
-        # self.ui.materials_table.cellChanged.connect(lambda r, c: self.updateMaterialRowValues(r, c))
+        self.ui.materials_table.cellChanged.connect(lambda r, c: self.updateMaterialRowValues(r, c))
         self.ui.pay_from_client_account_btn.clicked.connect(lambda: self.payFromClientExtraAccount(window))
 
         self.ui.payment_currency_combobox.currentIndexChanged.connect(lambda: self.enablePaymentMethod())
@@ -295,6 +300,7 @@ class Ui_InvoiceView_Logic(QDialog):
         invoice_type_category = self.ui.invoice_type_combobox.currentData()[1]
         if invoice_type_category == 'input':
             self.ui.output_way_combobox.setEnabled(False)
+            self.ui.select_warehouse_entry_btn.setEnabled(False)
             self.ui.production_date_input.setEnabled(True)
             self.ui.expire_date_input.setEnabled(True)
         if invoice_type_category == 'output':
@@ -429,7 +435,7 @@ class Ui_InvoiceView_Logic(QDialog):
         if float(payment_amount) == float(self.invoice_remaining_value):
             self.database_operations.setInvoiceAsPaid(self.invoice_id)
 
-        win32api.MessageBox(None, self.language_manager.translate( 'PAYMENT_SUCCESS'), self.language_manager.translate( 'ALERT'), win32con.MB_OK | win32con.MB_ICONINFORMATION)
+        win32api.MessageBox(None, self.language_manager.translate('PAYMENT_SUCCESS'), self.language_manager.translate( 'ALERT'), win32con.MB_OK | win32con.MB_ICONINFORMATION)
         window.close()
 
     def setClientAccounts(self):
@@ -529,7 +535,28 @@ class Ui_InvoiceView_Logic(QDialog):
                 material_data = self.ui.material_combobox.itemData(i)  # Get 
                 if material_data and material_data.get('id') == result['id']:
                     self.ui.material_combobox.setCurrentIndex(i)  
-                    return  
+                    return 
+
+    def openSelectWarehouseEntryWindow(self):
+        material_warehouse = self.ui.material_warehouse_combobox.currentData()
+        if material_warehouse[0] is None:
+            win32api.MessageBox(None, self.language_manager.translate('MATERIAL_WAREHOUSE_MUST_BE_SELECTED'), self.language_manager.translate( 'ALERT'), win32con.MB_OK | win32con.MB_ICONINFORMATION)
+            return
+
+        material = self.ui.material_combobox.currentData()
+        if not material:
+            win32api.MessageBox(None, self.language_manager.translate('MATERIAL_MUST_BE_SELECTED'), self.language_manager.translate( 'ALERT'), win32con.MB_OK | win32con.MB_ICONINFORMATION)
+            return
+
+        warehouse_id = material_warehouse[0]
+        material_id = material['id']
+        data_picker = Ui_DataPicker_Logic(self.sql_connector, 'warehouse_materials', columns=['id', 'material_name', 'quantity', 'production_date', 'expire_date'], criterias={"material_id": material_id}, warehouse_id=warehouse_id)
+        result = data_picker.showUi()
+        if result is not None:
+            warehouse_entry_id = result['id']
+            warehouse_entry_quantity = result['quantity']
+            self.ui.warehouse_entry_combobox.addItem(f"#{warehouse_entry_id}", [warehouse_entry_id, warehouse_entry_quantity])
+            self.ui.warehouse_entry_combobox.setCurrentIndex(self.ui.warehouse_entry_combobox.count() - 1)
 
     def openSelectInvoiceTypeWindow(self):
         data_picker = Ui_DataPicker_Logic(self.sql_connector,'invoice_types')
@@ -791,7 +818,7 @@ class Ui_InvoiceView_Logic(QDialog):
     def fetchWarehouses(self):
         self.ui.invoice_warehouse_combobox.clear()
         self.ui.material_warehouse_combobox.clear()
-        None_text = self.language_manager.translate( 'NONE')
+        None_text = self.language_manager.translate('NONE')
         self.ui.invoice_warehouse_combobox.addItem(None_text, [None, None])
         self.ui.material_warehouse_combobox.addItem(None_text, [None, None])
 
@@ -992,7 +1019,6 @@ class Ui_InvoiceView_Logic(QDialog):
             self.ui.materials_table.setItem(row, 9, QTableWidgetItem(str(item['quantity3'])))
             self.ui.materials_table.setItem(row, 10, QTableWidgetItem(str(item['unit3_id'])))
             self.ui.materials_table.setItem(row, 11, QTableWidgetItem(str(item['unit3_name'])))
-            self.ui.materials_table.setItem(row, 12, QTableWidgetItem(str(item['price_type_id'])))
 
             # Create combobox for price type
             price_type_combobox = QtWidgets.QComboBox()
@@ -1002,8 +1028,21 @@ class Ui_InvoiceView_Logic(QDialog):
                     self.ui.material_default_price_type_combobox.itemText(i),
                     self.ui.material_default_price_type_combobox.itemData(i)
                 )
+
             # Set current item to match the invoice item's price type
-            price_type_combobox.setCurrentText(item['price_type_name'])
+            if item['price_type_id'] is not None:
+                self.ui.materials_table.setItem(row, 12, QTableWidgetItem(str(item['price_type_id'])))
+                price_type_combobox.setCurrentText(item['price_type_name'])
+            else:
+                # Get invoice default price type
+                invoice_default_price_type = self.fetchInvoiceTypeDefaultSettings()['invoice_price']
+                self.ui.materials_table.setItem(row, 12, QTableWidgetItem(str(invoice_default_price_type)))
+                
+                for i in range(price_type_combobox.count()):
+                    if price_type_combobox.itemData(i)[0] == int(invoice_default_price_type):
+                        price_type_combobox.setCurrentIndex(i)
+                        break
+                
             price_type_combobox.currentIndexChanged.connect(
                 lambda checked, r=row: self.updateMaterialRowValues(r, 13)
             )
@@ -1057,7 +1096,7 @@ class Ui_InvoiceView_Logic(QDialog):
             self.old_quantities[int(item['id'])] = float(item['quantity1'])
 
         # Update all calculations
-        # self.calculateInvoiceValues()
+        self.calculateInvoiceValues()
 
         # Disable fields that shouldn't change after items are added
         # self.ui.invoice_currency_combobox.setEnabled(False)
@@ -1858,14 +1897,20 @@ class Ui_InvoiceView_Logic(QDialog):
         material_warehouse_data = self.ui.material_warehouse_combobox.currentData() or ''
         material_warehouse_id = material_warehouse_data[0]
 
+        material_warehouse_entry = self.ui.warehouse_entry_combobox.currentData() or ''
+        material_warehouse_entry_id = material_warehouse_entry[0] if material_warehouse_entry else None
+        material_warehouse_entry_quantity = material_warehouse_entry[1] if material_warehouse_entry else None
+
         # Get IDs from comboboxes
         material_default_price_type_id = self.ui.material_default_price_type_combobox.currentData()
         material_cost_center_id = ''
         material_warehouse_id = self.ui.material_warehouse_combobox.currentData()[0]
         material_warehouse_account = self.ui.material_warehouse_combobox.currentData()[1]
+        material_warehouse = self.ui.material_warehouse_combobox.currentText()
         if material_warehouse_id is None:
             material_warehouse_id = self.ui.invoice_warehouse_combobox.currentData()[0]
             material_warehouse_account = self.ui.invoice_warehouse_combobox.currentData()[1]
+            material_warehouse = self.ui.invoice_warehouse_combobox.currentText()
 
         material_unit_id = self.ui.material_unit_combobox.currentData()
         material_unit_name = self.ui.material_unit_combobox.currentText()
@@ -1873,18 +1918,13 @@ class Ui_InvoiceView_Logic(QDialog):
         invoice_currency_id = self.ui.invoice_currency_combobox.currentData()
         material_exchange_id = self.ui.material_exchange_combobox.currentData()[0] if self.ui.material_exchange_combobox.currentData() else None
 
-
         material_discount_account = self.ui.material_discount_account_combobox.currentData()
         material_addition_account = self.ui.material_addition_account_combobox.currentData()
         material_gifts_account = self.ui.gifts_account_combobox.currentData()
 
-
         # Get names from comboboxes
         material_default_price_type = self.ui.material_default_price_type_combobox.currentText()
         material_cost_center = ''
-        material_warehouse = self.ui.material_warehouse_combobox.currentText()
-        if material_warehouse_id is None:
-            material_warehouse = self.ui.invoice_warehouse_combobox.currentText()
 
         material_currency = self.ui.material_currency_combobox.currentText()
         invoice_currency = self.ui.invoice_currency_combobox.currentText()
@@ -1957,8 +1997,13 @@ class Ui_InvoiceView_Logic(QDialog):
             return
 
         if material_warehouse_id is None or material_warehouse_id == "None":
-            win32api.MessageBox(0, self.language_manager.translate("MATERIAL_WAREHOUSE_MUST_BE_SELECTED"), self.language_manager.translate("ALERT"))
+            win32api.MessageBox(0, self.language_manager.translate("WAREHOUSE_MUST_BE_SELECTED"), self.language_manager.translate("ALERT"))
             return
+
+        if material_warehouse_entry_id:
+            if material_warehouse_entry_quantity is not None and material_warehouse_entry_quantity < (float(quantity if quantity != '' else 0) + float(material_gifts if material_gifts != '' else 0)):
+                win32api.MessageBox(0, self.language_manager.translate("MATERIAL_QUANTITY_NOT_AVAILABLE"), self.language_manager.translate("ALERT"))
+                return
         
         if self.origin_invoice_data:
             original_material_quantity = self.origin_invoice_data[material_id]['quantity']
@@ -2051,6 +2096,7 @@ class Ui_InvoiceView_Logic(QDialog):
             self.ui.materials_table.setItem(new_row_number, 40, QTableWidgetItem(str(material_production_date)))
             self.ui.materials_table.setItem(new_row_number, 41, QTableWidgetItem(str(material_expire_date)))
             self.ui.materials_table.setItem(new_row_number, 42, QTableWidgetItem(str(material_output_way)))
+            self.ui.materials_table.setItem(new_row_number, 43, QTableWidgetItem(str(material_warehouse_entry_id)))
 
             self.calculateInvoiceValues()
 
@@ -2193,6 +2239,7 @@ class Ui_InvoiceView_Logic(QDialog):
         stock_account = self.ui.stock_account_combobox.currentData()
         gifts_opposite_account = self.ui.gifts_opposite_account_combobox.currentData()
         materials_account = self.ui.materials_account_combobox.currentData()
+        client_account = self.ui.client_account_combobox.currentData()
         inventory_type = self.database_operations.fetchSetting('inventory_type')
         origin_id = self.ui.origin_invoice_combobox.currentData()
 
@@ -2213,6 +2260,10 @@ class Ui_InvoiceView_Logic(QDialog):
 
         if materials_account is None or materials_account == "None":
             win32api.MessageBox(0, self.language_manager.translate("MATERIALS_ACCOUNT_MUST_BE_SELECTED"), self.language_manager.translate("ALERT"))
+            return
+
+        if client_account is None or client_account == "None":
+            win32api.MessageBox(0, self.language_manager.translate("CLIENT_ACCOUNT_MUST_BE_SELECTED"), self.language_manager.translate("ALERT"))
             return
 
         if inventory_type == 'perpetual':
@@ -2320,6 +2371,8 @@ class Ui_InvoiceView_Logic(QDialog):
             except:
                 output_way = ''
 
+            material_warehouse_entry_id = self.ui.materials_table.item(row, 43).text()
+
             warehouse_id = '' if not warehouse_id or warehouse_id in ['None', None] else warehouse_id
             cost_center_id = '' if not cost_center_id or cost_center_id in ['None', None] else cost_center_id
             exchange_id = '' if not exchange_id or exchange_id in ['None', None] else exchange_id  # '' when material price is same as invoice price
@@ -2339,6 +2392,8 @@ class Ui_InvoiceView_Logic(QDialog):
 
             gifts = 0 if gifts == '0' or gifts == '0.0' or gifts == '' or gifts == 'None' else gifts
             gifts_discount = 0 if gifts_discount == '0' or gifts_discount == '0.0' or gifts_discount == '' or gifts_discount == 'None' else gifts_discount
+
+            material_warehouse_entry_id = None if material_warehouse_entry_id == '' or material_warehouse_entry_id == 'None' else material_warehouse_entry_id
 
             if invoice_item_id == '': # add new invoice item
                 invoice_item_id = self.database_operations.addInvoiceMaterial(invoice_id, material_id, quantity1, unit1_id, quantity2, unit2_id, quantity3, unit3_id, price_type_id, unit_price, currency_id, equilivance_price, discount, discount_percent, addition, addition_percent, added_value, gifts, gifts_value, gifts_discount, warehouse_id, cost_center_id, notes, exchange_id, discount_account, addition_account, production_date, expire_date, commit=False)
@@ -2387,7 +2442,7 @@ class Ui_InvoiceView_Logic(QDialog):
                         else:
                             quantity_to_reduce = -new_quantity
                             if float(quantity_to_reduce) > 0.0:
-                                modified_records = self.database_operations.reduceMaterialInWarehouse(warehouse_id, material_id, quantity_to_reduce, unit1_id, order=output_way, commit=False)
+                                modified_records = self.database_operations.reduceMaterialInWarehouse(warehouse_id, material_id, quantity_to_reduce, unit1_id, order=output_way, entry_id_to_reduce_from=material_warehouse_entry_id, commit=False)
                                 for record in modified_records:
                                     self.database_operations.moveMaterial(quantity=record['reduced_quantity'],
                                                                 move_unit=record['unit'],
@@ -2423,7 +2478,7 @@ class Ui_InvoiceView_Logic(QDialog):
                         new_quantity = float(quantity1) - float(old_quantity)
                         new_quantity = new_quantity + float(gifts)
                         if new_quantity > 0:
-                            modified_records = self.database_operations.reduceMaterialInWarehouse(warehouse_id, material_id, new_quantity, unit1_id, order=output_way,commit=False)
+                            modified_records = self.database_operations.reduceMaterialInWarehouse(warehouse_id, material_id, new_quantity, unit1_id, order=output_way, entry_id_to_reduce_from=material_warehouse_entry_id, commit=False)
                             for record in modified_records:
                                 self.database_operations.moveMaterial(quantity=record['reduced_quantity'],
                                                             move_unit=record['unit'],
@@ -2456,7 +2511,7 @@ class Ui_InvoiceView_Logic(QDialog):
 
                     else:
                         quantity_to_reduce = float(quantity1) + float(gifts)
-                        modified_records = self.database_operations.reduceMaterialInWarehouse(warehouse_id, material_id, quantity_to_reduce, unit1_id, order=output_way, commit=False)
+                        modified_records = self.database_operations.reduceMaterialInWarehouse(warehouse_id, material_id, quantity_to_reduce, unit1_id, order=output_way, entry_id_to_reduce_from=material_warehouse_entry_id, commit=False)
                         for record in modified_records:
                             self.database_operations.moveMaterial(quantity=record['reduced_quantity'],
                                                             move_unit=record['unit'],
@@ -2529,12 +2584,10 @@ class Ui_InvoiceView_Logic(QDialog):
             client_account = self.ui.client_account_combobox.currentData()
             payment_method = str(self.ui.payment_method_combobox.currentData()).lower()
 
-            cost_center_id = None
             distributive_cost_centers_value = None
-            if invoice_cost_center_data:
-                invoice_cost_center_id = invoice_cost_center_data[0]
-                invoice_cost_center_type = invoice_cost_center_data[1]
-
+            invoice_cost_center_id = invoice_cost_center_data[0] if invoice_cost_center_data else ''
+            invoice_cost_center_type = invoice_cost_center_data[1] if invoice_cost_center_data else ''
+            if invoice_cost_center_id:
                 distributive_cost_centers_value = []
                 if invoice_cost_center_type in ('distributor'):
                     # fetch distributed cost centers
@@ -2557,12 +2610,9 @@ class Ui_InvoiceView_Logic(QDialog):
                 invoice_cost_center_id = None
                 distributive_cost_centers_value = None
 
-            partial_sum = self.ui.partial_sum.text()
-
             date = self.ui.date_input.text()
 
             journal_entry_id = None
-
             if self.invoice_id: # check if the journal entry is already generated for this invoice
                 journal_entry = self.database_operations.fetchInvoiceJournalEntry(invoice_id)
                 if journal_entry:
@@ -2572,10 +2622,11 @@ class Ui_InvoiceView_Logic(QDialog):
                     # Delete all journal entry items for the invoice, then re-generate new ones for same journal entry
                     self.database_operations.removeJournalEntriesItems(journal_entry_id, commit=False)
 
+                else: # add new invoice journal entry
+                    journal_entry_id = self.database_operations.addJournalEntry(date, invoice_currency, origin_type=origin, origin_id=invoice_id, commit=False)
+
             else: # add new invoice journal entry
-                journal_entry_id = self.database_operations.addJournalEntry(date, invoice_currency,
-                                                                            origin_type=origin,
-                                                                            origin_id=invoice_id, commit=False)
+                journal_entry_id = self.database_operations.addJournalEntry(date, invoice_currency, origin_type=origin, origin_id=invoice_id, commit=False)
 
             for row in range(self.ui.materials_table.rowCount()):
                 stock_value = 0
