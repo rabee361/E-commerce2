@@ -762,6 +762,21 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('materials', 'r')
+    def fetchMaterialCompositionsData(self, groupped_material_id) -> list:
+        print("DATABASE> Fetch composition")
+        if str(type(self.sqlconnector)) == "<class 'MysqlConnector.MysqlConnector'>":
+            query = "SELECT groupped_materials_composition.id, materials.name, groupped_materials_composition.composition_material_id, groupped_materials_composition.quantity, groupped_materials_composition.unit, materials.code, units.name as unit_name, compositions.id as composition_id, compositions.name as composition_name FROM compositions LEFT JOIN groupped_materials_composition ON groupped_materials_composition.composition_id = compositions.id LEFT JOIN units ON groupped_materials_composition.unit = units.id LEFT JOIN materials ON materials.id = groupped_materials_composition.composition_material_id WHERE compositions.material = %s"
+            params = (groupped_material_id,)
+        else:  # SQLite
+            query = "SELECT groupped_materials_composition.id, materials.name, groupped_materials_composition.composition_material_id, groupped_materials_composition.quantity, groupped_materials_composition.unit, materials.code, units.name as unit_name, compositions.id as composition_id, compositions.name as composition_name FROM compositions LEFT JOIN groupped_materials_composition ON groupped_materials_composition.composition_id = compositions.id LEFT JOIN units ON groupped_materials_composition.unit = units.id LEFT JOIN materials ON materials.id = groupped_materials_composition.composition_material_id WHERE compositions.material = ?"
+            params = (groupped_material_id,)
+        print(query, params)
+        self.cursor.execute(query, params)
+        rows = self.cursor.fetchall()
+        self.sqlconnector.conn.commit()
+        return rows
+
     def fetchMaterialCompositions(self, groupped_material_id='') -> list:
         print("DATABASE> Fetch compositions")
         query = "SELECT * FROM compositions WHERE `material` = '" + str(groupped_material_id) + "'"
