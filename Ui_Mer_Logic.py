@@ -25,7 +25,7 @@ from PyQt5.QtGui import QPixmap
 from Colors import light_yellow_color
 from FileManager import FileManager
 from SqliteConnector import SqliteConnector
-from StyleApplicator import StyleApplicator
+# from StyleApplicator import StyleApplicator
 from Ui_Account_Movements_Logic import Ui_Account_Movements_Logic
 from Ui_Accounts_Logic import Ui_Accounts_Logic
 from Ui_Clients_Logic import Ui_Clients_Logic
@@ -176,6 +176,7 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_open.setShortcut(QKeySequence("Ctrl+O"))
         self.ui.option_connect_to_database.triggered.connect(lambda: self.closeAllWindows() and self.openDatabaseSettings())
         self.ui.option_connect_to_database.setShortcut(QKeySequence("Ctrl+D"))
+        self.ui.option_switch_user.triggered.connect(lambda: self.closeAllWindows() and self.openSwitchUserWindow())
         self.ui.option_users.triggered.connect(lambda: self.closeAllWindows() and self.openUsersWindow())
         self.ui.option_users.setShortcut(QKeySequence("Ctrl+U"))
         self.ui.option_exit.triggered.connect(lambda: self.closeAllWindows() and self.closeApp())
@@ -367,7 +368,7 @@ class Ui_Mer_Logic(QObject):
                         self.toolbar_manager.retranslateToolbar()
                     if self.statistics:
                         try:
-                            self.statistics.refresh()
+                            # self.statistics.refresh()
                             self.fetchAlerts()
                         except Exception as e:
                             print(e)
@@ -870,6 +871,15 @@ class Ui_Mer_Logic(QObject):
             # Initialize chat component
             self.setupChatComponent()
 
+    def openSwitchUserWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            user = Ui_AuthenticateUser_Logic(self.sql_connector).showUi()
+            if user:
+                current_user = user
+            self.current_user = current_user
+            self.database_operations.setCurrentUser(current_user)
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'))
 
     def openUsersWindow(self):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
@@ -976,7 +986,7 @@ class Ui_Mer_Logic(QObject):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
             Ui_Settings_Logic(self.sql_connector).showUi()
             self.refreshToolbar()
-            self.statistics.refresh()
+            # self.statistics.refresh()
         else:
             win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
 

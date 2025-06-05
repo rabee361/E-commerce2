@@ -6,6 +6,7 @@ from DatabaseOperations import DatabaseOperations
 from Ui_GrouppedMaterialComposition import Ui_GrouppedMaterialComposition
 from PyQt5.QtCore import Qt, QTranslator
 from LanguageManager import LanguageManager
+from Colors import blue_sky_color  
 
 class Ui_GrouppedMaterialComposition_Logic(QDialog):
     def __init__(self, sql_connector, material_id):
@@ -230,6 +231,41 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
                 quantity2=float(quantity3)*unit3_to_unit2_rate
                 self.ui.quantity2_input.setText(str(round(quantity2, 4)))
 
+    # def addMaterial(self):
+    #     selected_tree_item = self.ui.materials_tree.currentItem()
+    #     composition_id = self.ui.composition_combobox.currentText() or ''
+    #     selected_material_id = selected_tree_item.text(1)
+    #     selected_material_name = selected_tree_item.text(2)
+        
+    #     if selected_material_id:
+    #         quantity = self.ui.quantity1_input.text()
+    #         unit = self.ui.unit1_combobox.currentData()
+    #         unit_name = self.ui.unit1_combobox.currentText()
+            
+    #         if not quantity:
+    #             win32api.MessageBox(0,self.language_manager.translate("QUANTITY_MUST_BE_ENTERED"), self.language_manager.translate("ERROR")) # type: ignore
+    #         else:
+    #             # Find or create composition parent row
+    #             root = self.ui.material_composition_tree.invisibleRootItem()
+    #             composition_parent = None
+    #             for i in range(root.childCount()):
+    #                 item = root.child(i)
+    #                 if item.text(0) == str(composition_id):
+    #                     composition_parent = item
+    #                     break
+                
+    #             if not composition_parent:
+    #                 # Create new composition parent
+    #                 composition_parent = QTreeWidgetItem(['',str(composition_id), '', '', '', '','','',''])
+    #                 composition_parent.setBackground(0, QtCore.Qt.lightGray)
+    #                 self.ui.material_composition_tree.addTopLevelItem(composition_parent)
+                
+    #             # Create and add material item under composition parent
+    #             material_item = QTreeWidgetItem(['','','',str(selected_material_name), str(selected_material_id), str(quantity), str(unit_name), str(unit)])
+    #             for i in range(material_item.columnCount()):
+    #                 material_item.setBackground(i, QtCore.Qt.blue)
+    #             composition_parent.addChild(material_item)
+
     def addMaterial(self):
         selected_tree_item = self.ui.materials_tree.currentItem()
         composition_id = self.ui.composition_combobox.currentText() or ''
@@ -244,7 +280,7 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
             if not quantity:
                 win32api.MessageBox(0,self.language_manager.translate("QUANTITY_MUST_BE_ENTERED"), self.language_manager.translate("ERROR")) # type: ignore
             else:
-                # Find or create composition parent row
+                # Find composition parent row
                 root = self.ui.material_composition_tree.invisibleRootItem()
                 composition_parent = None
                 for i in range(root.childCount()):
@@ -253,17 +289,14 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
                         composition_parent = item
                         break
                 
-                if not composition_parent:
-                    # Create new composition parent
-                    composition_parent = QTreeWidgetItem(['',str(composition_id), '', '', '', '','','',''])
-                    composition_parent.setBackground(0, QtCore.Qt.lightGray)
-                    self.ui.material_composition_tree.addTopLevelItem(composition_parent)
-                
-                # Create and add material item under composition parent
-                material_item = QTreeWidgetItem(['','','',str(selected_material_name), str(selected_material_id), str(quantity), str(unit_name), str(unit)])
-                for i in range(material_item.columnCount()):
-                    material_item.setBackground(i, QtCore.Qt.blue)
-                composition_parent.addChild(material_item)
+                if composition_parent:
+                    # Create and add material item under composition parent
+                    material_item = QTreeWidgetItem(['','','',str(selected_material_name), str(selected_material_id), str(quantity), str(unit_name), str(unit)])
+                    for i in range(material_item.columnCount()):
+                        material_item.setBackground(i, blue_sky_color)
+                    composition_parent.addChild(material_item)
+                else:
+                    win32api.MessageBox(0,self.language_manager.translate("COMPOSITION_MUST_EXIST"), self.language_manager.translate("ERROR")) # type: ignore
 
     def removeMaterial(self):
         composition_tree = self.ui.material_composition_tree
@@ -295,16 +328,14 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
             
             # Update the database for this composition
             self.database_operations.updateGrouppedMaterialComposition(composition_id, groupped_material_id, composition_materials)
-        
         window.accept()
 
     def fetchCompositions(self):
-        composition_id = self.ui.composition_combobox.currentData() or '' 
+        self.ui.composition_combobox.clear()
         composition_materials = self.database_operations.fetchMaterialCompositions(self.material_id)
         for material in composition_materials:
             composition_id = material['id'] 
             composition_name = material['name']
-
             self.ui.composition_combobox.addItem(str(composition_name), composition_id)
             
     def fetchCompositionData(self):
@@ -318,8 +349,6 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
             composition_id = material['composition_id'] 
             composition_name = material['composition_name']
 
-            self.ui.composition_combobox.addItem(str(composition_name), composition_id)
-            
             if composition_id not in compositions:
                 compositions[composition_id] = {
                     'name': composition_name,
@@ -350,11 +379,8 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
                     child = QTreeWidgetItem(['','','', str(composition_material_id), str(composition_material_name) , str(quantity), str(unit_name), str(unit)])
                     # Set child background color
                     for i in range(child.columnCount()):
-                        child.setBackground(i, QtCore.Qt.blue)
+                        child.setBackground(i, blue_sky_color)
                     parent.addChild(child)
-                    
-                    materials_in_tree[0].setHidden(True)
-
 
     def addComposition(self):
         composition_name = self.ui.composition_name_input.text()
@@ -362,15 +388,20 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
             # Add the composition to the database
             composition_id = self.database_operations.addComposition(composition_name, self.material_id)
             
-            # Add the new composition to the combobox
-            self.ui.composition_combobox.addItem(str(composition_name), composition_id)
+            composition_in_tree = self.ui.material_composition_tree.findItems(str(composition_id), Qt.MatchExactly | Qt.MatchRecursive, 1)
+
+            composition_in_tree = self.ui.material_composition_tree.findItems(str(composition_id), Qt.MatchExactly | Qt.MatchRecursive, 0)
             
-            # Add the new composition directly to the tree without rebuilding everything
-            parent = QTreeWidgetItem([str(composition_id), str(composition_name),'','','','',''])
-            parent.setBackground(0, QtCore.Qt.lightGray)
-            for i in range(parent.columnCount()):
-                parent.setBackground(i, QtCore.Qt.lightGray)
-            self.ui.material_composition_tree.addTopLevelItem(parent)
-            
+            if (len(composition_in_tree) > 0):
+                # Composition already exists, add the material to it
+                parent = composition_in_tree[0]
+                # Add the new composition to the combobox
+                self.ui.composition_combobox.addItem(str(composition_name), composition_id)
+                # Clear the input field
+                self.ui.composition_name_input.clear()
+            else:
+                win32api.MessageBox(0,self.language_manager.translate("COMPOSITION_ALREADY_EXISTS"), self.language_manager.translate("ERROR")) # type: ignore
+                            
             # Clear the input field
             self.ui.composition_name_input.clear()
+

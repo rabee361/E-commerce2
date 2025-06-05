@@ -1,6 +1,6 @@
 import win32api
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog, QAbstractItemView, QHeaderView, QTableWidgetItem, QGridLayout
+from PyQt5.QtWidgets import QDialog, QAbstractItemView, QHeaderView, QTableWidgetItem, QGridLayout, QCheckBox
 from win32con import MB_TASKMODAL
 
 from DatabaseOperations import DatabaseOperations
@@ -49,6 +49,7 @@ class Ui_DataPicker_Logic(QDialog):
         self.database_operations = DatabaseOperations(sql_connector)
         self.ui = Ui_DataPicker()
         self.selected_item = None
+        self.selected_items = {}
         self.fetching_items_mapper = {}
         self.fetching_item_mapper = {}
         self.table_name = table_name if table_name else 'accounts'
@@ -58,11 +59,17 @@ class Ui_DataPicker_Logic(QDialog):
         self.exclusions = exclusions if exclusions else []
         self.only_include = only_include if only_include else []
         self.default_id = default_id
-        self.checkable = checkable
+        self.checkable = checkable 
+        self.checkable_column_index = None
 
         # Column configurations - just simple lists of column names
-        self.columns = columns if columns else ['id', 'name', 'checkable']
-        self.linked_columns = linked_columns if linked_columns else ['id', 'name', 'checkable']
+        self.columns = columns if columns else ['id', 'name']
+        if self.checkable and 'checkable' not in self.columns:
+            self.columns.append('checkable')
+        
+        self.linked_columns = linked_columns if linked_columns else ['id', 'name']
+        if self.checkable and 'checkable' not in self.linked_columns:
+            self.linked_columns.append('checkable')
 
         # Linked table attributes
         self.linked_table = linked_table
@@ -88,8 +95,9 @@ class Ui_DataPicker_Logic(QDialog):
         # Setup primary table
         self.setupTable(self.ui.result_table, self.columns)
 
+        # Connect item clicked signal to handle checkbox clicks
         if self.checkable:
-            self.ui.result_table.hideColumn(2)
+            self.ui.result_table.cellClicked.connect(self.handleCellClicked)
 
         self.ui.result_table.itemDoubleClicked.connect(lambda: self.setSelectedItem(window))
 
@@ -204,6 +212,13 @@ class Ui_DataPicker_Logic(QDialog):
 
         # Hide ID column (assuming first column is always ID)
         table.setColumnHidden(0, True)
+        
+        # If checkable is enabled, set up the checkable column
+        if self.checkable and 'checkable' in columns:
+            # Find the checkable column index
+            self.checkable_column_index = columns.index('checkable')
+            # Don't hide the checkable column
+            table.setColumnHidden(self.checkable_column_index, False)
 
         # Stretch the name column (assuming second column is name)
         if len(columns) > 1:
@@ -254,21 +269,31 @@ class Ui_DataPicker_Logic(QDialog):
 
                 # Add data for each column
                 for col_idx, column in enumerate(self.columns):
-                    value = result[column]
+                    # Handle checkable column specially since it doesn't exist in database
+                    if self.checkable and column == 'checkable':
+                        # Create a checkbox item
+                        checkbox = QCheckBox()
+                        checkbox.setChecked(True)
+                        self.ui.result_table.setCellWidget(numRows, col_idx, checkbox)
+                        self.checkable_column_index = col_idx
+                    else:
+                        # For other columns, get value from result
+                        if column in result:
+                            value = result[column]
+                            
+                            # Add "(default)" text to name column for default record
+                            if self.default_id is not None and id == self.default_id and column == 'name':
+                                value = f"{value} (default)"
+                                
+                            item = (MyTableWidgetItem(str(value), int(value))
+                                   if column == 'id'
+                                   else QTableWidgetItem(str(value)))
 
-                    # Add "(default)" text to name column for default record
-                    if self.default_id is not None and id == self.default_id and column == 'name':
-                        value = f"{value} (default)"
+                            # Highlight default record
+                            if self.default_id is not None and id == self.default_id:
+                                item.setBackground(Qt.green)
 
-                    item = (MyTableWidgetItem(str(value), int(value))
-                           if column == 'id'
-                           else QTableWidgetItem(str(value)))
-
-                    # Highlight default record
-                    if self.default_id is not None and id == self.default_id:
-                        item.setBackground(Qt.green)
-
-                    self.ui.result_table.setItem(numRows, col_idx, item)
+                            self.ui.result_table.setItem(numRows, col_idx, item)
 
                 # Save item
                 self.items_dict[id] = result
@@ -370,5 +395,29 @@ class Ui_DataPicker_Logic(QDialog):
                         win32api.MessageBox(0, 'حصل تغيير ما في قاعدة البيانات، يُرجى إعادة الاختيار.', "خطأ", MB_TASKMODAL)
                         self.fetchResults()
 
+    def handleCellClicked(self, row, column):
+        """Handle cell click to toggle checkbox state"""
+        if self.checkable and column == self.checkable_column_index:
+            # Get the checkbox widget
+            checkbox = self.ui.result_table.cellWidget(row, column)
+            if checkbox:
+                # Toggle the checkbox state
+                checkbox.setChecked(not checkbox.isChecked())
+                
+                # Get the item ID and name
+                id_item = self.ui.result_table.item(row, 0)
+                name_item = self.ui.result_table.item(row, 1)
+                
+                if id_item and name_item:
+                    item_id = int(id_item.text())
+                    item_name = name_item.text()
+                    
+                    # Add or remove from selected items based on checkbox state
+                    if checkbox.isChecked():
+                        self.selected_items[item_id] = {'id': item_id, 'name': item_name}
+                    else:
+                        if item_id in self.selected_items:
+                            del self.selected_items[item_id]
+    
     def cancelProcess(self, window):
         window.accept()

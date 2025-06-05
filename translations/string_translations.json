@@ -45,6 +45,8 @@
         "INVOICE_CURRENCY_MUST_BE_SELECTED":"Invoice currency must be selected",
         "MONETARY_ACCOUNT_MUST_BE_SELECTED":"Monetary account must be selected",
         "MATERIALS_ACCOUNT_MUST_BE_SELECTED":"Materials account must be selected",
+        "CLIENT_ACCOUNT_MUST_BE_SELECTED":"Client account must be selected",
+        "WAREHOUSE_MUST_BE_SELECTED":"Material or Invoice warehouse must be selected",
         "MATERIAL_WAREHOUSE_MUST_BE_SELECTED":"Material warehouse must be selected",
         "ADDITIONS_ACCOUNT_MUST_BE_SELECTED":"Additions account must be selected",
         "DISCOUNTS_ACCOUNT_MUST_BE_SELECTED":"Discounts account must be selected",
@@ -59,6 +61,8 @@
         "IMAGE_MUST_BE_SELECTED":"Image must be selected",
         "COST_CENTER_MUST_BE_SELECTED":"Cost center must be selected",
         "FINAL_ACCOUNT_MUST_BE_SELECTED":"Final account must be selected",
+        "JOURNAL_ENTRY_MUST_BE_SELECTED": "Journal entry must be selected",
+        "INVOICE_DEFAULTS_MUST_BE_SELECTED":"Invoice defaults must be selected",
         
         "ALL_FIELDS_MUST_BE_ENTERED":"All fields must be entered",
         "CONVERSION_FACTOR_MUST_BE_ENTERED":"Conversion factor must be entered",
@@ -139,6 +143,7 @@
         "PAYMENT": "Payment",
         "RECEIPT": "Receipt",
         "EXTRA_PAYMENT":"Extra Payment",
+        "LOAN_HAS_PAYMENTS":"Loan has payments",
         "ADD_VOUCHER": "Add Voucher",
         "SELECT_INVOICES": "Select Invoices",
         "INCLUDE_INVOICES_PAYMENTS": "Include Invoices Payments",
@@ -146,6 +151,7 @@
         "PAYMENTS_VOUCHERS": "Payments Vouchers",
         "RECEIPTS_VOUCHERS": "Receipts Vouchers",
         "EXCHANGE_RATE": "Exchange Rate",
+        "COMPOSITION_ERROR":"Material error, please ensure the presence of raw materials or check the quantity.",
 
         "ID": "ID",
         "NAME": "Name",
@@ -356,7 +362,6 @@
         "INVOICE_SETTINGS_GIFTS_OPPOSITE_ACCOUNT": "Gifts Opposite Account:",
         "INVOICE_SETTINGS_ITEMS_DISCOUNTS_ACCOUNT": "Items Discounts Account:",
         "INVOICE_SETTINGS_ITEMS_ADDITIONS_ACCOUNT": "Items Additions Account:",
-        "INVOICE_SETTINGS_SELECT": "Select...",
         "INVOICE_SETTINGS_DELETE_TYPE": "Delete Type",
         "INVOICE_SETTINGS_ADD_TAB": "Add New Tab",
         "INVOICE_SETTINGS_TAB_NAME": "Tab Name:",
@@ -547,7 +552,6 @@
         "MANUFACTURING": "Manufacturing",
         "CURRENCIES": "Currencies",
 
-
         "ALERT_ENTER_USERNAME":"Please enter the username",
         "ALERT_DELETE_USER":"Do you want to delete the user?",
         "READ":"Read",
@@ -565,8 +569,10 @@
 
         "STATS_PERMISSION_DENIED":"You do not have permission to view the reports",
 
-        "MANUFACTURE_DEFAULT_SETTINGS":"Please make sure to set the synchronizing manufacture defaults in the settings"
-
+        "MANUFACTURE_DEFAULT_SETTINGS":"Please make sure to set the synchronizing manufacture defaults in the settings",
+        
+        "SYNC_SUCCESS":"Synchronization completed successfully",
+        "SYNC_DEPENDENCY_ERROR":"requires the following to be checked"
     },
 
     "ar": {
@@ -613,7 +619,9 @@
         "INVOICE_CURRENCY_MUST_BE_SELECTED":"يرجى اختيار عملة الفاتورة",
         "MONETARY_ACCOUNT_MUST_BE_SELECTED":"يرجى اختيار حساب النقديات",
         "MATERIALS_ACCOUNT_MUST_BE_SELECTED":"يرجى اختيار حساب المواد",
-        "MATERIAL_WAREHOUSE_MUST_BE_SELECTED":"يرجى اختيار مستودع المواد",
+        "CLIENT_ACCOUNT_MUST_BE_SELECTED":"يرجى اختيار حساب العميل",
+        "WAREHOUSE_MUST_BE_SELECTED":"يرجى اختيار مستودع المادة أو مستودع الفاتورة",
+        "MATERIAL_WAREHOUSE_MUST_BE_SELECTED":"يرجى اختيار مستودع المادة",
         "ADDITIONS_ACCOUNT_MUST_BE_SELECTED":"يرجى اختيار حساب للاضافات",
         "DISCOUNTS_ACCOUNT_MUST_BE_SELECTED":"يرجى اختيار حساب للحسميات",
         "GIFTS_ACCOUNT_MUST_BE_SELECTED":"يرجى اختيار حساب للهدايا",
@@ -627,6 +635,8 @@
         "IMAGE_MUST_BE_SELECTED":"يرجى اختيار صورة أولاً",
         "COST_CENTER_MUST_BE_SELECTED":"يجب اختيار مركز الكلفة",
         "FINAL_ACCOUNT_MUST_BE_SELECTED":"يجب اختيار حساب نهائي",
+        "JOURNAL_ENTRY_MUST_BE_SELECTED": "يجب اختيار سند قيد",
+        "INVOICE_DEFAULTS_MUST_BE_SELECTED":"يجب اختيار افتراضيات الفاتورة",
         
         "ALL_FIELDS_MUST_BE_ENTERED":"يجب ملء جميع الحقول",
         "CONVERSION_FACTOR_MUST_BE_ENTERED":"يرجى ادخال معامل التحويل",
@@ -705,6 +715,7 @@
         "PAYMENT": "دفع",
         "RECEIPT": "قبض",
         "EXTRA_PAYMENT":"دفعة زائدة",
+        "LOAN_HAS_PAYMENTS":"لا يمكن حذف القرض لأنه يحتوي على دفعات",
         "ADD_VOUCHER": "إضافة سند",
         "SELECT_INVOICES": "اختيار الفواتير",
         "INCLUDE_INVOICES_PAYMENTS": "عرض دفعات الفواتير",
@@ -830,6 +841,9 @@
         "EXCHANGE_RATES_FOR": "أسعار الصرف مقابل",
         "EXCHANGE_RATES_NOT_FOUND": "لا يوجد أسعار صرف",
 
+        "COMPOSITION_ERROR":"خطأ في المادة، تأكد من وجود مواد أولية، او من الكمية.",
+
+
         "ADD_PAYMENT_CONDITION_MESSAGE": "لإضافة شرط دفع سيتم حفظ معلومات حساب العميل. متابعة؟",
 
         "FIFO": "المواد الداخلة أولاً تخرج أولاً",
@@ -914,7 +928,6 @@
         "INVOICE_SETTINGS_GIFTS_OPPOSITE_ACCOUNT": "حساب مقابل الهدايا:",
         "INVOICE_SETTINGS_ITEMS_DISCOUNTS_ACCOUNT": "حساب حسم الأقلام:",
         "INVOICE_SETTINGS_ITEMS_ADDITIONS_ACCOUNT": "حساب إضافات الأقلام:",
-        "INVOICE_SETTINGS_SELECT": "اختيار...",
         "INVOICE_SETTINGS_DELETE_TYPE": "حذف النمط",
         "INVOICE_SETTINGS_ADD_TAB": "اضافة تبويب جديد",
         "INVOICE_SETTINGS_TAB_NAME": "اسم التبويب:",
@@ -1137,7 +1150,10 @@
 
         "STATS_PERMISSION_DENIED":"ليس لديك الصلاحية لعرض التقارير",
 
-        "MANUFACTURE_DEFAULT_SETTINGS":"يرجى التأكد من تعيين إعدادات مزامنة التصنيع الافتراضية في الإعدادات"
+        "MANUFACTURE_DEFAULT_SETTINGS":"يرجى التأكد من تعيين إعدادات مزامنة التصنيع الافتراضية في الإعدادات",
+
+        "SYNC_SUCCESS":"تم مزامنة البيانات بنجاح",
+        "SYNC_DEPENDENCY_ERROR":"تتطلب التحقق من"
 
     }
 } 

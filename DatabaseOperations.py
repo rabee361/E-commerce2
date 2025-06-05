@@ -28,7 +28,7 @@ class DatabaseOperations(object):
             'cursor_class' if str(type(self.sqlconnector)) == "<class 'MysqlConnector.MysqlConnector'>" else 'factory': ColumnNamedExtendedCursor
         }
         self.cursor = self.sqlconnector.conn.cursor(**params)
-        self.key = 'YourVerySecretKey123456789012345' # 32 byte key
+        self.key = '7hJkP2sVbNqXzR4dFgT6wYmC1eU9oL3a' # 32 byte key
 
 
     def check_permission(criteria_name, required_type):
@@ -3646,7 +3646,7 @@ class DatabaseOperations(object):
     # This function reduces the quantity of a material in a warehouse. It handles unit conversion if necessary.
     # It iterates through the records of the material in the warehouse and reduces the quantity accordingly.
     @check_permission('warehouses', 'rw')
-    def reduceMaterialInWarehouse(self, warehouse_id, material_id, quantity, unit_id, order='desc', commit=True) -> list:
+    def reduceMaterialInWarehouse(self, warehouse_id, material_id, quantity, unit_id, entry_id_to_reduce_from=None, order='desc', commit=True) -> list:
         modified_records = []
         warehouse_codename = self.fetchWarehouseCodename(warehouse_id)
 
@@ -3666,7 +3666,11 @@ class DatabaseOperations(object):
             else:
                 order = '`id` ASC'
 
-            query = f"SELECT * FROM `{warehouse_codename}` WHERE `material_id`='{material_id}' ORDER BY {order}"
+            if entry_id_to_reduce_from is not None:
+                query = f"SELECT * FROM `{warehouse_codename}` WHERE `id`='{entry_id_to_reduce_from}'"
+            else:
+                query = f"SELECT * FROM `{warehouse_codename}` WHERE `material_id`='{material_id}' ORDER BY {order}"
+            
             self.cursor.execute(query)
             records = self.cursor.fetchall()
 
@@ -4702,7 +4706,7 @@ class DatabaseOperations(object):
 
 
     # @check_permission('hr_employees', 'r')
-    def fetchEmployeesCount(self, position='', department_id='') -> dict:
+    def fetchEmployeesCount(self, position='', department_id='', from_date='', to_date='') -> dict:
         print("DATABASE> Fetch employees count")
         query = """
             SELECT
@@ -5904,6 +5908,22 @@ class DatabaseOperations(object):
     @check_permission('hr_salaries', 'r')
     def fetchPayrollsDetails(self, from_date='', to_date='', department='', position=''):
         query = "SELECT hr_salary_block_entries.*, hr_salary_blocks.from_date, hr_salary_blocks.to_date, hr_salary_blocks.date_col FROM hr_salary_block_entries JOIN hr_salary_blocks ON hr_salary_block_entries.salary_block_id = hr_salary_blocks.id JOIN hr_employees ON hr_salary_block_entries.employee_id = hr_employees.id LEFT JOIN (SELECT employee_id, department_id, position_id, MAX(date_col) as max_date FROM hr_employees_transfers GROUP BY employee_id) AS transfers ON hr_employees.id = transfers.employee_id WHERE (transfers.position_id = COALESCE(NULLIF('" + str(position) + "', ''), transfers.position_id));"
+        print(query)
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
+        self.sqlconnector.conn.commit()
+        return rows
+
+    def fetchDepartmentPayrolls(self, department_id, from_date='', to_date=''):
+        query = "SELECT hr_salary_block_entries.*, hr_salary_blocks.from_date, hr_salary_blocks.to_date, hr_salary_blocks.date_col FROM hr_salary_block_entries JOIN hr_salary_blocks ON hr_salary_block_entries.salary_block_id = hr_salary_blocks.id JOIN hr_employees ON hr_salary_block_entries.employee_id = hr_employees.id LEFT JOIN (SELECT employee_id, department_id, position_id, MAX(date_col) as max_date FROM hr_employees_transfers GROUP BY employee_id) AS transfers ON hr_employees.id = transfers.employee_id WHERE (transfers.department_id = COALESCE(NULLIF('" + str(department_id) + "', ''), transfers.department_id));"
+        print(query)
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
+        self.sqlconnector.conn.commit()
+        return rows
+
+    def fetchPositionPayrolls(self, position_id, from_date='', to_date=''):
+        query = "SELECT hr_salary_block_entries.*, hr_salary_blocks.from_date, hr_salary_blocks.to_date, hr_salary_blocks.date_col FROM hr_salary_block_entries JOIN hr_salary_blocks ON hr_salary_block_entries.salary_block_id = hr_salary_blocks.id JOIN hr_employees ON hr_salary_block_entries.employee_id = hr_employees.id LEFT JOIN (SELECT employee_id, department_id, position_id, MAX(date_col) as max_date FROM hr_employees_transfers GROUP BY employee_id) AS transfers ON hr_employees.id = transfers.employee_id WHERE (transfers.department_id = COALESCE(NULLIF('" + str(department_id) + "', ''), transfers.department_id));"
         print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()

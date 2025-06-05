@@ -15,7 +15,7 @@ class Ui_Warehouses(object):
     def setupUi(self, Warehouses):
         Warehouses.setObjectName("Warehouses")
         Warehouses.setWindowModality(QtCore.Qt.WindowModal)
-        Warehouses.resize(1366, 554)
+        Warehouses.resize(1366, 684)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -245,7 +245,7 @@ class Ui_Warehouses(object):
         self.gridLayout_6.addWidget(self.groupBox_2, 1, 2, 1, 1)
         Warehouses.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Warehouses)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1366, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1366, 26))
         self.menubar.setObjectName("menubar")
         Warehouses.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(Warehouses)

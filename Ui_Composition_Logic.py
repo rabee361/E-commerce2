@@ -23,8 +23,8 @@ class Ui_Composition_Logic(QDialog):
     def showUi(self):
         window_composition = QDialog()
         self.ui.setupUi(window_composition)
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_composition)
+        self.initialize()
         window_composition.exec()
 
     def initialize(self):
@@ -57,10 +57,10 @@ class Ui_Composition_Logic(QDialog):
     def fetchComposition(self):
         compositions=self.database_operations.fetchComposition(self.product_id)
         for composition in compositions:
-            id = composition[0]
-            name = composition[2]
-            quantity = composition[3]
-            unit = composition[4]
+            id = composition['id']
+            name = composition['name']
+            quantity = composition['quantity']
+            unit = composition['unit']
 
             # Create a empty row at bottom of table
             numRows = self.ui.materials_table.rowCount()
@@ -79,7 +79,7 @@ class Ui_Composition_Logic(QDialog):
 
         data = self.ui.materials_combobox.itemData(self.ui.materials_combobox.currentIndex())
         if data is None or quantity=='' or float(quantity)<= 0.0:
-            win32api.MessageBox(0,'خطأ في المادة، تأكد من وجود مواد أولية، او من الكمية.','خطأ')
+            win32api.MessageBox(0,self.language_manager.translate(),self.language_manager.translate("ERROR"))
         else:
             material_id = data[0]
             self.database_operations.addCompositionMaterial(quantity,unit,material_id,self.product_id)
@@ -87,7 +87,7 @@ class Ui_Composition_Logic(QDialog):
             self.fetchComposition()
 
     def removeCompositionMaterial(self):
-        confirm = win32api.MessageBox(0, "حذف؟", " ", MB_OKCANCEL)
+        confirm = win32api.MessageBox(0, self.language_manager.translate("CONFIRM_DELETE"), self.language_manager.translate("ERROR"), MB_OKCANCEL)
         if confirm == IDCANCEL:
             pass
         else:

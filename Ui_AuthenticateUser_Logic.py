@@ -8,6 +8,7 @@ from PyQt5 import QtCore
 from cryptography.fernet import Fernet
 import base64
 from PyQt5.QtGui import QIcon
+import sys
 from LanguageManager import LanguageManager
 from PyQt5.QtCore import QTranslator
 
@@ -20,7 +21,7 @@ class Ui_AuthenticateUser_Logic(QDialog):
         self.sql_connector = sql_connector
         self.database_operations = DatabaseOperations(sql_connector)
         self.ui = Ui_AuthenticateUser() 
-        self.key = 'YourVerySecretKey123456789012345' # can be set to any 32 bytes string
+        self.key = '7hJkP2sVbNqXzR4dFgT6wYmC1eU9oL3a' # can be set to any 32 bytes string
         self.translator = QTranslator()
         self.language_manager = LanguageManager(self.translator)
 
@@ -40,7 +41,6 @@ class Ui_AuthenticateUser_Logic(QDialog):
         self.ui.cancel_btn.clicked.connect(lambda: self.cancelLogin(window))
         self.ui.password_btn.clicked.connect(self.togglePasswordVisibility)
         self.current_user = ''
-        self.fetchUsers()
         self.ui.login_btn.setDefault(True)
 
     def togglePasswordVisibility(self):
@@ -51,24 +51,21 @@ class Ui_AuthenticateUser_Logic(QDialog):
             self.ui.password_input.setEchoMode(self.ui.password_input.Password)
             self.ui.password_btn.setIcon(QIcon("icons/eye_closed.png"))
 
-    def fetchUsers(self):
-        users = self.database_operations.fetchUsers()
-        self.ui.user_combobox.clear()
-        for user in users:
-            self.ui.user_combobox.addItem(user['username'], user['id'])
-
     def getCurrentUser(self):
         # return the logged in user
         global current_user
         return current_user
 
     def cancelLogin(self, window):
-        window.accept()
+        window.reject()
 
     def authenticateUser(self, window):
         global current_user # to access the current user in this methid and assign it
-        username = self.ui.user_combobox.currentText()
+        username = self.ui.username_input.text()
         password = self.ui.password_input.text()
+        if not username and not password:
+            win32api.MessageBox(0, self.language_manager.translate('USERNAME_AND_PASSWORD_REQUIRED_ERROR'), self.language_manager.translate('ERROR'))
+            return
         # Decrypt the stored password for comparison
         user = self.database_operations.fetchUserByUsername(username)
         if user:
@@ -84,3 +81,5 @@ class Ui_AuthenticateUser_Logic(QDialog):
                     win32api.MessageBox(0, self.language_manager.translate('INVALID_USERNAME_OR_PASSWORD_ERROR'), self.language_manager.translate('ERROR'))
             except Exception as e:
                 win32api.MessageBox(0, self.language_manager.translate('CHECKING_PASSWORD_ERROR'), self.language_manager.translate('ERROR'))
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('INVALID_USERNAME_OR_PASSWORD_ERROR'), self.language_manager.translate('ERROR'))  

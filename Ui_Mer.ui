@@ -1192,6 +1192,7 @@ QLineEdit {
     <addaction name="option_connect_to_database"/>
     <addaction name="option_database_backup"/>
     <addaction name="option_users"/>
+    <addaction name="option_switch_user"/>
     <addaction name="option_settings"/>
     <addaction name="option_synchronizer"/>
     <addaction name="option_exit"/>
@@ -2026,6 +2027,15 @@ QLineEdit {
   <action name="daily_reports">
    <property name="text">
     <string>...تقارير يومية</string>
+   </property>
+  </action>
+  <action name="option_switch_user">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/lock.png</normaloff>icons/lock.png</iconset>
+   </property>
+   <property name="text">
+    <string>...تبديل المستخدم</string>
    </property>
   </action>
  </widget>
