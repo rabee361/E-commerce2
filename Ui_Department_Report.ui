@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>982</width>
-    <height>617</height>
+    <width>1059</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -38,13 +38,13 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0" colspan="2">
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>50</height>
+       <height>16777215</height>
       </size>
      </property>
      <property name="layoutDirection">
@@ -54,10 +54,61 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="1">
+       <widget class="QComboBox" name="department_combobox">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QPushButton" name="calculate_btn">
+        <property name="text">
+         <string>حساب</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QDateEdit" name="from_date"/>
+      </item>
       <item row="0" column="5">
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>إلى:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="select_department_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>من:</string>
         </property>
        </widget>
       </item>
@@ -74,9 +125,6 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QDateEdit" name="from_date"/>
-      </item>
       <item row="0" column="8">
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
@@ -90,67 +138,124 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="department_combobox"/>
-      </item>
-      <item row="0" column="7">
-       <widget class="QPushButton" name="calculate_btn">
-        <property name="text">
-         <string>حساب</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="label">
-        <property name="maximumSize">
-         <size>
-          <width>50</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>من:</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="6">
        <widget class="QDateEdit" name="to_date"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="select_department_btn">
-        <property name="text">
-         <string>🔎</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
+   <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="layoutDirection">
       <enum>Qt::RightToLeft</enum>
      </property>
      <property name="title">
-      <string>GroupBox</string>
+      <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="1" column="3">
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="avg_salary_chart">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
        <widget class="QGroupBox" name="salary_change_chart">
         <property name="title">
          <string/>
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
-       <widget class="QGroupBox" name="avg_salary_chart">
+      <item row="1" column="1">
+       <widget class="QGroupBox" name="employee_num_chart">
         <property name="title">
          <string/>
         </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="new_employees"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>الموظفين الجدد:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="resigned_employees"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>الموظفين المقالين:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLineEdit" name="total_employees"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>اجمالي الموظفين:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLineEdit" name="total_additions"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>اجمالي الاضافات:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLineEdit" name="total_discounts"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>اجمالي الخصومات:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLineEdit" name="total_hr_loans"/>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>اجمالي قيمة السلف:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
-      <item row="0" column="0">
+      <item row="0" column="1">
        <widget class="QGroupBox" name="department_info">
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="layoutDirection">
          <enum>Qt::RightToLeft</enum>
         </property>
@@ -187,13 +292,6 @@
           </widget>
          </item>
         </layout>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QGroupBox" name="employee_num_chart">
-        <property name="title">
-         <string/>
-        </property>
        </widget>
       </item>
      </layout>

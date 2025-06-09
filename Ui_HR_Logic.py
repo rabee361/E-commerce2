@@ -69,8 +69,8 @@ class Ui_HR_Logic(QObject):
         self.filemanager = FileManager()
         self.window.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.window.setWindowState(Qt.WindowMaximized)
-        self.initialize(self.window)
         self.language_manager.load_translated_ui(self.ui, self.window)
+        self.initialize(self.window)
         self.window.show()
         self.loan_map = {}
         self.addition_discount_map = {}
@@ -1030,12 +1030,12 @@ class Ui_HR_Logic(QObject):
         employees_data = self.database_operations.fetchEmployees(state)
         if isinstance(target_ui_element, QTreeWidget):
             for employee_data in employees_data:
-                position_id = employee_data[0]
-                position_name = employee_data[1]
-                employee_id = employee_data[2]
-                employee_name = employee_data[3]
-                department_id = employee_data[4]
-                department_name = employee_data[5]
+                position_id = employee_data['position_id']
+                position_name = employee_data['position_name']
+                employee_id = employee_data['id']
+                employee_name = employee_data['name']
+                department_id = employee_data['department_id']
+                department_name = employee_data['department_name']
                 department_already_in_tree = target_ui_element.findItems(str(department_id), Qt.MatchExactly | Qt.MatchRecursive, 0)  # 0 is the column index in which to search
                 if not department_already_in_tree:
                     item = QTreeWidgetItem([str(department_id), str(department_name), '', '', '', '', ''])
@@ -1188,12 +1188,12 @@ class Ui_HR_Logic(QObject):
                 self.ui.employee_transfer_table.setRowCount(0)
                 employee_transfers = self.database_operations.fetchEmployeeTransfers(selected_employee_id)
                 for employee_transfer in employee_transfers:
-                    id = employee_transfer[0]
-                    date = employee_transfer[1]
-                    position_id = employee_transfer[2]
-                    position_name = employee_transfer[3]
-                    department_id = employee_transfer[4]
-                    department_name = employee_transfer[5]
+                    id = employee_transfer['id']
+                    date = employee_transfer['date_col']
+                    position_id = employee_transfer['position_id']
+                    position_name = employee_transfer['position_name']
+                    department_id = employee_transfer['department_id']
+                    department_name = employee_transfer['department_name']
 
                     # Create a empty row at bottom of table
                     numRows = self.ui.employee_transfer_table.rowCount()
@@ -1229,11 +1229,11 @@ class Ui_HR_Logic(QObject):
                 self.ui.employee_courses_table.setRowCount(0)
                 employee_courses = self.database_operations.fetchEmployeeCourses(selected_employee_id)
                 for course in employee_courses:
-                    id = course[0]
-                    title = course[1]
-                    providor = course[2]
-                    date = course[3]
-                    gpa = course[4]
+                    id = course['id']
+                    title = course['title']
+                    providor = course['provider']
+                    date = course['date_col']
+                    gpa = course['gpa']
 
                     numRows = self.ui.employee_courses_table.rowCount()
                     self.ui.employee_courses_table.insertRow(numRows)
@@ -1373,8 +1373,8 @@ class Ui_HR_Logic(QObject):
         self.ui.salaries_discount_addition_currency_combobox.clear()
 
         for currencie in currencies:
-            id = currencie[0]
-            display_text = currencie[1]
+            id = currencie['id']
+            display_text = currencie['name']
 
             # Now add the currency items to each combobox
             self.ui.employee_salary_currency_combobox.addItem(display_text, id)
@@ -4649,7 +4649,7 @@ class Ui_HR_Logic(QObject):
         self.ui.insurance_result_tree.addTopLevelItem(root_item)
 
     def openInsuranceReportWindow(self):
-        Ui_InsuranceReport_Logic(self.sql_connector).showUi()
+        Ui_Insurance_Report_Logic(self.sql_connector).showUi()
 
     def processInsurances(self):
         messagebox_result = win32api.MessageBox(None, self.language_manager.translate('INSURANCE_ALERT_MULTIPLE_JOURNAL_ENTRIES'), self.language_manager.translate('ALERT'), MB_YESNO)
@@ -4669,8 +4669,10 @@ class Ui_HR_Logic(QObject):
             insurance_to_date_dateObject = datetime.strptime(insurance_to_date, '%Y-%m-%d').date()
             for insurance_payroll in previous_insurance_payrolls:
                 id = insurance_payroll['id']
-                from_date = datetime.strptime(insurance_payroll['from_date'], '%Y-%m-%d').date()
-                to_date = datetime.strptime(insurance_payroll['to_date'], '%Y-%m-%d').date()
+                # from_date = datetime.strptime(insurance_payroll['from_date'], '%Y-%m-%d').date()
+                # to_date = datetime.strptime(insurance_payroll['to_date'], '%Y-%m-%d').date()
+                from_date = insurance_payroll['from_date']
+                to_date = insurance_payroll['to_date']
                 date = insurance_payroll['date_col']
 
                 if (from_date <= insurance_from_date_dateObject <= to_date) or (

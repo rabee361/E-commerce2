@@ -231,40 +231,6 @@ class Ui_GrouppedMaterialComposition_Logic(QDialog):
                 quantity2=float(quantity3)*unit3_to_unit2_rate
                 self.ui.quantity2_input.setText(str(round(quantity2, 4)))
 
-    # def addMaterial(self):
-    #     selected_tree_item = self.ui.materials_tree.currentItem()
-    #     composition_id = self.ui.composition_combobox.currentText() or ''
-    #     selected_material_id = selected_tree_item.text(1)
-    #     selected_material_name = selected_tree_item.text(2)
-        
-    #     if selected_material_id:
-    #         quantity = self.ui.quantity1_input.text()
-    #         unit = self.ui.unit1_combobox.currentData()
-    #         unit_name = self.ui.unit1_combobox.currentText()
-            
-    #         if not quantity:
-    #             win32api.MessageBox(0,self.language_manager.translate("QUANTITY_MUST_BE_ENTERED"), self.language_manager.translate("ERROR")) # type: ignore
-    #         else:
-    #             # Find or create composition parent row
-    #             root = self.ui.material_composition_tree.invisibleRootItem()
-    #             composition_parent = None
-    #             for i in range(root.childCount()):
-    #                 item = root.child(i)
-    #                 if item.text(0) == str(composition_id):
-    #                     composition_parent = item
-    #                     break
-                
-    #             if not composition_parent:
-    #                 # Create new composition parent
-    #                 composition_parent = QTreeWidgetItem(['',str(composition_id), '', '', '', '','','',''])
-    #                 composition_parent.setBackground(0, QtCore.Qt.lightGray)
-    #                 self.ui.material_composition_tree.addTopLevelItem(composition_parent)
-                
-    #             # Create and add material item under composition parent
-    #             material_item = QTreeWidgetItem(['','','',str(selected_material_name), str(selected_material_id), str(quantity), str(unit_name), str(unit)])
-    #             for i in range(material_item.columnCount()):
-    #                 material_item.setBackground(i, QtCore.Qt.blue)
-    #             composition_parent.addChild(material_item)
 
     def addMaterial(self):
         selected_tree_item = self.ui.materials_tree.currentItem()

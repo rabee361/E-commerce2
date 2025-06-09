@@ -51,7 +51,7 @@ class Ui_Insurance_Report_Logic(object):
         for salary_block in salary_blocks:
             self.ui.salary_block_combobox.addItem(salary_block[1], salary_block[0])
 
-    def fetchPositionPayrolls(self):
+    def fetchPositionInsurancePayrolls(self):
         from_date = self.ui.from_date.text()
         to_date = self.ui.to_date.text()
         salary_block_id = self.ui.salary_block_combobox.currentData()
@@ -60,7 +60,7 @@ class Ui_Insurance_Report_Logic(object):
         elif salary_block_id:
             payrolls = self.database_operations.fetchPositionPayrollsBySalaryBlock(salary_block_id)
         
-    def fetchDepartmentPayrolls(self):
+    def fetchDepartmentInsurancePayrolls(self):
         pass
 
     def calculate(self):

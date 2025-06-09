@@ -384,8 +384,6 @@ class DatabaseOperations(object):
         # print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
-        self.sqlconnector.conn.commit()
-        return rows
 
     @check_permission('materials', 'r')
     def fetchRawMaterial(self, material_id) -> list:
@@ -762,6 +760,15 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    def fetchMaterialCompositions(self, groupped_material_id='') -> list:
+        print("DATABASE> Fetch compositions")
+        query = "SELECT * FROM compositions WHERE `material` = '" + str(groupped_material_id) + "'"
+        print(query)
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
+        self.sqlconnector.conn.commit()
+        return rows
+
     @check_permission('materials', 'r')
     def fetchMaterialCompositionsData(self, groupped_material_id) -> list:
         print("DATABASE> Fetch composition")
@@ -777,14 +784,6 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    def fetchMaterialCompositions(self, groupped_material_id='') -> list:
-        print("DATABASE> Fetch compositions")
-        query = "SELECT * FROM compositions WHERE `material` = '" + str(groupped_material_id) + "'"
-        print(query)
-        self.cursor.execute(query)
-        rows = self.cursor.fetchall()
-        self.sqlconnector.conn.commit()
-        return rows
 
     def fetchMaterialComposition(self, id):
         print("DATABASE> Fetch composition")
@@ -3479,11 +3478,15 @@ class DatabaseOperations(object):
             return None
 
     @check_permission('warehouses', 'r')
-    def fetchWarehouses(self, account='', final_account='') -> list:
+    def fetchWarehouses(self, account='', warehouse_filter='all', final_account='') -> list:
         print("DATABASE> Fetch warehouses")
-        query = "SELECT `warehouseslist`.`id`, `warehouseslist`.`name`, `warehouseslist`.`code`, `parent`.`id` as `parent_id`, `parent`.`name` as `parent_name`, `warehouseslist`.`account`, `warehouseslist`.`codename`, `warehouseslist`.`capacity` FROM `warehouseslist` LEFT JOIN `warehouseslist` AS `parent` ON `warehouseslist`.`parent_warehouse`=`parent`.`id` LEFT JOIN `accounts` ON `warehouseslist`.`account`=`accounts`.`id` WHERE IFNULL(`warehouseslist`.`account`,'0')=IFNULL(NULLIF('" + str(
-            account) + "',''),IFNULL(`warehouseslist`.`account`,'0')) AND IFNULL(`accounts`.`final_account`,'0')=IFNULL(NULLIF('" + str(
-            final_account) + "',''),IFNULL(`accounts`.`final_account`,'0')) ORDER BY `warehouseslist`.`id`, `parent_id` ASC;"
+        if warehouse_filter == 'include_in_stock':
+            query = "SELECT `warehouseslist`.`id`, `warehouseslist`.`name`, `warehouseslist`.`include_in_stock`, `warehouseslist`.`code`, `parent`.`id` as `parent_id`, `parent`.`name` as `parent_name`, `warehouseslist`.`account`, `warehouseslist`.`codename`, `warehouseslist`.`capacity` FROM `warehouseslist` LEFT JOIN `warehouseslist` AS `parent` ON `warehouseslist`.`parent_warehouse`=`parent`.`id` LEFT JOIN `accounts` ON `warehouseslist`.`account`=`accounts`.`id` WHERE IFNULL(`warehouseslist`.`account`,'0')=IFNULL(NULLIF('" + str(account) + "',''),IFNULL(`warehouseslist`.`account`,'0')) AND `warehouseslist`.`include_in_stock`='1' AND IFNULL(`accounts`.`final_account`,'0')=IFNULL(NULLIF('" + str(final_account) + "',''),IFNULL(`accounts`.`final_account`,'0')) ORDER BY `warehouseslist`.`id`, `parent_id` ASC;"
+        elif warehouse_filter == 'not_in_stock':
+            query = "SELECT `warehouseslist`.`id`, `warehouseslist`.`name`, `warehouseslist`.`include_in_stock`, `warehouseslist`.`code`, `parent`.`id` as `parent_id`, `parent`.`name` as `parent_name`, `warehouseslist`.`account`, `warehouseslist`.`codename`, `warehouseslist`.`capacity` FROM `warehouseslist` LEFT JOIN `warehouseslist` AS `parent` ON `warehouseslist`.`parent_warehouse`=`parent`.`id` LEFT JOIN `accounts` ON `warehouseslist`.`account`=`accounts`.`id` WHERE IFNULL(`warehouseslist`.`account`,'0')=IFNULL(NULLIF('" + str(account) + "',''),IFNULL(`warehouseslist`.`account`,'0')) AND `warehouseslist`.`include_in_stock`='0' AND IFNULL(`accounts`.`final_account`,'0')=IFNULL(NULLIF('" + str(final_account) + "',''),IFNULL(`accounts`.`final_account`,'0')) ORDER BY `warehouseslist`.`id`, `parent_id` ASC;"
+        else:
+            query = "SELECT `warehouseslist`.`id`, `warehouseslist`.`name`, `warehouseslist`.`include_in_stock`, `warehouseslist`.`code`, `parent`.`id` as `parent_id`, `parent`.`name` as `parent_name`, `warehouseslist`.`account`, `warehouseslist`.`codename`, `warehouseslist`.`capacity` FROM `warehouseslist` LEFT JOIN `warehouseslist` AS `parent` ON `warehouseslist`.`parent_warehouse`=`parent`.`id` LEFT JOIN `accounts` ON `warehouseslist`.`account`=`accounts`.`id` WHERE IFNULL(`warehouseslist`.`account`,'0')=IFNULL(NULLIF('" + str(account) + "',''),IFNULL(`warehouseslist`.`account`,'0')) AND IFNULL(`accounts`.`final_account`,'0')=IFNULL(NULLIF('" + str(final_account) + "',''),IFNULL(`accounts`.`final_account`,'0')) ORDER BY `warehouseslist`.`id`, `parent_id` ASC;"
+
         print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
@@ -3577,10 +3580,12 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
 
     @check_permission('warehouses', 'rw')
-    def updateWarehouse(self, id, name, code, address, manager, capacity, capacity_unit, notes, parent, account) -> None:
+    def updateWarehouse(self, id, name, code, include_in_stock, address, manager, capacity, capacity_unit, notes, parent, account) -> None:
         print("DATABASE> Update warehouse #" + str(code))
 
         new_codename = "warehouse." + str(name).lower()
+
+        include_in_stock = 1 if include_in_stock else 0
 
         # fetch old codename
         query = "SELECT `codename` FROM `warehouseslist` WHERE `id`='" + str(id) + "'"
@@ -3629,7 +3634,7 @@ class DatabaseOperations(object):
                 new_codename) + "',''), `parent_warehouse`=NULLIF('" + str(parent) + "',''), `account`=NULLIF('" + str(
                 account) + "',''), `address`=NULLIF('" + str(address) + "',''), `manager`=NULLIF('" + str(
                 manager) + "',''), `capacity`=NULLIF('" + str(capacity) + "',''), `capacity_unit`=NULLIF('" + str(
-                capacity_unit) + "',''), `notes`=NULLIF('" + str(notes) + "','') WHERE `id`='" + str(id) + "'"
+                capacity_unit) + "',''), `include_in_stock`=NULLIF('" + str(include_in_stock) + "',''), `notes`=NULLIF('" + str(notes) + "','') WHERE `id`='" + str(id) + "'"
             print(query)
             self.cursor.execute(query)
             self.sqlconnector.conn.commit()
@@ -3807,59 +3812,11 @@ class DatabaseOperations(object):
             return rows
 
     @check_permission('warehouses', 'r')
-    def fetchWarehouseMaterialQuantity(self, material_id) -> dict:
-        # Get all warehouses
-        warehouses = self.fetchWarehouses()
-        if not warehouses:
-            return {'quantity': 0, 'unit': None}
-
-        # Get material's base unit
-        material_query = "SELECT `unit1` FROM `materials` WHERE `id` = %s"
-        self.cursor.execute(material_query, (material_id,))
-        material_row = self.cursor.fetchone()
-        if not material_row:
-            return {'quantity': 0, 'unit': None}
-
-        base_unit = material_row['unit1']
-        total_quantity = 0
-
-        # Check each warehouse for the material
-        for warehouse in warehouses:
-            warehouse_codename = warehouse['codename']
-            if warehouse_codename:
-                # Get all entries for this material in this warehouse
-                query = f"""
-                    SELECT we.quantity, we.unit
-                    FROM `{warehouse_codename}` we
-                    WHERE we.material_id = '{material_id}'
-                """
-                self.cursor.execute(query)
-                entries = self.cursor.fetchall()
-
-                # Convert each entry's quantity to base unit and sum
-                for entry in entries:
-                    entry_quantity = float(entry['quantity'])
-                    entry_unit = entry['unit']
-
-                    if entry_unit != base_unit:
-                        # Convert to base unit
-                        conversion_rate = self.fetchUnitConversionValueBetween(entry_unit, base_unit)
-                        if conversion_rate:
-                            entry_quantity = entry_quantity * conversion_rate
-
-                    total_quantity += entry_quantity
-
-        return {
-            'quantity': round(total_quantity, 2),
-            'unit': base_unit
-        }
-
-    @check_permission('warehouses', 'r')
     def fetchMaterialWarehouses(self, material_id, material_source='all', sort='asc') -> dict:  # return the warehouses that contains a specific material, along with the quantity in each warehouse
         # material_source specifies whether the material came to the warehouse from an invoice or from a manufacture process
 
         result = {}  # warehouse_id:quantity
-        warehouses = self.fetchWarehouses()  # get a list of warehouses
+        warehouses = self.fetchWarehouses(include='reject')  # get a list of warehouses
         for warehouse in warehouses:
             warehouse_id = warehouse['id']
             warehouse_name = warehouse['name']
@@ -3867,6 +3824,7 @@ class DatabaseOperations(object):
             warehouse_parent_id = warehouse['parent_id']
             warehouse_parent_name = warehouse['parent_name']
             warehouse_account_id = warehouse['account']
+            warehouse_reject = warehouse['reject']
             warehouse_codename = warehouse['codename']
 
             # Build the query dynamically based on the source value
@@ -4720,21 +4678,18 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    # @check_permission('hr_employees', 'r')
+    @check_permission('hr_employees', 'r')
     def fetchEmployeesCount(self, position='', department_id='', from_date='', to_date='') -> dict:
         print("DATABASE> Fetch employees count")
-        query = """
-            SELECT
-                SUM(CASE WHEN resignation_date IS NULL THEN 1 ELSE 0 END) as current_count,
-                SUM(CASE WHEN resignation_date IS NOT NULL THEN 1 ELSE 0 END) as resigned_count,
-                COUNT(*) as total_count
-            FROM hr_employees
-            WHERE position_id = COALESCE(NULLIF('" + str(position) + "',''), position_id)
-            AND department_id = COALESCE(NULLIF('" + str(department_id) + "',''), department_id)
-        """
+        query = "SELECT SUM(CASE WHEN `e`.`resignation_date` IS NULL THEN 1 ELSE 0 END) as `current_count`, SUM(CASE WHEN `e`.`resignation_date` IS NOT NULL THEN 1 ELSE 0 END) as `resigned_count`, COUNT(*) as `total_count` FROM `hr_employees` `e` LEFT JOIN (SELECT `employee_id`, `position_id`, `department_id` FROM `hr_employees_transfers` WHERE (`employee_id`, `date_col`) IN (SELECT `employee_id`, MAX(`date_col`) FROM `hr_employees_transfers` GROUP BY `employee_id`)) `t` ON `e`.`id` = `t`.`employee_id` WHERE `t`.`position_id` = COALESCE(NULLIF('" + str(position) + "',''), `t`.`position_id`) AND `t`.`department_id` = COALESCE(NULLIF('" + str(department_id) + "',''), `t`.`department_id`)"
         self.cursor.execute(query)
         rows = self.cursor.fetchone()
-        return rows
+        self.sqlconnector.conn.commit()
+        return {
+            'current_count': rows[0] if rows[0] is not None else 0,
+            'resigned_count': rows[1] if rows[1] is not None else 0,
+            'total_count': rows[2] if rows[2] is not None else 0,
+        }
 
     @check_permission('hr_employees', 'r')
     def fetchEmployee(self, id='', employment_request_id='') -> dict:
@@ -5450,6 +5405,25 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
     @check_permission('hr_loans', 'r')
+    def fetchHRLoans(self, position_id='', department_id='', start_date='', end_date=''):
+        query = "SELECT hr_loans.*, SUM(hr_loans.value_col) AS total_loans_value , hr_loans.value_col AS remaining_amount, hr_employees.name, hr_departments.name AS department_name, hr_positions.position_name AS position_name FROM hr_loans JOIN hr_employees ON hr_loans.employee_id = hr_employees.id LEFT JOIN (SELECT t1.employee_id, t1.department_id, t1.position_id FROM hr_employees_transfers t1 JOIN (SELECT employee_id, MAX(date_col) as max_date FROM hr_employees_transfers GROUP BY employee_id) t2 ON t1.employee_id = t2.employee_id AND t1.date_col = t2.max_date) AS latest_transfers ON hr_employees.id = latest_transfers.employee_id LEFT JOIN hr_departments ON latest_transfers.department_id = hr_departments.id LEFT JOIN hr_positions ON latest_transfers.position_id = hr_positions.id WHERE hr_loans.date_col >= COALESCE(NULLIF('" + str(start_date) + "', ''), DATE('1000-01-01')) AND hr_loans.date_col <= COALESCE(NULLIF('" + str(end_date) + "', ''), DATE('9999-12-31'))"
+
+        # Add position filter if provided
+        if position_id:
+            query += " AND latest_transfers.position_id = '" + str(position_id) + "'"
+            
+        # Add department filter if provided
+        if department_id:
+            query += " AND latest_transfers.department_id = '" + str(department_id) + "'"
+            
+        query += " ORDER BY hr_employees.name, hr_loans.date_col DESC;"
+
+        print(query)
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
+        return rows
+
+    @check_permission('hr_loans', 'r')
     def fetchLoansOfEmployee(self, employee_id, from_date='') -> list:
         query = "SELECT hr_loans.*, currencies.name AS currency_name, accounts.name AS account_name, opposite_accounts.name AS opposite_account_name, COALESCE(payments.total_payments, 0) AS total_payments, hr_loans.value_col - COALESCE(payments.total_payments, 0) AS remaining_amount, subtract_currencies.name AS subtract_currency_name FROM hr_loans JOIN currencies ON hr_loans.currency = currencies.id JOIN accounts ON hr_loans.account_id = accounts.id JOIN accounts AS opposite_accounts ON hr_loans.opposite_account_id = opposite_accounts.id LEFT JOIN currencies AS subtract_currencies ON hr_loans.subtract_currency = subtract_currencies.id LEFT JOIN (SELECT hr_loans_payment.loan_id, SUM(hr_loans_payment.value_col) AS total_payments FROM hr_loans_payment GROUP BY hr_loans_payment.loan_id) AS payments ON hr_loans.id = payments.loan_id WHERE hr_loans.employee_id = '" + str(
             employee_id) + "' AND hr_loans.date_col >= COALESCE(NULLIF('" + str(from_date) + "', ''), DATE('1000-01-01'));"
@@ -5937,14 +5911,6 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    def fetchPositionPayrolls(self, position_id, from_date='', to_date=''):
-        query = "SELECT hr_salary_block_entries.*, hr_salary_blocks.from_date, hr_salary_blocks.to_date, hr_salary_blocks.date_col FROM hr_salary_block_entries JOIN hr_salary_blocks ON hr_salary_block_entries.salary_block_id = hr_salary_blocks.id JOIN hr_employees ON hr_salary_block_entries.employee_id = hr_employees.id LEFT JOIN (SELECT employee_id, department_id, position_id, MAX(date_col) as max_date FROM hr_employees_transfers GROUP BY employee_id) AS transfers ON hr_employees.id = transfers.employee_id WHERE (transfers.department_id = COALESCE(NULLIF('" + str(department_id) + "', ''), transfers.department_id));"
-        print(query)
-        self.cursor.execute(query)
-        rows = self.cursor.fetchall()
-        self.sqlconnector.conn.commit()
-        return rows
-
     @check_permission('hr_salaries', 'r')
     def fetchPayrollDetails(self, payroll_id='', from_date='', to_date='', statement='', super=False, commit=True) -> list:
         # super: defines whether to select the records with sarly_block range that falls WITHIN from_date-to_date or out of it.
@@ -6015,7 +5981,7 @@ class DatabaseOperations(object):
         return rows
 
     @check_permission('hr_insurance', 'r')
-    def fetchInsurancePayrollsDetails(self, from_date='', to_date='') -> list:
+    def fetchInsurancePayrollsDetails(self, position_id='', department_id='', from_date='', to_date='') -> list:
         query = "SELECT hr_insurance_block_entries.id, hr_insurance_block_entries.insurance_block_id, hr_insurance_block_entries.employee_id, hr_insurance_block_entries.cycles, hr_insurance_block_entries.value_col, hr_insurance_block_entries.currency, hr_employees.name, currencies.name AS currency_name, hr_insurance_blocks.from_date, hr_insurance_blocks.to_date FROM hr_insurance_block_entries LEFT JOIN hr_employees ON hr_insurance_block_entries.employee_id = hr_employees.id LEFT JOIN currencies ON hr_insurance_block_entries.currency = currencies.id LEFT JOIN hr_insurance_blocks ON hr_insurance_block_entries.insurance_block_id = hr_insurance_blocks.id WHERE hr_insurance_blocks.from_date >= '" + str(from_date) + "'" + " AND hr_insurance_blocks.to_date <= '" + str(to_date) + "'"
 
         # print(query)

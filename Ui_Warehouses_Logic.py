@@ -265,11 +265,12 @@ class Ui_Warehouses_Logic(QDialog):
         # Build warehouses tree
         children_queue = []
         for warehouse in warehouses:
-            id = warehouse[0]
-            name = warehouse[1]
-            code = warehouse[2]
-            parent_id = warehouse[3]
-            parent_name = warehouse[4]
+            id = warehouse['id']
+            name = warehouse['name']
+            code = warehouse['code']
+            parent_id = warehouse['parent_id']
+            parent_name = warehouse['parent_name']
+            include_in_stock = warehouse['include_in_stock']
 
             # check if it's a root element or a child element
             if (not parent_id):
@@ -354,7 +355,7 @@ class Ui_Warehouses_Logic(QDialog):
             id = material['id']
             code = material['code']
             name = material['name']
-            # codename = material['codename']
+            include_in_stock = material['include_in_stock']
             date = material['date_col']
             parent_warehouse = material['parent_warehouse']
             address = material['address']
@@ -386,6 +387,7 @@ class Ui_Warehouses_Logic(QDialog):
             self.ui.manager_input.setText(str(manager))
             self.ui.capacity_input.setText(str(capacity))
             self.ui.notes_input.setText(str(notes))
+            self.ui.include_in_stock_checkbox.setChecked(include_in_stock)
             self.ui.capacity_unit_combobox.setCurrentIndex(self.ui.capacity_unit_combobox.findData(capacity_unit))
             
             self.ui.parent_combobox.setCurrentIndex(self.ui.parent_combobox.findData(parent_warehouse))
@@ -568,6 +570,7 @@ class Ui_Warehouses_Logic(QDialog):
             warehouse_id = selected_warehouse.text(2)
             code = self.ui.code_input.text()
             name = self.ui.name_input.text()
+            include_in_stock = True if self.ui.include_in_stock_checkbox.isChecked() else False
             address = self.ui.address_input.text()
             manager = self.ui.manager_input.text()
             capacity = self.ui.capacity_input.text()
@@ -604,7 +607,7 @@ class Ui_Warehouses_Logic(QDialog):
                         win32api.MessageBox(0, self.language_manager.translate("ALERT_WAREHOUSE_ALREADY_EXISTS"), self.language_manager.translate("ERROR")) 
                         return
 
-                self.database_operations.updateWarehouse(warehouse_id, name, code, address, manager, capacity, capacity_unit, notes,parent, account)
+                self.database_operations.updateWarehouse(warehouse_id, name, code, include_in_stock, address, manager, capacity, capacity_unit, notes,parent, account)
                 self.fetchWarehouses()
                 self.fetchWarehouseMaterials()
 
@@ -640,9 +643,6 @@ class Ui_Warehouses_Logic(QDialog):
             window = Ui_MaterialMove_Logic(self.sql_connector, source_warehouse=warehouse_id, warehouse_entry=warehouse_entry_id, independent=self.independent)
             window.showUi()
             self.fetchWarehouseMaterials()
-
-
-
 
 
     def DisableAccountInputs(self):
