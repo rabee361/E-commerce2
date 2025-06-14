@@ -7,6 +7,8 @@ from LanguageManager import LanguageManager
 from PyQt5.QtCore import QTranslator
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QTableWidgetItem
+from MyTableWidgetItem import MyTableWidgetItem
 
 
 class Ui_Insurance_Report_Logic(object):
@@ -29,40 +31,47 @@ class Ui_Insurance_Report_Logic(object):
         window.exec()
 
     def initialize(self):
-        self.ui.filter_combobox.addItem(self.language_manager.translate("DATE"), "date")
-        self.ui.filter_combobox.addItem(self.language_manager.translate("SALARY_BLOCK"), "salary_block")
-        self.ui.filter_combobox.currentIndexChanged.connect(lambda: self.setFilterType())
         self.ui.to_date.setDate(QDate.currentDate())
         self.ui.calc_btn.clicked.connect(lambda: self.calculate())
 
-    def setFilterType(self):
-        filter_type = self.ui.filter_combobox.currentData()
-        if filter_type == "date":
-            self.ui.salary_block_combobox.setDisabled(True)
-            self.ui.from_date.setDisabled(False)
-            self.ui.to_date.setDisabled(False)
-        elif filter_type == "salary_block":
-            self.ui.salary_block_combobox.setDisabled(False)
-            self.ui.from_date.setDisabled(True)
-            self.ui.to_date.setDisabled(True)
+    def fetchDepartmentAvgfInsurance(self, from_date, to_date):
+        insurance_info = self.database_operations.fetchDepartmentAvgfInsurance(from_date, to_date)
+        self.ui.department_insurance_table.setRowCount(0)
+        for insurance in insurance_info:
+            position_name = insurance['position_name']
+            avg = insurance['avg_insurance']
+            sum = insurance['sum_insurance']
+            numRows = self.ui.department_insurance_table.rowCount()
+            self.ui.department_insurance_table.setItem(numRows, 0, QTableWidgetItem(str(position_name)))
+            self.ui.department_insurance_table.setItem(numRows, 1, QTableWidgetItem(str(sum)))
+            self.ui.department_insurance_table.setItem(numRows, 2, QTableWidgetItem(str(avg)))
 
-    def fetchInsuranceBlocks(self):
-        salary_blocks = self.database_operations.fetchInsurancePayrollsDetails()
-        for salary_block in salary_blocks:
-            self.ui.salary_block_combobox.addItem(salary_block[1], salary_block[0])
+    def fetchPositionAvgfInsurance(self, from_date, to_date):
+        insurance_info = self.database_operations.fetchPositionAvgfInsurance(from_date, to_date)
+        self.ui.positions_table.setRowCount(0)
+        for insurance in insurance_info:
+            avg = insurance['avg_insurance']
+            sum = insurance['sum_insurance']
+            numRows = self.ui.positions_table.rowCount()
+            self.ui.positions_table.setItem(numRows, 1, QTableWidgetItem(str(sum)))
+            self.ui.positions_table.setItem(numRows, 2, QTableWidgetItem(str(avg)))
 
-    def fetchPositionInsurancePayrolls(self):
-        from_date = self.ui.from_date.text()
-        to_date = self.ui.to_date.text()
-        salary_block_id = self.ui.salary_block_combobox.currentData()
-        if from_date and to_date:
-            payrolls = self.database_operations.fetchPositionPayrolls(from_date, to_date)
-        elif salary_block_id:
-            payrolls = self.database_operations.fetchPositionPayrollsBySalaryBlock(salary_block_id)
-        
-    def fetchDepartmentInsurancePayrolls(self):
-        pass
+    def fetchAvgfInsurance(self, from_date, to_date):
+        insurance_info = self.database_operations.fetchAvgfInsurance(from_date, to_date)
+        self.ui.insurance_table.setRowCount(0)
+        for insurance in insurance_info:
+            avg = insurance['avg_insurance']
+            sum = insurance['sum_insurance']
+            numRows = self.ui.insurance_table.rowCount()
+            self.ui.insurance_table.setItem(numRows, 0, QTableWidgetItem(str(sum)))
+            self.ui.insurance_table.setItem(numRows, 1, QTableWidgetItem(str(avg)))
 
     def calculate(self):
-        insurance_blocks = self.database_operations.fetchInsurancePayrollsDetails()
+        from_date = self.ui.from_date.text()
+        to_date = self.ui.to_date.text()
+        self.fetchDepartmentAvgfInsurance(from_date, to_date)
+        self.fetchPositionAvgfInsurance(from_date, to_date)
+        self.fetchAvgfInsurance(from_date, to_date)
 
+    def exportExcel(self):
+        pass

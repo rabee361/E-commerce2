@@ -45,7 +45,7 @@ class Ui_Salary_Report_Logic(object):
         self.ui.select_position_btn.clicked.connect(lambda: self.openSelectPositionWindow())
 
     def openSelectDepartmentWindow(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'departments')
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'departments', checkable=True)
         result = data_picker.showUi()
         if result is not None:
             for i in range(self.ui.department_combobox.count()):
@@ -54,7 +54,7 @@ class Ui_Salary_Report_Logic(object):
                     break
 
     def openSelectPositionWindow(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'positions',checkable=True)
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'positions', checkable=True)
         result = data_picker.showUi()
         if result is not None:
             for i in range(self.ui.position_combobox.count()):
@@ -65,15 +65,15 @@ class Ui_Salary_Report_Logic(object):
     def fetchDepartments(self):
         departments = self.database_operations.fetchDepartments()
         for department in departments:
-            id = department[0]
-            name = department[1]
+            id = department['id']
+            name = department['name']
             self.ui.department_combobox.addItem(name, id)
 
     def fetchPositions(self):
         positions = self.database_operations.fetchPositions()
         for position in positions:
-            id = position[0]
-            position_name = position[1]
+            id = position['id']
+            position_name = position['name']
             self.ui.position_combobox.addItem(position_name, id)
 
     def fetchCurrencies(self):

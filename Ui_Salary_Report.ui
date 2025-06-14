@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>846</width>
-    <height>509</height>
+    <width>952</width>
+    <height>521</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -65,35 +65,6 @@
          <string/>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="10">
-          <widget class="QPushButton" name="calculate_btn">
-           <property name="maximumSize">
-            <size>
-             <width>50</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>حساب</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="7">
-          <widget class="QDateEdit" name="to_date_input"/>
-         </item>
-         <item row="0" column="6">
-          <widget class="QLabel" name="label_5">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>الى:</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_8">
            <property name="maximumSize">
@@ -110,23 +81,7 @@
          <item row="0" column="1">
           <widget class="QComboBox" name="salary_cycle_combobox"/>
          </item>
-         <item row="0" column="10">
-          <widget class="QLabel" name="label_5">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>من:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="13">
-          <widget class="QDateEdit" name="to_date_input_3"/>
-         </item>
-         <item row="0" column="5">
+         <item row="0" column="2">
           <widget class="QLabel" name="label_7">
            <property name="maximumSize">
             <size>
@@ -142,10 +97,99 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="9">
-          <widget class="QComboBox" name="currency_combobox"/>
+         <item row="0" column="3">
+          <widget class="QComboBox" name="position_combobox">
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QToolButton" name="select_position_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QLabel" name="label_9">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>القسم:</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6">
+          <widget class="QComboBox" name="department_combobox">
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7">
+          <widget class="QToolButton" name="select_department_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
          </item>
          <item row="0" column="8">
+          <widget class="QLabel" name="label_5">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>من:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="9">
+          <widget class="QDateEdit" name="from_date_input"/>
+         </item>
+         <item row="0" column="10">
+          <widget class="QLabel" name="label_5">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>الى:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="11">
+          <widget class="QDateEdit" name="to_date_input"/>
+         </item>
+         <item row="0" column="12">
           <widget class="QLabel" name="label_4">
            <property name="maximumSize">
             <size>
@@ -157,6 +201,9 @@
             <string>العملة:</string>
            </property>
           </widget>
+         </item>
+         <item row="0" column="13">
+          <widget class="QComboBox" name="currency_combobox"/>
          </item>
          <item row="0" column="14">
           <widget class="QPushButton" name="calculate_btn">
@@ -171,23 +218,26 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="salary_cycle_combobox"/>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>🔎</string>
-           </property>
-          </widget>
-         </item>
         </layout>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>13</y>
+           <width>16</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </widget>
       </item>
       <item row="1" column="0">
@@ -205,7 +255,7 @@
         </column>
         <column>
          <property name="text">
-          <string>المادة</string>
+          <string>الاجمالي</string>
          </property>
          <property name="textAlignment">
           <set>AlignTrailing|AlignVCenter</set>
@@ -213,7 +263,7 @@
         </column>
         <column>
          <property name="text">
-          <string>الكمية</string>
+          <string>العملة</string>
          </property>
          <property name="textAlignment">
           <set>AlignTrailing|AlignVCenter</set>
@@ -221,7 +271,23 @@
         </column>
         <column>
          <property name="text">
-          <string>الواحدة</string>
+          <string>السلف</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>الخصومات</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>الاضافات</string>
          </property>
          <property name="textAlignment">
           <set>AlignTrailing|AlignVCenter</set>

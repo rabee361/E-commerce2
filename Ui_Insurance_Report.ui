@@ -38,113 +38,17 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>الفلتر:</string>
-        </property>
-       </widget>
+      <item row="0" column="3">
+       <widget class="QDateEdit" name="to_date"/>
       </item>
-      <item row="0" column="10">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>764</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="0" column="7">
+      <item row="0" column="2">
        <widget class="QLabel" name="label_4">
         <property name="text">
          <string>إلى:</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
-       <widget class="QComboBox" name="salary_block_combobox">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-        background-color: #fafafa;
-        border: 1px solid lightgrey;		
-		height: 22px;
-		color: black;
-    }
-    QComboBox::drop-down {
-        border: none;
-    }</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QToolButton" name="select_salary_block_btn">
-        <property name="text">
-         <string>🔎</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="9">
-       <widget class="QPushButton" name="calc_btn">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>عرض</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="filter_combobox">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="label_3">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>دفعة الراتب:</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
+      <item row="0" column="0">
        <widget class="QLabel" name="label">
         <property name="maximumSize">
          <size>
@@ -157,11 +61,34 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="6">
-       <widget class="QDateEdit" name="from_date"/>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="calc_btn">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>عرض</string>
+        </property>
+       </widget>
       </item>
-      <item row="0" column="8">
-       <widget class="QDateEdit" name="to_date"/>
+      <item row="0" column="5">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>764</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="from_date"/>
       </item>
      </layout>
     </widget>
@@ -173,7 +100,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="1" column="1">
-       <widget class="QTableWidget" name="clients_table">
+       <widget class="QTableWidget" name="department_insurance_table">
         <column>
          <property name="text">
           <string>القسم</string>
@@ -219,7 +146,7 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QTableWidget" name="governorates_table">
+       <widget class="QTableWidget" name="positions_table">
         <property name="maximumSize">
          <size>
           <width>350</width>
@@ -271,7 +198,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QTableWidget" name="comparison_table">
+       <widget class="QTableWidget" name="insurance_table">
         <property name="maximumSize">
          <size>
           <width>280</width>

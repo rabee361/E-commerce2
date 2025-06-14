@@ -29,35 +29,15 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_26">
+      <item row="10" column="1" colspan="2">
+       <widget class="QDateEdit" name="course_date_input"/>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="name_label_2">
         <property name="text">
          <string>الاسم:</string>
         </property>
        </widget>
-      </item>
-      <item row="8" column="1" colspan="2">
-       <widget class="QDateEdit" name="course_date_input"/>
-      </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="course_costs_account_combobox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="job_title_label_3">
-        <property name="text">
-         <string>الحساب:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="QLineEdit" name="course_providor_input"/>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="department_label_2">
@@ -73,39 +53,66 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="2">
-       <widget class="QPushButton" name="select_course_costs_account_btn">
-        <property name="text">
-         <string>...اختيار</string>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="course_costs_account_combobox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="1" colspan="2">
-       <widget class="QLineEdit" name="course_place_input"/>
+      <item row="4" column="0">
+       <widget class="QLabel" name="job_title_label_3">
+        <property name="text">
+         <string>الحساب:</string>
+        </property>
+       </widget>
       </item>
-      <item row="10" column="2">
+      <item row="1" column="1" colspan="2">
+       <widget class="QLineEdit" name="course_providor_input"/>
+      </item>
+      <item row="12" column="2">
        <widget class="QPushButton" name="course_save_btn">
         <property name="text">
          <string>حفظ</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="0">
-       <widget class="QLabel" name="email_label_2">
-        <property name="text">
-         <string>التاريخ:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0">
+      <item row="11" column="0">
        <widget class="QLabel" name="email_label_3">
         <property name="text">
          <string>المكان:</string>
         </property>
        </widget>
       </item>
+      <item row="11" column="1" colspan="2">
+       <widget class="QLineEdit" name="course_place_input"/>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="email_label_2">
+        <property name="text">
+         <string>التاريخ:</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1" colspan="2">
        <widget class="QLineEdit" name="course_name_input"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="course_cost_input"/>
       </item>
       <item row="2" column="2">
        <widget class="QComboBox" name="course_cost_currency_combobox">
@@ -117,17 +124,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="course_cost_input"/>
-      </item>
-      <item row="4" column="2">
-       <widget class="QPushButton" name="select_course_costs_opposite_account_btn">
-        <property name="text">
-         <string>...اختيار</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
+      <item row="6" column="1">
        <widget class="QComboBox" name="course_costs_opposite_account_combobox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -135,12 +132,37 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="6" column="0">
        <widget class="QLabel" name="job_title_label_4">
         <property name="text">
          <string>الحساب المقابل:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QToolButton" name="select_course_costs_opposite_account_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QToolButton" name="select_course_costs_account_btn">
+        <property name="text">
+         <string>🔎</string>
         </property>
        </widget>
       </item>

@@ -28,15 +28,15 @@ class Ui_InventoryReport(object):
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox_3)
         self.gridLayout.setObjectName("gridLayout")
         self.label_3 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_3.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.label_3.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
         self.calculate_btn = QtWidgets.QPushButton(self.groupBox_3)
-        self.calculate_btn.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.calculate_btn.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.calculate_btn.setObjectName("calculate_btn")
         self.gridLayout.addWidget(self.calculate_btn, 0, 5, 1, 1)
         self.label_5 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_5.setMaximumSize(QtCore.QSize(60, 16777215))
+        self.label_5.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 0, 3, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -66,6 +66,16 @@ class Ui_InventoryReport(object):
         self.results_table.horizontalHeader().setStretchLastSection(True)
         self.gridLayout.addWidget(self.results_table, 1, 0, 1, 7)
         self.warehouse_combobox = QtWidgets.QComboBox(self.groupBox_3)
+        self.warehouse_combobox.setMinimumSize(QtCore.QSize(150, 0))
+        self.warehouse_combobox.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
         self.warehouse_combobox.setObjectName("warehouse_combobox")
         self.gridLayout.addWidget(self.warehouse_combobox, 0, 1, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox_3, 0, 0, 1, 1)

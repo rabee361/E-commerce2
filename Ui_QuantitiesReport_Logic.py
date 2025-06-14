@@ -30,16 +30,20 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
 
     def initialize(self, window_activation):
         # Connect buttons to their respective functions
-        self.ui.calc_btn.clicked.connect(self.show_quantities_chart)
+        self.ui.calculate_btn.clicked.connect(self.showQuantitiesChart)
         self.ui.select_product_btn.clicked.connect(self.openSelectProductWindow)
+
+        self.ui.filter_combobox.addItem(self.language_manager.translate("FILTER_LAST_SEVEN_DAYS"), "last_7_days")
+        self.ui.filter_combobox.addItem(self.language_manager.translate("FILTER_30_DAYS"), "last_6_month")
+        self.ui.filter_combobox.addItem(self.language_manager.translate("FILTER_SIX_MONTH"), "last_month")
+        self.ui.filter_combobox.addItem(self.language_manager.translate("FILTER_LAST_YEAR"), "last_year")
         
         # Connect combobox change to show chart automatically
-        self.ui.product_combobox.currentIndexChanged.connect(self.show_quantities_chart)
+        self.ui.product_combobox.currentIndexChanged.connect(self.showQuantitiesChart)
         
-        # Load products into combobox
-        self.load_products()
+        self.fechProducts()
         
-    def load_products(self):
+    def fechProducts(self):
         # Fetch products from database and populate the combobox
         products = self.database_operations.fetchMaterials()
         self.ui.product_combobox.clear()
@@ -56,8 +60,7 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
                     self.ui.product_combobox.setCurrentIndex(i)
                     break
     
-    def show_quantities_chart(self):
-        # Get selected product ID
+    def showQuantitiesChart(self):
         product_index = self.ui.product_combobox.currentIndex()
         if product_index < 0:
             return
@@ -65,17 +68,15 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
         product_id = self.ui.product_combobox.itemData(product_index)
         product_name = self.ui.product_combobox.itemText(product_index)
         
-        # Fetch material quantities from warehouses
-        warehouses_data = self.database_operations.fetchMaterialWarehouses(product_id)
+        moves_data = self.database_operations.fetchMaterialMoves(product_id)
         
-        # Get material unit
         material_info = self.database_operations.fetchMaterial(product_id)
         material_unit = material_info.get('unit_name', '')
         
         # Create chart
-        self.create_chart(warehouses_data, product_name, material_unit)
+        self.create_chart(moves_data, product_name, material_unit)
     
-    def create_chart(self, warehouses_data, product_name, material_unit=''):
+    def create_chart(self, moves_data, product_name, material_unit=''):
         # Clear previous chart if any
         if self.ui.chart_groupbox.layout():
             # Clear previous layout
@@ -97,7 +98,7 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
         quantities_by_date = {}
         
         # Process data from all warehouses
-        for warehouse_id, entries in warehouses_data.items():
+        for warehouse_id, entries in moves_data.items():
             for entry in entries:
                 # Get date from either invoice_date or manufacture_date
                 entry_date = None

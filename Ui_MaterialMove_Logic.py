@@ -28,8 +28,8 @@ class Ui_MaterialMove_Logic(QDialog):
     def showUi(self):
         window = QDialog()
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.setWindowIcon(QIcon('icons/set-parnet.png'))
         window.exec()
 
@@ -573,35 +573,32 @@ class Ui_MaterialMove_Logic(QDialog):
                         if invoice_item_id:
                             invoice_item = self.database_operations.fetchInvoiceItem(invoice_item_id)
 
-                unit_price = invoice_item['unit_price'] if invoice_item else ''
-                currency_id = invoice_item['currency_id'] if invoice_item else ''
-                equilivance_price = invoice_item['equilivance_price'] if invoice_item else ''
-
-
+                unit_price = invoice_item['unit_price'] or ''
+                currency_id = invoice_item['currency_id'] or ''
+                equilivance_price = invoice_item['equilivance_price'] or ''
 
                 if len(material_data) > 0:
                     material_id, source_production_batch_id, source_invoice_item_id, material_name = material_data
                     conversion_rate_to_source_warehouse_unit = conversion_rates[move_unit]
                     quantity_using_source_warehouse_unit = float(quantity) * conversion_rate_to_source_warehouse_unit
 
-                    source_production_batch_id = source_production_batch_id if source_production_batch_id is not None else ''
-                    origin_type = origin_type if origin_type is not None else ''
-                    origin_id = origin_id if origin_id is not None else ''
-                    to_account_warehouse = to_account_warehouse if to_account_warehouse is not None else ''
-                    from_account_warehouse = from_account_warehouse if from_account_warehouse is not None else ''
-                    to_account_name_warehouse = to_account_name_warehouse if to_account_name_warehouse is not None else ''
-                    from_account_name_warehouse = from_account_name_warehouse if from_account_name_warehouse is not None else ''
-                    cost = cost if cost is not None else ''
-                    currency = currency if currency is not None else ''
-                    batch_number = batch_number if batch_number is not None else ''
-                    batch_mfg = batch_mfg if batch_mfg is not None else ''
-                    batch_exp = batch_exp if batch_exp is not None else ''
-                    production_date = production_date if production_date is not None else ''
-                    expire_date = expire_date if expire_date is not None else ''
+                    source_production_batch_id = source_production_batch_id or ''
+                    origin_type = origin_type or ''
+                    origin_id = origin_id or ''
+                    to_account_warehouse = to_account_warehouse or ''
+                    from_account_warehouse = from_account_warehouse or ''
+                    to_account_name_warehouse = to_account_name_warehouse or ''
+                    from_account_name_warehouse = from_account_name_warehouse or ''
+                    cost = cost or ''
+                    currency = currency or ''
+                    batch_number = batch_number or ''
+                    batch_mfg = batch_mfg or ''
+                    batch_exp = batch_exp or ''
+                    production_date = production_date or ''
+                    expire_date = expire_date or ''
                     total_cost = float(quantity) * float(unit_price)
                     input_invoice_id , invoice_item_id = self.addInputInvoice(currency_id, equilivance_price, total_cost, add_journal_entry, quantity)
                     self.addOutputInvoice(currency_id, equilivance_price, total_cost, add_journal_entry, quantity)
-
 
                     material_move_id = self.database_operations.moveMaterial(
                         quantity=quantity, 

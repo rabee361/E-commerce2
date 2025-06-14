@@ -76,7 +76,7 @@ class Ui_MaterialMoveReport_Logic(object):
         self.ui.currency_combobox.currentIndexChanged.connect(lambda: self.displaySummary())
 
     def openSelectMaterialWindow(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'materials', include_none_option=True)
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'materials', include_none_option=True, checkable=True)
         result = data_picker.showUi()
         if result is not None:
             # Find the index where the material ID matches in the combobox
@@ -110,13 +110,13 @@ class Ui_MaterialMoveReport_Logic(object):
         pass
 
     def openSelectFromWarehouse(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True)
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True, checkable=True)
         result = data_picker.showUi()
         if result is not None:
             self.ui.from_warehouse_combobox.setCurrentIndex(self.ui.from_warehouse_combobox.findData(result['id']))
 
     def openSelectToWarehouse(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True)
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True, checkable=True)
         result = data_picker.showUi()
         if result is not None:
             self.ui.to_warehouse_combobox.setCurrentIndex(self.ui.to_warehouse_combobox.findData(result['id']))

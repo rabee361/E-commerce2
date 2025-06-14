@@ -5,6 +5,11 @@ from win32con import IDYES, IDNO, MB_YESNO
 import win32con
 
 from Ui_Journal_Logic import Ui_Journal_Logic
+from Ui_InventoryReport_Logic import Ui_InventoryReport_Logic
+from Ui_QuantitiesReport_Logic import Ui_QuantitiesReport_Logic 
+from Ui_ReOrderMaterialReport_Logic import Ui_ReOrderMaterialReport_Logic
+from Ui_Value_Report_Logic import Ui_Value_Report_Logic
+from Ui_MaterialMoveReport_Logic import Ui_MaterialMoveReport_Logic
 from ToolbarManager import ToolbarManager
 from Ui_Currencies_Logic import Ui_Currencies_Logic
 from FileManager import FileManager
@@ -63,8 +68,6 @@ class Ui_Warehouses_Logic(QDialog):
         else:   
             self.toolbar_manager.hideToolBar()
 
-
-
     def initialize(self):
         self.language_manager.load_translated_ui(self.ui, self.window)
 
@@ -79,6 +82,11 @@ class Ui_Warehouses_Logic(QDialog):
         self.ui.option_connect_to_database.triggered.connect(lambda: self.openDatabaseSettings())
         self.ui.account_combobox.setEnabled(False)
         self.ui.parent_combobox.setEnabled(False)
+        self.ui.inventory_report_btn.clicked.connect(lambda: self.openInventoryReportWindow())
+        self.ui.reorder_reports_btn.clicked.connect(lambda: self.openReORderReportWindow())
+        self.ui.quantities_report_btn.clicked.connect(lambda: self.openQuantitesReportWindow())
+        self.ui.material_movement_reports_btn.clicked.connect(lambda: self.openMaterialMoveReportWindow())
+        self.ui.value_reports_btn.clicked.connect(lambda: self.openValueReportWindow())
         self.ui.select_account_btn.clicked.connect(lambda: self.openSelectAccountWindow())
         self.ui.select_parent_btn.clicked.connect(lambda: self.openSelectParentWindow())
         self.ui.add_warehouse_btn.clicked.connect(lambda: self.openAddWarehouseWindow())
@@ -324,6 +332,21 @@ class Ui_Warehouses_Logic(QDialog):
                 else:
                     top_item.setHidden(False)
                     top_item.setExpanded(True)
+
+    def openInventoryReportWindow(self):
+        Ui_InventoryReport_Logic.showUi()
+
+    def openReORderReportWindow(self):
+        Ui_ReOrderMaterialReport_Logic.showUi()
+
+    def openValueReportWindow(self):
+        Ui_Value_Report_Logic.showUi()
+
+    def openQuantitesReportWindow(self):
+        Ui_QuantitiesReport_Logic.showUi()
+
+    def openMaterialMoveReportWindow(self):
+        Ui_MaterialMoveReport_Logic.showUi()
 
     def openSelectAccountWindow(self):
         data_picker = Ui_DataPicker_Logic(self.sql_connector, 'accounts', include_none_option=True)

@@ -636,7 +636,7 @@ class DatabaseOperations(object):
     def checkIfRowExist(self, table_name, where_column, where_value) -> bool:
         print("DATABASE> Check if row exists in table")
         query = "SELECT EXISTS(SELECT 1 FROM `" + str(table_name) + "` WHERE " + str(where_column) + "='" + str(
-            where_value) + "' LIMIT 1)";
+            where_value) + "' LIMIT 1)"
         print(query)
         result = self.cursor.execute(query)
         rows = self.cursor.fetchall()
@@ -3702,7 +3702,7 @@ class DatabaseOperations(object):
                 record_quantity = record['quantity']
                 record_unit_id = record['unit']
 
-                if record_unit_id != unit_id:
+                if str(record_unit_id) != unit_id:
                     # Convert record quantity to required unit using fetchUnitConversionValueBetween
                     conversion_rate = self.fetchUnitConversionValueBetween(record_unit_id, unit_id)
                     converted_quantity = record_quantity * conversion_rate
@@ -3816,7 +3816,7 @@ class DatabaseOperations(object):
         # material_source specifies whether the material came to the warehouse from an invoice or from a manufacture process
 
         result = {}  # warehouse_id:quantity
-        warehouses = self.fetchWarehouses(include='reject')  # get a list of warehouses
+        warehouses = self.fetchWarehouses(warehouse_filter='include_in_stock')  # get a list of warehouses
         for warehouse in warehouses:
             warehouse_id = warehouse['id']
             warehouse_name = warehouse['name']
@@ -3824,7 +3824,7 @@ class DatabaseOperations(object):
             warehouse_parent_id = warehouse['parent_id']
             warehouse_parent_name = warehouse['parent_name']
             warehouse_account_id = warehouse['account']
-            warehouse_reject = warehouse['reject']
+            warehouse_include_in_stock = warehouse['include_in_stock']
             warehouse_codename = warehouse['codename']
 
             # Build the query dynamically based on the source value
@@ -5981,13 +5981,34 @@ class DatabaseOperations(object):
         return rows
 
     @check_permission('hr_insurance', 'r')
-    def fetchInsurancePayrollsDetails(self, position_id='', department_id='', from_date='', to_date='') -> list:
+    def fetchInsurancePayrollsDetails(self, from_date='', to_date='') -> list:
         query = "SELECT hr_insurance_block_entries.id, hr_insurance_block_entries.insurance_block_id, hr_insurance_block_entries.employee_id, hr_insurance_block_entries.cycles, hr_insurance_block_entries.value_col, hr_insurance_block_entries.currency, hr_employees.name, currencies.name AS currency_name, hr_insurance_blocks.from_date, hr_insurance_blocks.to_date FROM hr_insurance_block_entries LEFT JOIN hr_employees ON hr_insurance_block_entries.employee_id = hr_employees.id LEFT JOIN currencies ON hr_insurance_block_entries.currency = currencies.id LEFT JOIN hr_insurance_blocks ON hr_insurance_block_entries.insurance_block_id = hr_insurance_blocks.id WHERE hr_insurance_blocks.from_date >= '" + str(from_date) + "'" + " AND hr_insurance_blocks.to_date <= '" + str(to_date) + "'"
 
         # print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         self.sqlconnector.conn.commit()
+        return rows
+
+    def fetchAvgfInsurance(self, from_date='', to_date=''):
+        query = "SELECT AVG(`hr_insurance_block_entries`.`value_col`) as avg_insurance, SUM(`hr_insurance_block_entries`.`value_col`) as sum_insurance FROM `hr_insurance_block_entries` JOIN `hr_insurance_blocks` ON `hr_insurance_block_entries`.`insurance_block_id` = `hr_insurance_blocks`.`id` WHERE `hr_insurance_blocks`.`from_date` >= COALESCE(NULLIF('" + str(from_date) + "', ''), `hr_insurance_blocks`.`from_date`) AND `hr_insurance_blocks`.`to_date` <= COALESCE(NULLIF('" + str(to_date) + "', ''), `hr_insurance_blocks`.`to_date`)"
+        print(query)
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
+        return rows
+
+    def fetchPositionAvgfInsurance(self, from_date='', to_date=''):
+        query = "SELECT `hr_positions`.`id` AS position_id, `hr_positions`.`position_name`, AVG(`hr_insurance_block_entries`.`value_col`) as avg_insurance, SUM(`hr_insurance_block_entries`.`value_col`) as sum_insurance FROM `hr_insurance_block_entries` JOIN `hr_insurance_blocks` ON `hr_insurance_block_entries`.`insurance_block_id` = `hr_insurance_blocks`.`id` JOIN `hr_employees` ON `hr_insurance_block_entries`.`employee_id` = `hr_employees`.`id` JOIN (SELECT `employee_id`, `position_id`, MAX(`date_col`) as max_date FROM `hr_employees_transfers` GROUP BY `employee_id`) AS latest_transfers ON `hr_employees`.`id` = latest_transfers.`employee_id` JOIN `hr_positions` ON latest_transfers.`position_id` = `hr_positions`.`id` WHERE `hr_insurance_blocks`.`from_date` >= COALESCE(NULLIF('" + str(from_date) + "', ''), `hr_insurance_blocks`.`from_date`) AND `hr_insurance_blocks`.`to_date` <= COALESCE(NULLIF('" + str(to_date) + "', ''), `hr_insurance_blocks`.`to_date`) GROUP BY `hr_positions`.`id`, `hr_positions`.`position_name`"
+        print(query)
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
+        return rows
+
+    def fetchDepartmentAvgfInsurance(self, from_date='', to_date=''):
+        query = "SELECT `hr_departments`.`id` AS department_id, `hr_departments`.`name`, AVG(`hr_insurance_block_entries`.`value_col`) as avg_insurance, SUM(`hr_insurance_block_entries`.`value_col`) as sum_insurance FROM `hr_insurance_block_entries` JOIN `hr_insurance_blocks` ON `hr_insurance_block_entries`.`insurance_block_id` = `hr_insurance_blocks`.`id` JOIN `hr_employees` ON `hr_insurance_block_entries`.`employee_id` = `hr_employees`.`id` JOIN (SELECT `employee_id`, `department_id`, MAX(`date_col`) as max_date FROM `hr_employees_transfers` GROUP BY `employee_id`) AS latest_transfers ON `hr_employees`.`id` = latest_transfers.`employee_id` JOIN `hr_departments` ON latest_transfers.`department_id` = `hr_departments`.`id` WHERE `hr_insurance_blocks`.`from_date` >= COALESCE(NULLIF('" + str(from_date) + "', ''), `hr_insurance_blocks`.`from_date`) AND `hr_insurance_blocks`.`to_date` <= COALESCE(NULLIF('" + str(to_date) + "', ''), `hr_insurance_blocks`.`to_date`) GROUP BY `hr_departments`.`id`, `hr_departments`.`name`"
+        print(query)
+        self.cursor.execute(query)
+        rows = self.cursor.fetchall()
         return rows
 
     def addMachine(self, machine_name):
@@ -7243,7 +7264,7 @@ class DatabaseOperations(object):
         return row
 
     def fetchOwner(self):
-        query = "SELECT * FROM `users` WHERE `username`='owner'"
+        query = "SELECT * FROM `users` WHERE `username`='admin'"
         self.cursor.execute(query)
         row = self.cursor.fetchone()
         self.sqlconnector.conn.commit()

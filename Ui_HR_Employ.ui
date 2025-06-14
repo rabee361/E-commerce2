@@ -38,10 +38,10 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="name_label">
+      <item row="4" column="0">
+       <widget class="QLabel" name="name_label_4">
         <property name="text">
-         <string>القسم:</string>
+         <string>حساب الراتب:</string>
         </property>
        </widget>
       </item>
@@ -55,13 +55,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="name_label_2">
-        <property name="text">
-         <string>المسمى الوظيفي:</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1" colspan="2">
        <widget class="QComboBox" name="positions_combobox">
         <property name="sizePolicy">
@@ -72,6 +65,24 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QDateEdit" name="start_date_input"/>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="salary_opposite_account_combobox">
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="name_label_3">
         <property name="text">
@@ -79,47 +90,60 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="QDateEdit" name="start_date_input"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="name_label_4">
+      <item row="6" column="1" colspan="2">
+       <widget class="QPushButton" name="employ_btn">
         <property name="text">
-         <string>حساب الراتب:</string>
+         <string> توظيف</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="salary_account_combobox"/>
-      </item>
-      <item row="3" column="2">
-       <widget class="QPushButton" name="select_salary_account_btn">
+      <item row="0" column="0">
+       <widget class="QLabel" name="name_label">
         <property name="text">
-         <string>...اختيار</string>
+         <string>القسم:</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="4" column="1">
+       <widget class="QComboBox" name="salary_account_combobox">
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="name_label_2">
+        <property name="text">
+         <string>المسمى الوظيفي:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
        <widget class="QLabel" name="name_label_5">
         <property name="text">
          <string>حساب الراتب المقابل:</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
-       <widget class="QComboBox" name="salary_opposite_account_combobox"/>
-      </item>
       <item row="4" column="2">
-       <widget class="QPushButton" name="select_salary_opposite_account_btn">
+       <widget class="QToolButton" name="select_salary_account_btn">
         <property name="text">
-         <string>...اختيار</string>
+         <string>🔎</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1" colspan="2">
-       <widget class="QPushButton" name="employ_btn">
+      <item row="5" column="2">
+       <widget class="QToolButton" name="select_salary_opposite_account_btn">
         <property name="text">
-         <string> توظيف</string>
+         <string>🔎</string>
         </property>
        </widget>
       </item>
