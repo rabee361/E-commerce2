@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1238</width>
-    <height>538</height>
+    <height>537</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,16 +38,6 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="3">
-       <widget class="QDateEdit" name="to_date"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>إلى:</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label">
         <property name="maximumSize">
@@ -61,7 +51,30 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="from_date"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>إلى:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QDateEdit" name="to_date"/>
+      </item>
       <item row="0" column="4">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>العملة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QComboBox" name="currency_combobox"/>
+      </item>
+      <item row="0" column="6">
        <widget class="QPushButton" name="calc_btn">
         <property name="maximumSize">
          <size>
@@ -74,7 +87,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
+      <item row="0" column="7">
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -87,9 +100,6 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="1">
-       <widget class="QDateEdit" name="from_date"/>
-      </item>
      </layout>
     </widget>
    </item>
@@ -101,6 +111,9 @@
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="1" column="1">
        <widget class="QTableWidget" name="department_insurance_table">
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>القسم</string>
@@ -153,6 +166,9 @@
           <height>16777215</height>
          </size>
         </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>المسمى الوظيفي</string>
@@ -205,6 +221,9 @@
           <height>16777215</height>
          </size>
         </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>تاريخ التأمين</string>

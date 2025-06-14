@@ -22,8 +22,8 @@ class Ui_Configuration_Logic(QDialog, UiStyles):
     def showUi(self):
         window_configuration = QDialog()
         self.ui.setupUi(window_configuration)
-        self.initialize(window_configuration)
         self.language_manager.load_translated_ui(self.ui, window_configuration)
+        self.initialize(window_configuration)
         window_configuration.exec()
 
     def initialize(self, window):
@@ -31,6 +31,7 @@ class Ui_Configuration_Logic(QDialog, UiStyles):
         self.ui.ok_button.clicked.connect(lambda: self.saveConfiguration(window))
 
     def fetchManuals(self):
+        self.ui.manuals_combobox.clear()
         manuals = self.database_operations.fetchManuals()
         for manual in manuals:
             self.ui.manuals_combobox.addItem(manual[1])
@@ -43,8 +44,7 @@ class Ui_Configuration_Logic(QDialog, UiStyles):
         
         # Import accounts from the DAT file if available
         try:
-            dat_file_path = f'manuals/encrypted/direct_test.dat'
-            
+            dat_file_path = f'manuals/encrypted/{manual_name}.dat'
             # Import accounts from the DAT file using updated importer
             imported_count = import_accounts(self.sql_connector, dat_file_path)
             print(f"Successfully imported {imported_count} accounts from {dat_file_path}")

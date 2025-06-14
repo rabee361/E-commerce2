@@ -488,12 +488,14 @@ class MysqlConnector:
                 c.execute(
                     "CREATE TABLE IF NOT EXISTS `manuals` (`id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;")
 
-
                 manuals = [
-                    'syria_manual',
-                    'turkish_manual',
-                    'egyptian_manual',
-                    'iraq_manual',
+                    'Lebanese_Manual',
+                    'Saudi_Manual',
+                    'Iraq_Manual'
+                    'Simplified_Arabic',
+                    'Simplified',
+                    'Syrian',
+                    'Turkish_Manual'
                 ]
 
                 for manual in manuals:
@@ -699,18 +701,25 @@ class MysqlConnector:
                     'materials': 'MATERIALS',
                     'machines': 'MACHINES',
                     'production_lines': 'PRODUCTION_LINES',
-                    'HR_employees_requests': 'HR_EMPLOYEES_REQUESTS',
-                    'HR_employees': 'HR_EMPLOYEES',
-                    'HR_leaves': 'HR_LEAVES',
-                    'HR_insurance_blocks': 'HR_INSURANCE_BLOCKS',
-                    'HR_salaries': 'HR_SALARIES',
-                    'HR_salaries_previous_payments': 'HR_SALARIES_PREVIOUS_PAYMENTS',
-                    'HR_salaries_additions_and_discounts': 'HR_SALARIES_ADDITIONS_AND_DISCOUNTS',
-                    'HR_departments': 'HR_DEPARTMENTS',
-                    'HR_department_leaves': 'HR_DEPARTMENT_LEAVES',
-                    'HR_department_leaves_types': 'HR_DEPARTMENT_LEAVES_TYPES',
-                    'HR_department_additions_and_discounts': 'HR_DEPARTMENT_ADDITIONS_AND_DISCOUNTS',
-                    'HR_extra_hours': 'HR_EXTRA_HOURS',
+                    'hr_employees_requests': 'HR_EMPLOYEES_REQUESTS',
+                    'hr_employees': 'HR_EMPLOYEES',
+                    'hr_leaves': 'HR_LEAVES',
+                    'hr_insurance_blocks': 'HR_INSURANCE_BLOCKS',
+                    'hr_salaries': 'HR_SALARIES',
+                    'hr_salaries_previous_payments': 'HR_SALARIES_PREVIOUS_PAYMENTS',
+                    'hr_salaries_additions_and_discounts': 'HR_SALARIES_ADDITIONS_AND_DISCOUNTS',
+                    'hr_departments': 'HR_DEPARTMENTS',
+                    'hr_department_leaves': 'HR_DEPARTMENT_LEAVES',
+                    'hr_department_leaves_types': 'HR_DEPARTMENT_LEAVES_TYPES',
+                    'hr_department_additions_and_discounts': 'HR_DEPARTMENT_ADDITIONS_AND_DISCOUNTS',
+                    'hr_positions': 'HR_POSITIONS',
+                    'hr_settings': 'hr_settings',
+                    'hr_extra_hours': 'HR_EXTRA_HOURS',
+                    'hr_extra': 'HR_EXTRA',
+                    'hr_courses': 'HR_COURSES',
+                    'hr_loans': 'HR_LONANS',
+                    'hr_settings': 'HR_SETTINGS',
+                    'hr_additional_costs':'HR_ADDITIONAL_COSTS',
                     'plans': 'PLANS',
                     'accounts': 'ACCOUNTS',
                     'material_moves': 'MATERIAL_MOVES',
@@ -727,7 +736,20 @@ class MysqlConnector:
                     'users': 'USERS',
                     'customers': 'CUSTOMERS',
                     'suppliers': 'SUPPLIERS',
+                    'clients': 'CLIENTS',
                     'currencies': 'CURRENCIES',
+                    'groups': 'GROUPS',
+                    'variables': 'VARIABLES',
+                    'expenses': 'EXPENSES',
+                    'invoice_types': 'INVOICE_TYPES',
+                    'aggregators': 'AGGREGATORS',
+                    'sales': 'SALES',
+                    'journal_entries': 'JOURNAL_ENTRIES',
+                    'loans': 'LOANS',
+                    'financial_statements': 'FINANCIAL_STATEMENTS',
+                    'prices': 'PRICES',
+                    'receipt_docs': 'RECEIPT_DOCS',
+                    'units': 'UNITS',
                 }
 
                 for option, key_name in criteria_options.items():
@@ -737,7 +759,7 @@ class MysqlConnector:
                         c.execute("INSERT INTO `criteria` (`name`, `key_name`) VALUES ('" + str(option) + "', '" + str(key_name) + "')")
 
                 # check if all default prices are availabe
-                default_prices = ["المفرق", "الجملة", "نصف الجملة", "الموزع", "التصدير", "المستهلك", "اخر شراء"];
+                default_prices = ["المفرق", "الجملة", "نصف الجملة", "الموزع", "التصدير", "المستهلك", "اخر شراء"]
                 for default_price in default_prices:
                     c.execute("SELECT count(*) FROM `prices` WHERE `price`='" + str(default_price) + "'")
                     rows = c.fetchall()

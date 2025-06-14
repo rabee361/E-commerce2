@@ -1,0 +1,957 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+  <row>
+    <account>الأصول</account>
+    <code>1</code>
+    <name>الأصول</name>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>الأصول الثابتة</account>
+    <code>11</code>
+    <name>الأصول الثابتة</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>أراضي</account>
+    <code>111</code>
+    <name>أراضي</name>
+    <main_account>الأصول الثابتة</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>مباني</account>
+    <code>112</code>
+    <name>مباني</name>
+    <main_account>الأصول الثابتة</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>آلات وتجهيزات</account>
+    <code>113</code>
+    <name>آلات وتجهيزات</name>
+    <main_account>الأصول الثابتة</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>وسائل نقل وإنتقال</account>
+    <code>114</code>
+    <name>وسائل نقل وإنتقال</name>
+    <main_account>الأصول الثابتة</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>أثاث ومعدات</account>
+    <code>115</code>
+    <name>أثاث ومعدات</name>
+    <main_account>الأصول الثابتة</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>أثاث</account>
+    <code>1151</code>
+    <name>أثاث</name>
+    <main_account>أثاث ومعدات</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>آلات مكتبية</account>
+    <code>1152</code>
+    <name>آلات مكتبية</name>
+    <main_account>أثاث ومعدات</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>حاسب إلكتروني</account>
+    <code>1153</code>
+    <name>حاسب إلكتروني</name>
+    <main_account>أثاث ومعدات</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>مشاريع قيد التنفيذ</account>
+    <code>12</code>
+    <name>مشاريع قيد التنفيذ</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>أراضي</account>
+    <code>121</code>
+    <name>أراضي</name>
+    <main_account>مشاريع قيد التنفيذ</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>مباني</account>
+    <code>122</code>
+    <name>مباني</name>
+    <main_account>مشاريع قيد التنفيذ</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>المخزون</account>
+    <code>13</code>
+    <name>المخزون</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>مخازن بضائع بغرض البيع</account>
+    <code>131</code>
+    <name>مخازن بضائع بغرض البيع</name>
+    <main_account>المخزون</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>بضاعة أول المدة</account>
+    <code>1311</code>
+    <name>بضاعة أول المدة</name>
+    <main_account>مخازن بضائع بغرض البيع</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>مخزون البضاعة</account>
+    <code>1312</code>
+    <name>مخزون البضاعة</name>
+    <main_account>مخازن بضائع بغرض البيع</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>اعتمادات مستندية</account>
+    <code>132</code>
+    <name>اعتمادات مستندية</name>
+    <main_account>المخزون</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>الإجازة رقم</account>
+    <code>132001</code>
+    <name>الإجازة رقم 1</name>
+    <main_account>اعتمادات مستندية</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الإجازة رقم</account>
+    <code>132002</code>
+    <name>الإجازة رقم 2</name>
+    <main_account>اعتمادات مستندية</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>القروض</account>
+    <code>14</code>
+    <name>القروض</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>توظيفات مالية</account>
+    <code>15</code>
+    <name>توظيفات مالية</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>مدينون</account>
+    <code>16</code>
+    <name>مدينون</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+  </row>
+  <row>
+    <account>زبائن</account>
+    <code>161</code>
+    <name>زبائن</name>
+    <main_account>مدينون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>زبون رقم</account>
+    <code>161001</code>
+    <name>زبون رقم 1</name>
+    <main_account>زبائن</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>زبون رقم</account>
+    <code>161002</code>
+    <name>زبون رقم 2</name>
+    <main_account>زبائن</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>أوراق القبض</account>
+    <code>162</code>
+    <name>أوراق القبض</name>
+    <main_account>مدينون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>أوراق قبض الزبون رقم</account>
+    <code>162001</code>
+    <name>أوراق قبض الزبون رقم 1</name>
+    <main_account>أوراق القبض</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>أوراق قبض الزبون رقم</account>
+    <code>162002</code>
+    <name>أوراق قبض الزبون رقم 2</name>
+    <main_account>أوراق القبض</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>تأمينات وسلف</account>
+    <code>163</code>
+    <name>تأمينات وسلف</name>
+    <main_account>مدينون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>سلف العاملين</account>
+    <code>1631</code>
+    <name>سلف العاملين</name>
+    <main_account>تأمينات وسلف</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>تأمينات مختلفة</account>
+    <code>1632</code>
+    <name>تأمينات مختلفة</name>
+    <main_account>تأمينات وسلف</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>حسابات مدينة مختلفة</account>
+    <code>17</code>
+    <name>حسابات مدينة مختلفة</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>مدينون مختلفون</account>
+    <code>171</code>
+    <name>مدينون مختلفون</name>
+    <main_account>حسابات مدينة مختلفة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الأموال الجاهزة</account>
+    <code>18</code>
+    <name>الأموال الجاهزة</name>
+    <main_account>الأصول</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الصندوق</account>
+    <code>181</code>
+    <name>الصندوق</name>
+    <main_account>الأموال الجاهزة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>المصارف</account>
+    <code>182</code>
+    <name>المصارف</name>
+    <main_account>الأموال الجاهزة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>مصرف رقم</account>
+    <code>1821</code>
+    <name>مصرف رقم 1</name>
+    <main_account>المصارف</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>مصرف رقم</account>
+    <code>1822</code>
+    <name>مصرف رقم 2</name>
+    <main_account>المصارف</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الخصوم</account>
+    <code>2</code>
+    <name>الخصوم</name>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>رأس المال</account>
+    <code>21</code>
+    <name>رأس المال</name>
+    <main_account>الخصوم</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>رأس مال الشريك</account>
+    <code>211</code>
+    <name>رأس مال الشريك 1</name>
+    <main_account>رأس المال</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>رأس مال الشريك</account>
+    <code>212</code>
+    <name>رأس مال الشريك 2</name>
+    <main_account>رأس المال</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الاحتياطي</account>
+    <code>22</code>
+    <name>الاحتياطي</name>
+    <main_account>الخصوم</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>إحتياطي إختياري</account>
+    <code>221</code>
+    <name>إحتياطي إختياري</name>
+    <main_account>الاحتياطي</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>إحتياطي قانوني</account>
+    <code>222</code>
+    <name>إحتياطي قانوني</name>
+    <main_account>الاحتياطي</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>فائض مرحل</account>
+    <code>223</code>
+    <name>فائض مرحل</name>
+    <main_account>الاحتياطي</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الإهتلاكات</account>
+    <code>23</code>
+    <name>الإهتلاكات</name>
+    <main_account>الخصوم</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>اهتلاك مباني</account>
+    <code>231</code>
+    <name>اهتلاك مباني</name>
+    <main_account>الإهتلاكات</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>اهتلاك آلات ومعدات</account>
+    <code>232</code>
+    <name>اهتلاك آلات ومعدات</name>
+    <main_account>الإهتلاكات</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>اهتلاك وسائل النقل</account>
+    <code>233</code>
+    <name>اهتلاك وسائل النقل</name>
+    <main_account>الإهتلاكات</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>اهتلاك الأثاث ومعدات المكاتب</account>
+    <code>234</code>
+    <name>اهتلاك الأثاث ومعدات المكاتب</name>
+    <main_account>الإهتلاكات</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>القروض</account>
+    <code>24</code>
+    <name>القروض</name>
+    <main_account>الخصوم</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>قروض طويلة الأجل</account>
+    <code>241</code>
+    <name>قروض طويلة الأجل</name>
+    <main_account>القروض</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>قروض قصيرة الأجل</account>
+    <code>242</code>
+    <name>قروض قصيرة الأجل</name>
+    <main_account>القروض</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>دائنون</account>
+    <code>25</code>
+    <name>دائنون</name>
+    <main_account>الخصوم</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>موردون</account>
+    <code>251</code>
+    <name>موردون</name>
+    <main_account>دائنون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>المورد رقم</account>
+    <code>251001</code>
+    <name>المورد رقم 1</name>
+    <main_account>موردون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>المورد رقم</account>
+    <code>251002</code>
+    <name>المورد رقم 2</name>
+    <main_account>موردون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>أوراق الدفع</account>
+    <code>252</code>
+    <name>أوراق الدفع</name>
+    <main_account>دائنون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>أوراق الدفع للمورد رقم</account>
+    <code>252001</code>
+    <name>أوراق الدفع للمورد رقم 1</name>
+    <main_account>أوراق الدفع</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>أوراق الدفع للمورد رقم</account>
+    <code>252002</code>
+    <name>أوراق الدفع للمورد رقم 2</name>
+    <main_account>أوراق الدفع</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>دائنون متنوعون</account>
+    <code>253</code>
+    <name>دائنون متنوعون</name>
+    <main_account>دائنون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>تأمينات مختلفة للغير</account>
+    <code>2531</code>
+    <name>تأمينات مختلفة للغير</name>
+    <main_account>دائنون متنوعون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الدوائر الجمركية</account>
+    <code>2532</code>
+    <name>الدوائر الجمركية</name>
+    <main_account>دائنون متنوعون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الدوائر المالية</account>
+    <code>2533</code>
+    <name>الدوائر المالية</name>
+    <main_account>دائنون متنوعون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>التأمينات الاجتماعية</account>
+    <code>2534</code>
+    <name>التأمينات الاجتماعية</name>
+    <main_account>دائنون متنوعون</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>حسابات دائنة مختلفة</account>
+    <code>26</code>
+    <name>حسابات دائنة مختلفة</name>
+    <main_account>الخصوم</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>دائنون مختلفون</account>
+    <code>261</code>
+    <name>دائنون مختلفون</name>
+    <main_account>حسابات دائنة مختلفة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>مصروفات مستحقة</account>
+    <code>262</code>
+    <name>مصروفات مستحقة</name>
+    <main_account>حسابات دائنة مختلفة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>أجور مستحقة</account>
+    <code>2621</code>
+    <name>أجور مستحقة</name>
+    <main_account>مصروفات مستحقة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>إيحارات مستحقة</account>
+    <code>2622</code>
+    <name>إيحارات مستحقة</name>
+    <main_account>مصروفات مستحقة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>تعويضات للغير مستحقة</account>
+    <code>2623</code>
+    <name>تعويضات للغير مستحقة</name>
+    <main_account>مصروفات مستحقة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>مصروفات سابقة ومستحقة</account>
+    <code>2624</code>
+    <name>مصروفات سابقة ومستحقة</name>
+    <main_account>مصروفات مستحقة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>إيرادات مقبوضة مقدماً</account>
+    <code>263</code>
+    <name>إيرادات مقبوضة مقدماً</name>
+    <main_account>حسابات دائنة مختلفة</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>إعانات مقبوضة مقدماً</account>
+    <code>2631</code>
+    <name>إعانات مقبوضة مقدماً</name>
+    <main_account>إيرادات مقبوضة مقدماً</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>إيجارات مقبوضة مقدماً</account>
+    <code>2632</code>
+    <name>إيجارات مقبوضة مقدماً</name>
+    <main_account>إيرادات مقبوضة مقدماً</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>تعويضات على الغير مقبوضة مقدماً</account>
+    <code>2633</code>
+    <name>تعويضات على الغير مقبوضة مقدماً</name>
+    <main_account>إيرادات مقبوضة مقدماً</main_account>
+    <final_account>الميزانية</final_account>
+    </row>
+  <row>
+    <account>الاستخدامات</account>
+    <code>3</code>
+    <name>الاستخدامات</name>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>الأجور</account>
+    <code>31</code>
+    <name>الأجور</name>
+    <main_account>الاستخدامات</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>أجور نقدية</account>
+    <code>311</code>
+    <name>أجور نقدية</name>
+    <main_account>الأجور</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>أجور العمال</account>
+    <code>3111</code>
+    <name>أجور العمال</name>
+    <main_account>أجور نقدية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>أجور الإداريين</account>
+    <code>3112</code>
+    <name>أجور الإداريين</name>
+    <main_account>أجور نقدية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مكافآت</account>
+    <code>3113</code>
+    <name>مكافآت</name>
+    <main_account>أجور نقدية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>تعويضات</account>
+    <code>3114</code>
+    <name>تعويضات</name>
+    <main_account>أجور نقدية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مزايا عينية</account>
+    <code>312</code>
+    <name>مزايا عينية</name>
+    <main_account>الأجور</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>السكن</account>
+    <code>3121</code>
+    <name>السكن</name>
+    <main_account>مزايا عينية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>العلاج</account>
+    <code>3122</code>
+    <name>العلاج</name>
+    <main_account>مزايا عينية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مصاريف البضاعة</account>
+    <code>32</code>
+    <name>مصاريف البضاعة</name>
+    <main_account>الاستخدامات</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>مواد تعبئة وتغليف</account>
+    <code>321</code>
+    <name>مواد تعبئة وتغليف</name>
+    <main_account>مصاريف البضاعة</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>مصاريف تشغيل لدى الغير</account>
+    <code>322</code>
+    <name>مصاريف تشغيل لدى الغير</name>
+    <main_account>مصاريف البضاعة</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>مخلفات</account>
+    <code>323</code>
+    <name>مخلفات</name>
+    <main_account>مصاريف البضاعة</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>المصاريف الخدمية</account>
+    <code>33</code>
+    <name>المصاريف الخدمية</name>
+    <main_account>الاستخدامات</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مصاريف الصيانة</account>
+    <code>331</code>
+    <name>مصاريف الصيانة</name>
+    <main_account>المصاريف الخدمية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>أدوات كتابية ومطبوعات</account>
+    <code>332</code>
+    <name>أدوات كتابية ومطبوعات</name>
+    <main_account>المصاريف الخدمية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>دعاية وإعلان</account>
+    <code>333</code>
+    <name>دعاية وإعلان</name>
+    <main_account>المصاريف الخدمية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>نقل وإنتقال</account>
+    <code>334</code>
+    <name>نقل وإنتقال</name>
+    <main_account>المصاريف الخدمية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>إنارة ومياه</account>
+    <code>335</code>
+    <name>إنارة ومياه</name>
+    <main_account>المصاريف الخدمية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>بريد وبرق وهاتف</account>
+    <code>336</code>
+    <name>بريد وبرق وهاتف</name>
+    <main_account>المصاريف الخدمية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مصاريف عامة متنوعة</account>
+    <code>337</code>
+    <name>مصاريف عامة متنوعة</name>
+    <main_account>المصاريف الخدمية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>اشتراكات هيئات عامة</account>
+    <code>3371</code>
+    <name>اشتراكات هيئات عامة</name>
+    <main_account>مصاريف عامة متنوعة</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>التأمين على العاملين</account>
+    <code>3372</code>
+    <name>التأمين على العاملين</name>
+    <main_account>مصاريف عامة متنوعة</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>عمولات مبيعات</account>
+    <code>3373</code>
+    <name>عمولات مبيعات</name>
+    <main_account>مصاريف عامة متنوعة</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مصاريف أخرى مختلفة</account>
+    <code>3374</code>
+    <name>مصاريف أخرى مختلفة</name>
+    <main_account>مصاريف عامة متنوعة</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مشتريات بغرض البيع</account>
+    <code>34</code>
+    <name>مشتريات بغرض البيع</name>
+    <main_account>الاستخدامات</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>المشتريات العامة</account>
+    <code>341</code>
+    <name>المشتريات العامة</name>
+    <main_account>مشتريات بغرض البيع</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إجمالي المشتريات</account>
+    <code>3411</code>
+    <name>إجمالي المشتريات</name>
+    <main_account>المشتريات العامة</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>مرتجع المشتريات</account>
+    <code>3412</code>
+    <name>مرتجع المشتريات</name>
+    <main_account>المشتريات العامة</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>حسميات المشتريات</account>
+    <code>3413</code>
+    <name>حسميات المشتريات</name>
+    <main_account>المشتريات العامة</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>المصاريف الجارية</account>
+    <code>35</code>
+    <name>المصاريف الجارية</name>
+    <main_account>الاستخدامات</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>ضرائب ورسوم</account>
+    <code>351</code>
+    <name>ضرائب ورسوم</name>
+    <main_account>المصاريف الجارية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>رسوم جمركية</account>
+    <code>352</code>
+    <name>رسوم جمركية</name>
+    <main_account>المصاريف الجارية</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إيجارات</account>
+    <code>353</code>
+    <name>إيجارات</name>
+    <main_account>المصاريف الجارية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>التحويلات التخصصية</account>
+    <code>36</code>
+    <name>التحويلات التخصصية</name>
+    <main_account>الاستخدامات</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>الزكاة</account>
+    <code>361</code>
+    <name>الزكاة</name>
+    <main_account>التحويلات التخصصية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>تبرعات</account>
+    <code>362</code>
+    <name>تبرعات</name>
+    <main_account>التحويلات التخصصية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>إعانات للغير</account>
+    <code>363</code>
+    <name>إعانات للغير</name>
+    <main_account>التحويلات التخصصية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>غرامات</account>
+    <code>364</code>
+    <name>غرامات</name>
+    <main_account>التحويلات التخصصية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>مصروفات سندات سابقة</account>
+    <code>365</code>
+    <name>مصروفات سندات سابقة</name>
+    <main_account>التحويلات التخصصية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>ديون معدومة</account>
+    <code>366</code>
+    <name>ديون معدومة</name>
+    <main_account>التحويلات التخصصية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>ضريبة دخل الأرباح</account>
+    <code>367</code>
+    <name>ضريبة دخل الأرباح</name>
+    <main_account>التحويلات التخصصية</main_account>
+    <final_account>الأرباح والخسائر</final_account>
+    </row>
+  <row>
+    <account>الموارد</account>
+    <code>4</code>
+    <name>الموارد</name>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إيرادات الخدمات</account>
+    <code>41</code>
+    <name>إيرادات الخدمات</name>
+    <main_account>الموارد</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إيرادات البضائع</account>
+    <code>42</code>
+    <name>إيرادات البضائع</name>
+    <main_account>الموارد</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>صافي المبيعات</account>
+    <code>421</code>
+    <name>صافي المبيعات</name>
+    <main_account>إيرادات البضائع</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إجمالي المبيعات</account>
+    <code>4211</code>
+    <name>إجمالي المبيعات</name>
+    <main_account>صافي المبيعات</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>مرتجع المبيعات</account>
+    <code>4212</code>
+    <name>مرتجع المبيعات</name>
+    <main_account>صافي المبيعات</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>حسميات المبيعات</account>
+    <code>4213</code>
+    <name>حسميات المبيعات</name>
+    <main_account>صافي المبيعات</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>نماذج وهدايا</account>
+    <code>4214</code>
+    <name>نماذج وهدايا</name>
+    <main_account>صافي المبيعات</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إيرادات تحويلية</account>
+    <code>43</code>
+    <name>إيرادات تحويلية</name>
+    <main_account>الموارد</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إيرادات الأوراق المالية</account>
+    <code>431</code>
+    <name>إيرادات الأوراق المالية</name>
+    <main_account>إيرادات تحويلية</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إيجارات دائنة</account>
+    <code>432</code>
+    <name>إيجارات دائنة</name>
+    <main_account>إيرادات تحويلية</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>إيرادات متنوعة</account>
+    <code>433</code>
+    <name>إيرادات متنوعة</name>
+    <main_account>إيرادات تحويلية</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>تعويضات وغرامات على الغير</account>
+    <code>434</code>
+    <name>تعويضات وغرامات على الغير</name>
+    <main_account>إيرادات تحويلية</main_account>
+    <final_account>المتاجرة</final_account>
+    </row>
+  <row>
+    <account>الميزانية</account>
+    <code>9</code>
+    <name>الميزانية</name>
+    <final_account/>
+    </row>
+  <row>
+    <account>الأرباح والخسائر</account>
+    <code>91</code>
+    <name>الأرباح والخسائر</name>
+    <main_account>الميزانية</main_account>
+    <final_account/>
+    </row>
+  <row>
+    <account>المتاجرة</account>
+    <code>911</code>
+    <name>المتاجرة</name>
+    <main_account>الأرباح والخسائر</main_account>
+    <final_account/>
+    </row>
+</root>

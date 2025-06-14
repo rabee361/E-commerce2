@@ -31,44 +31,60 @@ class Ui_Insurance_Report_Logic(object):
         window.exec()
 
     def initialize(self):
+        self.fetchCurrencies()
         self.ui.to_date.setDate(QDate.currentDate())
         self.ui.calc_btn.clicked.connect(lambda: self.calculate())
+
+    def fetchCurrencies(self):
+        currencies = self.database_operations.fetchCurrencies()
+        for currency in currencies:
+            id = currency['id']
+            name = currency['name']
+            self.ui.currency_combobox.addItem(name, id)
 
     def fetchDepartmentAvgfInsurance(self, from_date, to_date):
         insurance_info = self.database_operations.fetchDepartmentAvgfInsurance(from_date, to_date)
         self.ui.department_insurance_table.setRowCount(0)
-        for insurance in insurance_info:
-            position_name = insurance['position_name']
-            avg = insurance['avg_insurance']
-            sum = insurance['sum_insurance']
-            numRows = self.ui.department_insurance_table.rowCount()
-            self.ui.department_insurance_table.setItem(numRows, 0, QTableWidgetItem(str(position_name)))
-            self.ui.department_insurance_table.setItem(numRows, 1, QTableWidgetItem(str(sum)))
-            self.ui.department_insurance_table.setItem(numRows, 2, QTableWidgetItem(str(avg)))
+        if insurance_info:
+            for insurance in insurance_info:
+                department_name = insurance['name']
+                avg = insurance['avg_insurance']
+                sum = insurance['sum_insurance']
+                numRows = self.ui.department_insurance_table.rowCount()
+                self.ui.department_insurance_table.insertRow(numRows)
+                self.ui.department_insurance_table.setItem(numRows, 0, QTableWidgetItem(str(department_name)))
+                self.ui.department_insurance_table.setItem(numRows, 1, QTableWidgetItem(str(round(sum, 3))))
+                self.ui.department_insurance_table.setItem(numRows, 2, QTableWidgetItem(str(round(avg, 3))))
 
     def fetchPositionAvgfInsurance(self, from_date, to_date):
         insurance_info = self.database_operations.fetchPositionAvgfInsurance(from_date, to_date)
         self.ui.positions_table.setRowCount(0)
-        for insurance in insurance_info:
-            avg = insurance['avg_insurance']
-            sum = insurance['sum_insurance']
-            numRows = self.ui.positions_table.rowCount()
-            self.ui.positions_table.setItem(numRows, 1, QTableWidgetItem(str(sum)))
-            self.ui.positions_table.setItem(numRows, 2, QTableWidgetItem(str(avg)))
+        if insurance_info:
+            for insurance in insurance_info:
+                position_name = insurance['position_name']
+                avg = insurance['avg_insurance']
+                sum = insurance['sum_insurance']
+                numRows = self.ui.positions_table.rowCount()
+                self.ui.positions_table.insertRow(numRows)
+                self.ui.positions_table.setItem(numRows, 0, QTableWidgetItem(str(position_name)))
+                self.ui.positions_table.setItem(numRows, 1, QTableWidgetItem(str(round(sum, 3))))
+                self.ui.positions_table.setItem(numRows, 2, QTableWidgetItem(str(round(avg, 3))))
 
     def fetchAvgfInsurance(self, from_date, to_date):
         insurance_info = self.database_operations.fetchAvgfInsurance(from_date, to_date)
         self.ui.insurance_table.setRowCount(0)
-        for insurance in insurance_info:
-            avg = insurance['avg_insurance']
-            sum = insurance['sum_insurance']
-            numRows = self.ui.insurance_table.rowCount()
-            self.ui.insurance_table.setItem(numRows, 0, QTableWidgetItem(str(sum)))
-            self.ui.insurance_table.setItem(numRows, 1, QTableWidgetItem(str(avg)))
+        if insurance_info:
+            for insurance in insurance_info:
+                avg = insurance['avg_insurance']
+                sum = insurance['sum_insurance']
+                numRows = self.ui.insurance_table.rowCount()
+                self.ui.insurance_table.insertRow(numRows)
+                self.ui.insurance_table.setItem(numRows, 1, QTableWidgetItem(str(round(sum, 3))))
+                self.ui.insurance_table.setItem(numRows, 2, QTableWidgetItem(str(round(avg, 3))))
 
     def calculate(self):
-        from_date = self.ui.from_date.text()
-        to_date = self.ui.to_date.text()
+        from_date = self.ui.from_date.date().toString(Qt.ISODate)
+        to_date = self.ui.to_date.date().toString(Qt.ISODate)
         self.fetchDepartmentAvgfInsurance(from_date, to_date)
         self.fetchPositionAvgfInsurance(from_date, to_date)
         self.fetchAvgfInsurance(from_date, to_date)

@@ -37,7 +37,7 @@ class DatabaseOperations(object):
 
         Args:
             criteria_name (str): The permission criteria (e.g., 'warehouses', 'accounts')
-            required_type (str): The permission type ('r' or 'rw')
+            required_type (str): The permission type ('r' or 'w')
 
         Returns:
             function: Decorated function that checks permissions before execution
@@ -50,10 +50,10 @@ class DatabaseOperations(object):
                 user_id = current_user
                 return_type = get_type_hints(func).get('return')
 
-                # if not sql_connector:
-                #     raise ValueError("No sql_connector found in class instance")
-                # if not user_id:
-                #     raise ValueError("No user_id found in class instance")
+                if not sql_connector:
+                    print("No sql_connector found in class instance")
+                if not user_id:
+                    print("No user_id found in class instance")
 
                 # db = DatabaseOperations(sql_connector)
                 # has_permission = db.fetchUserPermission(
@@ -82,7 +82,7 @@ class DatabaseOperations(object):
         global current_user
         current_user = user_id
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def addRawMaterials(self, code_value, name_value, name_en_value, quantity_value, unit, default_price) -> None:
         print("DATABASE> Add new raw material.")
         query = 'INSERT INTO materials (code,name,name_en,quantity, unit, default_price) VALUES("' + str(
@@ -102,7 +102,7 @@ class DatabaseOperations(object):
         row = self.cursor.fetchall()
         return row
 
-    @check_permission('variables', 'rw')
+    @check_permission('variables', 'w')
     def updateApiPrefix(self, prefix) -> None:
         print("DATABASE> Update Api Prefix .")
         query = 'UPDATE variables SET value_col="' + str(prefix) + '" WHERE variable="api_prefix"'
@@ -150,7 +150,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('currencies', 'rw')
+    @check_permission('currencies', 'w')
     def addExchangePrice(self, exchange_price, date) -> None:
         print("DATABASE> Add exchange price.")
         query = 'INSERT INTO exchange_prices (currency1 ,currency2 ,exchange ,date_col) VALUES (6,5,' + exchange_price + ',"' + date + '")'
@@ -158,7 +158,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('expenses', 'rw')
+    @check_permission('expenses', 'w')
     def addExpenses(self, expenses, currency, month, year, time_slot, expense_type) -> None:
         print("DATABASE> Add expenses of year " + str(year) + ", month " + str(month))
         query = "REPLACE INTO `expenses` (`time_slot`, `value_col`, `year_col`, `month_col`, `expense_type`, `currency`) VALUES ('" + str(
@@ -168,7 +168,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def addNewProduct(self, name_value, name_en_value, quantity, working_hours, pills, year_require, ready, code, price,
                       exchange_id, discount_1) -> None:
         print("DATABASE> Add new product.")
@@ -181,7 +181,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('invoice_types', 'rw')
+    @check_permission('invoice_types', 'w')
     def addInvoiceType(self, name, type_col, returned) -> None:
         print("DATABASE> Add new invoice type.")
         query = "INSERT INTO invoice_types (name, type_col, returned) VALUES ('" + name + "', '" + type_col + "', " + str(returned) + ")"
@@ -189,6 +189,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
+    @check_permission('invoice_types', 'w')
     def fetchInvoiceTypes(self , name=''):
         print("DATABASE> Fetch invoice types.")
         query = "SELECT * FROM invoice_types"
@@ -199,6 +200,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('invoice_types', 'w')
     def fetchInvoiceType(self, invoice_type_id):
         print("DATABASE> Fetch invoice type.")
         query = "SELECT * FROM invoice_types WHERE id='" + str(invoice_type_id) + "'"
@@ -207,7 +209,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return row
 
-    @check_permission('invoice_types', 'rw')
+    @check_permission('invoice_types', 'w')
     def removeInvoiceType(self, name) -> None:
         print("DATABASE> Remove invoice type.")
         query = "DELETE FROM invoice_types WHERE name='" + name + "'"
@@ -223,7 +225,7 @@ class DatabaseOperations(object):
 
         self.sqlconnector.conn.commit()
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def addInvoice(self, number, date, statement, type_col, client='',client_account='', invoice_currency='', payment_method='', paid='', invoice_cost_center='', gifts_account='', invoice_warehouse='', cost_account='', added_value_account='', monetary_account='', stock_account='', gifts_opposite_account='', materials_account='', origin_id='', commit=True) -> int:
         print("DATABASE> Add new invoice.")
 
@@ -246,7 +248,7 @@ class DatabaseOperations(object):
         last_id = self.cursor.lastrowid
         return last_id
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def updateInvoice(self, invoice_id, number, date, statement, type_col, client, client_account, invoice_currency, payment_method, paid, invoice_cost_center, gifts_account, invoice_warehouse, cost_account, added_value_account, monetary_account, stock_account, gifts_opposite_account, materials_account, commit=True) -> None:
         print("DATABASE> Update invoice #" + str(invoice_id))
 
@@ -264,7 +266,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def addInvoiceDiscountAddition(self, invoice_id, account_id, type_col, cost_center_id, currency_id, exchange_id, opposite_account_id, equilivance_price, percent, commit=True) -> None:
         print("DATABASE> Add invoice discount/addition.")
         query = "INSERT INTO `invoices_discounts_additions`(`invoice_id`, `account`, `type_col`, `cost_center`, `currency`, `exchange`, `opposite_account`, `percent`, `equilivance`) VALUES ('" + str(
@@ -279,7 +281,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def updateInvoiceDiscountAddition(self, discount_addition_id, invoice_id, account_id, type_col, cost_center_id, currency_id, exchange_id, opposite_account_id, equilivance_price, percent, commit=True) -> None:
         print("DATABASE> Update invoice discount/addition #" + str(discount_addition_id))
         query = "UPDATE `invoices_discounts_additions` SET `invoice_id`='" + str(
@@ -294,7 +296,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def removeInvoiceDiscountAddition(self, discount_addition_id, commit=True) -> None:
         print("DATABASE> Remove invoice discount/addition #" + str(discount_addition_id))
         query = "DELETE FROM `invoices_discounts_additions` WHERE id=" + str(discount_addition_id)
@@ -328,7 +330,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return {row['invoice_type']: row['invoice_count'] for row in rows}
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def addInvoiceMaterial(self, invoice_id, material_id, quantity1='', unit1_id='', quantity2='', unit2_id='', quantity3='', unit3_id='', price_type_id='', unit_price='', currency_id='', equilivance_price='', discount='', discount_percent='', addition='', addition_percent='', added_value='', gifts='', gifts_value='', gifts_discount='', warehouse_id='', cost_center_id='', notes='', exchange_id='', discount_account='', addition_account='', production_date='', expire_date='', commit=True) -> None:
         print("DATABSE> add invoice material")
         query = "INSERT INTO `invoice_items` (invoice_id, material_id, quantity1, unit1_id, quantity2, unit2_id, quantity3, unit3_id, price_type_id, unit_price, currency_id, equilivance_price, discount, discount_percent, addition, addition_percent, added_value, gifts, gifts_value, gifts_discount, warehouse_id, cost_center_id, notes, exchange_id, item_discount_account, item_addition_account, production_date, expire_date) VALUES (" + str(
@@ -349,7 +351,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
         return invoice_item_id
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def updateInvoiceMaterial(self, invoice_item_id, invoice_id, material_id, quantity1, unit1_id, quantity2, unit2_id, quantity3, unit3_id,price_type_id, unit_price, currency_id, equilivance_price, discount, discount_percent,addition, addition_percent, added_value, gifts, gifts_value, gifts_discount, warehouse_id, cost_center_id, notes,exchange_id, discount_account, addition_account, production_date='', expire_date='', commit=True) -> None:
         print("DATABASE> Update invoice material #" + str(invoice_item_id))
         query = "UPDATE `invoice_items` SET invoice_id=" + str(invoice_id) + ", material_id=" + str(material_id) + ", quantity1=NULLIF('" + str(
@@ -368,7 +370,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def removeInvoiceMaterial(self, invoice_item_id, commit=True) -> None:
         print("DATABASE> Remove invoice material #" + str(invoice_item_id))
         query = "DELETE FROM `invoice_items` WHERE id=" + str(invoice_item_id)
@@ -532,7 +534,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def removeInvoiceItems(self, invoice_number) -> None:
         print("DATABASE> Delete invoice #" + invoice_number)
         query = 'DELETE FROM invoices WHERE `number`="' + invoice_number + '"'
@@ -554,7 +556,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def setInvoiceAsPaid(self, invoice_id) -> None:
         print("DATABASE> Set invoice #" + str(invoice_id) + " as paid")
         query = "UPDATE invoices SET paid = 1 WHERE id = '" + str(invoice_id) + "'"
@@ -587,7 +589,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def updateMaterial_old(self, material_id, material_name, material_en_name, material_code, material_quantity,
                            material_unit, default_price) -> None:
         print("DATABASE> Update material #" + material_id)
@@ -598,7 +600,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def updateOrAddRawMaterials(self, code, name, quantity) -> None:
         print("DATABASE> Update or add if not exist material code " + str(code))
         if self.checkIfRowExist('materials', 'code', code):
@@ -614,7 +616,7 @@ class DatabaseOperations(object):
         else:
             self.addRawMaterials(code, "", name, quantity, "", "")
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def updateOrAddProducts(self, code, name, quantity_in_batch, year_require, ready) -> None:
         print("DATABASE> Update or add if not exist product code " + str(code))
         if self.checkIfRowExist('products', 'code', code):
@@ -648,7 +650,7 @@ class DatabaseOperations(object):
             else:
                 return False
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def removeMaterial(self, material_id) -> None:
         print("DATABASE> Delete material #" + material_id)
         query = "DELETE FROM `materials` WHERE `id`='" + str(material_id) + "'"
@@ -661,7 +663,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def removeProduct(self, product_id) -> None:
         print("DATABASE> Delete product #" + product_id)
         query = 'DELETE FROM products WHERE `id`="' + product_id + '"'
@@ -672,7 +674,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('currencies', 'rw')
+    @check_permission('currencies', 'w')
     def removeExchangePrice(self, exchange_id) -> None:
         print("DATABASE> Delete exchange price #" + exchange_id)
         query = "DELETE FROM exchange_prices WHERE `id`='" + exchange_id + "'"
@@ -683,7 +685,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('expenses', 'rw')
+    @check_permission('expenses', 'w')
     def removeExpenses(self, expenses_id) -> None:
         print("DATABASE> Delete exchange price #" + expenses_id)
         query = 'DELETE FROM expenses WHERE `id`="' + expenses_id + '"'
@@ -698,7 +700,7 @@ class DatabaseOperations(object):
     #     self.cursor.execute(query)
     #     self.sqlconnector.conn.commit()
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def updateProduct(self, product_id, name, name_en, working_hours, code, year_require, ready, price, discount_1,exchange) -> None:
         print("DATABASE> Update product #" + product_id)
         query = 'UPDATE products SET `name`="' + name + '", `name_en`="' + name_en + '", `working_hours`="' + str(
@@ -710,7 +712,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def removeInvoiceItem(self, invoice_item_id, commit=True) -> None:
         print("DATABASE> Delete invoice item #" + str(invoice_item_id))
         query = 'DELETE FROM invoice_items WHERE `id`="' + str(invoice_item_id) + '"'
@@ -719,7 +721,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-    @check_permission('invoices', 'rw')
+    @check_permission('invoices', 'w')
     def removeInvoice(self, invoice_id, commit=True) -> None:
         print("DATABASE> Delete invoice #" + str(invoice_id))
 
@@ -736,7 +738,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def addCompositionMaterial(self, material_quantity, material_unit, material_id, product_id) -> None:
         print("DATABASE> Add composition material to product #" + str(product_id))
         query = 'INSERT INTO product_materials (pid,mid,quantity,unit) VALUES ("' + str(product_id) + '","' + str(
@@ -760,6 +762,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('materials', 'r')
     def fetchMaterialCompositions(self, groupped_material_id='') -> list:
         print("DATABASE> Fetch compositions")
         query = "SELECT * FROM compositions WHERE `material` = '" + str(groupped_material_id) + "'"
@@ -784,7 +787,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-
+    @check_permission('materials', 'r')
     def fetchMaterialComposition(self, id):
         print("DATABASE> Fetch composition")
         query = "SELECT * FROM compositions WHERE `id` = '" + str(id) + "'"
@@ -837,7 +840,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('clients', 'rw')
+    @check_permission('clients', 'w')
     def addClient(self, name, governorate, address, email, phone1, phone2, phone3, phone4, client_type) -> None:
         print("DATABASE> Add client")
         query = "INSERT INTO clients (name, governorate, address, email, phone1, phone2, phone3, phone4, client_type) VALUES ('" + str(
@@ -847,7 +850,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('clients', 'rw')
+    @check_permission('clients', 'w')
     def updateClient(self, client_id, name, governorate, address, email, phone1, phone2, phone3, phone4) -> None:
         print("DATABASE> Fetch Api Prefix .")
         query = "UPDATE clients SET name='" + str(name) + "', governorate='" + str(governorate) + "', address='" + str(
@@ -857,7 +860,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('clients', 'rw')
+    @check_permission('clients', 'w')
     def removeClient(self, client_id) -> None:
         print("DATABASE> Soft delete client #" + str(client_id))
 
@@ -882,7 +885,7 @@ class DatabaseOperations(object):
             return False
 
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def removeCompositionMaterial(self, composition_material_id) -> None:
         print("DATABASE> Delete composition material #" + composition_material_id)
         query = 'DELETE FROM product_materials WHERE `id`="' + composition_material_id + '"'
@@ -1024,7 +1027,7 @@ class DatabaseOperations(object):
 
         return maximum_price
 
-    @check_permission('manufactures', 'rw')
+    @check_permission('manufacture', 'w')
     def saveManufactureProcess(self,produced_materials, manufacture_date,working_hours, ingredients_pullout_date, expenses_cost, currency, input_warehouse, account, mid_account, mid_account_input, batch_number,expenses_type, expenses_distribution, material_pricing_method,composition_materials_cost, machines_operation_cost, salaries_cost, quantity_unit_expenses, ingredients_pullout_method, ingredients_pullout_account,composition_data, machines_data, production_date, commit=True) -> None:
 
         print("DATABASE> Save manufacure process data")
@@ -1115,7 +1118,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
         return manufacture_id
 
-    @check_permission('manufacture', 'rw')
+    @check_permission('manufacture', 'w')
     def saveManufactureProcessMaterial(self, manufacture_id, composition_item_id, standard_quantity, required_quantity, unit, unit_cost, pulled_quantity, shortage, row_type) -> None:
         print("DATABASE> Save manufacure process materials")
         query = "INSERT INTO `manufacture_materials`(`manufacture_id`, `composition_item_id`, `standard_quantity`, `required_quantity`, `unit`, `unit_cost`, `pulled_quantity`, `shortage`, `row_type`) VALUES ('" + str(manufacture_id) + "','" + str(composition_item_id) + "','" + str(standard_quantity) + "','" + str(
@@ -1124,7 +1127,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('manufacture', 'rw')
+    @check_permission('manufacture', 'w')
     def removeManufactureProcessMaterial(self, id) -> None:
         print("DATABASE> Delete manufacture process material id #" + str(id))
         query = 'DELETE FROM `manufacture_materials` WHERE `id`="' + str(id) + '"'
@@ -1149,7 +1152,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-    @check_permission('manufacture', 'rw')
+    @check_permission('manufacture', 'w')
     def updateManufactureProcessData(self, id, working_hours, pullout_date, quantity1, manufacture_date, standard_hours, expenses_type, material_pricing_method) -> None:
         print("DATABASE> Update manufacure process data")
         query = 'UPDATE `manufacture` SET `pullout_date`="' + str(pullout_date) + '",`date_col`="' + str(
@@ -1167,7 +1170,7 @@ class DatabaseOperations(object):
         last_id = self.cursor.lastrowid
         return last_id
 
-    @check_permission('manufacture', 'rw')
+    @check_permission('manufacture', 'w')
     def updateManufactureProcessData2(self, manufacture_process_id,produced_materials, manufacture_date,working_hours, ingredients_pullout_date, expenses_cost, currency, input_warehouse, account, mid_account, mid_account_input, batch_number,expenses_type, expenses_distribution, material_pricing_method,composition_materials_cost, machines_operation_cost, salaries_cost, quantity_unit_expenses, ingredients_pullout_method, ingredients_pullout_account,composition_data, machines_data, production_date, commit=True) -> None:
 
         print("DATABASE> Update manufacture process data")
@@ -1254,7 +1257,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
         return manufacture_process_id
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def increaseProductQuantity(self, product_id, quantity) -> None:
         print("DATABASE> Increase quantity of product #" + str(product_id))
         query = "UPDATE `products` SET `in_warehouse`=`products`.`in_warehouse`+" + str(
@@ -1263,7 +1266,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def decreaseProductQuantity(self, product_id, quantity) -> None:
         print("DATABASE> Decrease quantity of product #" + str(product_id))
         query = "UPDATE `products` SET `in_warehouse`=`products`.`in_warehouse`-" + str(
@@ -1272,7 +1275,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def increaseMaterialQuantity(self, material_id, quantity) -> None:
         print("DATABASE> Increase quantity of material #" + str(material_id))
         query = "UPDATE `materials` SET `quantity`=`materials`.`quantity`+" + str(
@@ -1281,7 +1284,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def decreaseMaterialQuantity(self, material_id, quantity) -> None:
         print("DATABASE> Decrease quantity of material #" + str(material_id))
         query = "UPDATE `materials` SET `quantity`=`materials`.`quantity`-" + str(
@@ -1290,7 +1293,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('costs', 'rw')
+    @check_permission('costs', 'w')
     def saveCostProcessData(self, product_id, quantity, working_hours, pills, cost_date, exchange_price, unit_cost_sp,unit_cost_usd, total_cost_sp, total_cost_usd, expenses_type, material_pricing_method) -> None:
         print("DATABASE> Save manufacure process")
         query = 'INSERT INTO `costs`(`pid`, `unit_cost_sp`, `unit_cost_usd`, `total_cost_sp`, `total_cost_usd`, `date_col`, `exchange_price`, `box_per_batch`, `working_hours_standard`, `pills_standard`, `expenses_type`, `material_pricing_method`) VALUES ("' + str(
@@ -1305,7 +1308,7 @@ class DatabaseOperations(object):
         return last_id
 
 
-    @check_permission('costs', 'rw')
+    @check_permission('costs', 'w')
     def saveCostProcessMaterial(self, process_id, material_id, price_sp, price_usd, standard_quantity, unit):
         print("DATABASE> Save cost process materials")
         query = "INSERT INTO `cost_materials`(`process_id`, `material`, `price_sp`, `price_usd`, `standard_quantity`, `unit`) VALUES ('" + str(
@@ -1315,7 +1318,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('costs', 'rw')
+    @check_permission('costs', 'w')
     def removeCostProcessMaterial(self, id) -> None:
         print("DATABASE> Delete cost process material id #" + str(id))
         query = 'DELETE FROM `cost_materials` WHERE `id`="' + str(id) + '"'
@@ -1425,7 +1428,7 @@ class DatabaseOperations(object):
         return rows
 
 
-    @check_permission('manufacture', 'rw')
+    @check_permission('manufacture', 'w')
     def updateManufactureProcessState(self, manufacuture_process_id, state) -> None:
         print("DATABASE> Delete manufacture process #" + manufacuture_process_id)
         query = "UPDATE `manufacture` SET `state_col`='" + str(state) + "' WHERE `id`='" + str(
@@ -1498,7 +1501,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('costs', 'rw')
+    @check_permission('costs', 'w')
     def updateCostProcessData(self, id, product_id, quantity, working_hours, pills, cost_date, exchange_price,unit_cost_sp,unit_cost_usd, total_cost_sp, total_cost_usd, expenses_type, material_pricing_method) -> None:
 
         print("DATABASE> Update cost process data")
@@ -1515,13 +1518,6 @@ class DatabaseOperations(object):
         last_id = self.cursor.lastrowid
         return last_id
 
-    # def removeManufactureProcessMaterial(self, id):
-    #     print("DATABASE> Delete cost process material id #" + str(id))
-    #     query = 'DELETE FROM `cost_materials` WHERE `id`="' + str(id) + '"'
-    #     # print(query)
-    #     self.cursor.execute(query)
-    #     self.sqlconnector.conn.commit()
-
     @check_permission('manufacture', 'r')
     def fetchProductManufactureAverageUntilDate(self, id, date) -> list:
         print("DATABASE> Fetch " + str(id) + " manufacture vaerage price until #" + str(date))
@@ -1533,7 +1529,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('costs', 'rw')
+    @check_permission('costs', 'w')
     def removeCostProcess(self, cost_process_id) -> None:
         print("DATABASE> Delete cost process #" + cost_process_id)
         query = 'DELETE FROM costs WHERE id ="' + cost_process_id + '"'
@@ -1558,8 +1554,7 @@ class DatabaseOperations(object):
         else:  # if type(self.sql_connector)=="<class 'SqliteConnector.SqliteConnector'>"
             query = "SELECT SUM(CASE WHEN manufacture_produced_materials.unit1 = " + str(unit) + " THEN manufacture_produced_materials.quantity1 WHEN manufacture_produced_materials.unit2 = " + str(unit) + " THEN manufacture_produced_materials.quantity2 WHEN manufacture_produced_materials.unit3 = " + str(unit) + " THEN manufacture_produced_materials.quantity3 ELSE 0 END) AS sum_result FROM `manufacture_produced_materials` INNER JOIN `manufacture` ON manufacture.id = manufacture_produced_materials.manufacture_id WHERE strftime('%Y', manufacture.date_col) = '" + str(year) + "' AND strftime('%m', manufacture.date_col)=COALESCE(NULLIF('" + str(month) + "',''),strftime('%m', manufacture.date_col))"
 
-        # print(type(self.sqlconnector))
-        # print(query)
+        print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchone()
         if commit:
@@ -1632,11 +1627,11 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('manufacture', 'rw')
+    @check_permission('manufacture', 'w')
     def addPlanItem(self, id ,priority) -> None:
         print("DATABASE> Add plan item")
         query = "INSERT INTO plans (material,priority) VALUES ('" + str(id) + "','" + str(priority) + "')"
-        # print(query)
+        print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
         print("New plan item added")
@@ -1646,7 +1641,7 @@ class DatabaseOperations(object):
     def fetchLastSimplePlanPriority(self) -> int:
         print("DATABASE> Fetch last simple plan priority")
         query = "SELECT MAX(priority) FROM plans"
-        # print(query)
+        print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         self.sqlconnector.conn.commit()
@@ -1672,7 +1667,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows[0][0]
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def updateSimplaPlanItemPriority(self, plan_item_id, priority) -> None:
         print("DATABASE> Update simple plan item #" + str(plan_item_id))
         query = 'UPDATE plans SET `priority`="' + str(priority) + '" WHERE `id`="' + str(plan_item_id) + '"'
@@ -1681,7 +1676,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def removeSimplePlanItem(self, plan_item_id) -> None:
         print("DATABASE> Delete simple plan item#" + str(plan_item_id))
         query = "DELETE FROM plans WHERE id='" + str(plan_item_id) + "'"
@@ -1689,7 +1684,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def clearSimplePlanItems(self) -> None:
         print("DATABASE> Delete all simple plan items")
         query = "DELETE FROM plans"
@@ -1697,7 +1692,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def addPlanPercentItem(self, id, priority, percent) -> None:
         print("DATABASE> Add plan percent item")
         query = "INSERT INTO percent_plans (material,priority,percent) VALUES ('" + str(id) + "','" + str(
@@ -1749,7 +1744,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows[0][0]
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def updatePlanPercentItemPriority(self, plan_item_id, priority) -> None:
         print("DATABASE> Update plan percent item #" + str(plan_item_id))
         query = 'UPDATE percent_plans SET `priority`="' + str(priority) + '" WHERE `id`="' + str(plan_item_id) + '"'
@@ -1757,7 +1752,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def updatePlanPercentItemPercent(self, plan_item_id, percent) -> None:
         print("DATABASE> Update plan percent item #" + str(plan_item_id))
         query = 'UPDATE percent_plans SET `percent`="' + str(percent) + '" WHERE `id`="' + str(plan_item_id) + '"'
@@ -1765,7 +1760,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def removePlanPercentItem(self, plan_item_id) -> None:
         print("DATABASE> Delete plan percent item #" + str(plan_item_id))
         query = "DELETE FROM percent_plans WHERE id='" + str(plan_item_id) + "'"
@@ -1773,7 +1768,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('plans', 'rw')
+    @check_permission('plans', 'w')
     def clearPlanPercentItems(self) -> None:
         print("DATABASE> Delete all plan percent items")
         query = "DELETE FROM percent_plans"
@@ -1803,7 +1798,7 @@ class DatabaseOperations(object):
         return rows
 
 
-    @check_permission('aggregators', 'rw')
+    @check_permission('aggregators', 'w')
     def addAggregatorItem(self, id, target) -> None:
         print("DATABASE> Add aggregator item")
         query = "INSERT INTO aggregator (material, ammount) VALUES ('" + str(id) + "','" + str(target) + "')"
@@ -1812,7 +1807,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         print("New aggregator item added.")
 
-    @check_permission('aggregators', 'rw')
+    @check_permission('aggregators', 'w')
     def removeAggregatorItem(self, aggregator_item_id) -> None:
         print("DATABASE> Delete aggregator item #" + str(aggregator_item_id))
         query = "DELETE FROM aggregator WHERE id='" + str(aggregator_item_id) + "'"
@@ -1820,7 +1815,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('aggregators', 'rw')
+    @check_permission('aggregators', 'w')
     def clearAggregatorItems(self) -> None:
         print("DATABASE> Delete all aggregator items")
         query = "DELETE FROM aggregator"
@@ -1900,8 +1895,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return last_id
 
-    def addOutInvoiceItem(self, new_out_invoice_id, product_id, quantity, price_sp, price_usd, discount,
-                          price_sp_after_discount, price_usd_after_discount):
+    def addOutInvoiceItem(self, new_out_invoice_id, product_id, quantity, price_sp, price_usd, discount,price_sp_after_discount, price_usd_after_discount):
         print("DATABASE> Add out invoice item")
         query = "INSERT INTO `invoices_out_items`(`invoice`, `product`, `quantity`, `price_sp`, `price_usd`, `discount`, `price_sp_after_discount`, `price_usd_after_discount`) VALUES ('" + str(
             new_out_invoice_id) + "','" + str(product_id) + "','" + str(quantity) + "','" + str(price_sp) + "','" + str(
@@ -2500,7 +2494,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('sales', 'rw')
+    @check_permission('sales', 'w')
     def addSalesTarget(self, product, year, month, location, target) -> int:
         print("DATABASE> Add sales target")
         query = "INSERT INTO `sales_targets`(`material`, `year_col`, `month_col`, `location`, `target`) VALUES ('" + str(
@@ -2511,7 +2505,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return last_id
 
-    @check_permission('sales', 'rw')
+    @check_permission('sales', 'w')
     def removeSalesTarget(self, id) -> None:
         print("DATABASE> Delete sales target item#" + str(id))
         query = "DELETE FROM sales_targets WHERE id='" + str(id) + "'"
@@ -2680,7 +2674,7 @@ class DatabaseOperations(object):
 
         return ancestors
 
-    @check_permission('accounts', 'rw')
+    @check_permission('accounts', 'w')
     def recalculateAccountsCodes(self, account_id=None) -> None:
         if not account_id:
             # we can't use [ORDER BY `asc`] alone, because rows might all be inserted at the same time when creating dababase (see MysqlConnector.py & SqliteConnector.py)
@@ -2728,7 +2722,7 @@ class DatabaseOperations(object):
                 self.recalculateAccountsCodes(child_id)
 
 
-    @check_permission('accounts', 'rw')
+    @check_permission('accounts', 'w')
     def addAccount(self, name, details, parent_account, account_type, final_account, financial_statement,financial_statement_block, force_cost_center=0, default_cost_center='', code='', auto=False) -> int:
 
         # check if parent account still exists
@@ -2752,7 +2746,7 @@ class DatabaseOperations(object):
                 self.recalculateAccountsCodes()
             return new_account_id
 
-    @check_permission('accounts', 'rw')
+    @check_permission('accounts', 'w')
     def updateAccount(self, id, name, code, details, parent_account, final_account_id, financial_statement,
                       financial_statement_block, force_cost_center, default_cost_center) -> None:
         # get descendats to check later for infinity loops and prevent them.
@@ -2790,7 +2784,7 @@ class DatabaseOperations(object):
             print("Error - Parent account doesn't exist.")
 
 
-    @check_permission('accounts', 'rw')
+    @check_permission('accounts', 'w')
     def removeAccount(self, id) -> bool:
         print("Delete Account " + str(id))
         query = "DELETE FROM `accounts` WHERE `id`='" + str(id) + "'"
@@ -2810,28 +2804,33 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
+    @check_permission('loans', 'w')
     def fetchLoan(self, id):
         query = "SELECT * FROM `loans` WHERE `id`='" + str(id) + "'"
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         return rows[0]
 
+    @check_permission('loans', 'w')
     def addLoan(self, name, amount, date_col, account_id, opposite_account_id, cycle, currency, interest):
         query = "INSERT INTO `loans` (`name`, `amount`, `date_col`, `account_id`, `opposite_account_id`, `cycle`, `currency`, `interest`) VALUES ('" + str(name) + "', '" + str(amount) + "', '" + str(date_col) + "', '" + str(account_id) + "', '" + str(opposite_account_id) + "', '" + str(cycle) + "', '" + str(currency) + "', '" + str(interest) + "')"
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
         return self.cursor.lastrowid
 
+
     def updateLoan(self, id, name, amount, date_col, account_id, opposite_account_id, cycle, currency, interest):
         query = "UPDATE `loans` SET `name`='" + str(name) + "', `amount`='" + str(amount) + "', `date_col`='" + str(date_col) + "', `account_id`='" + str(account_id) + "', `opposite_account_id`='" + str(opposite_account_id) + "', `cycle`='" + str(cycle) + "', `currency`='" + str(currency) + "', `interest`='" + str(interest) + "' WHERE `id`='" + str(id) + "'"
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('loans', 'w')
     def removeLoan(self, id):
         query = "DELETE FROM `loans` WHERE `id`='" + str(id) + "'"
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('loans', 'w')
     def fetchLoanPayments(self, loan_id=''):
         if loan_id:
             query = "SELECT loan_payments.*, loans.name as loan_name FROM `loan_payments` LEFT JOIN loans ON loan_payments.loan_id = loans.id WHERE loan_payments.loan_id='" + str(loan_id) + "'"
@@ -2841,7 +2840,8 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         return rows
-
+    
+    @check_permission('loans', 'w')
     def fetchLoanPayment(self, id):
         query = "SELECT * FROM `loan_payments` WHERE `id`='" + str(id) + "'"
         print(query)
@@ -2849,6 +2849,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows[0]
 
+    @check_permission('loans', 'w')
     def addLoanPayment(self, loan_id, date, amount, currency):
         query = "INSERT INTO `loan_payments` (`loan_id`, `date_col`, `amount`, `currency`) VALUES ('" + str(loan_id) + "', '" + str(date) + "', '" + str(amount) + "', '" + str(currency) + "')"
         print(query)
@@ -2856,12 +2857,14 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return self.cursor.lastrowid
 
+    @check_permission('loans', 'w')
     def removeLoanPayment(self, id):
         query = "DELETE FROM `loan_payments` WHERE `id`='" + str(id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('loans', 'w')
     def updateLoanPayment(self, id, amount, currency, date):
         query = "UPDATE `loan_payments` SET `amount`='" + str(amount) + "', `currency`='" + str(currency) + "', `date_col`='" + str(date) + "' WHERE `id`='" + str(id) + "'"
         print(query)
@@ -2914,7 +2917,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('settings', 'rw')
+    @check_permission('settings', 'w')
     def saveUserSetting(self, user_id, name) -> None:
         query = "INSERT INTO `user_settings` (`user_id`, `name`) VALUES ('" + str(user_id) + "', '" + str(name) + "')"
         print(query)
@@ -2922,7 +2925,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('settings', 'rw')
+    @check_permission('settings', 'w')
     def removeUserSetting(self, user_id, name) -> None:
         query = "DELETE FROM `user_settings` WHERE `user_id`='" + str(user_id) + "' AND `name`='" + str(name) + "'"
         print(query)
@@ -2930,7 +2933,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('settings', 'rw')
+    @check_permission('settings', 'w')
     def fetchFloatPointValue(self) -> str:
         query = "SELECT `value_col` FROM `settings` WHERE `name`='float_point_value'"
         self.cursor.execute(query)
@@ -2940,7 +2943,7 @@ class DatabaseOperations(object):
         return rows[0][0]
 
 
-    @check_permission('settings', 'rw')
+    @check_permission('settings', 'w')
     def updateFloatPointValue(self, value) -> None:
         query = "UPDATE `settings` SET `value_col`='" + str(value) + "' WHERE `name`='float_point_value'"
         print(query)
@@ -2976,7 +2979,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('settings', 'rw')
+    @check_permission('settings', 'w')
     def saveSetting(self, setting_name, value) -> None:
         print("DATABASE> Save setting " + str(setting_name))
         if not value:
@@ -2986,7 +2989,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('settings', 'rw')
+    @check_permission('settings', 'w')
     def removeSetting(self, setting_name) -> None:
         print("DATABASE> Remove setting " + str(setting_name))
         query = f"DELETE FROM `settings` WHERE `name` = '{setting_name}'"
@@ -3004,7 +3007,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows[0]
 
-    @check_permission('currencies', 'rw')
+    @check_permission('currencies', 'w')
     def addCurrency(self, name, symbol, parts, parts_realation) -> None:
         print("DATABASE> Add currency")
         query = "INSERT INTO `currencies` (`name`, `symbol`, `parts`, `parts_relation`) VALUES ('" + name + "','" + symbol + "','" + parts + "','" + parts_realation + "')"
@@ -3013,7 +3016,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('currencies', 'rw')
+    @check_permission('currencies', 'w')
     def editCurrency(self, id, name, symbol, parts, parts_relation) -> None:
         print("DATABASE> Edit currency")
         query = "UPDATE `currencies` SET `name`='" + name + "', `symbol`='" + symbol + "', `parts`='" + parts + "', `parts_relation`='" + parts_relation + "' WHERE `id`='" + str(
@@ -3022,7 +3025,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('currencies', 'rw')
+    @check_permission('currencies', 'w')
     def deleteCurrency(self, id) -> bool:
         print("DATABASE> Delete currency")
         query = f"DELETE FROM `currencies` WHERE `id` = '{id}'"
@@ -3108,14 +3111,14 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows  # id, exchange, name
 
-    @check_permission('currencies', 'rw')
+    @check_permission('currencies', 'w')
     def removeExchangeValue(self, exchange_id) -> None:
         print("DATABASE> Remove exchange value_col for " + str(exchange_id));
         query = "DELETE FROM `exchange_prices` WHERE `id`=" + str(exchange_id)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('currencies', 'rw')
+    @check_permission('currencies', 'w')
     def addExchageValue(self, currency1_id, currency2_id, exchage_value, date) -> None:
         print("DATABASE> Fetch exchange value_col between " + str(currency1_id) + " and " + str(currency2_id))
         try:
@@ -3210,7 +3213,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('groups', 'rw')
+    @check_permission('groups', 'w')
     def recalculateGroupsCodes(self, group_id=None) -> None:
         if not group_id:
             # we can't use [ORDER BY `asc`] alone, because rows might all be inserted at the same time when creating dababase (see MysqlConnector.py & SqliteConnector.py)
@@ -3258,7 +3261,7 @@ class DatabaseOperations(object):
                 child_id = child[0]
                 self.recalculateGroupsCodes(child_id)
 
-    @check_permission('groups', 'rw')
+    @check_permission('groups', 'w')
     def addGroup(self, name, parent_group) -> None:
         # check if parent group still exists
         if not parent_group:
@@ -3277,7 +3280,7 @@ class DatabaseOperations(object):
             self.recalculateGroupsCodes()
 
 
-    @check_permission('groups', 'rw')
+    @check_permission('groups', 'w')
     def updateGroup(self, id, name, parent_group) -> None:
         # get descendats to check later for infinity loops and prevent them.
         descendants = [descendant[0] for descendant in list(self.fetchDescendantGroups(id))]
@@ -3305,7 +3308,7 @@ class DatabaseOperations(object):
         else:
             print("Error - Parent group doesn't exist.")
 
-    @check_permission('groups', 'rw')
+    @check_permission('groups', 'w')
     def removeGroup(self, id) -> None:
         print("DATABASE> Delete group #" + str(id))
         # First, delete any child groups recursively
@@ -3372,7 +3375,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def addMaterial(self, code, name, specs, size, manufacturer, color, origin, quality, model, unit1, unit2, unit3,
                     default_unit,
                     current_quantity, max_quantity, min_quantity, request_limit, gift,
@@ -3430,7 +3433,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return composition_id
 
-    @check_permission('materials', 'rw')
+    @check_permission('materials', 'w')
     def updateGrouppedMaterialComposition(self,composition_id, groupped_material_id, composition_materials: list) -> None:
 
         # check if material is really groupped: No need because this condition has to be already satisfied in order to access the composition window
@@ -3512,7 +3515,7 @@ class DatabaseOperations(object):
         # self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def addWarehouse(self, name, code, parent, account, address, manager, capacity, capacity_unit, notes) -> None:
         # Adding a new warehouse involves two steps:
         # 1- Creating a table for the new warehouse
@@ -3579,7 +3582,7 @@ class DatabaseOperations(object):
             self.cursor.execute(query)
             self.sqlconnector.conn.commit()
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def updateWarehouse(self, id, name, code, include_in_stock, address, manager, capacity, capacity_unit, notes, parent, account) -> None:
         print("DATABASE> Update warehouse #" + str(code))
 
@@ -3639,7 +3642,7 @@ class DatabaseOperations(object):
             self.cursor.execute(query)
             self.sqlconnector.conn.commit()
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def addMaterialToWarehouse(self, warehouse_id, material_id, quantity, unit, production_batch_id='', production_date='', expire_date='', material_move_id='', commit=True) -> int:
         # fetch warehouse codename
         codename = self.fetchWarehouseCodename(warehouse_id)
@@ -3653,7 +3656,7 @@ class DatabaseOperations(object):
                 self.sqlconnector.conn.commit()
             return inserted_id
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def removeMaterialFromWarehouse(self, warehouse_entry_id, warehouse_id) -> None:
         print("DELETE FROM Warehouse #" + str(warehouse_id) + " Entry #" + str(warehouse_entry_id))
         codename = self.fetchWarehouseCodename(warehouse_id)
@@ -3665,7 +3668,7 @@ class DatabaseOperations(object):
 
     # This function reduces the quantity of a material in a warehouse. It handles unit conversion if necessary.
     # It iterates through the records of the material in the warehouse and reduces the quantity accordingly.
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def reduceMaterialInWarehouse(self, warehouse_id, material_id, quantity, unit_id, entry_id_to_reduce_from=None, order='desc', commit=True) -> list:
         modified_records = []
         warehouse_codename = self.fetchWarehouseCodename(warehouse_id)
@@ -3775,7 +3778,7 @@ class DatabaseOperations(object):
 
     # This function updates the quantity and unit of a material entry in a warehouse based on the warehouse entry ID and warehouse ID.
     # It is used to modify the existing record of a material in the warehouse.
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def updateMaterialInWarehouse (self, warehouse_entry_id, warehouse_id, quantity, unit) -> None:
         codename = self.fetchWarehouseCodename(warehouse_id)
         if codename:
@@ -3785,7 +3788,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
 
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def updateWarehouseEntryQuantity(self, warehouse_id, warehouse_entry_id, quantity, updating_type) -> None:
         warehouse_codename = self.fetchWarehouseCodename(warehouse_id)
         if warehouse_codename:
@@ -3943,7 +3946,7 @@ class DatabaseOperations(object):
             return rows
 
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def removeWarehouse(self, warehouse_id) -> None:
         codename = self.fetchWarehouseCodename(warehouse_id)
 
@@ -3957,7 +3960,7 @@ class DatabaseOperations(object):
 
         self.sqlconnector.conn.commit()
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('warehouses', 'w')
     def removeWarehouseEntry(self, warehouse_id, warehouse_entry_id, commit=True) -> None:
         codename = self.fetchWarehouseCodename(warehouse_id)
         if codename:
@@ -3975,7 +3978,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('clients', 'rw')
+    @check_permission('clients', 'w')
     def addClientAccount(self, used_price, discount, payment_method, days_count, day,payment_date, client_account_id, discount_account_id, tax_account_id,vat_account_id, tax_exemption, client_id, extra_account_id) -> int:
         if str(type(self.sqlconnector)) == "<class 'MysqlConnector.MysqlConnector'>":
             query = "INSERT INTO `clients_accounts`(`used_price`, `discount`, `payment_method`, `days_count`, `day_col`, `payment_date`, `client_account_id`, `discount_account_id`, `tax_account_id`, `vat_account_id`, `tax_exempt`, `client_id`, `extra_account_id`) VALUES (NULLIF('" + str(used_price) + "', ''), NULLIF('" + str(discount) + "', ''), NULLIF('" + str(payment_method) + "', ''), NULLIF('" + str(days_count) + "', ''), NULLIF('" + str(day) + "', ''), NULLIF('" + str(payment_date) + "', ''), NULLIF('" + str(client_account_id) + "', ''), NULLIF('" + str(discount_account_id) + "', ''), NULLIF('" + str(tax_account_id) + "', ''), NULLIF('" + str(vat_account_id) + "', ''), NULLIF('" + str(tax_exemption) + "', ''), " + (str(client_id) if client_id else 'NULL') + ", " + (str(extra_account_id) if extra_account_id else 'NULL') + ") ON DUPLICATE KEY UPDATE `used_price`=NULLIF('" + str(used_price) + "', ''), `discount`=NULLIF('" + str(discount) + "', ''), `payment_method`=NULLIF('" + str(payment_method) + "', ''), `days_count`=NULLIF('" + str(days_count) + "', ''), `day_col`=NULLIF('" + str(day) + "', ''), `payment_date`=NULLIF('" + str(payment_date) + "', ''), `client_account_id`=NULLIF('" + str(client_account_id) + "', ''), `discount_account_id`=NULLIF('" + str(discount_account_id) + "', ''), `tax_account_id`=NULLIF('" + str(tax_account_id) + "', ''), `vat_account_id`=NULLIF('" + str(vat_account_id) + "', ''), `tax_exempt`=NULLIF('" + str(tax_exemption) + "', ''), `extra_account_id`=NULLIF('" + str(extra_account_id) + "', '');"
@@ -4021,14 +4024,14 @@ class DatabaseOperations(object):
         return rows
 
 
-    @check_permission('prices', 'rw')
+    @check_permission('prices', 'w')
     def fetchPrice(self, price_id) -> dict:
         query = "SELECT * FROM `prices` WHERE `id`='" + str(price_id) + "'"
         self.cursor.execute(query)
         row = self.cursor.fetchone()
         return row
 
-    @check_permission('prices', 'rw')
+    @check_permission('prices', 'w')
     def addPrice(self, name) -> None:
         if not self.checkIfRowExist('prices', 'price', name):
             query = "INSERT INTO `prices` (`price`) VALUES ('" + str(name) + "')";
@@ -4036,21 +4039,21 @@ class DatabaseOperations(object):
             self.cursor.execute(query)
             self.sqlconnector.conn.commit()
 
-    @check_permission('prices', 'rw')
+    @check_permission('prices', 'w')
     def deletePrice(self, id) -> None:
         query = "DELETE FROM `prices` WHERE `id`='" + str(id) + "' and `locked`='0'"
         # print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('prices', 'rw')
+    @check_permission('prices', 'w')
     def updatePrice(self, id, name) -> None:
         query = "UPDATE `prices` SET `price`='" + str(name) + "' WHERE `id`='" + str(id) + "' and `locked`='0'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('units', 'rw')
+    @check_permission('units', 'w')
     def addUnit(self, text) -> None:
         query = "INSERT INTO `units`(`name`) VALUES ('" + str(text) + "')"
         # print(query)
@@ -4191,7 +4194,7 @@ class DatabaseOperations(object):
 
             return updated_conversion_values
 
-    @check_permission('units', 'rw')
+    @check_permission('units', 'w')
     def addUnitsConversionValue(self, unit1_id, unit2_id, conversion_value) -> None:
         query = "REPLACE INTO `units_conversion` (`unit1`, `unit2`, `value_col`) VALUES ('" + str(
             unit1_id) + "','" + str(
@@ -4201,14 +4204,14 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('units', 'rw')
+    @check_permission('units', 'w')
     def removeUnit(self, id) -> None:
         query = "DELETE FROM `units` WHERE `id`='" + str(id) + "'"
         # print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('units', 'rw')
+    @check_permission('units', 'w')
     def removeUnitConversion(self, id) -> None:
         query = "DELETE FROM `units_conversion` WHERE `id`='" + str(id) + "'"
         # print(query)
@@ -4250,7 +4253,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('cost_centers', 'rw')
+    @check_permission('cost_centers', 'w')
     def deleteCostCenter(self,id) -> bool:
         print("DATABASE> Delete cost_center")
         query = f"DELETE FROM `cost_centers` WHERE `id` = '{id}'"
@@ -4261,7 +4264,7 @@ class DatabaseOperations(object):
         else:
             return False  # No records were deleted
 
-    @check_permission('cost_centers', 'rw')
+    @check_permission('cost_centers', 'w')
     def addCostCenter(self, name, notes, type, parent) -> None:
         if not parent:
             parent = ""
@@ -4300,7 +4303,7 @@ class DatabaseOperations(object):
         return rows
 
 
-    @check_permission('cost_centers', 'rw')
+    @check_permission('cost_centers', 'w')
     def updateCostCenter(self, id, name, notes, type, parent) -> None:
         print("DATABASE> Update cost center #" + str(id))
         # get descendats to check later for infinity loops and prevent them.
@@ -4331,7 +4334,7 @@ class DatabaseOperations(object):
             print("Error - Parent account doesn't exist.")
 
 
-    @check_permission('cost_centers', 'rw')
+    @check_permission('cost_centers', 'w')
     def addAggregationDistributiveCostCenter(self, cost_center_id, cost_center, division_factor) -> None:
         print("DATABASE> Add Aggregation/Distributive Cost Center To Cost Center #" + str(cost_center_id))
         query = "REPLACE INTO `cost_centers_aggregations_distributives` (`master_cost_center`, `cost_center`, `division_factor`) VALUES ('" + str(
@@ -4378,7 +4381,7 @@ class DatabaseOperations(object):
                         self.sqlconnector.conn.commit()
                         return rows
 
-    @check_permission('cost_centers', 'rw')
+    @check_permission('cost_centers', 'w')
     def updateCostCenterChangableDivisionFactorState(self, id, state) -> None:
         print("DATABASE> Update Changable Division Factors State on Cost Center #" + str(id))
         query = "UPDATE `cost_centers` SET `changable_division_factors` = '" + str(int(state)) + "' WHERE `id`='" + str(
@@ -4477,7 +4480,7 @@ class DatabaseOperations(object):
         }
 
 
-    @check_permission('hr_requests', 'rw')
+    @check_permission('hr_requests', 'w')
     def addNewEmploymentRequest(self, name) -> None:
         query = "INSERT INTO `hr_employment_requests` (`name`) VALUES ('" + name + "')"
         print(query)
@@ -4493,7 +4496,7 @@ class DatabaseOperations(object):
         return employment_request
 
 
-    @check_permission('hr_requests', 'rw')
+    @check_permission('hr_requests', 'w')
     def addEmploymentRequestCertificate(self, employment_request_id, university_name, university_certificate,university_year, university_specialty, university_gpa) -> None:
         query = "INSERT INTO hr_employment_request_certificates (" + "employment_request_id, university_name, university_certificate, university_year, university_specialty, university_gpa) " + "VALUES (" + "'" + employment_request_id + "', " + "'" + university_name + "', " + "'" + university_certificate + "', " + "'" + university_year + "', " + "'" + university_specialty + "', " + "'" + university_gpa + "'" + ")"
         print(query)
@@ -4501,7 +4504,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('hr_requests', 'rw')
+    @check_permission('hr_requests', 'w')
     def removeEmploymentRequestCertificate(self, id) -> None:
         query = "DELETE FROM `hr_employment_request_certificates` WHERE `id` = '" + str(id) + "'"
         print(query)
@@ -4532,7 +4535,7 @@ class DatabaseOperations(object):
             # Handle any exceptions that may occur during the database operation
             print(e)
 
-    @check_permission('hr_requests', 'rw')
+    @check_permission('hr_requests', 'w')
     def updateEmploymentRequest(self, id, national_id, phone, address, name, email, birthdate) -> None:
         query = "UPDATE `hr_employment_requests` SET `national_id` = '" + national_id + "', `phone` = '" + phone + "', `address` = '" + address + "', `name` = '" + name + "', `email` = '" + email + "', `birthdate` = '" + birthdate + "' WHERE `id` = '" + str(
             id) + "'"
@@ -4540,7 +4543,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_requests', 'rw')
+    @check_permission('hr_requests', 'w')
     def employ(self, selected_employment_request_id, department_id, position_id, start_date, salary_account='', salary_opposite_account='') -> None:
         # Fetch the employment request data from hr_employment_requests table
         query = "SELECT * FROM `hr_employment_requests` WHERE id='" + str(selected_employment_request_id) + "'"
@@ -4670,7 +4673,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_employees', 'rw')
+    @check_permission('hr_employees', 'w')
     def updateEmployeePhoto(self, employee_id, photo_data) -> None:
         print("DATABASE> Update employee photo")
         query = "UPDATE `hr_employees` SET `photo` = %s WHERE `id` = %s"
@@ -4734,7 +4737,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_employees', 'rw')
+    @check_permission('hr_employees', 'w')
     def addEmployeeReceivedItem(self, employee_id, warehouse_id, quantity, material_id, unit_id, received_date) -> int:
         query = "INSERT INTO `hr_employee_received_items` (`employee_id`, `warehouse_id`, `quantity`, `material_id`, `unit_id`, `received_date`) VALUES ('" + str(employee_id) + "', '" + str(warehouse_id) + "', '" + str(quantity) + "', '" + str(material_id) + "', '" + str(unit_id) + "', NULLIF('" + str(received_date) + "',''))"
         print(query)
@@ -4762,7 +4765,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return {'items_count': rows[0]}
 
-    @check_permission('hr_employees', 'rw')
+    @check_permission('hr_employees', 'w')
     def removeEmployeeReceivedItem(self, id) -> None:
         query = "DELETE FROM `hr_employee_received_items` WHERE `id` = '" + str(id) + "'"
         print(query)
@@ -4893,7 +4896,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_employees', 'rw')
+    @check_permission('hr_employees', 'w')
     def saveEmployee(self, id, employee_name, employee_email, employee_address, employee_phone, employee_national_id,employee_position, employee_department, employee_birthdate, employee_start_date) -> None:
         query = "UPDATE hr_employees SET national_id='" + employee_national_id + "', phone='" + employee_phone + "', address='" + employee_address + "', name='" + employee_name + "', email='" + employee_email + "', birthdate='" + employee_birthdate + "', start_date='" + employee_start_date + "' WHERE id='" + id + "'"
         print(query)
@@ -4914,7 +4917,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('hr_employees', 'rw')
+    @check_permission('hr_employees', 'w')
     def addEmployeeCertificate(self, employee_id, university_name, university_certificate, university_year,university_specialty, university_gpa) -> None:
         query = "INSERT INTO `hr_employees_certificates` (`employee_id`, `university_name`, `university_certificate`, `university_year`, `university_specialty`, `university_gpa`) " + "VALUES (" + "'" + employee_id + "', " + "'" + university_name + "', " + "'" + university_certificate + "', " + "'" + university_year + "', " + "'" + university_specialty + "', " + "'" + university_gpa + "'" + ")"
         print(query)
@@ -4925,14 +4928,14 @@ class DatabaseOperations(object):
             # Handle any exceptions that may occur during the database operation
             print("Error adding new employment request certificate:", e)
 
-    @check_permission('hr_employees', 'rw')
+    @check_permission('hr_employees', 'w')
     def removeEmployeeCertificate(self, certificate_id) -> None:
         query = "DELETE FROM `hr_employees_certificates` WHERE `id`='" + str(certificate_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_employees', 'rw')
+    @check_permission('hr_employees', 'w')
     def saveEmployeeFinanceInfo(self, id, employee_bank_input, employee_bank_account_number, employee_bank_notes,
                                 employee_salary, employee_insurance, employee_salary_currency, employee_salary_cycle,
                                 employee_salary_account, employee_salary_opposite_account, employee_insurance_account,
@@ -5012,7 +5015,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.rollback()
             raise
 
-    @check_permission('hr_departments', 'rw')
+    @check_permission('hr_departments', 'w')
     def addNewDepartment(self, name, day_hours, account=None, opposite_account=None, notes='') -> None:
         if str(type(self.sqlconnector)) == "<class 'MysqlConnector.MysqlConnector'>":
             query = """INSERT INTO `hr_departments`
@@ -5046,7 +5049,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchone()
         return {'departments_count': rows[0]}
 
-    @check_permission('hr_departments', 'rw')
+    @check_permission('hr_departments', 'w')
     def saveDepartment(self, selected_department_id, department_name, department_day_hours, department_account,
                        department_opposite_account, department_notes, departments_work_day_friday,
                        departments_work_day_tuesday, departments_work_day_thursday, departments_work_day_wednesday,
@@ -5107,7 +5110,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('hr_departments', 'rw')
+    @check_permission('hr_departments', 'w')
     def saveDepartmentFinance(self, selected_department_id, departments_additions_discounts_currency,
                               departments_additions_discounts_statement, departments_additions_discounts_value,
                               departments_additions_discounts_start_date,
@@ -5126,7 +5129,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_departments', 'rw')
+    @check_permission('hr_departments', 'w')
     def saveDepartmentLeave(self, selected_department_id, department_leave_statement, department_leave_duration_hours,
                             department_leave_duration_days,
                             department_leave_start_date) -> None:
@@ -5138,7 +5141,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_departments', 'rw')
+    @check_permission('hr_departments', 'w')
     def removeDepartmentLeave(self, department_leave_id) -> None:
         query = "DELETE FROM `hr_departments_leaves` WHERE `id`='" + str(department_leave_id) + "'"
         print(query)
@@ -5156,7 +5159,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('hr_departments', 'rw')
+    @check_permission('hr_departments', 'w')
     def removeDepartmentAdditionAndDiscount(self, department_additions_discounts_id) -> None:
         query = "DELETE FROM `hr_departments_finance` WHERE `id`='" + str(department_additions_discounts_id) + "'"
         print(query)
@@ -5181,7 +5184,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def savePositionLeave(self, id, position_leave_statement, position_leave_duration_hours, position_leave_duration_days, position_leave_start_date) -> None:
         query = "INSERT INTO `hr_positions_leaves`(`position_id`, `statement_col`, `duration_in_hours`, `duration_in_days`, `start_date`) VALUES (" + str(
             id) + ", '" + position_leave_statement + "', " + str(
@@ -5191,7 +5194,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def removePositionLeave(self, position_leave_id) -> None:
         query = "DELETE FROM `hr_positions_leaves` WHERE `id`='" + str(position_leave_id) + "'"
         print(query)
@@ -5211,7 +5214,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def savePositionFinance(self, selected_position_id, positions_additions_discounts_currency,
                             positions_additions_discounts_statement, positions_additions_discounts_value,
                             positions_additions_discounts_start_date,
@@ -5229,7 +5232,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def removePositionFinance(self, position_finance_id) -> None:
         query = "DELETE FROM `hr_positions_finance` WHERE `id`='" + str(position_finance_id) + "'"
         print(query)
@@ -5244,14 +5247,14 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def addNewPosition(self, position_name, position_salary, position_salary_currency, position_notes) -> None:
         query = "INSERT INTO `hr_positions` (`position_name`, `salary`, `currency_id`, `notes`) VALUES ('" + str(position_name) + "', '" + str(position_salary) + "', '" + str(position_salary_currency) + "', '" + str(position_notes) + "')"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def savePosition(self, selected_position_id, position_name, position_salary,position_salary_currency, position_notes) -> None:
         query = "UPDATE `hr_positions` SET `position_name`='" + str(position_name) + "', `salary`='" + str(
             position_salary) + "', `currency_id`='" + str(position_salary_currency) + "', `notes`='" + str(
@@ -5261,7 +5264,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def removePosition(self, position_id) -> None:
         query = "DELETE FROM `hr_positions` WHERE `id`='" + str(position_id) + "'"
         print(query)
@@ -5282,7 +5285,7 @@ class DatabaseOperations(object):
         return row
 
 
-    @check_permission('hr_leaves', 'rw')
+    @check_permission('hr_leaves', 'w')
     def saveLeave(self, selected_employee_id, leave_type_id, alternative_id, duration_in_hours, duration_in_days,
                   start_date) -> None:
         query = "INSERT INTO `hr_leaves`(`employee_id`, `leave_type_id`, `alternative_id`, `duration_in_hours`, `duration_in_days`, `start_date`) VALUES ('" + str(
@@ -5292,7 +5295,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_leaves', 'rw')
+    @check_permission('hr_leaves', 'w')
     def removeLeave(self, leave_id) -> None:
         query = "DELETE FROM `hr_leaves` WHERE `id`='" + str(leave_id) + "'"
         print(query)
@@ -5318,7 +5321,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return row
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def addNewCourse(self, title, cost, providor, location, account_id, opposite_account_id, currency_id, date) -> int:
         query = "INSERT INTO `hr_courses`(`title`, `cost`, `providor`, `location`, `account_id`, `opposite_account_id`, `currency_id`, `date_col`) VALUES (NULLIF('" + str(title) + "',''),NULLIF('" + str(cost) + "',''), NULLIF('" + str(providor) + "',''), NULLIF('" + str(location) + "',''), NULLIF('" + str(account_id) + "',''), NULLIF('" + str(opposite_account_id) + "',''), NULLIF('" + str(currency_id) + "',''), NULLIF('" + str(date) + "',''))"
         print(query)
@@ -5327,7 +5330,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return course_id
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def saveCourse(self, selected_course_id, title, cost, providor, location, account_id, opposite_account_id,
                    currency_id, date) -> None:
         query = "UPDATE `hr_courses` SET `title`='" + str(title) + "', `providor`='" + str(
@@ -5339,14 +5342,14 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def removeCourse(self, course_id) -> None:
         query = "DELETE FROM `hr_courses` WHERE `id`='" + str(course_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def addCourseEmployee(self, course_id, employee_id, gpa) -> None:
         query = "INSERT INTO `hr_course_employees`(`course_id`, `employee_id`, `gpa`) VALUES ('" + str(
             course_id) + "','" + str(employee_id) + "','" + str(gpa) + "')"
@@ -5354,7 +5357,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def removeCourseEmployee(self, course_employee_id) -> None:
         query = "DELETE FROM `hr_course_employees` WHERE `id`='" + str(course_employee_id) + "'"
         print(query)
@@ -5371,14 +5374,14 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def updateCourseEmployeeGpa(self, course_employee_id, new_gpa) -> None:
         query = "UPDATE hr_course_employees SET gpa='" + str(new_gpa) + "' WHERE id='" + str(course_employee_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_loans', 'rw')
+    @check_permission('hr_loans', 'w')
     def addHRLoan(self, selected_employee_id, loan_value, loan_currency, loan_date, loan_account, loan_opposite_account, loan_subtract, loan_subtract_value, loan_subtract_currency, loan_subtract_cycle) -> None:
 
         if loan_subtract_currency:
@@ -5397,7 +5400,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return self.cursor.lastrowid
 
-    @check_permission('hr_loans', 'rw')
+    @check_permission('hr_loans', 'w')
     def removeHRLoan(self, loan_id) -> None:
         query = "DELETE FROM `hr_loans` WHERE `id`='" + str(loan_id) + "'"
         print(query)
@@ -5444,7 +5447,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_loans', 'rw')
+    @check_permission('hr_loans', 'w')
     def addHRLoanPayment(self, loan_id, value, currency, source, date) -> None:
         query = "INSERT INTO `hr_loans_payment`(`loan_id`, `value_col`, `currency`, `source`, `date_col`) VALUES ('" + str(
             loan_id) + "','" + str(value) + "','" + str(currency) + "','" + str(source) + "','" + str(date) + "')"
@@ -5462,7 +5465,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_additional_costs', 'rw')
+    @check_permission('hr_additional_costs', 'w')
     def addAdditionalCost(self, account, opposite_account, date, currency, department, statement, value) -> None:
         query = "INSERT INTO `hr_additional_costs` (`statement_col`, `account_id`, `department_id`, `opposite_account_id`, `value_col`, `currency_id`, `date_col`) VALUES ('" + str(statement) + "', NULLIF('" + str(account) + "', 'None'), '" + str(department) + "', NULLIF('" + str(opposite_account) + "', 'None'), '" + str(
             value) + "','" + str(currency) + "','" + str(date) + "')"
@@ -5470,14 +5473,14 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_additional_costs', 'rw')
+    @check_permission('hr_additional_costs', 'w')
     def removeAdditionalCost(self, additional_cost_id) -> None:
         query = "DELETE FROM `hr_additional_costs` WHERE `id`='" + str(additional_cost_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_settings', 'rw')
+    @check_permission('hr_settings', 'w')
     def saveHRSetting(self,
                       setting_work_day_sunday,
                       setting_work_day_monday,
@@ -5564,7 +5567,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_extra', 'rw')
+    @check_permission('hr_extra', 'w')
     def addExtras(self, employee_id, department_id, extra_date, extra_duration_hours, extra_duration_days, extra_value,
                   extra_currency,
                   extra_account, extra_opposite_account, extra_statement_input) -> None:
@@ -5577,14 +5580,14 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_extra', 'rw')
+    @check_permission('hr_extra', 'w')
     def removeExtra(self, extra_id) -> None:
         query = "DELETE FROM `hr_extra` WHERE `id`='" + str(extra_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_salaries', 'rw')
+    @check_permission('hr_salaries', 'w')
     def addSalaryAdditionAndDiscount(self, selected_employee_id, type_col, start_date, repeatition, value_col, account_id, opposite_account_id, statement, currency_id) -> None:
         query = "INSERT INTO `hr_employees_salaries_additions_discounts`(`employee_id`, `type_col`, `start_date`, `repeatition`, `value_col`, `account_id`, `opposite_account_id`, `statement_col`, `currency_id`) VALUES ('" + str(
             selected_employee_id) + "', '" + str(type_col) + "', '" + str(start_date) + "', '" + str(
@@ -5595,7 +5598,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_salaries', 'rw')
+    @check_permission('hr_salaries', 'w')
     def removeSalaryAdditionAndDiscount(self, salaries_additions_discounts_id) -> None:
         query = "DELETE FROM `hr_employees_salaries_additions_discounts` WHERE `id`='" + str(salaries_additions_discounts_id) + "'"
         print(query)
@@ -5622,7 +5625,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_salaries', 'rw')
+    @check_permission('hr_salaries', 'w')
     def addSalaryAdditionAndDiscountPayment(self, salaries_additions_discounts_id, date) -> None:
         query = "INSERT INTO `hr_employees_salaries_additions_discounts_payments`(`salaries_additions_discounts`, `date_col`) VALUES ('" + str(
             salaries_additions_discounts_id) + "', '" + str(date) + "')"
@@ -5639,7 +5642,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_leaves', 'rw')
+    @check_permission('hr_leaves', 'w')
     def removeLeaveType(self, leave_type_id) -> None:
         query = "DELETE FROM `hr_leave_types` WHERE `id`='" + str(leave_type_id) + "'"
         print(query)
@@ -5647,14 +5650,14 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def addNewPosition(self, position_name, position_salary, position_salary_currency, position_notes) -> None:
         query = "INSERT INTO `hr_positions` (`position_name`, `salary`, `currency_id`, `notes`) VALUES ('" + str(position_name) + "', '" + str(position_salary) + "', '" + str(position_salary_currency) + "', '" + str(position_notes) + "')"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def savePosition(self, selected_position_id, position_name, position_salary,
                      position_salary_currency,
                      position_notes) -> None:
@@ -5666,7 +5669,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_positions', 'rw')
+    @check_permission('hr_positions', 'w')
     def removePosition(self, position_id) -> None:
         query = "DELETE FROM `hr_positions` WHERE `id`='" + str(position_id) + "'"
         print(query)
@@ -5674,7 +5677,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('hr_leaves', 'rw')
+    @check_permission('hr_leaves', 'w')
     def saveLeave(self, selected_employee_id, leave_type_id, alternative_id, duration_in_hours, duration_in_days,
                   start_date) -> None:
         query = "INSERT INTO `hr_leaves`(`employee_id`, `leave_type_id`, `alternative_id`, `duration_in_hours`, `duration_in_days`, `start_date`) VALUES ('" + str(
@@ -5684,7 +5687,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_leaves', 'rw')
+    @check_permission('hr_leaves', 'w')
     def removeLeave(self, leave_id) -> None:
         query = "DELETE FROM `hr_leaves` WHERE `id`='" + str(leave_id) + "'"
         print(query)
@@ -5710,7 +5713,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return row
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def addNewCourse(self, title, cost, providor, location, account_id, opposite_account_id, currency_id, date) -> int:
         query = "INSERT INTO `hr_courses`(`title`, `cost`, `providor`, `location`, `account_id`, `opposite_account_id`, `currency_id`, `date_col`) VALUES (NULLIF('" + str(title) + "',''),NULLIF('" + str(cost) + "',''), NULLIF('" + str(providor) + "',''), NULLIF('" + str(location) + "',''), NULLIF('" + str(account_id) + "',''), NULLIF('" + str(opposite_account_id) + "',''), NULLIF('" + str(currency_id) + "',''), NULLIF('" + str(date) + "',''))"
         print(query)
@@ -5719,7 +5722,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return course_id
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def saveCourse(self, selected_course_id, title, cost, providor, location, account_id, opposite_account_id,
                    currency_id, date) -> None:
         query = "UPDATE `hr_courses` SET `title`='" + str(title) + "', `providor`='" + str(
@@ -5731,7 +5734,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def addCourseEmployee(self, course_id, employee_id, gpa):
         query = "INSERT INTO `hr_course_employees`(`course_id`, `employee_id`, `gpa`) VALUES ('" + str(
             course_id) + "','" + str(employee_id) + "','" + str(gpa) + "')"
@@ -5739,26 +5742,9 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('hr_courses', 'rw')
+    @check_permission('hr_courses', 'w')
     def removeCourseEmployee(self, course_employee_id) -> None:
         query = "DELETE FROM `hr_course_employees` WHERE `id`='" + str(course_employee_id) + "'"
-        print(query)
-        self.cursor.execute(query)
-        self.sqlconnector.conn.commit()
-
-    @check_permission('hr_courses', 'r')
-    def fetchCourseEmployees(self, course_id):
-        query = "select `hr_course_employees`.*, `hr_employees`.`name` as `employee_name` FROM `hr_course_employees` JOIN `hr_employees` ON `hr_course_employees`.`employee_id`=`hr_employees`.`id` WHERE `hr_course_employees`.`course_id`='" + str(
-            course_id) + "' "
-        # print(query)
-        self.cursor.execute(query)
-        rows = self.cursor.fetchall()
-        self.sqlconnector.conn.commit()
-        return rows
-
-    @check_permission('hr_courses', 'rw')
-    def updateCourseEmployeeGpa(self, course_employee_id, new_gpa) -> None:
-        query = "UPDATE hr_course_employees SET gpa='" + str(new_gpa) + "' WHERE id='" + str(course_employee_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
@@ -5775,7 +5761,7 @@ class DatabaseOperations(object):
         return rows
 
 
-    @check_permission('hr_leaves', 'rw')
+    @check_permission('hr_leaves', 'w')
     def addLeaveType(self, name, days, period, paid) -> None:
         query = "INSERT INTO `hr_leave_types` (`name`, `days`, `period`, `paid`) VALUES ('" + str(name) + "', '" + str(
             days) + "', '" + str(period) + "', '" + str(paid) + "')"
@@ -5858,7 +5844,7 @@ class DatabaseOperations(object):
         result = {"paid_balance": paid_balance, "unpaid_balance": unpaid_balance}
         return result
 
-    @check_permission('hr_salaries', 'rw')
+    @check_permission('hr_salaries', 'w')
     def addSalariesBlock(self, salaries_from_date, salaries_to_date) -> int:
         # Get the current date
         current_date = datetime.datetime.now()
@@ -5875,7 +5861,7 @@ class DatabaseOperations(object):
         last_id = self.cursor.lastrowid
         return last_id
 
-    @check_permission('hr_salaries', 'rw')
+    @check_permission('hr_salaries', 'w')
     def addSalariesBlockEntry(self, salaries_block_id, employee_id, statement, value, currency) -> None:
         query = "INSERT INTO `hr_salary_block_entries` (`salary_block_id`, `employee_id`, `statement_col`, `value_col`, `currency`) VALUES ('" + str(
             salaries_block_id) + "', '" + str(employee_id) + "', '" + statement + "', '" + str(
@@ -5945,7 +5931,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('hr_insurance', 'rw')
+    @check_permission('hr_insurance', 'w')
     def addInsuranceBlock(self, insurance_from_date, insurance_to_date) -> int:
         # Get the current date
         current_date = datetime.datetime.now()
@@ -5961,7 +5947,7 @@ class DatabaseOperations(object):
         last_id = self.cursor.lastrowid
         return last_id
 
-    @check_permission('hr_insurance', 'rw')
+    @check_permission('hr_insurance', 'w')
     def addInsuranceBlockEntry(self, insurance_block_id, employee_id, cycles, value, currency) -> None:
         query = "INSERT INTO `hr_insurance_block_entries` (`insurance_block_id`, `employee_id`, cycles, `value_col`, `currency`) VALUES ('" + str(
             insurance_block_id) + "', '" + str(employee_id) + "', '" + str(cycles) + "', '" + str(
@@ -6011,6 +5997,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
+    @check_permission('machines', 'w')
     def addMachine(self, machine_name):
         query = "INSERT INTO machines (name) VALUES ('" + str(machine_name) + "')"
         print(query)
@@ -6034,7 +6021,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def updateMachine(self, machine_id, machine_account, machine_opposite_account, name, estimated_waste_value, machine_standard_age, machine_notes,
                       machine_invoice_item_id,
                       estimated_waste_currency, estimated_waste_account):
@@ -6052,8 +6039,6 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-
-
     @check_permission('machines', 'r')
     def fetchTotalMachineWork(self, machine_id) -> int:
         query = "SELECT SUM(duration) as total_duration FROM `manufacture_machines` WHERE `machine_id` = '" + str(machine_id) + "'"
@@ -6070,7 +6055,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def removeMachine(self, machine_id) -> None:
         query = "DELETE FROM `machines` WHERE `id`='" + str(machine_id) + "'"
         print(query)
@@ -6078,14 +6063,14 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addMachineMode(self, machine_id, mode) -> None:
         query = "INSERT INTO machine_modes(machine_id, name) VALUES ('" + str(machine_id) + "','" + str(mode) + "')"
         # print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def removeMachineMode(self, machine_mode_id) -> None:
         query = "DELETE FROM `machine_modes` WHERE `id`='" + str(machine_mode_id) + "'"
         print(query)
@@ -6111,7 +6096,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def deleteMachineMode(self, mode_id) -> None:
         query = "DELETE FROM `machine_modes` WHERE `id`='" + str(mode_id) + "'"
         # print(query)
@@ -6127,14 +6112,14 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addResource(self, resouce_name) -> None:
         query = "INSERT INTO resources (name) VALUES ('" + str(resouce_name) + "')"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def updateResource(self, selected_resource_id, resource_name, resource_account, resource_notes) -> None:
         query = "UPDATE `resources` SET `name`='" + str(resource_name) + "',`account_id`=NULLIF('" + str(
             resource_account) + "',''),`notes`=NULLIF('" + str(resource_notes) + "','') WHERE `id`='" + str(selected_resource_id) + "'"
@@ -6142,14 +6127,14 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def removeResource(self, resource_id) -> None:
         query = "DELETE FROM `resources` WHERE `id`='" + str(resource_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addResourceCost(self, selected_resource_id, resource_cost_per_minute, resource_cost_currency,
                         resource_cost_unit, resource_notes) -> None:
         query = "INSERT INTO `resources_costs`(`resource_id`, `value_col`, `currency_id`, `unit_id`, `notes`) VALUES ('" + str(
@@ -6160,7 +6145,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def removeResourceCost(self, resource_cost_id) -> None:
         print('DATABASE> REMOVE RESOURCE COST')
         query = "DELETE FROM `resources_costs` WHERE `id`='" + str(resource_cost_id) + "'"
@@ -6177,7 +6162,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchone()
         return rows
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addModeResource(self, mode_id, resource_id, consumption_per_minute, unit) -> None:
         query = "INSERT INTO `mode_resources` (`mode_id`, `resource_id`, `consumption_per_minute`, `unit`) VALUES (" + str(
             mode_id) + ", '" + str(resource_id) + "', '" + str(consumption_per_minute) + "', '" + str(unit) + "')"
@@ -6185,7 +6170,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def removeModeResource(self, mode_id) -> None:
         query = "DELETE FROM `mode_resources` WHERE `id`='" + str(mode_id) + "'"
         print(query)
@@ -6214,7 +6199,7 @@ class DatabaseOperations(object):
 
 
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addProductionLine(self, name , notes='') -> None:
         query = f"INSERT INTO `production_lines`(`name`, `notes`) VALUES ('{str(name)}', NULLIF('{str(notes)}',''))"
         print(query)
@@ -6222,7 +6207,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def updateProductionLine(self, production_line_id, name, notes) -> None:
         query = f"UPDATE `production_lines` SET `name`='{str(name)}', `notes`=NULLIF('{str(notes)}','') WHERE `id`='{str(production_line_id)}'"
         print(query)
@@ -6250,7 +6235,7 @@ class DatabaseOperations(object):
     
 
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def removeProductionLine(self, production_line_id) -> None:
         print("DATABASE> REMOVE PRODUCTION LINE")
         query = "DELETE FROM `production_lines` WHERE `id`='" + str(production_line_id) + "'"
@@ -6271,7 +6256,7 @@ class DatabaseOperations(object):
         return rows
 
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addProductionLineMachine(self, production_line_id, machine_id, machine_notes='') -> None:
         query = f"INSERT INTO `machine_production_lines`(`production_line_id`, `machine_id`, `machine_notes`) VALUES ('{str(production_line_id)}', '{str(machine_id)}', NULLIF('{str(machine_notes)}',''))"
         print(query)
@@ -6280,7 +6265,7 @@ class DatabaseOperations(object):
 
 
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def removeProductionLineMachine(self, production_line_machine_id) -> None:
         query = "DELETE FROM `machine_production_lines` WHERE `id`='" + str(production_line_machine_id) + "'"
         print(query)
@@ -6288,7 +6273,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
 
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addMaterialMachine(self, material_id, machine_id, machine_mode, use_duration, exclusive) -> None:
         query = "INSERT INTO `materials_machines`(`material_id`, `machine_id`, `mode_id`, `usage_duration`, `exclusive`) VALUES (" + str(
             material_id) + ",'" + str(machine_id) + "','" + str(machine_mode) + "','" + str(use_duration) + "','" + str(
@@ -6297,7 +6282,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def deleteMaterialMachine(self, machine_usage_id) -> None:
         query = "DELETE FROM `materials_machines` WHERE `id`='" + str(machine_usage_id) + "'"
         print(query)
@@ -6322,7 +6307,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addMaintenanceOperation(self, name, machine_id, account, opposite_account, start_period, end_period, cost, statment_col=None) -> None:
         query = "INSERT INTO `machine_maintenance`(`name`, `machine_id`, `account`, `opposite_account`, `start_date`, `end_date`, `cost`, `statment_col`) VALUES ('" + str(name) + "', '" + str(machine_id) + "', '" + str(account) + "', '" + str(opposite_account) + "', '" + str(start_period) + "', '" + str(end_period) + "', '" + str(cost) + "', '" + str(statment_col) + "')"
         print(query)
@@ -6346,13 +6331,14 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
-    @check_permission('machines', 'rw')
+    @check_permission('machines', 'w')
     def addMaintenanceWorker(self, maintenance_id, employee_id):
         query = "INSERT INTO `maintenance_workers`(`maintenance_id`, `employee_id`) VALUES ('" + str(maintenance_id) + "', '" + str(employee_id) + "')"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('machines', 'r')
     def removeMaintenanceWorker(self, worker_id):
         query = "DELETE FROM `maintenance_workers` WHERE `id` = '" + str(worker_id) + "'"
         print(query)
@@ -6371,12 +6357,14 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('machines', 'r')
     def updateMachineMaintenance(self, maintenance_id, start_date, end_date, maintenance_type, cost, statment_col, name, account, opposite_account):
         query = "UPDATE `machine_maintenance` SET `start_date` = '" + str(start_date) + "', `end_date` = '" + str(end_date) + "', `maintenance_type` = '" + str(maintenance_type) + "', `cost` = '" + str(cost) + "', `statment_col` = '" + str(statment_col) + "', `name` = '" + str(name) + "', `account` = '" + str(account) + "', `opposite_account` = '" + str(opposite_account) + "' WHERE `id` = '" + str(maintenance_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('machines', 'r')
     def fetchMaintenanceOperationMaterials(self, maintenance_id):
         query = "SELECT maintenance_operation_materials.*, units.name as `unit_name` FROM `maintenance_operation_materials` JOIN `units` ON maintenance_operation_materials.unit = units.id WHERE `maintenance_operation` = '" + str(maintenance_id) + "'"
         print(query)
@@ -6384,12 +6372,14 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
+    @check_permission('machines', 'r')
     def addMaintenanceOperationMaterial(self, maintenance_id, material_id, quantity, unit):
         query = "INSERT INTO `maintenance_operation_materials`(`maintenance_operation`, `maintenance_material_id`, `quantity`, `unit`) VALUES ('" + str(maintenance_id) + "', '" + str(material_id) + "', '" + str(quantity) + "', '" + str(unit) + "')"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('machines', 'r')
     def removeMaintenanceMaterial(self, material_id):
         query = "DELETE FROM `maintenance_operation_materials` WHERE `id`='" + str(material_id) + "'"
         print(query)
@@ -6403,6 +6393,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchall()
         return rows
 
+    @check_permission('machines', 'r')
     def fetchModeCosts(self, mode_id):
         query = "SELECT mode_resources.consumption_per_minute, mode_resources.unit, resources_costs.value_col, resources_costs.currency_id, resources.account_id as `resource_account_id`, resources.name as `resource_name`, resources.id as `resource_id` FROM mode_resources JOIN( SELECT resource_id, MAX(date_col) AS max_date FROM resources_costs GROUP BY resource_id ) AS latest_costs ON mode_resources.resource_id = latest_costs.resource_id JOIN resources_costs ON mode_resources.resource_id = resources_costs.resource_id AND resources_costs.date_col = latest_costs.max_date JOIN resources ON resources.id=mode_resources.resource_id WHERE mode_resources.mode_id ='" + str(
             mode_id) + "';"
@@ -6412,6 +6403,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('machines', 'r')
     def addExpenseType(self, name, account_id, opposite_account_id, calculate_in_manufacture):
         account_id = account_id if account_id is not None else 'NULL'
         opposite_account_id = opposite_account_id if opposite_account_id is not None else 'NULL'
@@ -6422,6 +6414,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('machines', 'r')
     def removeExpenseType(self, expense_type_id):
         query = "DELETE FROM `expenses_types` WHERE `id`='" + str(expense_type_id) + "'"
         print(query)
@@ -6443,6 +6436,7 @@ class DatabaseOperations(object):
         row = self.cursor.fetchone()
         return row
 
+    @check_permission('journal_entries', 'r')
     def fetchJournalEntries(self, date_filter='', account='', type_filter='', origin_type='', origin_id=''):
         query = "SELECT DISTINCT `journal_entries`.*, `currencies`.`name` as `currency_name` FROM `journal_entries` JOIN `currencies` ON `journal_entries`.`currency` = `currencies`.`id` LEFT JOIN `journal_entries_items` ON `journal_entries_items`.`journal_entry_id` = `journal_entries`.`id` WHERE `journal_entries`.`entry_date` = COALESCE( NULLIF('" + str(date_filter) + "', ''), `journal_entries`.`entry_date` ) AND IFNULL(`journal_entries`.`origin_type`,0) = IFNULL( NULLIF('" + str(origin_type) + "', ''), IFNULL(`journal_entries`.`origin_type`,0) ) AND IFNULL(`journal_entries`.`origin_id`,'') = IFNULL( NULLIF('" + str(origin_id) + "', ''), IFNULL(`journal_entries`.`origin_id`,'')) AND (( `journal_entries_items`.`account_id` = COALESCE( NULLIF('" + str(account) + "', ''), `journal_entries_items`.`account_id` ) OR `journal_entries_items`.`opposite_account_id` = COALESCE( NULLIF('" + str(account) + "', ''), `journal_entries_items`.`opposite_account_id` ) ) OR `journal_entries_items`.`journal_entry_id` IS NULL) AND (`journal_entries_items`.`type_col` = COALESCE( NULLIF('" + str(type_filter) + "', ''), `journal_entries_items`.`type_col` ) OR `journal_entries_items`.`type_col` IS NULL) AND (('"+str(type_filter)+"' = 'creditor' AND ((`journal_entries_items`.`account_id` = '"+str(account)+"' AND `journal_entries_items`.`type_col` = 'creditor') OR (`journal_entries_items`.`opposite_account_id` = '"+str(account)+"' AND `journal_entries_items`.`type_col` = 'debtor'))) OR '"+str(type_filter)+"' != 'creditor') ORDER BY `journal_entries`.`date_col` desc;"
 
@@ -6452,12 +6446,14 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('journal_entries', 'r')
     def removeJournalEntry(self, journal_entry_id):
         query = "DELETE FROM `journal_entries` WHERE `id`='" + str(journal_entry_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('journal_entries', 'r')
     def fetchJournalEntryItems(self, journal_entry='', from_date='', to_date='', account='', opposite_account='', type='', origin_type='', cost_center_id='', sources=''):
 
         # Convert the list of sources into a string for SQL query
@@ -6485,13 +6481,15 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('journal_entries', 'r')
     def fetchSelectedJournalEntry(self, entry_id):
         query = "SELECT * FROM `journal_entries` WHERE `id` = '" + str(entry_id) + "'"
         print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchone()
         return rows
-
+    
+    @check_permission('journal_entries', 'r')
     def fetchInvoiceJournalEntry(self, invoice_id):
         query = "SELECT * FROM `journal_entries` WHERE `origin_id` = '" + str(invoice_id) + "'"
         print(query)
@@ -6501,7 +6499,8 @@ class DatabaseOperations(object):
         except Exception as e:
             rows = None
         return rows
-
+    
+    @check_permission('journal_entries', 'r')
     def updateJournalEntry(self, entry_id, entry_date='', currency='', commit=True):
         query = "UPDATE `journal_entries` SET `currency`=COALESCE(NULLIF('" + str(currency) + "',''), `currency`), `entry_date`=COALESCE(NULLIF('" + str(
             entry_date) + "',''), `entry_date`) WHERE `id`='" + str(entry_id) + "';"
@@ -6510,12 +6509,15 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
+
+    @check_permission('journal_entries', 'r')
     def deleteJournalEntry(self, entry_id='', origin_id=''):
         query = "DELETE FROM `journal_entries` WHERE `id` = COALESCE(NULLIF('" + str(entry_id) + "', ''), `id`) AND `origin_id` = COALESCE(NULLIF('" + str(origin_id) + "', ''), `origin_id`)"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('journal_entries', 'r')
     def addJournalEntry(self, entry_date, currency, origin_type='', origin_id='', commit=True) -> int:
         current_date = date.today().isoformat()
         query = "INSERT INTO `journal_entries`(`currency`, `date_col`, `entry_date`, `origin_type`, `origin_id`) VALUES ('" + str(
@@ -6527,6 +6529,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
         return self.cursor.lastrowid
 
+    @check_permission('journal_entries', 'r')
     def fetchSelectedJournalEntryItem(self, entry_item_id):
         query = "SELECT `journal_entries_items`.*, `currencies`.`name` AS `currency_name`, `a`.`name` AS `account_name`, `oa`.`name` AS `opposite_account_name` FROM `journal_entries_items` JOIN `currencies` ON `journal_entries_items`.`currency`=`currencies`.`id` JOIN `accounts` AS `a` ON `journal_entries_items`.`account_id`=`a`.`id` LEFT JOIN `accounts` as `oa` ON `oa`.`id`=`journal_entries_items`.`opposite_account_id` WHERE `journal_entries_items`.`id` = '" + str(entry_item_id) + "'"
         print(query)
@@ -6534,6 +6537,7 @@ class DatabaseOperations(object):
         rows = self.cursor.fetchone()
         return rows
 
+    @check_permission('journal_entries', 'r')
     def fetchJournalEntryItem(self, journal_entry_id='', statement='', type=''):
         query = "SELECT * FROM `journal_entries_items` WHERE `journal_entry_id`=COALESCE(NULLIF('" + str(journal_entry_id) + "', ''), `journal_entry_id`) AND `statement_col`=COALESCE(NULLIF('" + str(statement) + "', ''), `statement_col`) AND `type_col`=COALESCE(NULLIF('" + str(type) + "', ''), `type_col`)"
         print(query)
@@ -6546,6 +6550,7 @@ class DatabaseOperations(object):
             rows = None
         return rows
 
+    @check_permission('journal_entries', 'r')
     def updateJournalEntryItem(self, journal_entry_item_id, currency, type, statement, account, opposite_account, value,
                                cost_center_id, distributive_cost_center_distributed_values, commit=True):
         if cost_center_id is None:
@@ -6587,7 +6592,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
-
+    @check_permission('journal_entries', 'r')
     def addJournalEntryItem(self, journal_entry_id, currency, type_col, statement, account, opposite_account, value,cost_center_id=None, distributive_cost_center_distributed_values=None, commit=True):
         # Get saved_journal_entries setting
         saved_journal_entries = self.fetchSetting('saved_journal_entries')
@@ -6669,12 +6674,14 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
+    @check_permission('journal_entries', 'r')
     def deleteJournalEntryItem(self, item_id):
         query = "DELETE FROM `journal_entries_items` WHERE `id`='" + str(item_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('journal_entries', 'r')
     def removeJournalEntriesItems(self, journal_entry_id, commit=True):
         query = "DELETE FROM `journal_entries_items` WHERE `journal_entry_id`='" + str(journal_entry_id) + "'"
         print(query)
@@ -6682,18 +6689,21 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
+    @check_permission('manufacture', 'r')
     def addManufactureHall(self, warehouse_id):
         query = "INSERT INTO `manufacture_halls` (`warehouse_id`) VALUES ('" + str(warehouse_id) + "')"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('manufacture', 'r')
     def removeManufactureHall(self, hall_id):
         query = "DELETE FROM `manufacture_halls` WHERE `id`='" + str(hall_id) + "'"
         print(query)
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('manufacture', 'r')
     def fetchManufactureHalls(self):
         query = "SELECT `manufacture_halls`.*, `warehouseslist`.`name`,  `warehouseslist`.`id` as `account_id`, `accounts`.`name` as `account_name` FROM `manufacture_halls` JOIN `warehouseslist` ON `manufacture_halls`.`warehouse_id`=`warehouseslist`.`id` JOIN `accounts` ON `accounts`.`id`=`warehouseslist`.`account`;"
         print(query)
@@ -6702,6 +6712,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('materials', 'r')
     def addPeriodStartMaterial(self, material_id, quantity_1, unit_id_1, quantity_2, unit_id_2, quantity_3, unit_id_3,
                                material_unit_price, material_currency_id,
                                material_warehouse_id, material_notes, date, commit=False):
@@ -6722,6 +6733,7 @@ class DatabaseOperations(object):
 
         return self.cursor.lastrowid
 
+    @check_permission('materials', 'r')
     def removePeriodStartMaterial(self, id):
         # remove period start material
         query = "DELETE FROM `period_start_materials` WHERE `id`= '" + str(id) + "'"
@@ -6734,6 +6746,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('materials', 'r')
     def fetchPeriodStartMaterials(self):
         query = "SELECT `period_start_materials`.*, `materials`.`name`, `u1`.`name` as `unit1_name`, `u2`.`name` as `unit2_name`, `u3`.`name` as `unit3_name`, `currencies`.`name` AS `currency_name`, `warehouseslist`.`name` AS `warehouse_name`, `warehouseslist`.`account` AS `warehouse_account` FROM `period_start_materials` JOIN `materials` ON `period_start_materials`.`material_id`=`materials`.`id` JOIN `units` AS `u1` ON `u1`.`id`=`period_start_materials`.`unit1_id` LEFT JOIN `units` AS `u2` ON `u2`.`id`=`period_start_materials`.`unit2_id` LEFT JOIN `units` AS `u3` ON `u3`.`id`=`period_start_materials`.`unit3_id` JOIN `currencies`ON `currencies`.`id`=`period_start_materials`.`currency` JOIN `warehouseslist` ON `warehouseslist`.`id`=`period_start_materials`.`warehouse_id`;"
 
@@ -6745,6 +6758,7 @@ class DatabaseOperations(object):
 
     ################ Financial Statements Operations ################
 
+    @check_permission('financial_statements', 'r')
     def fetchFinancialStatements(self, final_financial_statement=''):
         print("DATABASE> Fetch all Financial Statements")
         query = "SELECT * FROM `financial_statement` WHERE IFNULL(`final_financial_statement`,'0') = IFNULL(NULLIF('" + str(
@@ -6755,6 +6769,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('financial_statements', 'r')
     def fetchFinancialStatement(self, financial_statement_id):
         print("DATABASE> Fetch Financial Statement")
         query = f"SELECT * FROM `financial_statement` WHERE `id` = {financial_statement_id};"
@@ -6763,6 +6778,8 @@ class DatabaseOperations(object):
         row = self.cursor.fetchone()
         self.sqlconnector.conn.commit()
         return row
+
+    @check_permission('financial_statements', 'r')
     def fetchFinancialStatementBlocks(self, financial_statement_id):
         print("DATABASE> Fetch Financial Statement Blocks")
         query = f"SELECT * FROM `financial_statement_block` WHERE `financial_statement_id` = {financial_statement_id};"
@@ -6772,6 +6789,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('financial_statements', 'r')
     def addFinancialStatement(self, financial_statement_name, final_financial_statement_id=''):
         print("DATABASE> Adding Financial Statement")
         query = "INSERT INTO `financial_statement` (`name`, `final_financial_statement`) VALUES ('" + str(financial_statement_name) + "', NULLIF('" + str(final_financial_statement_id) + "',''));"
@@ -6779,6 +6797,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('financial_statements', 'r')
     def addFinancialStatementBlock(self, financial_statement_id, financial_statement_block_name):
         print("DATABASE> Adding Financial Statement Block")
         query = f"INSERT INTO `financial_statement_block` (`name`, `financial_statement_id`) VALUES ('{financial_statement_block_name}', {financial_statement_id});"
@@ -6786,6 +6805,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('financial_statements', 'r')
     def updateFinancialStatement(self, financial_statement_id, financial_statement_name, final_financial_statement_id):
         print("DATABASE> Updating Financial Statement")
         query = "UPDATE `financial_statement` SET `name` = '" + str(financial_statement_name) + "', `final_financial_statement` = NULLIF('" + str(final_financial_statement_id) + "','') WHERE `id` = '" + str(financial_statement_id) + "';"
@@ -6793,6 +6813,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('financial_statements', 'r')
     def updateFinancialStatementBlock(self, financial_statement_block_id, financial_statement_block_name):
         print("DATABASE> Updating Financial Statement Block")
         query = f"UPDATE `financial_statement_block` SET `name` = '{financial_statement_block_name}'  WHERE `id` = {financial_statement_block_id};"
@@ -6800,6 +6821,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('financial_statements', 'r')
     def removeFinancialStatement(self, financial_statement_id):
         print("DATABASE> Deleting Financial Statement")
         query = f"DELETE FROM `financial_statement` WHERE `id` = {financial_statement_id};"
@@ -6813,6 +6835,7 @@ class DatabaseOperations(object):
             print('Error Deleting Financial Statement!, ', e)
         return deleted
 
+    @check_permission('financial_statements', 'r')
     def removeFinancialStatementBlock(self, financial_statement_block_id):
         print("DATABASE> Deleting Financial Statement Block")
         query = f"DELETE FROM `financial_statement_block` WHERE `id` = {financial_statement_block_id};"
@@ -6820,6 +6843,7 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('financial_statements', 'r')
     def filterFinancialStatements(self, financial_statement_name):
         print("DATABASE> Filtering Financial Statements")
         query = f"SELECT * FROM `financial_statement` WHERE `name` LIKE '%{financial_statement_name}%';"
@@ -6830,6 +6854,7 @@ class DatabaseOperations(object):
 
 
     ############## Receipt Docs Operations #########################
+    @check_permission('receipt_docs', 'r')
     def fetchReceiptDocs(self):
         print("DATABASE> Fetch all receipt documents")
         query = "SELECT receipt_docs.*, units.name as unit_name, materials.name as material_name, target_warehouse.name as target_warehouse_name, rejection_warehouse.name as rejection_warehouse_name FROM receipt_docs JOIN units ON receipt_docs.unit_id = units.id JOIN materials ON receipt_docs.material_id = materials.id JOIN warehouseslist AS target_warehouse ON receipt_docs.target_warehouse_id = target_warehouse.id JOIN warehouseslist AS rejection_warehouse ON receipt_docs.rejection_warehouse_id = rejection_warehouse.id"
@@ -6838,6 +6863,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('receipt_docs', 'r')
     def fetchReceiptDoc(self, id):
         print("DATABASE> Fetch receipt document with id: " + str(id))
         query = ("SELECT receipt_docs.*, units.name as unit_name, materials.name as material_name, target_warehouse.name as target_warehouse_name, rejection_warehouse.name as rejection_warehouse_name, invoices.id as invoice_id, invoices.number as invoice_number FROM receipt_docs JOIN units ON receipt_docs.unit_id = units.id JOIN materials ON receipt_docs.material_id = materials.id JOIN warehouseslist AS target_warehouse ON receipt_docs.target_warehouse_id = target_warehouse.id JOIN warehouseslist AS rejection_warehouse ON receipt_docs.rejection_warehouse_id = rejection_warehouse.id LEFT JOIN invoice_items ON receipt_docs.invoice_item_id = invoice_items.id LEFT JOIN invoices ON invoice_items.invoice_id = invoices.id WHERE receipt_docs.id = " + str(id))
@@ -6846,6 +6872,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return row
 
+    @check_permission('receipt_docs', 'r')
     def addReceiptDoc(self, material_id, target_warehouse_id, rejection_warehouse_id, unit_id, quantity, invoice_number, date):
         print("DATABASE> Add new receipt document.")
         query = ("INSERT INTO `receipt_docs` "
@@ -6854,12 +6881,14 @@ class DatabaseOperations(object):
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('receipt_docs', 'r')
     def removeReceiptDoc(self, receipt_doc_id):
         print("DATABASE> Deleting receipt document with id: " + str(receipt_doc_id))
         query = f"DELETE FROM `receipt_docs` WHERE `id` = {receipt_doc_id};"
         self.cursor.execute(query)
         self.sqlconnector.conn.commit()
 
+    @check_permission('receipt_docs', 'r')
     def updateReceiptDoc(self, receipt_doc_id, material_id, target_warehouse_id, rejection_warehouse_id, unit_id, quantity, invoice_number, date):
         print("DATABASE> Updating receipt document with id: " + str(receipt_doc_id))
         query = f"UPDATE `receipt_docs` SET `material_id` = {material_id}, `target_warehouse_id` = {target_warehouse_id}, `rejection_warehouse_id` = {rejection_warehouse_id}, `unit_id` = {unit_id}, `quantity` = {quantity}, `invoice_item_id` = NULLIF('{invoice_number}',''), `date` = '{date}' WHERE `id` = {receipt_doc_id};"
@@ -6869,6 +6898,7 @@ class DatabaseOperations(object):
 
     #################### Material Moves #############################
 
+    @check_permission('material_moves', 'w')
     def moveMaterial(self, quantity, move_unit, material_id='',
                     from_warehouse='', to_warehouse='', material_name='', from_warehouse_entry_id='', to_warehouse_entry_id='',
                     quantity_using_source_warehouse_unit='', source_production_batch_id='', source_invoice_item_id='',
@@ -6952,7 +6982,7 @@ class DatabaseOperations(object):
             self.sqlconnector.conn.commit()
         return material_move_id
 
-    @check_permission('warehouses', 'rw')
+    @check_permission('material_moves', 'w')
     def updateMaterialMove(self, material_move_id, to_warehouse_entry_id, commit=True):
         query = "UPDATE `material_moves` SET `destination_warehouse_entry_id` = '" + str(to_warehouse_entry_id) + "' WHERE `id` = '" + str(material_move_id) + "'"
         print(query)
@@ -6960,6 +6990,7 @@ class DatabaseOperations(object):
         if commit:
             self.sqlconnector.conn.commit()
 
+    @check_permission('material_moves', 'w')
     def fetchMaterialMove(self, material_move_id='', origin_type='', origin_id=''):
         if material_move_id:
             query = "SELECT * FROM `material_moves` WHERE `id`='" + str(material_move_id) + "'"
@@ -6973,6 +7004,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return row
 
+    @check_permission('material_moves', 'w')
     def fetchSingleMaterialMove(self, move_id):
         query = "SELECT * FROM `material_moves` WHERE `id`='" + str(move_id) + "'"
         self.cursor.execute(query)
@@ -6980,6 +7012,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return row
 
+    @check_permission('material_moves', 'w')
     def fetchMaterialMoves(self, material_id=''):
         print("DATABASE> Fetch material moves for material id: " + str(material_id))
         query = "SELECT * FROM `warehouseslist`"
@@ -7079,6 +7112,7 @@ class DatabaseOperations(object):
                                 })
         return moves_list
 
+    @check_permission('material_moves', 'w')
     def fetchLastMaterialMovement(self):
         print("DATABASE> Fetch material movement info with dynamic table join")
 
@@ -7126,6 +7160,7 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return rows
 
+    @check_permission('material_moves', 'w')
     def removeMaterialMove(self, move_id='', origin='', origin_id='', commit=True):
         query = "DELETE FROM `material_moves` WHERE `id`=COALESCE(NULLIF('" + str(move_id) + "', ''), `id`) AND `origin`=COALESCE(NULLIF('" + str(origin) + "', ''), `origin`) AND `origin_id`=COALESCE(NULLIF('" + str(origin_id) + "', ''), `origin_id`)"
         self.cursor.execute(query)
@@ -7165,6 +7200,7 @@ class DatabaseOperations(object):
                 print("Error correcting material moves quantity:", str(e))
                 self.sqlconnector.conn.rollback()
 
+    @check_permission('material_moves', 'w')
     def fetchWarehouseMoves(self, warehouse_id, to_date):
         warehouse_code = self.fetchWarehouseCodename(warehouse_id)
         if warehouse_code is None:
@@ -7271,10 +7307,10 @@ class DatabaseOperations(object):
         return row
 
     def createOwner(self, password=''):
-        # Check if owner user already exists
-        query = "SELECT id FROM users WHERE username='owner'"
+        # Check if admin user already exists
+        query = "SELECT id FROM users WHERE username='admin'"
         self.cursor.execute(query)
-        owner = self.cursor.fetchone()
+        admin = self.cursor.fetchone()
 
         key = base64.urlsafe_b64encode(self.key.encode('utf-8'))
         cipher = Fernet(key)
@@ -7282,40 +7318,40 @@ class DatabaseOperations(object):
         # Encrypt the password '12345'
         encrypted_password = cipher.encrypt(password.encode()).decode()
 
-        if not owner:
-            # Create owner user if doesn't exist
-            query = "INSERT INTO `users` (`username`, `password`) VALUES ('owner', '" + str(encrypted_password) + "')"
+        if not admin:
+            # Create admin user if doesn't exist
+            query = "INSERT INTO `users` (`username`, `password`) VALUES ('admin', '" + str(encrypted_password) + "')"
             self.cursor.execute(query)
             self.sqlconnector.conn.commit()
 
-            # Get owner's user ID
-            query = "SELECT id FROM users WHERE username='owner'"
+            # Get amdin's user ID
+            query = "SELECT id FROM users WHERE username='admin'"
             self.cursor.execute(query)
-            owner_id = self.cursor.fetchone()[0]
+            admin_id = self.cursor.fetchone()[0]
 
             # Get all criteria
             query = "SELECT id FROM criteria"
             self.cursor.execute(query)
             criteria_rows = self.cursor.fetchall()
 
-            # Add all permissions for owner
+            # Add all permissions for admin
             for criteria in criteria_rows:
                 criteria_id = criteria['id']
                 # Add read permission
-                query = "INSERT INTO permissions (criteria_id, user_id, type_col) VALUES (" + str(criteria_id) + ", " + str(owner_id) + ", 'R')"
+                query = "INSERT INTO permissions (criteria_id, user_id, type_col) VALUES (" + str(criteria_id) + ", " + str(admin_id) + ", 'R')"
                 self.cursor.execute(query)
                 # Add write permission
-                query = "INSERT INTO permissions (criteria_id, user_id, type_col) VALUES (" + str(criteria_id) + ", " + str(owner_id) + ", 'W')"
+                query = "INSERT INTO permissions (criteria_id, user_id, type_col) VALUES (" + str(criteria_id) + ", " + str(admin_id) + ", 'W')"
                 self.cursor.execute(query)
 
             self.sqlconnector.conn.commit()
 
             # Get full user record to return
-            query = "SELECT * FROM users WHERE id = " + str(owner_id)
+            query = "SELECT * FROM users WHERE id = " + str(admin_id)
             self.cursor.execute(query)
             return self.cursor.fetchone()
 
-        return owner
+        return admin
 
     def fetchAllMedia(self):
         rows = []
