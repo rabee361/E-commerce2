@@ -65,7 +65,7 @@
        <widget class="QLabel" name="label_3">
         <property name="maximumSize">
          <size>
-          <width>50</width>
+          <width>16777215</width>
           <height>16777215</height>
          </size>
         </property>
@@ -91,7 +91,25 @@
        </spacer>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="position_combobox"/>
+       <widget class="QComboBox" name="position_combobox">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="7">
        <widget class="QPushButton" name="calculate_btn">
@@ -104,7 +122,7 @@
        <widget class="QLabel" name="label">
         <property name="maximumSize">
          <size>
-          <width>50</width>
+          <width>16777215</width>
           <height>16777215</height>
          </size>
         </property>
@@ -137,13 +155,6 @@
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="1" column="3">
        <widget class="QGroupBox" name="salary_change_chart">
-        <property name="title">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QGroupBox" name="avg_salary_chart">
         <property name="title">
          <string/>
         </property>
@@ -191,6 +202,13 @@
       </item>
       <item row="1" column="0">
        <widget class="QGroupBox" name="employee_num_chart">
+        <property name="title">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QGroupBox" name="avg_salary_chart">
         <property name="title">
          <string/>
         </property>

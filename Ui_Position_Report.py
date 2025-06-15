@@ -36,7 +36,7 @@ class Ui_Position_Report(object):
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 0, 5, 1, 1)
         self.label_3 = QtWidgets.QLabel(self.groupBox)
-        self.label_3.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.label_3.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
         self.from_date = QtWidgets.QDateEdit(self.groupBox)
@@ -45,13 +45,23 @@ class Ui_Position_Report(object):
         spacerItem = QtWidgets.QSpacerItem(343, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 0, 8, 1, 1)
         self.position_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.position_combobox.setMinimumSize(QtCore.QSize(125, 0))
+        self.position_combobox.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
         self.position_combobox.setObjectName("position_combobox")
         self.gridLayout.addWidget(self.position_combobox, 0, 1, 1, 1)
         self.calculate_btn = QtWidgets.QPushButton(self.groupBox)
         self.calculate_btn.setObjectName("calculate_btn")
         self.gridLayout.addWidget(self.calculate_btn, 0, 7, 1, 1)
         self.label = QtWidgets.QLabel(self.groupBox)
-        self.label.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.label.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 3, 1, 1)
         self.to_date = QtWidgets.QDateEdit(self.groupBox)
@@ -70,10 +80,6 @@ class Ui_Position_Report(object):
         self.salary_change_chart.setTitle("")
         self.salary_change_chart.setObjectName("salary_change_chart")
         self.gridLayout_3.addWidget(self.salary_change_chart, 1, 3, 1, 1)
-        self.avg_salary_chart = QtWidgets.QGroupBox(self.groupBox_2)
-        self.avg_salary_chart.setTitle("")
-        self.avg_salary_chart.setObjectName("avg_salary_chart")
-        self.gridLayout_3.addWidget(self.avg_salary_chart, 0, 3, 1, 1)
         self.department_info = QtWidgets.QGroupBox(self.groupBox_2)
         self.department_info.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.department_info.setTitle("")
@@ -99,6 +105,10 @@ class Ui_Position_Report(object):
         self.employee_num_chart.setTitle("")
         self.employee_num_chart.setObjectName("employee_num_chart")
         self.gridLayout_3.addWidget(self.employee_num_chart, 1, 0, 1, 1)
+        self.avg_salary_chart = QtWidgets.QGroupBox(self.groupBox_2)
+        self.avg_salary_chart.setTitle("")
+        self.avg_salary_chart.setObjectName("avg_salary_chart")
+        self.gridLayout_3.addWidget(self.avg_salary_chart, 0, 3, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox_2, 1, 0, 1, 2)
 
         self.retranslateUi(Position_Report)

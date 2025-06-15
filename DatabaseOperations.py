@@ -55,23 +55,23 @@ class DatabaseOperations(object):
                 if not user_id:
                     print("No user_id found in class instance")
 
-                # db = DatabaseOperations(sql_connector)
-                # has_permission = db.fetchUserPermission(
-                #     user_id,
-                #     criteria_name,
-                #     required_type
-                # )
+                db = DatabaseOperations(sql_connector)
+                has_permission = db.fetchUserPermission(
+                    user_id,
+                    criteria_name,
+                    required_type
+                )
 
-                # if not has_permission:
-                #     # MessageBox(0, f"You don't have the required permissions for {criteria_name}", "Access Denied", MB_OK | MB_ICONWARNING)
-                #     if return_type == list:
-                #         return []
-                #     elif return_type == dict:
-                #         return {}
-                #     elif return_type == tuple:
-                #         return ()
-                #     elif return_type == None:
-                #         return None
+                if not has_permission:
+                    # MessageBox(0, f"You don't have the required permissions for {criteria_name}", "Access Denied", MB_OK | MB_ICONWARNING)
+                    if return_type == list:
+                        return []
+                    elif return_type == dict:
+                        return {}
+                    elif return_type == tuple:
+                        return ()
+                    elif return_type == None:
+                        return None
 
                 return func(self, *args, **kwargs)
             return wrapper
@@ -324,11 +324,87 @@ class DatabaseOperations(object):
             LEFT JOIN invoices i ON it.id = i.type_col
             GROUP BY invoice_type;
         """
-
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         self.sqlconnector.conn.commit()
         return {row['invoice_type']: row['invoice_count'] for row in rows}
+
+
+    def fetchProductProfit(self, product_id, from_date='', to_date='', currency='', origin='invoice'):
+        print("DATABASE> Fetch product profit")
+        profit = 0
+        current_date = datetime.datetime.now().strftime('%Y-%m-%d')
+        if origin =='invoice':
+            buy_price = 0
+            buy_price_data = self.fetchLastInvoiceOfMaterial(product_id, invoice_type='buy')
+            if buy_price_data:
+                material_currency = buy_price_data[0]['currency']
+                material_price = float(buy_price_data[0]['unit_cost'])
+                if currency == material_currency:
+                    buy_price = material_price
+                else:
+                    exchange_rate = self.fetchExchangeValue(
+                        current_date, 
+                        material_price,
+                        currency['id']
+                    )
+                    buy_price = round(material_price * exchange_rate, 3)
+
+            sell_price = 0
+            sell_price_data = self.fetchLastInvoiceOfMaterial(product_id, invoice_type='sell')
+            if sell_price_data:
+                material_currency = sell_price_data[0]['currency']
+                material_price = float(sell_price_data[0]['unit_cost'])
+                if currency == material_currency:
+                    sell_price = material_price
+                else:
+                    exchange_rate = self.fetchExchangeValue(
+                        current_date, 
+                        material_price,
+                        currency['id']
+                    )
+                    sell_price = round(material_price * exchange_rate, 3)
+            profit = sell_price - buy_price
+
+        elif origin == 'manufacture':
+            manufacture_price = 0
+            last_manufacture = self.fetchMaterialLastManufatureProcess(product_id)
+            if last_manufacture:
+                manufacture_currency = last_manufacture['currency_id']
+                expenses_cost = last_manufacture['expenses_cost']
+                machines_operations_cost = last_manufacture['machines_operations_cost']
+                salaries_cost = last_manufacture['salaries_cost']
+                composition_materials_cost = last_manufacture['composition_materials_cost']
+                total_cost = expenses_cost + machines_operations_cost + salaries_cost + composition_materials_cost
+
+                if manufacture_currency == currency:
+                    manufacture_price = total_cost
+                else:
+                    exchange_rate = self.fetchExchangeValue(
+                        current_date, 
+                        total_cost,
+                        currency['id']
+                    )
+                manufacture_price = round(total_cost * exchange_rate, 3)
+
+            sell_price = 0
+            sell_price_data = self.fetchLastInvoiceOfMaterial(product_id, invoice_type='sell')
+            if sell_price_data:
+                material_currency = sell_price_data[0]['currency']
+                material_price = float(sell_price_data[0]['unit_cost'])
+                if currency['id'] == material_price:
+                    sell_price = material_price
+                else:
+                    exchange_rate = self.fetchExchangeValue(
+                        current_date, 
+                        material_price,
+                        currency['id']
+                    )
+                    sell_price = round(material_price * exchange_rate, 3)
+
+            profit = sell_price - manufacture_price
+
+        return profit
 
     @check_permission('invoices', 'w')
     def addInvoiceMaterial(self, invoice_id, material_id, quantity1='', unit1_id='', quantity2='', unit2_id='', quantity3='', unit3_id='', price_type_id='', unit_price='', currency_id='', equilivance_price='', discount='', discount_percent='', addition='', addition_percent='', added_value='', gifts='', gifts_value='', gifts_discount='', warehouse_id='', cost_center_id='', notes='', exchange_id='', discount_account='', addition_account='', production_date='', expire_date='', commit=True) -> None:
@@ -1397,6 +1473,16 @@ class DatabaseOperations(object):
         self.sqlconnector.conn.commit()
         return row
 
+
+    @check_permission('manufacture', 'r')
+    def fetchMaterialLastManufatureProcess(self, material_id) -> dict:
+        print(f"DATABASE> Fetch last manufacture process for material #{material_id}")
+        query = "SELECT materials.name AS material_name, manufacture.date_col AS manufacture_date, manufacture_produced_materials.quantity1 AS quantity, warehouseslist.name AS warehouse_name FROM manufacture JOIN manufacture_produced_materials ON manufacture.id = manufacture_produced_materials.manufacture_id JOIN materials ON manufacture_produced_materials.material_id = materials.id JOIN warehouseslist ON manufacture.warehouse = warehouseslist.id WHERE manufacture_produced_materials.material_id = '" + str(material_id) + "' ORDER BY manufacture.date_col DESC LIMIT 1"
+        self.cursor.execute(query)
+        row = self.cursor.fetchone()
+        self.sqlconnector.conn.commit()
+        return row
+    
     @check_permission('manufacture', 'r')
     def fetchAllManufactureProcessesCount(self) -> int:
         print("DATABASE> Fetch all manufacture processes.")
@@ -3485,6 +3571,7 @@ class DatabaseOperations(object):
         print("DATABASE> Fetch warehouses")
         if warehouse_filter == 'include_in_stock':
             query = "SELECT `warehouseslist`.`id`, `warehouseslist`.`name`, `warehouseslist`.`include_in_stock`, `warehouseslist`.`code`, `parent`.`id` as `parent_id`, `parent`.`name` as `parent_name`, `warehouseslist`.`account`, `warehouseslist`.`codename`, `warehouseslist`.`capacity` FROM `warehouseslist` LEFT JOIN `warehouseslist` AS `parent` ON `warehouseslist`.`parent_warehouse`=`parent`.`id` LEFT JOIN `accounts` ON `warehouseslist`.`account`=`accounts`.`id` WHERE IFNULL(`warehouseslist`.`account`,'0')=IFNULL(NULLIF('" + str(account) + "',''),IFNULL(`warehouseslist`.`account`,'0')) AND `warehouseslist`.`include_in_stock`='1' AND IFNULL(`accounts`.`final_account`,'0')=IFNULL(NULLIF('" + str(final_account) + "',''),IFNULL(`accounts`.`final_account`,'0')) ORDER BY `warehouseslist`.`id`, `parent_id` ASC;"
+            
         elif warehouse_filter == 'not_in_stock':
             query = "SELECT `warehouseslist`.`id`, `warehouseslist`.`name`, `warehouseslist`.`include_in_stock`, `warehouseslist`.`code`, `parent`.`id` as `parent_id`, `parent`.`name` as `parent_name`, `warehouseslist`.`account`, `warehouseslist`.`codename`, `warehouseslist`.`capacity` FROM `warehouseslist` LEFT JOIN `warehouseslist` AS `parent` ON `warehouseslist`.`parent_warehouse`=`parent`.`id` LEFT JOIN `accounts` ON `warehouseslist`.`account`=`accounts`.`id` WHERE IFNULL(`warehouseslist`.`account`,'0')=IFNULL(NULLIF('" + str(account) + "',''),IFNULL(`warehouseslist`.`account`,'0')) AND `warehouseslist`.`include_in_stock`='0' AND IFNULL(`accounts`.`final_account`,'0')=IFNULL(NULLIF('" + str(final_account) + "',''),IFNULL(`accounts`.`final_account`,'0')) ORDER BY `warehouseslist`.`id`, `parent_id` ASC;"
         else:
@@ -7013,7 +7100,7 @@ class DatabaseOperations(object):
         return row
 
     @check_permission('material_moves', 'w')
-    def fetchMaterialMoves(self, material_id=''):
+    def fetchMaterialMoves(self, material_id='', from_date='', to_date='', from_warehouse='', to_warehouse=''):
         print("DATABASE> Fetch material moves for material id: " + str(material_id))
         query = "SELECT * FROM `warehouseslist`"
         self.cursor.execute(query)
@@ -7050,8 +7137,9 @@ class DatabaseOperations(object):
                         # batch_exp = material['batch_exp']
 
                         # Check for moves related to this warehouse entry
-                        moves_query = ("SELECT * FROM material_moves WHERE " +"(source_warehouse_entry_id = " + str(warehouse_entry_id) + " AND source_warehouse = " + str(id) + ") OR " +"(destination_warehouse_entry_id = " + str(warehouse_entry_id) + " AND destination_warehouse = " + str(id) + ")")
-                        self.cursor.execute(moves_query)
+                        moves = "SELECT * FROM material_moves WHERE ((source_warehouse_entry_id = " + str(warehouse_entry_id) + " AND source_warehouse = " + str(id) + ") OR (destination_warehouse_entry_id = " + str(warehouse_entry_id) + " AND destination_warehouse = " + str(id) + ")) AND date_col BETWEEN '" + str(from_date) + "' AND '" + str(to_date) + "'" + ((" AND source_warehouse = " + str(from_warehouse)) if from_warehouse else "") + ((" AND destination_warehouse = " + str(to_warehouse)) if to_warehouse else "")
+                        print(moves)
+                        self.cursor.execute(moves)
                         moves = self.cursor.fetchall()
 
                         if moves:
@@ -7384,7 +7472,6 @@ class DatabaseOperations(object):
         query = "SELECT * FROM `manuals`"
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
-        self.sqlconnector.conn.commit()
         return rows
 
     def fetchManual(self, name):

@@ -41,7 +41,6 @@ class Ui_MaterialMove_Logic(QDialog):
             self.fetchMaterials()
             self.fetchUnits()
             self.fetchCurrencies()
-            self.ui.move_quantity_input.textChanged.connect(lambda: self.setSource())
             self.setOriginTypes()
             if self.independent:
                 self.ui.select_from_account_warehouse_btn.setEnabled(False)
@@ -54,8 +53,6 @@ class Ui_MaterialMove_Logic(QDialog):
             self.ui.add_journal_entry_checkbox.clicked.connect(lambda: self.setCreateJournalEntryState())
             self.ui.select_from_account_warehouse_btn.clicked.connect(lambda: self.openSelectAccountWindow(self.ui.from_account_warehouse_combobox))
             self.ui.select_to_account_warehouse_btn.clicked.connect(lambda: self.openSelectAccountWindow(self.ui.to_account_warehouse_combobox))
-
-
 
             self.ui.from_warehouse_combobox.currentIndexChanged.connect(
                 lambda: self.setDefaultWarehouseAccount(self.ui.from_warehouse_combobox,self.ui.from_account_warehouse_combobox))
@@ -199,7 +196,6 @@ class Ui_MaterialMove_Logic(QDialog):
     def setSource(self):
         if self.source_warehouse and self.warehouse_entry:
             from_warehouse_selected = False
-            moved_quantity = self.ui.move_quantity_input.text() or 0
 
             for index in range(self.ui.from_warehouse_combobox.count()):
                 item_data = self.ui.from_warehouse_combobox.itemData(index)
@@ -262,9 +258,6 @@ class Ui_MaterialMove_Logic(QDialog):
                     currency = ''
                     invoice_data=self.database_operations.fetchInvoiceItem(material_move_id)
                     move_unit = self.ui.move_unit_combobox.currentData()
-
-                    move_unit = move_unit[0] if isinstance(move_unit, (list, tuple)) else move_unit
-
                     if invoice_data:
                         for index in range(self.ui.journal_entry_origin_combobox.count()):
                             item_data = self.ui.journal_entry_origin_combobox.itemData(index)
@@ -278,15 +271,14 @@ class Ui_MaterialMove_Logic(QDialog):
 
 
                         if int(invoice_item_unit1_id) ==int(move_unit):
-                            cost = float(invoice_item_unit_price)*int(moved_quantity)
+                            cost = float(invoice_item_unit_price)*(quantity)
                         else:
                             unit_conversion_rate=self.database_operations.fetchUnitConversionValueBetween(move_unit, invoice_item_unit1_id)
-                            cost=unit_conversion_rate*invoice_item_unit_price*moved_quantity
+                            cost=unit_conversion_rate*invoice_item_unit_price*quantity
                         currency = invoice_item_currency_id
 
                     production_batch_data = self.database_operations.fetchManufactureProcess(production_batch_id)
                     production_batch_materials = self.database_operations.fetchManufactureProcessProducedMaterials(production_batch_id)
-                    
                     if production_batch_materials:
                         for production_batch_material in production_batch_materials:
                             if production_batch_material['material_id'] == material_id:
@@ -330,20 +322,19 @@ class Ui_MaterialMove_Logic(QDialog):
 
                         if move_unit == batch_unit1:
                             unit_cost = batch_cost/batch_quantity1
-                            cost = float(unit_cost)*float(moved_quantity)
+                            cost = float(unit_cost)*float(quantity)
                         elif move_unit == batch_unit2:
                             unit_cost = batch_cost/batch_quantity2
-                            cost = float(unit_cost)*float(moved_quantity)
+                            cost = float(unit_cost)*float(quantity)
                         elif move_unit == batch_unit3:
                             unit_cost = batch_cost/batch_quantity3
-                            cost = float(unit_cost)*float(moved_quantity)
+                            cost = float(unit_cost)*float(quantity)
                         
                     # This is the most basic way of dividing the cost of production
                     num_produced_items = len(production_batch_materials)
                     if num_produced_items > 0:
                         cost = cost / num_produced_items
 
-                    self.ui.journal_entry_item_value.setText(str(round(cost, int(self.float_point_precision))))
                     self.ui.journal_entry_item_currency_combobox.setCurrentIndex(self.ui.journal_entry_item_currency_combobox.findData(currency))
 
                 # fetch material units:

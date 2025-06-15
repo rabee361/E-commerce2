@@ -40,6 +40,10 @@ class Ui_Salary_Report_Logic(object):
         self.fetchDepartments()
         self.fetchPositions()
         self.fetchCurrencies()
+        self.ui.salary_cycle_combobox.addItem(self.language_manager.translate("HOUR"), "hour")
+        self.ui.salary_cycle_combobox.addItem(self.language_manager.translate("DAY"), "day")
+        self.ui.salary_cycle_combobox.addItem(self.language_manager.translate("MONTH"), "month")
+        self.ui.salary_cycle_combobox.addItem(self.language_manager.translate("YEAR"), "year")
         self.ui.calculate_btn.clicked.connect(lambda: self.calculate())
         self.ui.select_department_btn.clicked.connect(lambda: self.openSelectDepartmentWindow())
         self.ui.select_position_btn.clicked.connect(lambda: self.openSelectPositionWindow())
@@ -73,7 +77,7 @@ class Ui_Salary_Report_Logic(object):
         positions = self.database_operations.fetchPositions()
         for position in positions:
             id = position['id']
-            position_name = position['name']
+            position_name = position['position_name']
             self.ui.position_combobox.addItem(position_name, id)
 
     def fetchCurrencies(self):
@@ -89,4 +93,6 @@ class Ui_Salary_Report_Logic(object):
         department_id = self.ui.department_combobox.currentData()
         position_id = self.ui.position_combobox.currentData()
         currency_id = self.ui.currency_combobox.currentData()
+
+        salary_blocks = self.database_operations.fetchPayrollsDetails(department=department_id, position=position_id)
         

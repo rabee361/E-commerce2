@@ -273,7 +273,7 @@ class Ui_DataPicker_Logic(QDialog):
                     if self.checkable and column == 'checkable':
                         # Create a checkbox item
                         checkbox = QCheckBox()
-                        checkbox.setChecked(True)
+                        checkbox.setChecked(False)
                         self.ui.result_table.setCellWidget(numRows, col_idx, checkbox)
                         self.checkable_column_index = col_idx
                     else:
@@ -347,8 +347,13 @@ class Ui_DataPicker_Logic(QDialog):
                     self.linked_items_dict[id] = result
 
     def setSelectedItem(self, window):
-        if self.linked_table:
-            # Get selected items from both tables
+        if self.checkable and self.selected_items:
+            # Return the dictionary of selected items when checkable is enabled
+            # and at least one item is selected
+            self.selected_item = self.selected_items
+            window.accept()
+        elif self.linked_table:
+            # Existing linked table selection logic
             primary_row = self.ui.result_table.currentRow()
             linked_row = self.ui.linked_table.currentRow()
 
@@ -360,9 +365,8 @@ class Ui_DataPicker_Logic(QDialog):
                 primary_exists = self.fetching_item_mapper[self.table_name](primary_item.text())
                 linked_exists = self.fetching_item_mapper[self.linked_table](linked_item.text())
 
-
                 if not primary_exists or not linked_exists:
-                    win32api.MessageBox(0, 'حصل تغيير ما في قاعدة البيانات، يُرجى إعادة الاختيار.', "خطأ", MB_TASKMODAL)
+                    win32api.MessageBox(0, 'حصل تغيير ما في قاعدة البيانات،<|im_start|>رجى إعادة الاختيار.', "خطأ", MB_TASKMODAL)
                     self.fetchResults()
                     return
                 else:
@@ -392,7 +396,7 @@ class Ui_DataPicker_Logic(QDialog):
                         self.selected_item = self.items_dict[int(selected_item_id)]
                         window.accept()
                     else:
-                        win32api.MessageBox(0, 'حصل تغيير ما في قاعدة البيانات، يُرجى إعادة الاختيار.', "خطأ", MB_TASKMODAL)
+                        win32api.MessageBox(0, 'حصل تغيير ما في قاعدة البيانات،<|im_end|>رجى إعادة الاختيار.', "خطأ", MB_TASKMODAL)
                         self.fetchResults()
 
     def handleCellClicked(self, row, column):

@@ -21,8 +21,8 @@ class Ui_AddMaterialToWarehouse_Logic(QDialog):
     def showUi(self):
         window = QDialog()
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):

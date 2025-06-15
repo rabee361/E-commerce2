@@ -34,4 +34,62 @@ class Ui_SalesReport_Logic(object):
         window.exec()
 
     def initialize(self):
-        pass
+        self.ui.from_date_input.setDate(QDate.currentDate())
+        self.ui.to_date_input.setDate(QDate.currentDate())
+        self.ui.buy_manufacture_date.setDate(QDate.currentDate())
+        self.fetchMaterials()
+        self.fetchCustomers()
+        self.fetchCurrencies()
+        self.fetchMaterials()
+        self.ui.select_client_btn.clicked.connect(lambda: self.openSelectClientWindow())
+        self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow())
+        self.ui.calc_btn.clicked.connect(lambda: self.calculate())
+
+    def fetchMaterials(self):
+        materials = self.database_operations.fetchMaterials()
+        for material in materials:
+            id = material['id']
+            name = material['name']
+            self.ui.materials_combobox.addItem(name, id)
+
+    def fetchCurrencies(self):
+        currencies = self.database_operations.fetchCurrencies()
+        for currency in currencies:
+            id = currency['id']
+            name = currency['name']
+            self.ui.currency_combobox.addItem(name, id)
+
+    def fetchCustomers(self):
+        customers = self.database_operations.fetchCustomers()
+        for customer in customers:
+            id = customer['id']
+            name = customer['name']
+            self.ui.clients_combobox.addItem(name, id)
+
+    def openSelectClientWindow(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'customers')
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.clients_combobox.count()):
+                if self.ui.clients_combobox.itemData(i)[0] == result['id']:
+                    self.ui.clients_combobox.setCurrentIndex(i)
+                    break
+
+    def openSelectMaterialWindow(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'materials')
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.materials_combobox.count()):
+                if self.ui.materials_combobox.itemData(i)[0] == result['id']:
+                    self.ui.materials_combobox.setCurrentIndex(i)
+                    break
+
+
+    def calculate(self):
+        self.ui.sales_table.setRowCount(0)
+        from_date = self.ui.from_date_input.text()
+        to_date = self.ui.to_date_input.text()
+        customer = self.ui.clients_combobox.itemData(self.ui.clients_combobox.currentIndex())
+        material = self.ui.materials_combobox.itemData(self.ui.materials_combobox.currentIndex())
+        currency = self.ui.currency_combobox.currentData()
+

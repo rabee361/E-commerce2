@@ -25,7 +25,7 @@ from PyQt5.QtGui import QPixmap
 from Colors import light_yellow_color
 from FileManager import FileManager
 from SqliteConnector import SqliteConnector
-# from StyleApplicator import StyleApplicator
+from StyleApplicator import StyleApplicator
 from Ui_Account_Movements_Logic import Ui_Account_Movements_Logic
 from Ui_Accounts_Logic import Ui_Accounts_Logic
 from Ui_Clients_Logic import Ui_Clients_Logic
@@ -136,7 +136,7 @@ class Ui_Mer_Logic(QObject):
     def showUi(self):
         app = QApplication(sys.argv)
         window = QMainWindow()
-        # StyleApplicator.apply_global_style()
+        StyleApplicator.apply_global_style()
         self.filemanager = FileManager()
         self.app = app
         self.window = window
@@ -177,6 +177,7 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_connect_to_database.triggered.connect(lambda: self.closeAllWindows() and self.openDatabaseSettings())
         self.ui.option_connect_to_database.setShortcut(QKeySequence("Ctrl+D"))
         self.ui.option_switch_user.triggered.connect(lambda: self.closeAllWindows() and self.openSwitchUserWindow())
+        self.ui.option_switch_user.setShortcut(QKeySequence("Ctrl+1"))
         self.ui.option_users.triggered.connect(lambda: self.closeAllWindows() and self.openUsersWindow())
         self.ui.option_users.setShortcut(QKeySequence("Ctrl+U"))
         self.ui.option_exit.triggered.connect(lambda: self.closeAllWindows() and self.closeApp())
@@ -223,6 +224,7 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_client_report.triggered.connect(lambda: self.openClientReportWindow())
         self.ui.option_client_report.setShortcut(QKeySequence("Alt+7"))
         self.ui.option_supplier_report.triggered.connect(lambda: self.openSupplierReportWindow())
+        self.ui.option_quantities_report.setShortcut(QKeySequence("Alt+/"))
         self.ui.option_quantities_report.triggered.connect(lambda: self.openQuantitiesReportWindow())
         self.ui.option_supplier_report.setShortcut(QKeySequence("Alt+8"))
         self.ui.option_sales_plan.triggered.connect(lambda: self.openSalesTargetWindow())
@@ -242,6 +244,7 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_materials.triggered.connect(lambda: self.openMaterialsWindow())
         self.ui.option_materials.setShortcut(QKeySequence("F2"))
         self.ui.menu_warehouses.aboutToShow.connect(lambda: self.openWarehousesList())
+        self.ui.option_reorder_report.setShortcut(QKeySequence("Alt+;"))
         self.ui.option_reorder_report.triggered.connect(lambda: self.openReOrderMaterialReportWindow())
         self.ui.option_department_report.triggered.connect(lambda: self.openDepartmentReportWindow())
         self.ui.option_inusrance_report.triggered.connect(lambda: self.openInsuranceReportWindow())
@@ -291,9 +294,7 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_inventory.triggered.connect(lambda: self.openWarehouseMoveWindow())
         self.ui.option_inventory.setShortcut(QKeySequence("Alt+6")) 
         self.ui.option_value_report.triggered.connect(lambda: self.openValueReportWindow())
-        # self.ui.users_btn.clicked.connect(lambda: self.openUsersWindow())
-        # self.ui.option_currencies.triggered.connect(lambda: self.openCurrenciesWindow())
-        # self.ui.unit_management_btn.clicked.connect(lambda: self.openUnitsWindow())
+        self.ui.option_value_report.setShortcut(QKeySequence("Alt+.")) 
 
         self.ui.option_financial_statements_settings.triggered.connect(lambda: self.openFinancialStatementsSettingsWindow())
         self.ui.option_financial_statements_report.triggered.connect(lambda: self.openFinancialStatementsReportWindow())

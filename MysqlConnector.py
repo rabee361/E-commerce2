@@ -499,7 +499,10 @@ class MysqlConnector:
                 ]
 
                 for manual in manuals:
-                    c.execute("INSERT INTO `manuals` (`name`) VALUES (%s)", (manual,))
+                    c.execute("SELECT count(*) FROM `manuals` WHERE `name` = '" + str(manual) + "';")
+                    rows = c.fetchall()
+                    if (rows[0][0] == 0):
+                        c.execute("INSERT INTO `manuals` (`name`) VALUES (%s)", (manual,))
 
 
                 # Check if indexes exist before creating them

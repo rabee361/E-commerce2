@@ -70,8 +70,8 @@ class Ui_MaterialMoveReport_Logic(object):
         self.ui.calc_btn.clicked.connect(lambda: self.calculate())
         self.ui.export_btn.clicked.connect(lambda: self.exportToExcel())
         self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow())
-        self.ui.select_from_warehouse_btn.clicked.connect(lambda: self.openSelectFromWarehouse())
-        self.ui.select_to_warehouse_btn.clicked.connect(lambda: self.openSelectToWarehouse())
+        self.ui.select_from_warehouse_btn.clicked.connect(lambda: self.openSelectWarehouseWindow(self.ui.from_warehouse_combobox))
+        self.ui.select_to_warehouse_btn.clicked.connect(lambda: self.openSelectWarehouseWindow(self.ui.to_warehouse_combobox))
         self.ui.materials_combobox.currentIndexChanged.connect(lambda: self.clearSummary())
         self.ui.currency_combobox.currentIndexChanged.connect(lambda: self.displaySummary())
 
@@ -107,19 +107,17 @@ class Ui_MaterialMoveReport_Logic(object):
             }
             
     def fetchWarehouses(self):
-        pass
+        warehouses = self.database_operations.fetchWarehouses()
+        if warehouses:
+            for warehouse in warehouses:
+                self.ui.from_warehouse_combobox.addItem(warehouse['name'], warehouse['id'])
+                self.ui.to_warehouse_combobox.addItem(warehouse['name'], warehouse['id'])
 
-    def openSelectFromWarehouse(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True, checkable=True)
+    def openSelectWarehouseWindow(self, combobox):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses',include_none_option=True)
         result = data_picker.showUi()
-        if result is not None:
-            self.ui.from_warehouse_combobox.setCurrentIndex(self.ui.from_warehouse_combobox.findData(result['id']))
-
-    def openSelectToWarehouse(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'warehouses', include_none_option=True, checkable=True)
-        result = data_picker.showUi()
-        if result is not None:
-            self.ui.to_warehouse_combobox.setCurrentIndex(self.ui.to_warehouse_combobox.findData(result['id']))
+        if result:
+            combobox.setCurrentIndex(combobox.findData(result['id']))
 
     def clearSummary(self):
         for key in self.material_summary:
@@ -134,6 +132,10 @@ class Ui_MaterialMoveReport_Logic(object):
 
     def calculate(self):
         self.ui.material_moves_table.setRowCount(0)
+        from_date = self.ui.from_date_input.date().toString(Qt.ISODate)
+        to_date = self.ui.to_date_input.date().toString(Qt.ISODate)
+        from_warehouse = self.ui.from_warehouse_combobox.currentData() or ''
+        to_warehouse = self.ui.to_warehouse_combobox.currentData() or ''
 
         selected_material = self.ui.materials_combobox.itemData(self.ui.materials_combobox.currentIndex())
         if selected_material[0] is None:
@@ -141,7 +143,7 @@ class Ui_MaterialMoveReport_Logic(object):
         else:
             selected_material_id = selected_material[0]
         
-        material_moves = self.database_operations.fetchMaterialMoves(selected_material_id)
+        material_moves = self.database_operations.fetchMaterialMoves(selected_material_id, from_date, to_date, from_warehouse, to_warehouse)
         
         from_date = self.ui.from_date_input.text()
         to_date = self.ui.to_date_input.text()

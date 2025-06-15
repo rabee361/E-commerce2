@@ -38,6 +38,7 @@ class Ui_Salary_Report(object):
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.label_8 = QtWidgets.QLabel(self.groupBox)
         self.label_8.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.label_8.setWordWrap(True)
         self.label_8.setObjectName("label_8")
         self.gridLayout_3.addWidget(self.label_8, 0, 0, 1, 1)
         self.salary_cycle_combobox = QtWidgets.QComboBox(self.groupBox)

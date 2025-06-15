@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1059</width>
-    <height>643</height>
+    <width>852</width>
+    <height>694</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -154,7 +154,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
-       <widget class="QGroupBox" name="avg_salary_chart">
+       <widget class="QGroupBox" name="department_info">
         <property name="minimumSize">
          <size>
           <width>400</width>
@@ -163,96 +163,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>400</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QGroupBox" name="salary_change_chart">
-        <property name="title">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QGroupBox" name="employee_num_chart">
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QLineEdit" name="new_employees"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>الموظفين الجدد:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLineEdit" name="resigned_employees"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>الموظفين المقالين:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLineEdit" name="total_employees"/>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>اجمالي الموظفين:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLineEdit" name="total_additions"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>اجمالي الاضافات:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLineEdit" name="total_discounts"/>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>اجمالي الخصومات:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLineEdit" name="total_hr_loans"/>
-         </item>
-         <item row="5" column="1">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>اجمالي قيمة السلف:</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QGroupBox" name="department_info">
-        <property name="maximumSize">
-         <size>
-          <width>400</width>
+          <width>16777215</width>
           <height>16777215</height>
          </size>
         </property>
@@ -265,6 +176,9 @@
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
           <widget class="QTableWidget" name="tableWidget">
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
            <column>
             <property name="text">
              <string>#</string>
@@ -292,6 +206,107 @@
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGroupBox" name="avg_salary_chart">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="employee_num_chart">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="5" column="0">
+          <widget class="QLineEdit" name="total_hr_loans"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>اجمالي الاضافات:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLineEdit" name="total_discounts"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLineEdit" name="total_employees"/>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>اجمالي الخصومات:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>الموظفين الجدد:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>اجمالي الموظفين:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="resigned_employees"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLineEdit" name="total_additions"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>الموظفين المقالين:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>اجمالي قيمة السلف:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="new_employees"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QGroupBox" name="salary_change_chart">
+        <property name="title">
+         <string/>
+        </property>
        </widget>
       </item>
      </layout>
