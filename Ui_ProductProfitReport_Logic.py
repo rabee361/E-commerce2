@@ -41,7 +41,7 @@ class Ui_ProductProfitReport_Logic(object):
         self.fetchCurrencies()
         self.fetchMaterials()
         self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow())
-        self.ui.calc_btn.clicked.connect(lambda: self.calculate())
+        self.ui.calculate_btn.clicked.connect(lambda: self.calculate())
 
     def fetchMaterials(self):
         materials = self.database_operations.fetchMaterials()
@@ -67,9 +67,38 @@ class Ui_ProductProfitReport_Logic(object):
                     break
 
     def calculate(self):
-        self.ui.sales_table.setRowCount(0)
-        from_date = self.ui.from_date_input.text()
-        to_date = self.ui.to_date_input.text()
-        customer = self.ui.clients_combobox.itemData(self.ui.clients_combobox.currentIndex())
+        self.ui.profits_table.setRowCount(0)
+        from_date = self.ui.from_date_input.date().toString(Qt.ISODate)
+        to_date = self.ui.to_date_input.date().toString(Qt.ISODate)
         material = self.ui.materials_combobox.itemData(self.ui.materials_combobox.currentIndex())
         currency = self.ui.currency_combobox.currentData()
+        invoice_items_data = self.database_operations.fetchAllInvoiceItems(invoice_main_type='output', material=material, from_date=from_date, to_date=to_date)
+
+        for invoice_item in invoice_items_data:
+            material_id = invoice_item['material_id']
+            material_name = invoice_item['material_name']
+            client_name = invoice_item['client_name']
+            # unit_name = invoice_item['unit_name']
+            code = invoice_item['code']
+            currency_name = invoice_item['currency_name']
+            origin = invoice_item['origin']
+
+            if origin == 'invoice':
+                material_profit = self.database_operations.fetchProductProfit(material_id, origin='invoice', currency=currency)
+
+            elif origin == 'manufacture':
+                material_profit = self.database_operations.fetchProductProfit(material_id, origin='manufacture', currency=currency)
+
+            else:
+                material_profit = 0
+
+            numRows = self.ui.profits_table.rowCount()
+            self.ui.profits_table.insertRow(numRows)
+
+            self.ui.profits_table.setItem(numRows, 0, QTableWidgetItem(material_name))
+            self.ui.profits_table.setItem(numRows, 1, QTableWidgetItem(code))
+            self.ui.profits_table.setItem(numRows, 2, QTableWidgetItem(client_name))
+            self.ui.profits_table.setItem(numRows, 3, QTableWidgetItem(str(material_profit)))
+            self.ui.profits_table.setItem(numRows, 4, QTableWidgetItem(str(currency_name)))
+
+

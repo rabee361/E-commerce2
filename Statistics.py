@@ -108,22 +108,22 @@ class Statistics():
             self.ui.manufacture_material.setText(str(last_manufature_process['material_name']))
             self.ui.manufacture_date.setText(str(last_manufature_process['date_col']))
             self.ui.manufacture_quantity.setText(str(last_manufature_process['quantity1']))
-            # self.ui.manufacture_quantity.setText(str(last_manufature_process['unit1_name']))
             self.ui.manufature_cost.setText(str(manufacture_cost))
         else:
             pass
 
     def fetchLastMaterialMovement(self):
-        last_material_movement = self.database_operations.fetchLastMaterialMovement()
-        if last_material_movement:
-            self.ui.last_material_movement_date.setText(str(last_material_movement['date_col'].strftime('%Y-%m-%d')))
-            self.ui.material.setText(str(last_material_movement['material_name']))
-            self.ui.move_reason.setText(str(last_material_movement['origin']))
-            self.ui.from_warehouse.setText(str(last_material_movement['source_warehouse_name'] or ''))
-            self.ui.to_warehouse.setText(str(last_material_movement['destination_warehouse_name'] or ''))
-            self.ui.quantity.setText(str(last_material_movement['quantity']))
-        else:
-            pass
+        # last_material_movement = self.database_operations.fetchLastMaterialMovement()
+        # if last_material_movement:
+            # self.ui.last_material_movement_date.setText(str(last_material_movement[0]['date_col'].strftime('%Y-%m-%d')))
+            # self.ui.material.setText(str(last_material_movement[0]['material_name']))
+            # self.ui.move_reason.setText(str(last_material_movement[0]['origin']))
+            # self.ui.from_warehouse.setText(str(last_material_movement[0]['source_warehouse_name'] or ''))
+            # self.ui.to_warehouse.setText(str(last_material_movement[0]['destination_warehouse_name'] or ''))
+            # self.ui.quantity.setText(str(last_material_movement[0]['quantity']))
+        # else:
+        #     pass
+        pass
 
     def showChart(self):
         # Get existing chart view if it exists

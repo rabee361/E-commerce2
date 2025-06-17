@@ -6,7 +6,7 @@ import random
 from LanguageManager import LanguageManager
 from Ui_DBPassword_Logic import Ui_DBPassword_Logic
 from datetime import datetime
-
+import win32api
 from PyQt5.QtCore import QTranslator, QCoreApplication
 import locale
 from PyQt5.QtGui import QKeySequence
@@ -58,6 +58,7 @@ from Ui_Groups_Logic import Ui_Groups_Logic
 from Ui_HR_Logic import Ui_HR_Logic
 from Ui_InvoiceView_Logic import Ui_InvoiceView_Logic
 from Ui_SalesReport_Logic import Ui_SalesReport_Logic
+from Ui_SalesCostReport_Logic import Ui_SalesCostReport_Logic
 from Ui_ProductProfitReport_Logic import Ui_ProductProfitReport_Logic
 from Ui_InvoicesList_Logic import Ui_InvoicesList_Logic
 from Ui_Journal_Logic import Ui_Journal_Logic
@@ -71,7 +72,7 @@ from Ui_MaterialMoveReport_Logic import Ui_MaterialMoveReport_Logic
 from Ui_Payments_Logic import Ui_Payments_Logic
 from Ui_PriceManagement_Logic import Ui_PricesManagement_Logic
 from Ui_ProductSales_Logic import Ui_ProductSales_Logic
-from Ui_NewInvoice_Logic import *
+from DatabaseOperations import DatabaseOperations
 from Ui_About_Logic import Ui_About_Logic
 from Ui_JournalVoucher_Logic import Ui_JournalVoucher_Logic
 from Ui_Sales_Target_Logic import Ui_Sales_Target_Logic
@@ -101,7 +102,7 @@ from Ui_Calculator_Logic import Ui_Calculator_Logic
 # from ChatComponent import ChatComponent
 # from ChatBotAdapter import ChatBotAdapter
 # from chatbot import Services
-# from PermissionDecoratorClass import check_permission
+from PermissionDecoratorClass import check_permission
 
 class Ui_Mer_Logic(QObject):
     def __init__(self):
@@ -126,7 +127,7 @@ class Ui_Mer_Logic(QObject):
         self.language_manager = LanguageManager(self.translator)
         self.default_language = ''
         self.current_language = ''
-        self.chat_component = None
+        # self.chat_component = None
         # self.chatbot = None
 
     # # Define permission as a method
@@ -220,7 +221,11 @@ class Ui_Mer_Logic(QObject):
         self.ui.option_product_sales.triggered.connect(lambda: self.openProductSalesWindow())
         self.ui.option_product_sales.setShortcut(QKeySequence("Alt+3"))
         self.ui.option_sales_report.triggered.connect(lambda: self.openSalesReportWindow())
-        self.ui.option_sales_report.setShortcut(QKeySequence("Alt+3"))
+        self.ui.option_sales_report.setShortcut(QKeySequence("Alt+Shift+1"))
+        self.ui.option_sales_cost_report.triggered.connect(lambda: self.openSalesCostReportWindow())
+        self.ui.option_sales_cost_report.setShortcut(QKeySequence("Alt+Shift+3"))
+        self.ui.option_product_profit_report.triggered.connect(lambda: self.openProductProfitWindow())
+        self.ui.option_product_profit_report.setShortcut(QKeySequence("Alt+Shift+2"))
         self.ui.option_client_report.triggered.connect(lambda: self.openClientReportWindow())
         self.ui.option_client_report.setShortcut(QKeySequence("Alt+7"))
         self.ui.option_supplier_report.triggered.connect(lambda: self.openSupplierReportWindow())
@@ -734,11 +739,11 @@ class Ui_Mer_Logic(QObject):
             self.fetchAlerts()
             self.ui.stats_groupbox.setEnabled(True)
             # Initialize chatbot with our adapter
-            # ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
+            ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
             # self.chatbot = ChatBotAdapter(service=Services.MYSQL, ai_rules_path=ai_rules_path, mysql_connection=self.sql_connector)
 
             # Initialize chat component
-            self.setupChatComponent()
+            # self.setupChatComponent()
         else:
             print("No File.")
 
@@ -779,12 +784,12 @@ class Ui_Mer_Logic(QObject):
             self.fetchAlerts()
 
             # Initialize chatbot with our adapter
-            # ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
+            ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
             # self.chatbot = ChatBotAdapter(service=Services.MYSQL, ai_rules_path=ai_rules_path, mysql_connection=self.sql_connector)
             self.window.setEnabled(True)
             self.ui.stats_groupbox.setEnabled(True)
             # Initialize chat component
-            self.setupChatComponent()
+            # self.setupChatComponent()
 
         else:
             print("No File.")
@@ -868,11 +873,11 @@ class Ui_Mer_Logic(QObject):
             self.ui.stats_groupbox.setEnabled(True)
 
             # Initialize chatbot with our adapter
-            # ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
+            ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
             # self.chatbot = ChatBotAdapter(service=Services.MYSQL, ai_rules_path=ai_rules_path, mysql_connection=self.sql_connector)
 
             # Initialize chat component
-            self.setupChatComponent()
+            # self.setupChatComponent()
 
     def openSwitchUserWindow(self):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
@@ -915,6 +920,24 @@ class Ui_Mer_Logic(QObject):
                 self.windows_manager.raiseWindow('SalesReportWindow')
             else:
                 Ui_SalesReport_Logic(self.sql_connector, self.filemanager).showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
+    def openSalesCostReportWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            if self.windows_manager.checkIfWindowIsOpen('SalesCostReportWindow'):
+                self.windows_manager.raiseWindow('SalesCostReportWindow')
+            else:
+                Ui_SalesCostReport_Logic(self.sql_connector, self.filemanager).showUi()
+        else:
+            win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
+
+    def openProductProfitWindow(self):
+        if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
+            if self.windows_manager.checkIfWindowIsOpen('ProductProfitWindow'):
+                self.windows_manager.raiseWindow('ProductProfitWindow')
+            else:
+                Ui_ProductProfitReport_Logic(self.sql_connector, self.filemanager).showUi()
         else:
             win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_SYSTEMMODAL)
 

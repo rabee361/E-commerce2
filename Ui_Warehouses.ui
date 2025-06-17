@@ -39,60 +39,79 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_6">
-    <item row="1" column="1">
-     <widget class="QGroupBox" name="groupBox_4">
+    <item row="0" column="0" rowspan="3">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="title">
-       <string/>
+       <string>المستودعات</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="3">
-        <widget class="QPushButton" name="move_material_btn">
-         <property name="text">
-          <string>...تحريك مادة</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="edit_material_quantity_btn">
-         <property name="text">
-          <string>...تعديل الكمية</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="add_material_btn">
-         <property name="text">
-          <string>...إضافة مادة</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0" colspan="2">
+        <widget class="QTreeWidget" name="warehouses_tree">
+         <property name="maximumSize">
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>16777215</width>
+           <height>16777215</height>
           </size>
          </property>
-        </spacer>
+         <column>
+          <property name="text">
+           <string>الرمز</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>المستودع</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>المعرف</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignTrailing|AlignVCenter</set>
+          </property>
+         </column>
+        </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="remove_material_btn">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="delete_warehouse_btn">
          <property name="text">
-          <string>...اخراج مادة</string>
+          <string>...حذف المستودع</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="add_warehouse_btn">
+         <property name="text">
+          <string>...إضافة مستودع</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="0" column="1">
+    <item row="0" column="1" rowspan="2">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="layoutDirection">
        <enum>Qt::RightToLeft</enum>
@@ -221,78 +240,6 @@
            <set>AlignTrailing|AlignVCenter</set>
           </property>
          </column>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="0" column="0" rowspan="2">
-     <widget class="QGroupBox" name="groupBox">
-      <property name="minimumSize">
-       <size>
-        <width>300</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-      <property name="title">
-       <string>المستودعات</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0" colspan="2">
-        <widget class="QTreeWidget" name="warehouses_tree">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <column>
-          <property name="text">
-           <string>الرمز</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignTrailing|AlignVCenter</set>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>المستودع</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignTrailing|AlignVCenter</set>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>المعرف</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignTrailing|AlignVCenter</set>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="delete_warehouse_btn">
-         <property name="text">
-          <string>...حذف المستودع</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="add_warehouse_btn">
-         <property name="text">
-          <string>...إضافة مستودع</string>
-         </property>
         </widget>
        </item>
       </layout>
@@ -507,7 +454,7 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="2">
+    <item row="1" column="2" rowspan="2">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>تقارير</string>
@@ -545,6 +492,59 @@
         <widget class="QPushButton" name="quantities_report_btn">
          <property name="text">
           <string>...متجهة الكميات</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="3">
+        <widget class="QPushButton" name="move_material_btn">
+         <property name="text">
+          <string>...تحريك مادة</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="edit_material_quantity_btn">
+         <property name="text">
+          <string>...تعديل الكمية</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="add_material_btn">
+         <property name="text">
+          <string>...إضافة مادة</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="remove_material_btn">
+         <property name="text">
+          <string>...اخراج مادة</string>
          </property>
         </widget>
        </item>

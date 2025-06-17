@@ -1025,7 +1025,7 @@ QLineEdit {
          </layout>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="0" colspan="2">
         <widget class="QGroupBox" name="groupBox_5">
          <property name="minimumSize">
           <size>
@@ -1176,13 +1176,6 @@ QLineEdit {
          </layout>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>GroupBox</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </item>
@@ -1270,12 +1263,13 @@ QLineEdit {
      <addaction name="option_salary_report"/>
      <addaction name="option_inusrance_report"/>
     </widget>
-    <widget class="QMenu" name="option_product_profit_report_2">
+    <widget class="QMenu" name="option_sales_report_2">
      <property name="title">
       <string>...تقارير مبيعات</string>
      </property>
-     <addaction name="action_13"/>
+     <addaction name="option_product_profit_report"/>
      <addaction name="option_sales_report"/>
+     <addaction name="option_sales_cost_report"/>
     </widget>
     <addaction name="option_aggregator"/>
     <addaction name="option_auto_aggregator"/>
@@ -1284,7 +1278,7 @@ QLineEdit {
     <addaction name="menu_8"/>
     <addaction name="option_client_report"/>
     <addaction name="option_supplier_report"/>
-    <addaction name="option_product_profit_report_2"/>
+    <addaction name="option_sales_report_2"/>
     <addaction name="menu_HR"/>
    </widget>
    <widget class="QMenu" name="menu_6">
@@ -1884,11 +1878,6 @@ QLineEdit {
     <string>...تقارير الانحراف</string>
    </property>
   </action>
-  <action name="option_product_profit_report">
-   <property name="text">
-    <string>...تقارير أرباح منتج</string>
-   </property>
-  </action>
   <action name="action_2">
    <property name="text">
     <string>...تكاليف الشراء</string>
@@ -1968,7 +1957,7 @@ QLineEdit {
     <string>...تقارير مبيعات</string>
    </property>
   </action>
-  <action name="action_13">
+  <action name="option_product_profit_report">
    <property name="text">
     <string>...تقارير أرباح منتج</string>
    </property>
@@ -2030,6 +2019,11 @@ QLineEdit {
    </property>
    <property name="text">
     <string>...تبديل المستخدم</string>
+   </property>
+  </action>
+  <action name="option_sales_cost_report">
+   <property name="text">
+    <string>...تقارير تكاليف المبيع</string>
    </property>
   </action>
  </widget>

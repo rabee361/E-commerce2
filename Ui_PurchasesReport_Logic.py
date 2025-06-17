@@ -5,7 +5,7 @@ from PyQt5.QtGui import QColor
 from PyQt5.QtCore import Qt , QDate
 from DatabaseOperations import DatabaseOperations
 from Ui_DataPicker_Logic import Ui_DataPicker_Logic
-from Ui_SalesReport import Ui_SalesReport
+from Ui_PurchasesReport import Ui_PurchasesReport
 from PyQt5.QtWidgets import QTableWidgetItem, QHeaderView, QAbstractItemView, QDialog
 from Colors import colorizeTableRow, light_red_color, blue_sky_color, light_green_color ,black
 from LanguageManager import LanguageManager
@@ -13,13 +13,13 @@ from PyQt5.QtCore import QTranslator
 from PyQt5.QtGui import QIcon
 
 
-class Ui_SalesReport_Logic(object):
+class Ui_PurchasesReportSalesReport_Logic(object):
     def __init__(self, sqlconnector, filemanager):
         super().__init__()
         self.sqlconnector = sqlconnector
         self.filemanager = filemanager
         self.database_operations = DatabaseOperations(self.sqlconnector)
-        self.ui = Ui_SalesReport()
+        self.ui = Ui_PurchasesReport()
         self.translator = QTranslator()
         self.language_manager = LanguageManager(self.translator)
 
@@ -38,10 +38,10 @@ class Ui_SalesReport_Logic(object):
         self.ui.to_date_input.setDate(QDate.currentDate())
         self.ui.buy_manufacture_date.setDate(QDate.currentDate())
         self.fetchMaterials()
-        self.fetchCustomers()
+        self.fetchSuppliers()
         self.fetchCurrencies()
         self.fetchMaterials()
-        self.ui.select_client_btn.clicked.connect(lambda: self.openSelectClientWindow())
+        self.ui.select_supplier_btn.clicked.connect(lambda: self.openSelectSupplierWindow())
         self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow())
         self.ui.calc_btn.clicked.connect(lambda: self.calculate())
 
@@ -63,21 +63,21 @@ class Ui_SalesReport_Logic(object):
                 name = currency['name']
                 self.ui.currency_combobox.addItem(name, id)
 
-    def fetchCustomers(self):
-        customers = self.database_operations.fetchClients(client_type='customer')
-        if customers:
-            for customer in customers:
-                id = customer['id']
-                name = customer['name']
-                self.ui.clients_combobox.addItem(name, id)
+    def fetchSuppliers(self):
+        suppliers = self.database_operations.fetchSuppliers(client_type='supplier')
+        if suppliers:
+            for supplier in suppliers:
+                id = supplier['id']
+                name = supplier['name']
+                self.ui.suppliers_combobox.addItem(name, id)
 
-    def openSelectClientWindow(self):
-        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'clients', client_type='customer')
+    def openSelectSupplierWindow(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'suppliers', client_type='supplier')
         result = data_picker.showUi()
         if result:
-            for i in range(self.ui.clients_combobox.count()):
-                if self.ui.clients_combobox.itemData(i) == result['id']:
-                    self.ui.clients_combobox.setCurrentIndex(i)
+            for i in range(self.ui.suppliers_combobox.count()):
+                if self.ui.suppliers_combobox.itemData(i) == result['id']:
+                    self.ui.suppliers_combobox.setCurrentIndex(i)
                     break
 
     def openSelectMaterialWindow(self):
@@ -91,10 +91,10 @@ class Ui_SalesReport_Logic(object):
                     break
 
     def calculate(self):
-        self.ui.sales_table.setRowCount(0)
+        self.ui.purchases_table.setRowCount(0)
         from_date = self.ui.from_date_input.date().toString(Qt.ISODate)
         to_date = self.ui.to_date_input.date().toString(Qt.ISODate)
-        customer = self.ui.clients_combobox.itemData(self.ui.clients_combobox.currentIndex())
+        customer = self.ui.suppliers_combobox.itemData(self.ui.suppliers_combobox.currentIndex())
         material = self.ui.materials_combobox.itemData(self.ui.materials_combobox.currentIndex())
         currency = self.ui.currency_combobox.currentData()
         invoice_items_data = self.database_operations.fetchAllInvoiceItems(invoice_main_type='output', material=material, client=customer, from_date=from_date, to_date=to_date)
@@ -117,11 +117,11 @@ class Ui_SalesReport_Logic(object):
             else:
                 material_profit = 0
 
-            numRows = self.ui.sales_table.rowCount()
-            self.ui.sales_table.insertRow(numRows)
+            numRows = self.ui.purchases_table.rowCount()
+            self.ui.purchases_table.insertRow(numRows)
 
-            self.ui.sales_table.setItem(numRows, 0, QTableWidgetItem(material_name))
-            self.ui.sales_table.setItem(numRows, 1, QTableWidgetItem(code))
-            self.ui.sales_table.setItem(numRows, 2, QTableWidgetItem(material_profit))
-            self.ui.sales_table.setItem(numRows, 3, QTableWidgetItem(currency_name))
+            self.ui.purchases_table.setItem(numRows, 0, QTableWidgetItem(material_name))
+            self.ui.purchases_table.setItem(numRows, 1, QTableWidgetItem(code))
+            self.ui.purchases_table.setItem(numRows, 2, QTableWidgetItem(material_profit))
+            self.ui.purchases_table.setItem(numRows, 3, QTableWidgetItem(currency_name))
 

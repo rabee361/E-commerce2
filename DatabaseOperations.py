@@ -564,23 +564,14 @@ class DatabaseOperations(object):
         return rows
 
     @check_permission('invoices', 'R')
-    def fetchAllInvoiceItems(self, invoice_main_type='', material='', client='', from_date='', to_date=''):
-        query = "SELECT * FROM `invoice_items` LEFT JOIN `materials` ON `invoice_items`.`material_id` = `materials`.`id` LEFT JOIN ON `material_moves`.`origin_id` = `invoice_items`.`id`  LEFT JOIN `invoices` ON `invoice_items`.`invoice_id` = `invoices`.`id` LEFT JOIN `invoice_types` ON `invoices`.`type_col` = `invoice_types`.`id` WHERE(`material_moves`.`origin_type` = 'invoice' OR `material_moves`.`origin_type` = 'manufacture') `invoice_types`.`type_col` = COALESCE(NULLIF('" + str(invoice_main_type) + "', ''), `invoice_types`.`type_col`) AND `invoice_items`.`material_id` = COALESCE(NULLIF('" + str(material) + "', ''), `invoice_items`.`material_id`) AND `invoices`.`client` = COALESCE(NULLIF('" + str(client) + "', ''), `invoices`.`client`) AND `invoices`.`date_col` >= COALESCE(NULLIF('" + str(from_date) + "', ''), `invoices`.`date_col`) AND `invoices`.`date_col` <= COALESCE(NULLIF('" + str(to_date) + "', ''), `invoices`.`date_col`)"
+    def fetchAllInvoiceItems(self, invoice_main_type='', material='', client='', from_date='', to_date='') -> list:
+        query = "SELECT invoice_items.*, currencies.name AS currency_name, materials.id, materials.name AS material_name, material_moves.*, invoices.*, invoice_types.*, clients.name AS client_name, clients.phone1 AS client_phone, clients.email AS client_email FROM invoice_items LEFT JOIN materials ON invoice_items.material_id = materials.id LEFT JOIN material_moves ON material_moves.origin_id = invoice_items.id LEFT JOIN invoices ON invoice_items.invoice_id = invoices.id LEFT JOIN invoice_types ON invoices.type_col = invoice_types.id LEFT JOIN clients ON invoices.client = clients.id LEFT JOIN currencies ON invoice_items.currency_id = currencies.id WHERE (material_moves.origin = 'invoice' OR material_moves.origin = 'manufacture') AND invoice_types.type_col = COALESCE(NULLIF('" + str(invoice_main_type) + "', ''), invoice_types.type_col) AND invoice_items.material_id = COALESCE(NULLIF('" + str(material) + "', ''), invoice_items.material_id) AND invoices.client = COALESCE(NULLIF('" + str(client) + "', ''), invoices.client) AND invoices.date_col >= COALESCE(NULLIF('" + str(from_date) + "', ''), invoices.date_col) AND invoices.date_col <= COALESCE(NULLIF('" + str(to_date) + "', ''), invoices.date_col)"
         print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         self.sqlconnector.conn.commit()
         return rows
     
-    @check_permission('invoices', 'R')
-    def fetchAllInvoiceItems(self, invoice_main_type='', material='', client='', from_date='', to_date=''):
-        query = "SELECT * FROM `invoice_items` LEFT JOIN `materials` ON `invoice_items`.`material_id` = `materials`.`id` LEFT JOIN `material_moves` ON `material_moves`.`origin_id` = `invoice_items`.`id` LEFT JOIN `invoices` ON `invoice_items`.`invoice_id` = `invoices`.`id` LEFT JOIN `invoice_types` ON `invoices`.`type_col` = `invoice_types`.`id` WHERE (`material_moves`.`origin` = 'invoice' OR `material_moves`.`origin` = 'manufacture') AND `invoice_types`.`type_col` = COALESCE(NULLIF('" + str(invoice_main_type) + "', ''), `invoice_types`.`type_col`) AND `invoice_items`.`material_id` = COALESCE(NULLIF('" + str(material) + "', ''), `invoice_items`.`material_id`) AND `invoices`.`client` = COALESCE(NULLIF('" + str(client) + "', ''), `invoices`.`client`) AND `invoices`.`date_col` >= COALESCE(NULLIF('" + str(from_date) + "', ''), `invoices`.`date_col`) AND `invoices`.`date_col` <= COALESCE(NULLIF('" + str(to_date) + "', ''), `invoices`.`date_col`)"
-        print(query)
-        self.cursor.execute(query)
-        rows = self.cursor.fetchall()
-        self.sqlconnector.conn.commit()
-        return rows
-
     @check_permission('invoices', 'R')
     def fetchLastInvoiceOfMaterialWithDiscountsAndAdditions(self, material_id, date='', invoice_type='') -> list:
         print("DATABASE> fetch  last invoice of material #" + str(material_id) + " with discounts and additions.")
@@ -7100,7 +7091,7 @@ class DatabaseOperations(object):
         return row
 
     @check_permission('material_moves', 'W')
-    def fetchMaterialMoves(self, material_id='', from_date='', to_date='', from_warehouse='', to_warehouse=''):
+    def fetchMaterialMoves(self, material_id='', from_date='', to_date='', from_warehouse='', to_warehouse='', ordered=False):
         print("DATABASE> Fetch material moves for material id: " + str(material_id))
         query = "SELECT * FROM `warehouseslist`"
         self.cursor.execute(query)
@@ -7138,6 +7129,8 @@ class DatabaseOperations(object):
 
                         # Check for moves related to this warehouse entry
                         moves = "SELECT * FROM material_moves WHERE ((source_warehouse_entry_id = " + str(warehouse_entry_id) + " AND source_warehouse = " + str(id) + ") OR (destination_warehouse_entry_id = " + str(warehouse_entry_id) + " AND destination_warehouse = " + str(id) + ")) AND date_col BETWEEN COALESCE(NULLIF('" + str(from_date) + "',''),'1000-01-01') AND COALESCE(NULLIF('" + str(to_date) + "',''),'9999-12-31')" + ((" AND source_warehouse = " + str(from_warehouse)) if from_warehouse else "") + ((" AND destination_warehouse = " + str(to_warehouse)) if to_warehouse else "")
+                        if ordered:
+                            moves + "ORDER BY `date_col` DESC LIMIT 1"
                         print(moves)
                         self.cursor.execute(moves)
                         moves = self.cursor.fetchall()
@@ -7202,12 +7195,106 @@ class DatabaseOperations(object):
 
     @check_permission('material_moves', 'W')
     def fetchLastMaterialMovement(self):
-        print("DATABASE> Fetch last material movement info")
-        query = "SELECT `material_moves`.*, `source_warehouse`.`name` AS `source_warehouse_name`, `destination_warehouse`.`name` AS `destination_warehouse_name`, `materials`.`name` AS `material_name`, `material_moves`.`date_col` FROM `material_moves` LEFT JOIN `warehouseslist` AS `source_warehouse` ON `material_moves`.`source_warehouse` = `source_warehouse`.`id` LEFT JOIN `warehouseslist` AS `destination_warehouse` ON `material_moves`.`destination_warehouse` = `destination_warehouse`.`id` LEFT JOIN `materials` ON (`material_moves`.`origin` = 'material' AND `material_moves`.`origin_id` = `materials`.`id`) ORDER BY `material_moves`.`id` DESC LIMIT 1"
+        query = "SELECT * FROM `warehouseslist`"
         self.cursor.execute(query)
-        row = self.cursor.fetchone()
-        self.sqlconnector.conn.commit()
-        return row
+        rows = self.cursor.fetchall()
+        moves_list = []
+        for row in rows:
+            id = row['id']
+            name = row['name']
+            codename = row['codename']
+
+            table_name = codename
+            if str(type(self.sqlconnector)) == "<class 'MysqlConnector.MysqlConnector'>":
+                check_query = "SHOW TABLES LIKE '" + table_name + "'"
+                self.cursor.execute(check_query)
+            else:
+                check_query = "SELECT name FROM sqlite_master WHERE type='table' AND name=?"
+                self.cursor.execute(check_query, (table_name,))
+            table_exists = self.cursor.fetchone()
+
+            if table_exists:
+                query = "SELECT * FROM `" + table_name + "` WHERE `material_id` = COALESCE(NULLIF('" + str(material_id) + "', ''), `material_id`)"
+                self.cursor.execute(query)
+                materials = self.cursor.fetchall()
+                if materials:
+                    for material in materials:
+                        warehouse_entry_id = material['id']
+                        warehouse_material_id = material['material_id']
+                        # quantity = material['quantity']
+                        # unit = material['unit']
+                        # production_batch_id = material['production_batch_id']
+                        # receipt_doc_id = material['receipt_doc_id']
+                        # batch_number = material['batch_number']
+                        # batch_mfg = material['batch_mfg']
+                        # batch_exp = material['batch_exp']
+
+                        # Check for moves related to this warehouse entry
+                        moves = "SELECT * FROM material_moves WHERE ((source_warehouse_entry_id = " + str(warehouse_entry_id) + " AND source_warehouse = " + str(id) + ") OR (destination_warehouse_entry_id = " + str(warehouse_entry_id) + " AND destination_warehouse = " + str(id) + ")) AND date_col BETWEEN COALESCE(NULLIF('" + str(from_date) + "',''),'1000-01-01') AND COALESCE(NULLIF('" + str(to_date) + "',''),'9999-12-31')" + ((" AND source_warehouse = " + str(from_warehouse)) if from_warehouse else "") + ((" AND destination_warehouse = " + str(to_warehouse)) if to_warehouse else "")
+                        if ordered:
+                            moves + "ORDER BY `date_col` DESC LIMIT 1"
+                        print(moves)
+                        self.cursor.execute(moves)
+                        moves = self.cursor.fetchall()
+
+                        if moves:
+                            for move in moves:
+                                move_id = move['id']
+                                move_quantity = move['quantity']
+                                move_unit = move['unit']
+                                move_origin = move['origin']
+                                move_origin_id = move['origin_id']
+                                move_date = move['date_col']
+                                if (move['source_warehouse_entry_id'] == warehouse_entry_id and move['source_warehouse'] == id) and not move['destination_warehouse_entry_id'] and not move['destination_warehouse']:
+                                    move_type = 'reduce'
+                                    from_warehouse_name = name
+                                    to_warehouse_name = None
+                                elif (move['destination_warehouse_entry_id'] == warehouse_entry_id and move['destination_warehouse']) and not move['source_warehouse_entry_id'] and not move['source_warehouse'] == id:
+                                    move_type = 'add'
+                                    from_warehouse_name = None
+                                    to_warehouse_name = name
+                                else:
+                                    move_type = 'transfer'
+                                    from_warehouse_name = self.fetchWarehouse(move['source_warehouse'])['name']
+                                    to_warehouse_name = self.fetchWarehouse(move['destination_warehouse'])['name']
+
+                                material = self.fetchMaterial(warehouse_material_id)
+                                material_name = material['name'] if material else None
+                                material_code = material['code'] if material else None
+                                unit_name = self.fetchUnit(move_unit)
+                                unit_name = unit_name['name'] if unit_name else None
+
+                                invoice_item = self.fetchInvoiceItem(move_origin_id)
+                                if invoice_item:
+                                    item_currency = invoice_item['currency_id']
+                                    item_currency_name = invoice_item['currency_name']
+                                    item_unit_price = invoice_item['unit_price']
+                                else:
+                                    item_currency = None
+                                    item_currency_name = None
+                                    item_unit_price = None
+
+                                moves_list.append({
+                                    'move_id': move_id,
+                                    'warehouse_id': id,
+                                    'move_type': move_type,
+                                    'move_origin': move_origin,
+                                    'move_origin_id': move_origin_id,
+                                    'move_date': move_date,
+                                    'move_quantity': move_quantity,
+                                    'move_unit': move_unit,
+                                    'material_id': warehouse_material_id,
+                                    'from_warehouse_name': from_warehouse_name,
+                                    'material_name': material_name,
+                                    'material_code': material_code,
+                                    'unit_name': unit_name,
+                                    'to_warehouse_name': to_warehouse_name,
+                                    'item_currency': item_currency,
+                                    'item_currency_name': item_currency_name,
+                                    'item_unit_price': item_unit_price
+                                })
+        return moves_list
+
 
     @check_permission('material_moves', 'W')
     def removeMaterialMove(self, move_id='', origin='', origin_id='', commit=True):
