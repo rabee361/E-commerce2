@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1609</width>
-    <height>841</height>
+    <height>843</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -205,7 +205,7 @@ QMainWindow::before {
                <x>0</x>
                <y>0</y>
                <width>348</width>
-               <height>544</height>
+               <height>546</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_11">
@@ -688,6 +688,20 @@ QLineEdit {
             </property>
            </widget>
           </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>إلى :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="10">
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>الكمية :</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="3">
            <widget class="QLineEdit" name="from_warehouse">
             <property name="minimumSize">
@@ -701,24 +715,13 @@ QLineEdit {
             </property>
            </widget>
           </item>
-          <item row="0" column="4">
-           <widget class="QLabel" name="label_20">
-            <property name="text">
-             <string>إلى :</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="8">
-           <widget class="QLabel" name="label_24">
-            <property name="text">
-             <string>الكمية :</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="label_22">
-            <property name="text">
-             <string>من :</string>
+          <item row="0" column="11">
+           <widget class="QLineEdit" name="quantity">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -738,13 +741,33 @@ QLineEdit {
             </property>
            </widget>
           </item>
-          <item row="0" column="9">
-           <widget class="QLineEdit" name="quantity">
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_22">
+            <property name="text">
+             <string>من :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="12">
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>التاريخ :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="13">
+           <widget class="QLineEdit" name="last_material_movement_date">
             <property name="minimumSize">
              <size>
               <width>0</width>
               <height>25</height>
              </size>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -764,26 +787,17 @@ QLineEdit {
             </property>
            </widget>
           </item>
-          <item row="0" column="10">
-           <widget class="QLabel" name="label_23">
+          <item row="0" column="8">
+           <widget class="QLabel" name="label_26">
             <property name="text">
-             <string>التاريخ :</string>
+             <string>السبب:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="11">
-           <widget class="QLineEdit" name="last_material_movement_date">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
+          <item row="0" column="9">
+           <widget class="QLineEdit" name="move_reason">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -855,7 +869,7 @@ QLineEdit {
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QLineEdit" name="manufature_quantity">
+           <widget class="QLineEdit" name="manufacture_quantity">
             <property name="minimumSize">
              <size>
               <width>0</width>

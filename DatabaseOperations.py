@@ -1468,7 +1468,7 @@ class DatabaseOperations(object):
     @check_permission('manufacture', 'R')
     def fetchLastManufatureProcess(self) -> dict:
         print("DATABASE> Fetch last manufacture process")
-        query = "SELECT materials.name AS material_name FROM manufacture JOIN manufacture_produced_materials ON manufacture.id = manufacture_produced_materials.manufacture_id JOIN materials ON manufacture_produced_materials.material_id = materials.id ORDER BY manufacture.date_col DESC LIMIT 1"
+        query = "SELECT materials.name AS material_name, `manufacture_produced_materials`.`quantity1` ,`manufacture`.* FROM manufacture JOIN manufacture_produced_materials ON manufacture.id = manufacture_produced_materials.manufacture_id JOIN materials ON manufacture_produced_materials.material_id = materials.id ORDER BY manufacture.date_col DESC LIMIT 1"
         self.cursor.execute(query)
         row = self.cursor.fetchone()
         self.sqlconnector.conn.commit()
@@ -7202,10 +7202,12 @@ class DatabaseOperations(object):
 
     @check_permission('material_moves', 'W')
     def fetchLastMaterialMovement(self):
-        print("DATABASE> Fetch material movement info with dynamic table join")
-        query = ""
-
-
+        print("DATABASE> Fetch last material movement info")
+        query = "SELECT `material_moves`.*, `source_warehouse`.`name` AS `source_warehouse_name`, `destination_warehouse`.`name` AS `destination_warehouse_name`, `materials`.`name` AS `material_name`, `material_moves`.`date_col` FROM `material_moves` LEFT JOIN `warehouseslist` AS `source_warehouse` ON `material_moves`.`source_warehouse` = `source_warehouse`.`id` LEFT JOIN `warehouseslist` AS `destination_warehouse` ON `material_moves`.`destination_warehouse` = `destination_warehouse`.`id` LEFT JOIN `materials` ON (`material_moves`.`origin` = 'material' AND `material_moves`.`origin_id` = `materials`.`id`) ORDER BY `material_moves`.`id` DESC LIMIT 1"
+        self.cursor.execute(query)
+        row = self.cursor.fetchone()
+        self.sqlconnector.conn.commit()
+        return row
 
     @check_permission('material_moves', 'W')
     def removeMaterialMove(self, move_id='', origin='', origin_id='', commit=True):

@@ -19,7 +19,6 @@ class Statistics():
 
     def initialize(self):
         # self.fetchMaterialsCount()
-        # self.fetchMaterialsCount()
         self.ui.select_chart_combobox.setEnabled(True)
         self.ui.select_chart_combobox.addItem(self.language_manager.translate("INVOICES"))
         self.ui.select_chart_combobox.addItem(self.language_manager.translate("MATERIALS"))
@@ -105,21 +104,23 @@ class Statistics():
     def fetchLastManufatureProcess(self):
         last_manufature_process = self.database_operations.fetchLastManufatureProcess()
         if last_manufature_process: 
-            manufacture_cost = last_manufature_process['machines_operation_cost'] + last_manufature_process['salaries_cost'] + last_manufature_process['machines_operation_cost'] + last_manufature_process['expenses_cost']
+            manufacture_cost = last_manufature_process['machines_operation_cost'] + last_manufature_process['salaries_cost'] + last_manufature_process['composition_materials_cost'] + last_manufature_process['expenses_cost']
             self.ui.manufacture_material.setText(str(last_manufature_process['material_name']))
-            self.ui.manufacture_date.setText(str(last_manufature_process['manufacture_date']))
+            self.ui.manufacture_date.setText(str(last_manufature_process['date_col']))
+            self.ui.manufacture_quantity.setText(str(last_manufature_process['quantity1']))
+            # self.ui.manufacture_quantity.setText(str(last_manufature_process['unit1_name']))
             self.ui.manufature_cost.setText(str(manufacture_cost))
-            self.ui.manufature_quantity.setText(str(last_manufature_process['quantity']))
         else:
             pass
 
     def fetchLastMaterialMovement(self):
         last_material_movement = self.database_operations.fetchLastMaterialMovement()
         if last_material_movement:
-            self.ui.last_material_movement_date.setText(str(last_material_movement['date_col']))
-            self.ui.material.setText(str(last_material_movement['material']))
-            self.ui.from_warehouse.setText(str(last_material_movement['source_warehouse']))
-            self.ui.to_warehouse.setText(str(last_material_movement['destination_warehouse']))
+            self.ui.last_material_movement_date.setText(str(last_material_movement['date_col'].strftime('%Y-%m-%d')))
+            self.ui.material.setText(str(last_material_movement['material_name']))
+            self.ui.move_reason.setText(str(last_material_movement['origin']))
+            self.ui.from_warehouse.setText(str(last_material_movement['source_warehouse_name'] or ''))
+            self.ui.to_warehouse.setText(str(last_material_movement['destination_warehouse_name'] or ''))
             self.ui.quantity.setText(str(last_material_movement['quantity']))
         else:
             pass
@@ -256,7 +257,8 @@ class Statistics():
         self.fetchDepartmentsCount()
         # self.fetchEmploymentRequestsCount()
         self.fetchGroupsCount()
-        # self.fetchLastManufatureProcess()
+        self.fetchLastManufatureProcess()
+        self.fetchLastMaterialMovement()
         self.showChart()
         # except Exception as e:
         #     print(f"Error refreshing statistics: {str(e)}")
