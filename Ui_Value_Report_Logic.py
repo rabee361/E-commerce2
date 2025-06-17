@@ -11,11 +11,12 @@ from PyQt5.QtCore import Qt
 
 
 class Ui_Value_Report_Logic(object):
-    def __init__(self, sqlconnector):
+    def __init__(self, sqlconnector, filemanager=''):
         super().__init__()
         self.sqlconnector = sqlconnector
         self.database_operations = DatabaseOperations(self.sqlconnector)
         self.ui = Ui_Value_Report()
+        self.filemanager = filemanager
         self.translator = QTranslator()
         self.language_manager = LanguageManager(self.translator)
 

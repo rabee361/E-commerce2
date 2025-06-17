@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>955</width>
+    <width>978</width>
     <height>546</height>
    </rect>
   </property>
@@ -27,113 +27,25 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0" colspan="3">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="edit_btn">
+     <property name="text">
+      <string>تعديل</string>
      </property>
-     <property name="title">
-      <string>زبون جديد</string>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="accounts_btn">
+     <property name="text">
+      <string>الحسابات</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="4">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>الاسم:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLineEdit" name="phone4_input">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>هاتف 1:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>هاتف 2:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLineEdit" name="phone1_input"/>
-      </item>
-      <item row="1" column="4">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>المحافظة:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="3">
-       <widget class="QLineEdit" name="email_input"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QPushButton" name="save_btn">
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>إضافة</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QLineEdit" name="address_input"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLineEdit" name="phone2_input"/>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="governorate_input"/>
-      </item>
-      <item row="3" column="1" colspan="2">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>هاتف 4:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="4">
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>البريد الالكتروني:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLineEdit" name="name_input"/>
-      </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>هاتف 3:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLineEdit" name="phone3_input"/>
-      </item>
-      <item row="2" column="4">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>العنوان التفصيلي:</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="delete_btn">
+     <property name="text">
+      <string>حذف</string>
+     </property>
     </widget>
    </item>
    <item row="1" column="0" colspan="3">
@@ -185,25 +97,113 @@
      </column>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="delete_btn">
-     <property name="text">
-      <string>حذف</string>
+   <item row="0" column="0" colspan="3">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="edit_btn">
-     <property name="text">
-      <string>تعديل</string>
+     <property name="title">
+      <string>زبون جديد</string>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="accounts_btn">
-     <property name="text">
-      <string>الحسابات</string>
-     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="name_input"/>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>هاتف 3:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="3">
+       <widget class="QLineEdit" name="phone4_input">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>هاتف 2:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>هاتف 4:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>البريد الالكتروني:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="phone1_input"/>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLineEdit" name="phone2_input"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>الاسم:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>هاتف 1:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <widget class="QLineEdit" name="phone3_input"/>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="email_input"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="governorate_input"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>المحافظة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>العنوان التفصيلي:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="address_input"/>
+      </item>
+      <item row="7" column="3">
+       <widget class="QPushButton" name="save_btn">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>إضافة</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

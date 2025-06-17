@@ -1,6 +1,8 @@
 from PyQt5.QtCore import Qt, QDate
 from PyQt5.QtWidgets import QDialog, QTreeWidgetItem, QSizePolicy, QTableWidgetItem, QCheckBox, QPushButton, QVBoxLayout, QGridLayout, QFrame
 from PyQt5.QtCore import QCoreApplication , QTranslator
+import win32api
+import win32con
 from Colors import orange, colorizeTableRow, light_red_color, light_green_color, black
 from DatabaseOperations import DatabaseOperations
 from Ui_FinalAccountsReports import Ui_FinalAccountsReports
@@ -29,8 +31,8 @@ class Ui_FinalAccountsReports_Logic(QDialog):
         window.setWindowState(Qt.WindowMaximized)
         self.ui.setupUi(window)
         window.setWindowIcon(QIcon('icons/report2.png'))
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):
@@ -193,6 +195,10 @@ class Ui_FinalAccountsReports_Logic(QDialog):
         from_date = self.ui.from_date_input.date().toString(Qt.ISODate)
         to_date = self.ui.to_date_input.date().toString(Qt.ISODate)
         targeted_account = self.ui.accounts_combobox.currentData()
+
+        if targeted_account is None:
+            win32api.MessageBox(0, self.language_manager.translate("ACCOUNT_MUST_BE_SELECTED"), self.language_manager.translate("ERROR"), win32con.MB_OK)
+            return
 
         exchange_date = self.ui.exchange_date_input.date().toString(Qt.ISODate)
         distinct_currency = self.ui.distinct_currency_radio.isChecked()

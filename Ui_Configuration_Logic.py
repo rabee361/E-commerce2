@@ -34,7 +34,7 @@ class Ui_Configuration_Logic(QDialog, UiStyles):
         self.ui.manuals_combobox.clear()
         manuals = self.database_operations.fetchManuals()
         for manual in manuals:
-            self.ui.manuals_combobox.addItem(manual[1])
+            self.ui.manuals_combobox.addItem(manual['name'])
 
     def saveConfiguration(self, window):
         manual_name = self.ui.manuals_combobox.currentText()

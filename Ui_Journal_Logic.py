@@ -201,6 +201,7 @@ class Ui_Journal_Logic(QDialog):
                             break
     
     def fetchAccounts(self):
+        self.ui.accounts_tree.clear()
         accounts = self.database_operations.fetchAccounts()
 
         children_queue = []

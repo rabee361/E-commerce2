@@ -324,7 +324,7 @@ class Ui_InvoiceView_Logic(QDialog):
             message_text += f"{currency_name}: {exchange_rate}\n"
 
         # Display message box with exchange rates
-        win32api.MessageBox(None, message_text, self.language_manager.translate( 'EXCHANGE_RATES'), win32con.MB_RTLREADING | win32con.MB_RIGHT)
+        win32api.MessageBox(None, message_text, self.language_manager.translate('EXCHANGE_RATES'), win32con.MB_RTLREADING | win32con.MB_RIGHT)
 
     def fetchInvoiceTypes(self):
         invoices_types = self.database_operations.fetchInvoiceTypes()

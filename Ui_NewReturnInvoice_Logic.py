@@ -24,8 +24,8 @@ class Ui_NewReturnInvoice_Logic(object):
     def showUi(self):
         window_newreturninvoice = QDialog()
         self.ui.setupUi(window_newreturninvoice)
-        self.initialize(window_newreturninvoice)
         self.language_manager.load_translated_ui(self.ui, window_newreturninvoice)
+        self.initialize(window_newreturninvoice)
         window_newreturninvoice.exec()
 
     def initialize(self, window):

@@ -15,7 +15,7 @@ class Ui_Journal(object):
     def setupUi(self, Journal):
         Journal.setObjectName("Journal")
         Journal.setWindowModality(QtCore.Qt.WindowModal)
-        Journal.resize(1333, 820)
+        Journal.resize(1333, 833)
         Journal.setLayoutDirection(QtCore.Qt.RightToLeft)
         Journal.setModal(True)
         self.gridLayout_4 = QtWidgets.QGridLayout(Journal)
@@ -64,8 +64,30 @@ class Ui_Journal(object):
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_3.addItem(spacerItem1, 2, 1, 1, 2)
+        self.delete_journal_entry_btn = QtWidgets.QPushButton(self.groupBox)
+        self.delete_journal_entry_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #FFCDD2;\n"
+"    color: black;\n"
+"    border: 1px solid #E57373;\n"
+"    border-radius: 0px;\n"
+"    padding: 8px 16px;\n"
+"    font-family: Arial;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #EF9A9A;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #E57373;\n"
+"}\n"
+"")
+        self.delete_journal_entry_btn.setObjectName("delete_journal_entry_btn")
+        self.gridLayout_3.addWidget(self.delete_journal_entry_btn, 1, 2, 1, 1)
+        spacerItem1 = QtWidgets.QSpacerItem(300, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_3.addItem(spacerItem1, 1, 1, 1, 1)
         self.journals_entries_table = QtWidgets.QTableWidget(self.groupBox)
         self.journals_entries_table.setMinimumSize(QtCore.QSize(400, 0))
         self.journals_entries_table.setFocusPolicy(QtCore.Qt.StrongFocus)
@@ -100,11 +122,18 @@ class Ui_Journal(object):
         self.journals_entries_table.horizontalHeader().setStretchLastSection(True)
         self.journals_entries_table.verticalHeader().setVisible(False)
         self.gridLayout_3.addWidget(self.journals_entries_table, 0, 1, 1, 2)
-        self.delete_journal_entry_btn = QtWidgets.QPushButton(self.groupBox)
-        self.delete_journal_entry_btn.setStyleSheet("QPushButton {\n"
-"    background-color: #FFCDD2;\n"
-"    color: black;\n"
-"    border: 1px solid #E57373;\n"
+        self.gridLayout_4.addWidget(self.groupBox, 0, 1, 1, 1)
+        self.groupBox_2 = QtWidgets.QGroupBox(Journal)
+        self.groupBox_2.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.groupBox_2.setTitle("")
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox_2)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.add_journal_entry_item_btn = QtWidgets.QPushButton(self.groupBox_2)
+        self.add_journal_entry_item_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #FFF9C4;\n"
+"    color: #000000;\n"
+"    border: 1px solid #E0E0E0;\n"
 "    border-radius: 0px;\n"
 "    padding: 8px 16px;\n"
 "    font-family: Arial;\n"
@@ -113,24 +142,15 @@ class Ui_Journal(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #EF9A9A;\n"
+"    background-color: #FFECB3;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: #E57373;\n"
+"    background-color: #FFE082;\n"
 "}\n"
 "")
-        self.delete_journal_entry_btn.setObjectName("delete_journal_entry_btn")
-        self.gridLayout_3.addWidget(self.delete_journal_entry_btn, 1, 2, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(300, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_3.addItem(spacerItem2, 1, 1, 1, 1)
-        self.gridLayout_4.addWidget(self.groupBox, 0, 1, 1, 1)
-        self.groupBox_2 = QtWidgets.QGroupBox(Journal)
-        self.groupBox_2.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.groupBox_2.setTitle("")
-        self.groupBox_2.setObjectName("groupBox_2")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox_2)
-        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.add_journal_entry_item_btn.setObjectName("add_journal_entry_item_btn")
+        self.gridLayout_2.addWidget(self.add_journal_entry_item_btn, 1, 1, 1, 1)
         self.journal_entries_items_table = QtWidgets.QTableWidget(self.groupBox_2)
         self.journal_entries_items_table.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.journal_entries_items_table.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -175,8 +195,32 @@ class Ui_Journal(object):
         self.journal_entries_items_table.horizontalHeader().setVisible(True)
         self.journal_entries_items_table.horizontalHeader().setStretchLastSection(True)
         self.journal_entries_items_table.verticalHeader().setVisible(False)
-        self.gridLayout_2.addWidget(self.journal_entries_items_table, 0, 0, 1, 3)
+        self.gridLayout_2.addWidget(self.journal_entries_items_table, 0, 0, 1, 4)
+        self.save_btn = QtWidgets.QPushButton(self.groupBox_2)
+        self.save_btn.setMinimumSize(QtCore.QSize(75, 0))
+        self.save_btn.setStyleSheet("QPushButton {\n"
+"    background-color: #C8E6C9;\n"
+"    color: black;\n"
+"    border: 1px solid #81C784;\n"
+"    border-radius: 0px;\n"
+"    padding: 8px 16px;\n"
+"    font-family: Arial;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #A5D6A7;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #81C784;\n"
+"}\n"
+"")
+        self.save_btn.setObjectName("save_btn")
+        self.gridLayout_2.addWidget(self.save_btn, 1, 3, 1, 1)
         self.delete_journal_entry_item_btn = QtWidgets.QPushButton(self.groupBox_2)
+        self.delete_journal_entry_item_btn.setMinimumSize(QtCore.QSize(75, 0))
         self.delete_journal_entry_item_btn.setStyleSheet("QPushButton {\n"
 "    background-color: #FFCDD2;\n"
 "    color: black;\n"
@@ -198,52 +242,8 @@ class Ui_Journal(object):
 "")
         self.delete_journal_entry_item_btn.setObjectName("delete_journal_entry_item_btn")
         self.gridLayout_2.addWidget(self.delete_journal_entry_item_btn, 1, 0, 1, 1)
-        self.add_journal_entry_item_btn = QtWidgets.QPushButton(self.groupBox_2)
-        self.add_journal_entry_item_btn.setStyleSheet("QPushButton {\n"
-"    background-color: #FFF9C4;\n"
-"    color: #000000;\n"
-"    border: 1px solid #E0E0E0;\n"
-"    border-radius: 0px;\n"
-"    padding: 8px 16px;\n"
-"    font-family: Arial;\n"
-"    font-size: 14px;\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #FFECB3;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #FFE082;\n"
-"}\n"
-"")
-        self.add_journal_entry_item_btn.setObjectName("add_journal_entry_item_btn")
-        self.gridLayout_2.addWidget(self.add_journal_entry_item_btn, 1, 1, 1, 1)
-        self.save_btn = QtWidgets.QPushButton(self.groupBox_2)
-        self.save_btn.setStyleSheet("QPushButton {\n"
-"    background-color: #C8E6C9;\n"
-"    color: black;\n"
-"    border: 1px solid #81C784;\n"
-"    border-radius: 0px;\n"
-"    padding: 8px 16px;\n"
-"    font-family: Arial;\n"
-"    font-size: 14px;\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #A5D6A7;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #81C784;\n"
-"}\n"
-"")
-        self.save_btn.setObjectName("save_btn")
-        self.gridLayout_2.addWidget(self.save_btn, 2, 0, 1, 2)
-        spacerItem3 = QtWidgets.QSpacerItem(175, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_2.addItem(spacerItem3, 2, 2, 1, 1)
+        spacerItem2 = QtWidgets.QSpacerItem(175, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_2.addItem(spacerItem2, 1, 2, 1, 1)
         self.gridLayout_4.addWidget(self.groupBox_2, 0, 2, 1, 1)
 
         self.retranslateUi(Journal)
@@ -260,6 +260,7 @@ class Ui_Journal(object):
         self.filter_debtor_checkbox.setText(_translate("Journal", "مدين"))
         self.filter_by_date_checkbox.setText(_translate("Journal", "ترشيح حسب التاريخ"))
         self.manage_accounts_btn.setText(_translate("Journal", "إدارة الحسابات"))
+        self.delete_journal_entry_btn.setText(_translate("Journal", "حذف"))
         self.journals_entries_table.setSortingEnabled(True)
         item = self.journals_entries_table.horizontalHeaderItem(0)
         item.setText(_translate("Journal", "المعرف"))
@@ -273,7 +274,7 @@ class Ui_Journal(object):
         item.setText(_translate("Journal", "العملة"))
         item = self.journals_entries_table.horizontalHeaderItem(5)
         item.setText(_translate("Journal", "تاريخ التسجيل"))
-        self.delete_journal_entry_btn.setText(_translate("Journal", "حذف"))
+        self.add_journal_entry_item_btn.setText(_translate("Journal", "...إضافة عنصر"))
         self.journal_entries_items_table.setSortingEnabled(True)
         item = self.journal_entries_items_table.horizontalHeaderItem(0)
         item.setText(_translate("Journal", "المعرف"))
@@ -299,6 +300,5 @@ class Ui_Journal(object):
         item.setText(_translate("Journal", "العملة"))
         item = self.journal_entries_items_table.horizontalHeaderItem(11)
         item.setText(_translate("Journal", "البيان"))
-        self.delete_journal_entry_item_btn.setText(_translate("Journal", "حذف"))
-        self.add_journal_entry_item_btn.setText(_translate("Journal", "...إضافة عنصر"))
         self.save_btn.setText(_translate("Journal", "حفظ"))
+        self.delete_journal_entry_item_btn.setText(_translate("Journal", "حذف"))

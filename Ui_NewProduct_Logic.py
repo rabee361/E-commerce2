@@ -21,8 +21,8 @@ class Ui_NewProduct_Logic(object):
     def showUi(self):
         window_add_new_product = QDialog()
         self.ui.setupUi(window_add_new_product)
-        self.initialize(window_add_new_product)
         self.language_manager.load_translated_ui(self.ui, window_add_new_product)
+        self.initialize(window_add_new_product)
         window_add_new_product.exec()
 
     def initialize(self, window):

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1150</width>
-    <height>500</height>
+    <width>1417</width>
+    <height>831</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -29,266 +29,6 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>120</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_7">
-      <property name="leftMargin">
-       <number>10</number>
-      </property>
-      <property name="topMargin">
-       <number>3</number>
-      </property>
-      <property name="rightMargin">
-       <number>10</number>
-      </property>
-      <property name="bottomMargin">
-       <number>3</number>
-      </property>
-      <property name="spacing">
-       <number>3</number>
-      </property>
-      <item row="3" column="4">
-       <widget class="QPushButton" name="calculate_btn">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>حساب</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3" rowspan="4">
-       <widget class="QGroupBox" name="groupBox_6">
-        <property name="title">
-         <string>المصادر</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_5">
-         <item row="3" column="0">
-          <widget class="QCheckBox" name="source_journal_checkbox">
-           <property name="text">
-            <string>سندات القيد</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="source_period_start_material_checkbox">
-           <property name="text">
-            <string>بضاعة أول المدة</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QPushButton" name="select_invoices_btn">
-           <property name="maximumSize">
-            <size>
-             <width>125</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>...فواتير</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="source_period_start_checkbox">
-           <property name="text">
-            <string>القيود الافتتاحية</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="source_manufacture_checkbox">
-           <property name="text">
-            <string>عمليات التصنيع</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QCheckBox" name="source_loans_checkbox">
-           <property name="text">
-            <string>القروض</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="maximumSize">
-         <size>
-          <width>30</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>من:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QDateEdit" name="from_date_input"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QDateEdit" name="to_date_input"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="maximumSize">
-         <size>
-          <width>30</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>إلى:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2" rowspan="2">
-       <widget class="QGroupBox" name="groupBox_7">
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <property name="leftMargin">
-          <number>3</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>3</number>
-         </property>
-         <property name="bottomMargin">
-          <number>3</number>
-         </property>
-         <property name="spacing">
-          <number>3</number>
-         </property>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="unified_currency_radio">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>استخدام عملة واحدة</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="currency_combobox">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="distinct_currency_radio">
-           <property name="maximumSize">
-            <size>
-             <width>180</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>حساب كل عملة  على حدى</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="2" column="2" rowspan="2">
-       <widget class="QGroupBox" name="groupBox_5">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>3</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <item row="1" column="0" colspan="2">
-          <widget class="QRadioButton" name="distinct_exchange_date_radio">
-           <property name="text">
-            <string>اعتماد التاريخ الخاص بكل سجل قيد كتاريخ لتعادل العملة</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QDateEdit" name="exchange_date_input"/>
-         </item>
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="unified_exchange_date_radio">
-           <property name="text">
-            <string>:اعتماد تعادل العملة في التاريخ التالي</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="sizePolicy">
@@ -544,6 +284,266 @@ QTreeWidget{background-color:#41bf9e;}</string>
           <string>المجموع</string>
          </property>
         </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>120</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>3</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>3</number>
+      </property>
+      <property name="spacing">
+       <number>3</number>
+      </property>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>إلى:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4" rowspan="5">
+       <widget class="QGroupBox" name="groupBox_6">
+        <property name="title">
+         <string>المصادر</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="3" column="1">
+          <widget class="QPushButton" name="select_invoices_btn">
+           <property name="maximumSize">
+            <size>
+             <width>125</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...فواتير</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="source_loans_checkbox">
+           <property name="text">
+            <string>القروض</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="source_manufacture_checkbox">
+           <property name="text">
+            <string>عمليات التصنيع</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="source_period_start_material_checkbox">
+           <property name="text">
+            <string>بضاعة أول المدة</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="source_period_start_checkbox">
+           <property name="text">
+            <string>القيود الافتتاحية</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="source_journal_checkbox">
+           <property name="text">
+            <string>سندات القيد</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QDateEdit" name="to_date_input"/>
+      </item>
+      <item row="2" column="5">
+       <widget class="QPushButton" name="calculate_btn">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>حساب</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="5">
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>3</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="1">
+          <widget class="QDateEdit" name="exchange_date_input"/>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QRadioButton" name="distinct_exchange_date_radio">
+           <property name="text">
+            <string>اعتماد التاريخ الخاص بكل سجل قيد كتاريخ لتعادل العملة</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QRadioButton" name="unified_exchange_date_radio">
+           <property name="text">
+            <string>:اعتماد تعادل العملة في التاريخ التالي</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="2" rowspan="5">
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <property name="topMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>3</number>
+         </property>
+         <property name="bottomMargin">
+          <number>3</number>
+         </property>
+         <property name="spacing">
+          <number>3</number>
+         </property>
+         <item row="1" column="0">
+          <widget class="QRadioButton" name="unified_currency_radio">
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>استخدام عملة واحدة</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="currency_combobox">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QRadioButton" name="distinct_currency_radio">
+           <property name="maximumSize">
+            <size>
+             <width>180</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>حساب كل عملة  على حدى</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateEdit" name="from_date_input"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>من:</string>
+        </property>
        </widget>
       </item>
      </layout>

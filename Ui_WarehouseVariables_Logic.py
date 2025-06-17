@@ -22,13 +22,13 @@ class Ui_WarehouseVariables_Logic(QDialog):
     def showUi(self):
         window_warehouse_variables = QDialog()
         self.ui.setupUi(window_warehouse_variables)
-        self.initialize(window_warehouse_variables)
         self.language_manager.load_translated_ui(self.ui, window_warehouse_variables)
+        self.initialize(window_warehouse_variables)
         window_warehouse_variables.exec()
 
     def initialize(self, ui):
-        self.ui.pushButton.clicked.connect(lambda: self.saveApiPrefix())
-        self.ui.pushButton.clicked.connect(ui.accept)
+        self.ui.save.clicked.connect(lambda: self.saveApiPrefix())
+        self.ui.save.clicked.connect(ui.accept)
         self.fetchApiPrefix()
         if self.progress:
             self.progress.close()

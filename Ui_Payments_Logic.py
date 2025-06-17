@@ -2,7 +2,7 @@ import win32api
 from PyQt5.QtCore import Qt , QDate
 from PyQt5.QtGui import QCursor
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem, QToolTip
-from win32con import IDYES, IDNO, MB_YESNO
+from win32con import IDYES, IDNO, MB_YESNO, MB_OK
 
 from DatabaseOperations import DatabaseOperations
 from MyTableWidgetItem import MyTableWidgetItem
@@ -10,6 +10,7 @@ from Ui_Payments import Ui_Payments
 from Ui_DataPicker_Logic import Ui_DataPicker_Logic
 from LanguageManager import LanguageManager
 from PyQt5.QtCore import QTranslator
+from PyQt5.QtCore import Qt
 
 class Ui_Payments_Logic(QDialog):
     def __init__(self, sql_connector, payment_type):
@@ -89,9 +90,6 @@ class Ui_Payments_Logic(QDialog):
         selected_invoice = self.ui.invoices_combobox.currentData()
         if selected_invoice:
             invoice_type = selected_invoice[5]
-            # Fetch invoice monetary account
-            setting = f"{invoice_type}_{'monetary_account'}"
-            invoice_monetary_account = int(self.database_operations.fetchSetting(setting))
 
             # Fetch the default accounts for the selected client
             selected_client = self.ui.clients_table.currentItem()
@@ -103,13 +101,18 @@ class Ui_Payments_Logic(QDialog):
                     client_extra_account_id = client_data['extra_account_id']
 
                     # Set accounts
+
+                    # Fetch invoice monetary account
+                    setting = f"{invoice_type}_{'monetary_account'}"
+                    invoice_monetary_account = int(self.database_operations.fetchSetting(setting))
+
                     account = invoice_monetary_account if self.payment_type == 'payment' else client_account_id
                     opposite_account = invoice_monetary_account if self.payment_type == 'receipt' else client_account_id
                     self.ui.account_combobox.setCurrentIndex(self.ui.account_combobox.findData(account))
                     self.ui.opposite_account_combobox.setCurrentIndex(self.ui.account_combobox.findData(opposite_account))
                     self.ui.client_extra_account_combobox.setCurrentIndex(self.ui.client_extra_account_combobox.findData(client_extra_account_id))
                 except:
-                    pass
+                    win32api.MessageBox(None, self.language_manager.translate("INVOICE_DEFAULTS_MUST_BE_SELECTED"), self.language_manager.translate("ERROR"), MB_OK)
         else:
             self.ui.account_combobox.setCurrentIndex(0)
             self.ui.opposite_account_combobox.setCurrentIndex(0)

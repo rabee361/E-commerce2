@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1088</width>
+    <width>1299</width>
     <height>805</height>
    </rect>
   </property>
@@ -171,23 +171,6 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
-          <widget class="QPushButton" name="select_financial_statement_btn">
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="financial_statements_combobox">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
           <widget class="QLabel" name="label_3">
            <property name="maximumSize">
             <size>
@@ -200,10 +183,14 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0" colspan="2">
-          <widget class="QDateEdit" name="from_date_input"/>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="financial_statements_combobox">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
-         <item row="1" column="2">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_4">
            <property name="maximumSize">
             <size>
@@ -219,10 +206,7 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0" colspan="2">
-          <widget class="QDateEdit" name="to_date_input"/>
-         </item>
-         <item row="2" column="2">
+         <item row="2" column="0">
           <widget class="QLabel" name="label_5">
            <property name="maximumSize">
             <size>
@@ -238,163 +222,23 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
            </property>
           </widget>
          </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QGroupBox" name="groupBox_5">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>500</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <property name="spacing">
-          <number>3</number>
-         </property>
-         <item row="0" column="2">
-          <widget class="QDateEdit" name="exchange_date_input"/>
-         </item>
-         <item row="0" column="0" colspan="2">
-          <widget class="QRadioButton" name="unified_exchange_date_radio">
-           <property name="text">
-            <string>:اعتماد تعادل العملة في التاريخ التالي</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="3">
-          <widget class="QRadioButton" name="distinct_exchange_date_radio">
-           <property name="text">
-            <string>اعتماد التاريخ الخاص بكل سجل قيد كتاريخ لتعادل العملة</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <widget class="QGroupBox" name="groupBox_6">
-        <property name="maximumSize">
-         <size>
-          <width>500</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="title">
-         <string>المصادر</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_5">
-         <property name="leftMargin">
-          <number>3</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>15</number>
-         </property>
-         <property name="bottomMargin">
-          <number>3</number>
-         </property>
-         <property name="spacing">
-          <number>3</number>
-         </property>
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="source_period_start_material_checkbox">
-           <property name="text">
-            <string>بضاعة أول المدة</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
+         <item row="1" column="1">
+          <widget class="QDateEdit" name="from_date_input"/>
          </item>
          <item row="2" column="1">
-          <widget class="QPushButton" name="select_invoices_btn">
-           <property name="maximumSize">
-            <size>
-             <width>125</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>...فواتير</string>
-           </property>
-          </widget>
+          <widget class="QDateEdit" name="to_date_input"/>
          </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="source_journal_checkbox">
+         <item row="0" column="2">
+          <widget class="QToolButton" name="select_financial_statement_btn">
            <property name="text">
-            <string>سندات القيد</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="source_period_start_checkbox">
-           <property name="text">
-            <string>القيود الافتتاحية</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="source_manufacture_checkbox">
-           <property name="text">
-            <string>عمليات التصنيع</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QCheckBox" name="source_loans_checkbox">
-           <property name="text">
-            <string>القروض</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
+            <string>🔎</string>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
       </item>
-      <item row="0" column="8">
-       <widget class="QPushButton" name="calculate_btn">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>حساب</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
+      <item row="0" column="5" rowspan="2">
        <widget class="QGroupBox" name="groupBox_7">
         <property name="maximumSize">
          <size>
@@ -446,6 +290,159 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item row="0" column="6" rowspan="2">
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>500</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="spacing">
+          <number>3</number>
+         </property>
+         <item row="0" column="2">
+          <widget class="QDateEdit" name="exchange_date_input"/>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QRadioButton" name="unified_exchange_date_radio">
+           <property name="text">
+            <string>:اعتماد تعادل العملة في التاريخ التالي</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="3">
+          <widget class="QRadioButton" name="distinct_exchange_date_radio">
+           <property name="text">
+            <string>اعتماد التاريخ الخاص بكل سجل قيد كتاريخ لتعادل العملة</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="7" rowspan="2">
+       <widget class="QGroupBox" name="groupBox_6">
+        <property name="maximumSize">
+         <size>
+          <width>500</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="title">
+         <string>المصادر</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <property name="topMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>3</number>
+         </property>
+         <property name="spacing">
+          <number>3</number>
+         </property>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="source_loans_checkbox">
+           <property name="text">
+            <string>القروض</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="source_period_start_material_checkbox">
+           <property name="text">
+            <string>بضاعة أول المدة</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="source_journal_checkbox">
+           <property name="text">
+            <string>سندات القيد</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="source_manufacture_checkbox">
+           <property name="text">
+            <string>عمليات التصنيع</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="source_period_start_checkbox">
+           <property name="text">
+            <string>القيود الافتتاحية</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="select_invoices_btn">
+           <property name="maximumSize">
+            <size>
+             <width>125</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...فواتير</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="8">
+       <widget class="QPushButton" name="calculate_btn">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>حساب</string>
+        </property>
        </widget>
       </item>
      </layout>

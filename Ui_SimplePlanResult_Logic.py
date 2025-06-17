@@ -24,8 +24,8 @@ class Ui_SimplePlanResult_Logic(QDialog):
     def showUi(self):
         simple_plan_result = QDialog()
         self.ui.setupUi(simple_plan_result)
-        self.initialize(simple_plan_result)
         self.language_manager.load_translated_ui(self.ui, simple_plan_result)
+        self.initialize(simple_plan_result)
         simple_plan_result.exec()
 
     def initialize(self, ui):

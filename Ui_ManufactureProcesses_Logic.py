@@ -40,7 +40,7 @@ class Ui_ManufactureProcesses_Logic(QDialog):
         self.ui.manu_processes_table.verticalHeader().hide()
         self.ui.manu_processes_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-        self.ui.new_manu_btn.clicked.connect(lambda: self.openNewManufactureWindow())
+        self.ui.add_new_manu_btn.clicked.connect(lambda: self.openNewManufactureWindow())
         self.ui.delete_manu_btn.clicked.connect(lambda: self.updateManufactureOperations())
         self.ui.manu_processes_table.itemDoubleClicked.connect(lambda: self.openManufactureProcess())
         self.ui.export_btn.clicked.connect(lambda: self.openExportWindow())
@@ -71,7 +71,6 @@ class Ui_ManufactureProcesses_Logic(QDialog):
                     expenses_cost = manufacture['expenses_cost']
                     machines_operation_cost = manufacture['machines_operation_cost']
                     salaries_cost = manufacture['salaries_cost']
-                    warehouse = manufacture['warehouse']
                     mid_account = manufacture['mid_account']
                     account = manufacture['account']
                     composition_materials_cost = manufacture['composition_materials_cost']

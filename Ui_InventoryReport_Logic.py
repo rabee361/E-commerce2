@@ -1,6 +1,7 @@
 from DatabaseOperations import DatabaseOperations
 from PyQt5.QtWidgets import QDialog, QSizePolicy, QTableWidgetItem
 from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QDate
 from Ui_DataPicker_Logic import Ui_DataPicker_Logic
 import win32api
 from LanguageManager import LanguageManager
@@ -8,7 +9,7 @@ from PyQt5.QtCore import QTranslator
 from Ui_InventoryReport import Ui_InventoryReport
 
 class Ui_InventoryReport_Logic(QDialog):
-    def __init__(self, sql_connector=''):
+    def __init__(self, sql_connector='', filemanager=''):
         super().__init__()
         self.sql_connector = sql_connector
         if self.sql_connector:
@@ -16,6 +17,7 @@ class Ui_InventoryReport_Logic(QDialog):
         self.ui = Ui_InventoryReport()
         self.filemanager = ''
         self.current_user = ''
+        self.filemanager = filemanager
         self.translator = QTranslator() 
         self.language_manager = LanguageManager(self.translator)
 
@@ -31,6 +33,7 @@ class Ui_InventoryReport_Logic(QDialog):
 
     def initialize(self, window):
         self.fetchWarehouses()
+        self.ui.to_date_input.setDate(QDate.currentDate())
         self.ui.select_warehouse_btn.clicked.connect(lambda: self.openSelectWarehouse())
         self.ui.calculate_btn.clicked.connect(lambda: self.calculate())
 

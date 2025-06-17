@@ -26,8 +26,8 @@ class Ui_PlanPercentResult_Logic(QDialog):
     def showUi(self):
         plan_percent_result = QDialog()
         self.ui.setupUi(plan_percent_result)
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, plan_percent_result)
+        self.initialize()
         plan_percent_result.exec()
 
     def initialize(self):

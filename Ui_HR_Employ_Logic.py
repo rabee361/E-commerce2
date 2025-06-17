@@ -22,8 +22,8 @@ class Ui_HR_Employ_Logic(QDialog):
     def showUi(self):
         window = QDialog()
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         if self.independent:
             self.DisableAccountInputs()
         window.exec()

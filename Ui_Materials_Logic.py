@@ -95,7 +95,7 @@ class Ui_Materials_Logic(QDialog):
         self.ui.materials_tree.clicked.connect(lambda: self.fetchMaterialMachines())
         self.ui.materials_tree.clicked.connect(lambda: self.fetchMaterialMoves())
         self.ui.save_btn.clicked.connect(lambda: self.saveMaterial())
-        self.ui.new_btn.clicked.connect(lambda: self.openAddMaterialWindow())
+        self.ui.add_new_material_btn.clicked.connect(lambda: self.openAddMaterialWindow())
         self.ui.delete_btn.clicked.connect(lambda: self.removeMaterial())
         self.ui.select_group_btn.clicked.connect(lambda: self.openSelectGroupWindow())
         self.ui.select_material_discount_account_btn.clicked.connect(lambda: self.openSelectAccountWindow(self.ui.material_discount_account_combobox))
@@ -1078,8 +1078,9 @@ class Ui_Materials_Logic(QDialog):
 
     def fetchMaterialMachines(self):
         self.ui.machines_table.setRowCount(0)
-        material_id = self.ui.materials_tree.currentItem().text(2)
-        if material_id and material_id != '':
+        material = self.ui.materials_tree.currentItem()
+        if material and material != '':
+            material_id = material.text(2)
             machines = self.database_operations.fetchMaterialMachines(material_id)
             for machine in machines:
                 id = machine[0]
@@ -1120,52 +1121,54 @@ class Ui_Materials_Logic(QDialog):
             
     def fetchMaterialMoves(self):
         self.ui.moves_table.setRowCount(0)
-        material_id = self.ui.materials_tree.currentItem().text(2)
-        if material_id and material_id != '':
-            moves = self.database_operations.fetchMaterialMoves(material_id)
-            for move in moves:
-                move_id = move['move_id']
-                warehouse_id = move['warehouse_id']
-                move_type = move['move_type']
-                cause = move['move_origin'] or ''
-                cause_id = move['move_origin_id'] or ''
-                date = move['move_date']
-                quantity = move['move_quantity']
-                unit = move['move_unit']
-                material_id = move['material_id']
-                from_warehouse_name = move['from_warehouse_name'] or ''
-                material_name = move['material_name']
-                unit_name = move['unit_name']
-                to_warehouse_name = move['to_warehouse_name'] or ''
-                item_currency = move['item_currency']
-                item_currency_name = move['item_currency_name']
-                item_unit_price = move['item_unit_price']
+        material = self.ui.materials_tree.currentItem()
+        if material:
+            material_id = material.text(2)
+            if material_id and material_id != '':
+                moves = self.database_operations.fetchMaterialMoves(material_id)
+                for move in moves:
+                    move_id = move['move_id']
+                    warehouse_id = move['warehouse_id']
+                    move_type = move['move_type']
+                    cause = move['move_origin'] or ''
+                    cause_id = move['move_origin_id'] or ''
+                    date = move['move_date']
+                    quantity = move['move_quantity']
+                    unit = move['move_unit']
+                    material_id = move['material_id']
+                    from_warehouse_name = move['from_warehouse_name'] or ''
+                    material_name = move['material_name']
+                    unit_name = move['unit_name']
+                    to_warehouse_name = move['to_warehouse_name'] or ''
+                    item_currency = move['item_currency']
+                    item_currency_name = move['item_currency_name']
+                    item_unit_price = move['item_unit_price']
 
-                # Create an empty row at the bottom of the table
-                numRows = self.ui.moves_table.rowCount()
-                self.ui.moves_table.insertRow(numRows)
+                    # Create an empty row at the bottom of the table
+                    numRows = self.ui.moves_table.rowCount()
+                    self.ui.moves_table.insertRow(numRows)
 
-                # Add text to the row
-                self.ui.moves_table.setItem(numRows, 0, QTableWidgetItem(str(move_id)))
-                self.ui.moves_table.setItem(numRows, 1, QTableWidgetItem(str(from_warehouse_name)))
-                self.ui.moves_table.setItem(numRows, 2, QTableWidgetItem(str(to_warehouse_name)))
-                self.ui.moves_table.setItem(numRows, 3, QTableWidgetItem(str(quantity)))
-                self.ui.moves_table.setItem(numRows, 4, QTableWidgetItem(str(unit)))
-                self.ui.moves_table.setItem(numRows, 5, QTableWidgetItem(str(unit_name)))
-                self.ui.moves_table.setItem(numRows, 6, QTableWidgetItem(str(move_type)))
-                self.ui.moves_table.setItem(numRows, 7, QTableWidgetItem(str(item_currency_name)))
-                self.ui.moves_table.setItem(numRows, 8, QTableWidgetItem(str(item_unit_price)))
-                self.ui.moves_table.setItem(numRows, 9, QTableWidgetItem(str(date)))
-                self.ui.moves_table.setItem(numRows, 10, QTableWidgetItem(str(cause)))
-                self.ui.moves_table.setItem(numRows, 11, QTableWidgetItem(str(cause_id)))
+                    # Add text to the row
+                    self.ui.moves_table.setItem(numRows, 0, QTableWidgetItem(str(move_id)))
+                    self.ui.moves_table.setItem(numRows, 1, QTableWidgetItem(str(from_warehouse_name)))
+                    self.ui.moves_table.setItem(numRows, 2, QTableWidgetItem(str(to_warehouse_name)))
+                    self.ui.moves_table.setItem(numRows, 3, QTableWidgetItem(str(quantity)))
+                    self.ui.moves_table.setItem(numRows, 4, QTableWidgetItem(str(unit)))
+                    self.ui.moves_table.setItem(numRows, 5, QTableWidgetItem(str(unit_name)))
+                    self.ui.moves_table.setItem(numRows, 6, QTableWidgetItem(str(move_type)))
+                    self.ui.moves_table.setItem(numRows, 7, QTableWidgetItem(str(item_currency_name)))
+                    self.ui.moves_table.setItem(numRows, 8, QTableWidgetItem(str(item_unit_price)))
+                    self.ui.moves_table.setItem(numRows, 9, QTableWidgetItem(str(date)))
+                    self.ui.moves_table.setItem(numRows, 10, QTableWidgetItem(str(cause)))
+                    self.ui.moves_table.setItem(numRows, 11, QTableWidgetItem(str(cause_id)))
 
-                # Colorize the row red when move_type is reduce
-                if move_type == 'reduce':
-                    colorizeTableRow(self.ui.moves_table, numRows, background_color=light_red_color, text_color=black)
-                elif move_type == 'add':
-                    colorizeTableRow(self.ui.moves_table, numRows, background_color=light_green_color, text_color=black)
-                elif move_type == 'transfer':
-                    colorizeTableRow(self.ui.moves_table, numRows, background_color=blue_sky_color, text_color=black)
+                    # Colorize the row red when move_type is reduce
+                    if move_type == 'reduce':
+                        colorizeTableRow(self.ui.moves_table, numRows, background_color=light_red_color, text_color=black)
+                    elif move_type == 'add':
+                        colorizeTableRow(self.ui.moves_table, numRows, background_color=light_green_color, text_color=black)
+                    elif move_type == 'transfer':
+                        colorizeTableRow(self.ui.moves_table, numRows, background_color=blue_sky_color, text_color=black)
 
     def removeMaterial(self):
         material_id = self.ui.materials_tree.currentItem().text(2)

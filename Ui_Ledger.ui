@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1090</width>
+    <width>1296</width>
     <height>665</height>
    </rect>
   </property>
@@ -337,23 +337,22 @@ QTreeWidget{background-color:#41bf9e;}</string>
       <item row="0" column="5">
        <widget class="QGroupBox" name="groupBox_8">
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::RightToLeft</enum>
         </property>
         <property name="title">
          <string/>
         </property>
         <layout class="QGridLayout" name="gridLayout_7">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="select_account_btn">
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="1">
           <widget class="QComboBox" name="accounts_combobox"/>
          </item>
-         <item row="0" column="2">
+         <item row="1" column="1">
+          <widget class="QDateEdit" name="from_date_input"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QDateEdit" name="to_date_input"/>
+         </item>
+         <item row="0" column="0">
           <widget class="QLabel" name="label_6">
            <property name="maximumSize">
             <size>
@@ -366,10 +365,7 @@ QTreeWidget{background-color:#41bf9e;}</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QDateEdit" name="from_date_input"/>
-         </item>
-         <item row="1" column="2">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_4">
            <property name="maximumSize">
             <size>
@@ -382,10 +378,7 @@ QTreeWidget{background-color:#41bf9e;}</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QDateEdit" name="to_date_input"/>
-         </item>
-         <item row="2" column="2">
+         <item row="2" column="0">
           <widget class="QLabel" name="label_5">
            <property name="maximumSize">
             <size>
@@ -395,6 +388,13 @@ QTreeWidget{background-color:#41bf9e;}</string>
            </property>
            <property name="text">
             <string>إلى:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QToolButton" name="select_account_btn">
+           <property name="text">
+            <string>🔎</string>
            </property>
           </widget>
          </item>
@@ -556,7 +556,7 @@ QTreeWidget{background-color:#41bf9e;}</string>
           <widget class="QRadioButton" name="distinct_currency_radio">
            <property name="maximumSize">
             <size>
-             <width>180</width>
+             <width>200</width>
              <height>16777215</height>
             </size>
            </property>

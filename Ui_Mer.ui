@@ -879,12 +879,12 @@ QLineEdit {
              <enum>Qt::RightToLeft</enum>
             </property>
             <property name="text">
-             <string>المستودع :</string>
+             <string>الكلفة:</string>
             </property>
            </widget>
           </item>
           <item row="0" column="5">
-           <widget class="QLineEdit" name="manufature_warehouse">
+           <widget class="QLineEdit" name="manufature_cost">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1261,23 +1261,7 @@ QLineEdit {
       <string>...تقارير مبيعات</string>
      </property>
      <addaction name="action_13"/>
-     <addaction name="option_sell_price_report"/>
      <addaction name="option_sales_report"/>
-    </widget>
-    <widget class="QMenu" name="menu_11">
-     <property name="title">
-      <string>...تقارير مشتريات</string>
-     </property>
-     <addaction name="action_16"/>
-     <addaction name="action_17"/>
-     <addaction name="action_15"/>
-    </widget>
-    <widget class="QMenu" name="menu_12">
-     <property name="title">
-      <string>...تقارير إدارية</string>
-     </property>
-     <addaction name="action_18"/>
-     <addaction name="action_19"/>
     </widget>
     <addaction name="option_aggregator"/>
     <addaction name="option_auto_aggregator"/>
@@ -1287,11 +1271,7 @@ QLineEdit {
     <addaction name="option_client_report"/>
     <addaction name="option_supplier_report"/>
     <addaction name="option_product_profit_report_2"/>
-    <addaction name="menu_11"/>
     <addaction name="menu_HR"/>
-    <addaction name="menu_12"/>
-    <addaction name="action_10"/>
-    <addaction name="daily_reports"/>
    </widget>
    <widget class="QMenu" name="menu_6">
     <property name="title">

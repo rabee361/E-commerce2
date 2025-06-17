@@ -21,7 +21,7 @@ from Ui_DataPicker_Logic import Ui_DataPicker_Logic
 from Ui_ShortCutSettings_Logic import Ui_ShortCutSettings_Logic
 from Ui_FloatPointSettings_Logic import Ui_FloatPointSettings_Logic
 from Ui_Synchronization_Settings_Logic import Ui_Synchronization_Settings_Logic
-from Ui_Media_Logic import Ui_Media_Logic
+# from Ui_Media_Logic import Ui_Media_Logic
 from Ui_ApiKeys_Logic import Ui_ApiKeys_Logic
 from ProgressBar import ProgressBar
 from PyQt5.QtCore import QTranslator
@@ -80,7 +80,7 @@ class Ui_Settings_Logic(QDialog):
         self.ui.remove_manufacture_hall_warehouse.clicked.connect(lambda: self.removeManufactureHall())
         self.ui.remove_manufacture_hall_warehouse.clicked.connect(lambda: self.fetchManufactureHalls())
 
-        self.ui.media_btn.clicked.connect(lambda: self.openMediaWindow())
+        # self.ui.media_btn.clicked.connect(lambda: self.openMediaWindow())
         self.ui.api_keys_btn.clicked.connect(lambda: self.openApiKeysWindow())
         self.ui.currency_management_btn.clicked.connect(lambda: self.openCurrenciesWindow())
         self.ui.invoices_settings_btn.clicked.connect(lambda: self.openInvoicesSettingsWindow())
@@ -151,8 +151,8 @@ class Ui_Settings_Logic(QDialog):
         self.ui.language_combobox.addItem("English", "en")
         self.ui.language_combobox.addItem("عربي", "ar")
 
-    def openMediaWindow(self):
-        Ui_Media_Logic(self.sql_connector).showUi()
+    # def openMediaWindow(self):
+    #     Ui_Media_Logic(self.sql_connector).showUi()
 
     def openCurrenciesWindow(self):
         Ui_Currencies_Logic(self.sql_connector).showUi()
@@ -314,13 +314,14 @@ class Ui_Settings_Logic(QDialog):
     def fetchManufactureHalls(self):
         self.ui.manufacture_halls_table.setRowCount(0)
         manufacture_halls = self.database_operations.fetchManufactureHalls()
-        for manufacture_hall in manufacture_halls:
-            id = manufacture_hall[0]
-            warehouse_id = manufacture_hall[1]
-            date = manufacture_hall[2]
-            name = manufacture_hall[3]
-            account_id = manufacture_hall[4]
-            account_name = manufacture_hall[5]
+        if manufacture_halls:
+            for manufacture_hall in manufacture_halls:
+                id = manufacture_hall['id']
+                warehouse_id = manufacture_hall[1]
+                date = manufacture_hall[2]
+                name = manufacture_hall[3]
+                account_id = manufacture_hall[4]
+                account_name = manufacture_hall[5]
 
             # Create a empty row at bottom of table
             numRows = self.ui.manufacture_halls_table.rowCount()

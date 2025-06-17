@@ -26,7 +26,7 @@ class Ui_Employee_Report(object):
         self.gridLayout_2 = QtWidgets.QGridLayout(Employee_Report)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.groupBox = QtWidgets.QGroupBox(Employee_Report)
-        self.groupBox.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.groupBox.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.groupBox.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
@@ -45,13 +45,23 @@ class Ui_Employee_Report(object):
         spacerItem = QtWidgets.QSpacerItem(343, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 0, 8, 1, 1)
         self.employee_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.employee_combobox.setMinimumSize(QtCore.QSize(125, 0))
+        self.employee_combobox.setStyleSheet("QComboBox {\n"
+"        background-color: #fafafa;\n"
+"        border: 1px solid lightgrey;        \n"
+"        height: 22px;\n"
+"        color: black;\n"
+"    }\n"
+"    QComboBox::drop-down {\n"
+"        border: none;\n"
+"    }")
         self.employee_combobox.setObjectName("employee_combobox")
         self.gridLayout.addWidget(self.employee_combobox, 0, 1, 1, 1)
         self.calculate_btn = QtWidgets.QPushButton(self.groupBox)
         self.calculate_btn.setObjectName("calculate_btn")
         self.gridLayout.addWidget(self.calculate_btn, 0, 7, 1, 1)
         self.label = QtWidgets.QLabel(self.groupBox)
-        self.label.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.label.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 3, 1, 1)
         self.to_date = QtWidgets.QDateEdit(self.groupBox)
@@ -63,6 +73,7 @@ class Ui_Employee_Report(object):
         self.gridLayout_2.addWidget(self.groupBox, 0, 0, 1, 2)
         self.groupBox_2 = QtWidgets.QGroupBox(Employee_Report)
         self.groupBox_2.setLayoutDirection(QtCore.Qt.RightToLeft)
+        self.groupBox_2.setTitle("")
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout_3.setObjectName("gridLayout_3")
@@ -104,7 +115,6 @@ class Ui_Employee_Report(object):
         self.calculate_btn.setText(_translate("Employee_Report", "حساب"))
         self.label.setText(_translate("Employee_Report", "من:"))
         self.select_employee_btn.setText(_translate("Employee_Report", "🔎"))
-        self.groupBox_2.setTitle(_translate("Employee_Report", "GroupBox"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Employee_Report", "#"))
         item = self.tableWidget.horizontalHeaderItem(1)

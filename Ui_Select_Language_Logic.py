@@ -16,14 +16,13 @@ class Ui_Select_Language_Logic(QDialog, UiStyles):
     def showUi(self):
         window_select_language = QDialog()
         self.ui.setupUi(window_select_language)
-        self.initialize(window_select_language)
         self.language_manager.load_translated_ui(self.ui, window_select_language)
+        self.initialize(window_select_language)
         window_select_language.exec()
 
     def initialize(self, window):
         self.fetchLanguages()
         self.fetchCurrentLanguage()
-        self.language_manager.load_translated_ui(self.ui, window)
         self.ui.save_btn.clicked.connect(lambda: self.saveLanguage(window))
 
     def fetchCurrentLanguage(self):

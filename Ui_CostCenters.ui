@@ -65,7 +65,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QPushButton" name="new_btn">
+       <widget class="QPushButton" name="add_new_btn">
         <property name="text">
          <string>...مركز كلفة جديد</string>
         </property>
@@ -94,104 +94,6 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="1" column="0">
-       <widget class="QGroupBox" name="parent_groupBox">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_5">
-         <item row="0" column="1">
-          <widget class="QComboBox" name="parent_combobox">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>100</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>100</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QPushButton" name="save_btn">
-           <property name="minimumSize">
-            <size>
-             <width>100</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>100</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>حفظ</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_35">
-           <property name="minimumSize">
-            <size>
-             <width>120</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>مركز الكلفة الرئيسي:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="select_parent_btn">
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </widget>
-      </item>
       <item row="2" column="0">
        <widget class="QGroupBox" name="aggregation_distributive_groupBox">
         <property name="enabled">
@@ -201,20 +103,22 @@
          <string/>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="2">
-          <widget class="QPushButton" name="select_cost_center_btn">
-           <property name="text">
-            <string>...اختيار</string>
+         <item row="0" column="6">
+          <widget class="QPushButton" name="add_btn">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
            </property>
-          </widget>
-         </item>
-         <item row="0" column="4" colspan="2">
-          <widget class="QLineEdit" name="division_factor_input">
            <property name="maximumSize">
             <size>
-             <width>75</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="text">
+            <string>إضافة</string>
            </property>
           </widget>
          </item>
@@ -222,7 +126,7 @@
           <widget class="QLabel" name="label_8">
            <property name="maximumSize">
             <size>
-             <width>80</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
@@ -235,52 +139,37 @@
           <widget class="QComboBox" name="cost_center_combobox">
            <property name="minimumSize">
             <size>
-             <width>75</width>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>75</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
           </widget>
          </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="maximumSize">
-            <size>
-             <width>70</width>
-             <height>16777215</height>
-            </size>
-           </property>
+         <item row="0" column="2">
+          <widget class="QToolButton" name="select_cost_center_btn">
            <property name="text">
-            <string>مركز الكلفة:</string>
+            <string>🔎</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_7">
-           <property name="minimumSize">
-            <size>
-             <width>80</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>عامل التقسيم:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="5" colspan="2">
-          <widget class="QLineEdit" name="division_factors_sum_input">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="7">
+         <item row="1" column="0" colspan="8">
           <widget class="QTableWidget" name="aggregation_distributive_table">
            <property name="alternatingRowColors">
             <bool>true</bool>
@@ -314,6 +203,39 @@
            </column>
           </widget>
          </item>
+         <item row="2" column="5" colspan="3">
+          <widget class="QLineEdit" name="division_factors_sum_input">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_7">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>عامل التقسيم:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>مركز الكلفة:</string>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="0" colspan="2">
           <widget class="QCheckBox" name="division_factor_changable_checkbox">
            <property name="sizePolicy">
@@ -327,22 +249,13 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="6">
-          <widget class="QPushButton" name="add_btn">
-           <property name="minimumSize">
-            <size>
-             <width>40</width>
-             <height>0</height>
-            </size>
-           </property>
+         <item row="0" column="4" colspan="2">
+          <widget class="QLineEdit" name="division_factor_input">
            <property name="maximumSize">
             <size>
-             <width>75</width>
+             <width>16777215</width>
              <height>16777215</height>
             </size>
-           </property>
-           <property name="text">
-            <string>إضافة</string>
            </property>
           </widget>
          </item>
@@ -415,6 +328,118 @@
             <string>ملاحظات:</string>
            </property>
           </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="parent_groupBox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="2">
+          <widget class="QToolButton" name="select_parent_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>مركز الكلفة الرئيسي:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="parent_combobox">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QPushButton" name="save_btn">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>حفظ</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>70</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>

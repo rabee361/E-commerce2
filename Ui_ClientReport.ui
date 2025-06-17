@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1481</width>
+    <width>1248</width>
     <height>804</height>
    </rect>
   </property>
@@ -24,104 +24,32 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>70</height>
-      </size>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="export_btn">
+     <property name="text">
+      <string>تصدير</string>
      </property>
-     <property name="layoutDirection">
-      <enum>Qt::RightToLeft</enum>
-     </property>
-     <property name="title">
-      <string>تقرير زبون</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="1">
-       <widget class="QComboBox" name="clients_combobox">
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-        background-color: #fafafa;
-        border: 1px solid lightgrey;		
-		height: 22px;
-		color: black;
-    }
-    QComboBox::drop-down {
-        border: none;
-    }</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="label_2">
-        <property name="maximumSize">
-         <size>
-          <width>50</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>من تاريخ:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="7">
-       <widget class="QPushButton" name="calc_btn">
-        <property name="text">
-         <string>عرض</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QDateEdit" name="to_date_input"/>
-      </item>
-      <item row="0" column="5">
-       <widget class="QLabel" name="label_3">
-        <property name="maximumSize">
-         <size>
-          <width>50</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>إلى تاريخ:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="maximumSize">
-         <size>
-          <width>40</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>الزبون:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QDateEdit" name="from_date_input"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="select_client_btn">
-        <property name="text">
-         <string>...اختيار</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="3" column="1">
+    <spacer name="horizontalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0" colspan="2">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>60</height>
+       <height>16777215</height>
       </size>
      </property>
      <property name="layoutDirection">
@@ -283,19 +211,104 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="export_btn">
-     <property name="text">
-      <string>تصدير</string>
+   <item row="0" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="title">
+      <string>تقرير زبون</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="6">
+       <widget class="QDateEdit" name="to_date_input"/>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="label_3">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>إلى تاريخ:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>الزبون:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="clients_combobox">
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_2">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>من تاريخ:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="select_client_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QPushButton" name="calc_btn">
+        <property name="text">
+         <string>عرض</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QDateEdit" name="from_date_input"/>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item row="1" column="0" colspan="2">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>1000</height>
+       <height>16777215</height>
       </size>
      </property>
      <property name="layoutDirection">

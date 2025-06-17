@@ -98,7 +98,7 @@ from Ui_AuthenticateUser_Logic import current_user
 from LCDClock import DigitalDisplay
 from PyQt5.QtWidgets import QDialog, QPushButton, QVBoxLayout, QApplication, QSplashScreen 
 from Ui_Calculator_Logic import Ui_Calculator_Logic
-from ChatComponent import ChatComponent
+# from ChatComponent import ChatComponent
 # from ChatBotAdapter import ChatBotAdapter
 # from chatbot import Services
 # from PermissionDecoratorClass import check_permission
@@ -127,7 +127,7 @@ class Ui_Mer_Logic(QObject):
         self.default_language = ''
         self.current_language = ''
         self.chat_component = None
-        self.chatbot = None
+        # self.chatbot = None
 
     # # Define permission as a method
     # def permission(self, criteria_name, required_type):
@@ -384,26 +384,26 @@ class Ui_Mer_Logic(QObject):
             self.ui.messagesLayout.addStretch()
                     
             # Create new chat component
-            self.chat_component = ChatComponent(self.ui.messagesLayout, self.ui.message_input, self.ui.messagesScrollArea)
+            # self.chat_component = ChatComponent(self.ui.messagesLayout, self.ui.message_input, self.ui.messagesScrollArea)
             
             # Chat send message
             self.ui.send_message_btn.clicked.connect(lambda: self.chat_component.send_message(self.ui.message_input.text().strip()))
             self.ui.message_input.returnPressed.connect(lambda: self.chat_component.send_message(self.ui.message_input.text().strip()))
 
             # Connect signals
-            self.chat_component.message_sent.connect(self.handleUserMessage)
+            # self.chat_component.message_sent.connect(self.handleUserMessage)
             # self.chatbot.response_ready.connect(self.handleBotResponse)
                 
     def handleUserMessage(self, message):
         """Handle new message from the user"""
         # Process the message with the chatbot
-        self.chatbot.process_message(message)
+        # self.chatbot.process_message(message)
         
     def handleBotResponse(self, response):
         """Handle bot response"""
         # Set the response in the chat component with a random delay between 1-3 seconds
         delay = random.randint(1000, 3000)
-        self.chat_component.set_pending_response(response, delay)
+        # self.chat_component.set_pending_response(response, delay)
 
     def openSelectInventoryTypeWindow(self):
         Ui_Configuration_Logic(self.sql_connector).showUi()
@@ -719,21 +719,22 @@ class Ui_Mer_Logic(QObject):
             self.current_user = current_user
             self.database_operations.setCurrentUser(current_user)
 
-            self.openSelectInventoryTypeWindow()
+            inventory_type = self.database_operations.fetchSetting('inventory_type')
+            if inventory_type is None:
+                self.openSelectInventoryTypeWindow()
 
             user_prefrences = self.database_operations.fetchUserSettings(user_id=current_user)
             prefrences = []
             for prefrence in user_prefrences:
                 prefrences.append(prefrence['name'])
             self.toolbar_manager.showActions(prefrences)
-            
             self.window.setEnabled(True)
             self.statistics = Statistics(self.sql_connector, self.ui)
             self.importer = Importer(self.sql_connector, self.filemanager)
             self.fetchAlerts()
             self.ui.stats_groupbox.setEnabled(True)
             # Initialize chatbot with our adapter
-            ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
+            # ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
             # self.chatbot = ChatBotAdapter(service=Services.MYSQL, ai_rules_path=ai_rules_path, mysql_connection=self.sql_connector)
 
             # Initialize chat component
@@ -778,7 +779,7 @@ class Ui_Mer_Logic(QObject):
             self.fetchAlerts()
 
             # Initialize chatbot with our adapter
-            ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
+            # ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
             # self.chatbot = ChatBotAdapter(service=Services.MYSQL, ai_rules_path=ai_rules_path, mysql_connection=self.sql_connector)
             self.window.setEnabled(True)
             self.ui.stats_groupbox.setEnabled(True)
@@ -861,12 +862,13 @@ class Ui_Mer_Logic(QObject):
                 prefrences.append(prefrence['name'])
             self.toolbar_manager.showActions(prefrences)
             self.statistics = Statistics(self.sql_connector, self.ui)
+            self.importer = Importer(self.sql_connector, self.filemanager)
             # Ensure database_operations is initialized before fetching alerts
             self.fetchAlerts()
             self.ui.stats_groupbox.setEnabled(True)
 
             # Initialize chatbot with our adapter
-            ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
+            # ai_rules_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_doc.md")
             # self.chatbot = ChatBotAdapter(service=Services.MYSQL, ai_rules_path=ai_rules_path, mysql_connection=self.sql_connector)
 
             # Initialize chat component
@@ -895,16 +897,8 @@ class Ui_Mer_Logic(QObject):
         else:
             win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_DATABASE'), self.language_manager.translate('ERROR'))
 
-    # def openRawMaterialMovementWindow(self):
-    #     if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
-    #         Ui_RawMovement_Logic(self.sql_connector, self.filemanager).showUi()
-
-    #     else:
-    #         win32api.MessageBox(0, self.language_manager.translate('ALERT_OPEN_FILE'), self.language_manager.translate('ERROR'))
-
     def openCalculatorWindow(self):
         Ui_Calculator_Logic().showUi()
-
 
     def openProductSalesWindow(self):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:

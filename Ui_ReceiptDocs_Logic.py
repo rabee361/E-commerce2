@@ -144,7 +144,7 @@ class Ui_ReceiptDocs_Logic(QDialog):
                 self.ui.rejection_warehouse_combobox.setCurrentIndex(
                     self.ui.rejection_warehouse_combobox.findData(receipt_doc_details['rejection_warehouse_id'])
                 )
-                self.ui.date_dateedit.setDate(receipt_doc_details['date'])
+                self.ui.date_dateedit.setDate(receipt_doc_details['date_col'])
                 material_id = receipt_doc_details['material_id']
                 for index in range(self.ui.materials_combobox.count()):
                     if self.ui.materials_combobox.itemData(index)[0] == material_id:

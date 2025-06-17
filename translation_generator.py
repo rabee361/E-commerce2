@@ -69,11 +69,11 @@ def main():
     # Example usage of the TranslationGenerator
     # Initialize with a UI file and target language
     generator = TranslationGenerator(
-        ui_files=['Ui_HR.ui'],  # List of Qt UI files to process
+        ui_files=['.ui'],  # List of Qt UI files to process
         languages=['en']  # Target languages for translation
     )
     # Pass command: 'pylupdate5', 'lrelease'
-    generator.generate_translations('lrelease')
+    generator.generate_translations('pylupdate5')
 
 if __name__ == '__main__':
     main()

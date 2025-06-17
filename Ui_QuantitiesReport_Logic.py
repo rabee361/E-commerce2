@@ -12,12 +12,13 @@ from LanguageManager import LanguageManager
 import datetime
 
 class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
-    def __init__(self, sql_connector):
+    def __init__(self, sql_connector, filemanager=''):
         super().__init__()
         self.sql_connector = sql_connector
         self.database_operations = DatabaseOperations(self.sql_connector)
         self.ui = Ui_QuantitiesReport()
         self.translator = QTranslator()
+        self.filemanager = filemanager
         self.language_manager = LanguageManager(self.translator)
 
     def showUi(self):
@@ -38,9 +39,9 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
         # Fetch products from database and populate the combobox
         products = self.database_operations.fetchMaterials()
         self.ui.product_combobox.clear()
-        
-        for product in products:
-            self.ui.product_combobox.addItem(product['name'], product['id'])
+        if products:
+            for product in products:
+                self.ui.product_combobox.addItem(product['name'], product['id'])
     
     def openSelectMaterialWindow(self):
         data_picker = Ui_DataPicker_Logic(self.sql_connector, 'materials')

@@ -25,8 +25,8 @@ class Ui_RawMovement_Logic(object):
     def showUi(self):
         window_raw_material_movement = QDialog()
         self.ui.setupUi(window_raw_material_movement)
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_raw_material_movement)
+        self.initialize()
         window_raw_material_movement.exec()
 
     def initialize(self):

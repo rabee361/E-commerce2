@@ -151,10 +151,68 @@
          <string>الحسابات</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_22">
+         <item row="4" column="2">
+          <widget class="QToolButton" name="select_tax_account_btn">
            <property name="text">
-            <string>حساب ضريبة القيمة المضافة:</string>
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="client_account_combobox">
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QCheckBox" name="vat_account_create_subaccount_checkbox">
+           <property name="text">
+            <string>إنشاء حساب فرعي</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="vat_account_combobox">
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QToolButton" name="select_client_account_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QToolButton" name="select_vat_account_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QCheckBox" name="tax_account_create_subaccount_checkbox">
+           <property name="text">
+            <string>إنشاء حساب فرعي</string>
            </property>
           </widget>
          </item>
@@ -165,94 +223,15 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="select_client_account_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_22">
            <property name="text">
-            <string>...اختيار</string>
+            <string>حساب ضريبة القيمة المضافة:</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="2">
-          <widget class="QPushButton" name="select_client_discount_account_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_21">
-           <property name="text">
-            <string>حساب مقابل الحسم:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QComboBox" name="tax_account_combobox"/>
-         </item>
-         <item row="3" column="3">
-          <widget class="QCheckBox" name="vat_account_create_subaccount_checkbox">
-           <property name="text">
-            <string>إنشاء حساب فرعي</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="vat_account_combobox"/>
-         </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="discount_account_combobox"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="client_account_combobox"/>
-         </item>
-         <item row="0" column="3">
-          <widget class="QCheckBox" name="client_account_create_subaccount_checkbox">
-           <property name="text">
-            <string>إنشاء حساب فرعي</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3">
-          <widget class="QCheckBox" name="discount_account_create_subaccount_checkbox">
-           <property name="text">
-            <string>إنشاء حساب فرعي</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="3">
-          <widget class="QCheckBox" name="tax_exemption_checkbox">
-           <property name="text">
-            <string>الزبون معفى من الضرائب</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QPushButton" name="select_vat_account_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="3">
-          <widget class="QCheckBox" name="tax_account_create_subaccount_checkbox">
+         <item row="1" column="3">
+          <widget class="QCheckBox" name="client_extra_account_create_subaccount_checkbox">
            <property name="text">
             <string>إنشاء حساب فرعي</string>
            </property>
@@ -265,16 +244,63 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="2">
-          <widget class="QPushButton" name="select_tax_account_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
+         <item row="1" column="2">
+          <widget class="QToolButton" name="select_client_extra_account_btn">
            <property name="text">
-            <string>...اختيار</string>
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QCheckBox" name="discount_account_create_subaccount_checkbox">
+           <property name="text">
+            <string>إنشاء حساب فرعي</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QCheckBox" name="client_account_create_subaccount_checkbox">
+           <property name="text">
+            <string>إنشاء حساب فرعي</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>حساب مقابل الحسم:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QToolButton" name="select_client_discount_account_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="client_extra_account_combobox">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QCheckBox" name="tax_exemption_checkbox">
+           <property name="text">
+            <string>الزبون معفى من الضرائب</string>
            </property>
           </widget>
          </item>
@@ -285,30 +311,33 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="client_extra_account_combobox">
-           <property name="enabled">
-            <bool>true</bool>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="tax_account_combobox">
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="2">
-          <widget class="QPushButton" name="select_client_extra_account_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QCheckBox" name="client_extra_account_create_subaccount_checkbox">
-           <property name="text">
-            <string>إنشاء حساب فرعي</string>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="discount_account_combobox">
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
            </property>
           </widget>
          </item>
@@ -357,6 +386,26 @@
          <string/>
         </property>
         <layout class="QGridLayout" name="gridLayout_7">
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="day_number_input">
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLineEdit" name="discount_percent_input">
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="2">
           <widget class="QLineEdit" name="discount_value_input">
            <property name="maximumSize">
@@ -367,7 +416,75 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0" colspan="8">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>اليوم:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>نسبة الحسم:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="8">
+          <widget class="QPushButton" name="add_payment_condition_btn">
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>إضافة</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QComboBox" name="condition_discount_account_combobox">
+           <property name="maximumSize">
+            <size>
+             <width>150</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="7">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>قيمة الحسم:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" colspan="9">
           <widget class="QTableWidget" name="payment_conditions_table">
            <column>
             <property name="text">
@@ -403,110 +520,7 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_16">
-           <property name="text">
-            <string>اليوم:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QLabel" name="label_17">
-           <property name="text">
-            <string>نسبة الحسم:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="7">
-          <widget class="QPushButton" name="add_payment_condition_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>إضافة</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="day_number_input">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="5">
-          <widget class="QPushButton" name="select_condition_discount_account_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="4">
-          <widget class="QLineEdit" name="discount_percent_input">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" colspan="2">
-          <widget class="QLabel" name="label_18">
-           <property name="text">
-            <string>قيمة الحسم:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="4">
-          <widget class="QComboBox" name="condition_discount_account_combobox">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="7">
-          <widget class="QPushButton" name="delete_payment_condition_btn">
-           <property name="maximumSize">
-            <size>
-             <width>60</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>حذف</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="6">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="5">
+         <item row="1" column="6">
           <widget class="QLabel" name="label_4">
            <property name="minimumSize">
             <size>
@@ -522,6 +536,26 @@
            </property>
            <property name="text">
             <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="8">
+          <widget class="QPushButton" name="delete_payment_condition_btn">
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>حذف</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="5">
+          <widget class="QToolButton" name="select_condition_discount_account_btn">
+           <property name="text">
+            <string>🔎</string>
            </property>
           </widget>
          </item>

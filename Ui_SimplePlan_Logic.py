@@ -32,8 +32,8 @@ class Ui_SimplePlan_Logic(QDialog):
         window_plan.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window_plan)
         window_plan.setWindowIcon(QIcon('icons/graphic_report.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_plan)
+        self.initialize()
         window_plan.exec()
 
     def initialize(self):

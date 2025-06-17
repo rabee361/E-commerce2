@@ -9,6 +9,7 @@ from Ui_Sales_Target import Ui_Sales_Target
 from LanguageManager import LanguageManager
 from PyQt5.QtCore import QTranslator
 from PyQt5.QtGui import QIcon
+from Ui_DataPicker_Logic import Ui_DataPicker_Logic
 
 class Ui_Sales_Target_Logic(object):
     def __init__(self, sql_connector):
@@ -24,8 +25,8 @@ class Ui_Sales_Target_Logic(object):
         dialog.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(dialog)
         dialog.setWindowIcon(QIcon('icons/project.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, dialog)
+        self.initialize()
         dialog.exec()
 
     def initialize(self):
@@ -41,11 +42,21 @@ class Ui_Sales_Target_Logic(object):
         self.ui.delete_btn.clicked.connect(lambda: self.removeSalesTarget())
 
         self.ui.location_checkbox.clicked.connect(lambda: self.enableLocation())
+        self.ui.products_btn.clicked.connect(lambda: self.openSelectProduct())
 
         self.fetchSalesTargets()
         self.fetchGrouppedMaterials()
         self.setMonths()
         self.setYears()
+
+    def openSelectProduct(self):
+        data_picker = Ui_DataPicker_Logic(self.sql_connector, 'groupped_materials')
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.products_combobox.count()):
+                if self.ui.products_combobox.itemData(i)[0] == result['id']:
+                    self.ui.products_combobox.setCurrentIndex(i)
+                    break
 
     def addSalesTarget(self):
         product = self.ui.products_combobox.itemData(self.ui.products_combobox.currentIndex())[0]
@@ -107,13 +118,11 @@ class Ui_Sales_Target_Logic(object):
         for material in materials:
             id = material['id']
             name = material['name']
-            code = material['code']
-            work_hours = material['work_hours']
             data = [id]
             self.ui.products_combobox.addItem(name, data)
 
     def setYears(self):
-        for i in range(2000,3000):
+        for i in range(2000, 3000):
             self.ui.year_combobox.addItem(str(i))
 
     def setMonths(self):

@@ -108,79 +108,71 @@
       <string>التفاصيل</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="1">
-       <widget class="QComboBox" name="target_warehouse_combobox"/>
-      </item>
-      <item row="0" column="2">
+      <item row="0" column="3">
        <widget class="QLabel" name="quantity_label">
         <property name="text">
          <string>الكمية:</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QComboBox" name="units_combobox"/>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLineEdit" name="invoice_number_input">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:black;\nbackground-color:white;\nborder:solid 1px;</string>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <spacer name="vertical_spacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
+      <item row="3" column="2">
+       <widget class="QToolButton" name="select_target_warehouse_btn">
+        <property name="text">
+         <string>🔎</string>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>290</height>
-         </size>
-        </property>
-       </spacer>
+       </widget>
       </item>
-      <item row="1" column="0">
+      <item row="4" column="1">
+       <widget class="QComboBox" name="rejection_warehouse_combobox">
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
        <widget class="QLabel" name="date_label">
         <property name="text">
          <string>التاريخ:</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QDateEdit" name="date_dateedit"/>
-      </item>
-      <item row="3" column="2">
-       <widget class="QPushButton" name="select_target_warehouse_btn">
+      <item row="4" column="0">
+       <widget class="QLabel" name="rejection_warehouse_label">
         <property name="text">
-         <string>...اختيار</string>
+         <string>مستودع الرفض:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="quantity_label_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="material_label">
         <property name="text">
-         <string>رقم الفاتورة المرتبطة:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <string>المادة:</string>
         </property>
        </widget>
-      </item>
-      <item row="5" column="0" colspan="8">
-       <layout class="QHBoxLayout" name="button_layout">
-        <item>
-         <widget class="QPushButton" name="save_btn">
-          <property name="text">
-           <string>حفظ</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="delete_receipt_doc_btn">
-          <property name="text">
-           <string>حذف سند الاستلام</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
       </item>
       <item row="0" column="1">
        <widget class="QComboBox" name="materials_combobox">
@@ -198,13 +190,23 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="material_label">
+      <item row="2" column="1">
+       <widget class="QDateEdit" name="date_dateedit"/>
+      </item>
+      <item row="2" column="5">
+       <widget class="QPushButton" name="show_invoice_btn">
         <property name="text">
-         <string>المادة:</string>
+         <string>عرض الفاتورة</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLineEdit" name="quantity_input"/>
+      </item>
+      <item row="2" column="3">
+       <widget class="QLabel" name="quantity_label_2">
+        <property name="text">
+         <string>رقم الفاتورة المرتبطة:</string>
         </property>
        </widget>
       </item>
@@ -215,71 +217,55 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
-       <widget class="QLineEdit" name="quantity_input"/>
-      </item>
-      <item row="0" column="4">
-       <widget class="QComboBox" name="units_combobox"/>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="invoice_number_input">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="target_warehouse_combobox">
         <property name="styleSheet">
-         <string notr="true">color:black;\nbackground-color:white;\nborder:solid 1px;</string>
-        </property>
-        <property name="readOnly">
-         <bool>false</bool>
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="4">
-       <widget class="QPushButton" name="show_invoice_btn">
+      <item row="4" column="2">
+       <widget class="QToolButton" name="select_rejection_warehouse_btn">
         <property name="text">
-         <string>عرض الفاتورة</string>
+         <string>🔎</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="5">
+      <item row="3" column="4">
        <widget class="QPushButton" name="pick_invoice_btn">
         <property name="text">
          <string>اختيار فاتورة</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="3">
-       <widget class="QLabel" name="rejection_warehouse_label">
-        <property name="text">
-         <string>مستودع الرفض:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="4">
-       <widget class="QComboBox" name="rejection_warehouse_combobox"/>
-      </item>
-      <item row="3" column="5">
-       <widget class="QPushButton" name="select_rejection_warehouse_btn">
-        <property name="text">
-         <string>...اختيار</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="2">
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
      </layout>
     </widget>
+   </item>
+   <item row="1" column="1">
+    <layout class="QHBoxLayout" name="button_layout">
+     <item>
+      <widget class="QPushButton" name="delete_receipt_doc_btn">
+       <property name="text">
+        <string>حذف سند الاستلام</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="save_btn">
+       <property name="text">
+        <string>حفظ</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

@@ -29,8 +29,8 @@ class Ui_Trial_Balance_Logic(QDialog):
         window = QDialog()
         self.ui.setupUi(window)
         window.setWindowIcon(QIcon('icons/balance.png'))
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):
@@ -56,7 +56,7 @@ class Ui_Trial_Balance_Logic(QDialog):
         # Create dialog to select invoice types
         dialog = QDialog(self)
         dialog.setLayoutDirection(Qt.RightToLeft)
-        dialog.setWindowTitle(self.language_manager.translate("SELECT_INVOICE"))
+        dialog.setWindowTitle(self.language_manager.translate("SELECT_INVOICES"))
         dialog.setFixedWidth(300)
         dialog.setModal(True)
         

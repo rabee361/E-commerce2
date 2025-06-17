@@ -21,8 +21,8 @@ class Ui_ResetPassword_Logic(QDialog, UiStyles):
     def showUi(self):
         window_reset_password = QDialog()
         self.ui.setupUi(window_reset_password)
-        self.initialize(window_reset_password)
         self.language_manager.load_translated_ui(self.ui, window_reset_password)
+        self.initialize(window_reset_password)
         window_reset_password.exec()
 
     def initialize(self, window):

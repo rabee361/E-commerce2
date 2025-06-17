@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1068</width>
+    <width>1255</width>
     <height>583</height>
    </rect>
   </property>
@@ -190,19 +190,13 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
          <item>
           <widget class="QGroupBox" name="groupBox_8">
            <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
+            <enum>Qt::RightToLeft</enum>
            </property>
            <property name="title">
             <string/>
            </property>
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="2" column="0" colspan="2">
-             <widget class="QDateEdit" name="to_date_input"/>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QDateEdit" name="from_date_input"/>
-            </item>
-            <item row="2" column="2">
+            <item row="5" column="0">
              <widget class="QLabel" name="label_5">
               <property name="maximumSize">
                <size>
@@ -215,7 +209,26 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="2">
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>من:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1" colspan="2">
+             <widget class="QDateEdit" name="from_date_input"/>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="accounts_combobox"/>
+            </item>
+            <item row="0" column="0">
              <widget class="QLabel" name="label_3">
               <property name="maximumSize">
                <size>
@@ -228,29 +241,13 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="accounts_combobox"/>
+            <item row="5" column="1" colspan="2">
+             <widget class="QDateEdit" name="to_date_input"/>
             </item>
-            <item row="0" column="0">
-             <widget class="QPushButton" name="select_account_btn">
-              <property name="layoutDirection">
-               <enum>Qt::RightToLeft</enum>
-              </property>
+            <item row="0" column="2">
+             <widget class="QToolButton" name="select_account_btn">
               <property name="text">
-               <string>...اختيار</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLabel" name="label_4">
-              <property name="maximumSize">
-               <size>
-                <width>30</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>من:</string>
+               <string>🔎</string>
               </property>
              </widget>
             </item>
@@ -266,33 +263,6 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
             <string/>
            </property>
            <layout class="QGridLayout" name="gridLayout_8">
-            <item row="2" column="1">
-             <widget class="QComboBox" name="pricing_method_combobox">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" colspan="2">
-             <widget class="QRadioButton" name="distinct_currency_radio">
-              <property name="maximumSize">
-               <size>
-                <width>180</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>حساب كل عملة  على حدى</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="currency_combobox">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="0">
              <widget class="QRadioButton" name="unified_currency_radio">
               <property name="maximumSize">
@@ -309,16 +279,43 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
               </property>
              </widget>
             </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="currency_combobox">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QComboBox" name="pricing_method_combobox">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_7">
               <property name="maximumSize">
                <size>
-                <width>80</width>
+                <width>90</width>
                 <height>16777215</height>
                </size>
               </property>
               <property name="text">
                <string>طريقة التسعير:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="2">
+             <widget class="QRadioButton" name="distinct_currency_radio">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>حساب كل عملة  على حدى</string>
               </property>
              </widget>
             </item>
@@ -389,7 +386,7 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
             <enum>Qt::RightToLeft</enum>
            </property>
            <property name="title">
-            <string>المصادر</string>
+            <string/>
            </property>
            <layout class="QGridLayout" name="gridLayout_5">
             <property name="leftMargin">

@@ -27,6 +27,7 @@ class Ui_AddMaterialToWarehouse_Logic(QDialog):
 
     def initialize(self, window):
         self.ui.quantity_input.setValidator(QDoubleValidator())
+        self.ui.price_input.setValidator(QDoubleValidator())
         self.ui.expire_date_input.setDate(QDate.currentDate())
         self.ui.production_date_input.setDate(QDate.currentDate())
         self.fetchGroups()

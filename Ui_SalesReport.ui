@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1327</width>
-    <height>777</height>
+    <height>773</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -287,60 +287,16 @@
       <string>تقرير مادة</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="13">
+       <widget class="QComboBox" name="currency_combobox"/>
+      </item>
       <item row="0" column="11">
        <widget class="QDateEdit" name="buy_manufacture_date"/>
-      </item>
-      <item row="0" column="5">
-       <widget class="QToolButton" name="select_client_btn">
-        <property name="text">
-         <string>🔎</string>
-        </property>
-       </widget>
       </item>
       <item row="0" column="12">
        <widget class="QLabel" name="label_12">
         <property name="text">
          <string>العملة:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="select_material_btn">
-        <property name="text">
-         <string>🔎</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="10">
-       <widget class="QLabel" name="label_9">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>تاريخ التصنيع/الشراء:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="16">
-       <widget class="QPushButton" name="calc_btn">
-        <property name="text">
-         <string>عرض</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QLabel" name="label_2">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>من تاريخ:</string>
         </property>
        </widget>
       </item>
@@ -357,39 +313,8 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QComboBox" name="clients_combobox">
-        <property name="minimumSize">
-         <size>
-          <width>150</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-        background-color: #fafafa;
-        border: 1px solid lightgrey;		
-		height: 22px;
-		color: black;
-    }
-    QComboBox::drop-down {
-        border: none;
-    }</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="9">
-       <widget class="QDateEdit" name="to_date_input"/>
-      </item>
-      <item row="0" column="15">
-       <widget class="QCheckBox" name="discount_addition_checkbox">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
+      <item row="0" column="8">
+       <widget class="QLabel" name="label_3">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -397,7 +322,7 @@
          </size>
         </property>
         <property name="text">
-         <string>المادة:</string>
+         <string>إلى تاريخ:</string>
         </property>
        </widget>
       </item>
@@ -422,11 +347,18 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="7">
-       <widget class="QDateEdit" name="from_date_input"/>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="select_material_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
       </item>
-      <item row="0" column="8">
-       <widget class="QLabel" name="label_3">
+      <item row="0" column="9">
+       <widget class="QDateEdit" name="to_date_input"/>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="label_2">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -434,19 +366,86 @@
          </size>
         </property>
         <property name="text">
-         <string>إلى تاريخ:</string>
+         <string>من تاريخ:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>المادة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QComboBox" name="clients_combobox">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
         </property>
        </widget>
       </item>
       <item row="0" column="14">
-       <widget class="QLabel" name="label_11">
+       <widget class="QPushButton" name="calc_btn">
         <property name="text">
-         <string>اختيار المبيعات التي عليها خصم/إضافة فقط</string>
+         <string>عرض</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="13">
-       <widget class="QComboBox" name="currency_combobox"/>
+      <item row="0" column="7">
+       <widget class="QDateEdit" name="from_date_input"/>
+      </item>
+      <item row="0" column="5">
+       <widget class="QToolButton" name="select_client_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="10">
+       <widget class="QLabel" name="label_9">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>تاريخ التصنيع/الشراء:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="15">
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>

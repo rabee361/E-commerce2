@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>717</width>
-    <height>659</height>
+    <height>667</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -511,19 +511,6 @@ height:20;</string>
        <widget class="QPushButton" name="synchronization_settings_btn">
         <property name="text">
          <string>ضبط افتراضيات المزامنة</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="media_btn">
-        <property name="minimumSize">
-         <size>
-          <width>110</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>إعدادات الصور</string>
         </property>
        </widget>
       </item>

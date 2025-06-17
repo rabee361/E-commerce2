@@ -25,8 +25,8 @@ class Ui_AddLoan_Logic(QDialog):
         self.window = QDialog()
         self.ui.setupUi(self.window)
         self.window.setWindowIcon(QIcon('icons/bookkeeper.png'))
-        self.initialize(self.window)
         self.language_manager.load_translated_ui(self.ui, self.window)
+        self.initialize(self.window)
         self.window.exec()
 
     def initialize(self, window):

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1283</width>
-    <height>758</height>
+    <height>934</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -57,6 +57,20 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="1">
+       <widget class="QPushButton" name="delete_btn">
+        <property name="text">
+         <string>...حذف</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="add_new_material_btn">
+        <property name="text">
+         <string>...مادة جديدة</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0" colspan="2">
        <widget class="QTreeWidget" name="materials_tree">
         <column>
@@ -81,20 +95,6 @@
         </column>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="delete_btn">
-        <property name="text">
-         <string>...حذف</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="new_btn">
-        <property name="text">
-         <string>...مادة جديدة</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -108,149 +108,14 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>966</width>
-        <height>700</height>
+        <width>974</width>
+        <height>850</height>
        </rect>
       </property>
       <attribute name="label">
        <string>تفاصيل المادة</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox_3">
-         <property name="maximumSize">
-          <size>
-           <width>700</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="4">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>رمز المادة:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLineEdit" name="model_input"/>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLineEdit" name="manufacturer_input"/>
-          </item>
-          <item row="2" column="2">
-           <widget class="QPushButton" name="select_group_btn">
-            <property name="text">
-             <string>...اختيار</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="4">
-           <widget class="QLabel" name="label_34">
-            <property name="text">
-             <string>النوع:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="4">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>المواصفات:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="4">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>اسم المادة:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="4">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>القياس:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2" colspan="2">
-           <widget class="QLineEdit" name="name_input"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="color_input"/>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>المصدر/المصنع:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLineEdit" name="origin_input"/>
-          </item>
-          <item row="4" column="2" colspan="2">
-           <widget class="QLineEdit" name="size_input"/>
-          </item>
-          <item row="2" column="4">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>المجموعة:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>الجودة:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QComboBox" name="group_combobox"/>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>بلد المنشأ:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLineEdit" name="quality_input"/>
-          </item>
-          <item row="5" column="2" colspan="2">
-           <widget class="QComboBox" name="type_combobox"/>
-          </item>
-          <item row="3" column="2" colspan="2">
-           <widget class="QLineEdit" name="specs_input"/>
-          </item>
-          <item row="0" column="2" colspan="2">
-           <widget class="QLineEdit" name="code_input"/>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>اللون:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>الطراز:</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
        <item row="1" column="0" colspan="2">
         <widget class="QTabWidget" name="tabWidget">
          <property name="currentIndex">
@@ -270,37 +135,120 @@
               </size>
              </property>
              <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
+              <enum>Qt::RightToLeft</enum>
              </property>
              <property name="title">
               <string/>
              </property>
              <layout class="QGridLayout" name="gridLayout_10">
-              <item row="0" column="9" colspan="2">
+              <item row="0" column="0" colspan="2">
                <widget class="QLabel" name="label_16">
                 <property name="text">
                  <string>الواحدة الافتراضية</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="9">
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="unit1_default_radiobox">
+                <property name="maximumSize">
+                 <size>
+                  <width>15</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>الواحدة الأولى:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QComboBox" name="unit1_combobox">
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QRadioButton" name="unit2_default_radiobox">
+                <property name="maximumSize">
+                 <size>
+                  <width>15</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>الواحدة الثانية:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QComboBox" name="unit2_combobox">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>عامل التحويل:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4">
+               <widget class="QLineEdit" name="unit2_to_unit1_convert">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QRadioButton" name="unit3_default_radiobox">
+                <property name="maximumSize">
+                 <size>
+                  <width>15</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
                <widget class="QLabel" name="label_13">
                 <property name="text">
                  <string>الواحدةالثالثة:</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="8">
-               <widget class="QLineEdit" name="gift_input">
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="7" colspan="2">
+              <item row="3" column="2">
                <widget class="QComboBox" name="unit3_combobox">
                 <property name="enabled">
                  <bool>false</bool>
@@ -313,7 +261,97 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="6">
+              <item row="3" column="3">
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>عامل التحويل:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="4">
+               <widget class="QLineEdit" name="unit3_to_unit1_convert">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="label_21">
+                <property name="text">
+                 <string>الكمية الحالية:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QLineEdit" name="current_quantity_input">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="3">
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>الحد الأعلى:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="4">
+               <widget class="QLineEdit" name="max_quantity_input"/>
+              </item>
+              <item row="4" column="5">
+               <widget class="QLabel" name="label_19">
+                <property name="text">
+                 <string>الحد الأدنى:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="6">
+               <widget class="QLineEdit" name="min_quantity_input"/>
+              </item>
+              <item row="4" column="7">
+               <widget class="QLabel" name="label_20">
+                <property name="text">
+                 <string>حد الطلب:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="8">
+               <widget class="QLineEdit" name="request_limit_input"/>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLabel" name="label_22">
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>هدية:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2">
+               <widget class="QLineEdit" name="gift_input">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="3">
                <widget class="QLabel" name="label_23">
                 <property name="minimumSize">
                  <size>
@@ -335,46 +373,10 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="10">
-               <widget class="QRadioButton" name="unit1_default_radiobox">
-                <property name="maximumSize">
-                 <size>
-                  <width>15</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
+              <item row="5" column="4">
+               <widget class="QLineEdit" name="gift_for_input"/>
               </item>
-              <item row="3" column="10">
-               <widget class="QRadioButton" name="unit3_default_radiobox">
-                <property name="maximumSize">
-                 <size>
-                  <width>15</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="6">
-               <widget class="QLabel" name="label_15">
-                <property name="text">
-                 <string>عامل التحويل:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="4" colspan="2">
-               <widget class="QLineEdit" name="max_quantity_input"/>
-              </item>
-              <item row="6" column="6" colspan="2">
+              <item row="6" column="3">
                <spacer name="verticalSpacer">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -386,143 +388,6 @@
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item row="4" column="2">
-               <widget class="QLineEdit" name="min_quantity_input"/>
-              </item>
-              <item row="4" column="9">
-               <widget class="QLabel" name="label_21">
-                <property name="text">
-                 <string>الكمية الحالية:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="3">
-               <widget class="QLabel" name="label_19">
-                <property name="text">
-                 <string>الحد الأدنى:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="4">
-               <widget class="QLineEdit" name="unit3_to_unit1_convert">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="9">
-               <widget class="QLabel" name="label_22">
-                <property name="maximumSize">
-                 <size>
-                  <width>50</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>هدية:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="9">
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string>الواحدة الثانية:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLabel" name="label_20">
-                <property name="text">
-                 <string>حد الطلب:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="6">
-               <widget class="QLabel" name="label_14">
-                <property name="text">
-                 <string>عامل التحويل:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="6" colspan="2">
-               <widget class="QLabel" name="label_18">
-                <property name="text">
-                 <string>الحد الأعلى:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="8">
-               <widget class="QLineEdit" name="current_quantity_input">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>0</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="7" colspan="2">
-               <widget class="QComboBox" name="unit1_combobox">
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="10">
-               <widget class="QRadioButton" name="unit2_default_radiobox">
-                <property name="maximumSize">
-                 <size>
-                  <width>15</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLineEdit" name="request_limit_input"/>
-              </item>
-              <item row="2" column="7" colspan="2">
-               <widget class="QComboBox" name="unit2_combobox">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="4">
-               <widget class="QLineEdit" name="unit2_to_unit1_convert">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="9">
-               <widget class="QLabel" name="label_12">
-                <property name="text">
-                 <string>الواحدة الأولى:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="4" colspan="2">
-               <widget class="QLineEdit" name="gift_for_input"/>
               </item>
              </layout>
             </widget>
@@ -959,12 +824,18 @@ border-style: none;</string>
               <string/>
              </property>
              <layout class="QGridLayout" name="gridLayout_15">
-              <item row="1" column="2">
-               <widget class="QComboBox" name="material_addition_account_combobox">
-                <property name="enabled">
-                 <bool>false</bool>
+              <item row="4" column="2">
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
                 </property>
-               </widget>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>134</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
               <item row="0" column="2">
                <widget class="QComboBox" name="material_discount_account_combobox">
@@ -979,18 +850,12 @@ border-style: none;</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="2">
-               <spacer name="verticalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+              <item row="1" column="3">
+               <widget class="QToolButton" name="select_material_addition_account_btn">
+                <property name="text">
+                 <string>🔎</string>
                 </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>134</height>
-                 </size>
-                </property>
-               </spacer>
+               </widget>
               </item>
               <item row="1" column="4">
                <spacer name="horizontalSpacer">
@@ -1012,24 +877,24 @@ border-style: none;</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_49">
-                <property name="text">
-                 <string>حساب إضافات المادة:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="3">
-               <widget class="QPushButton" name="select_material_addition_account_btn">
-                <property name="text">
-                 <string>...اختيار</string>
+              <item row="1" column="2">
+               <widget class="QComboBox" name="material_addition_account_combobox">
+                <property name="enabled">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
               <item row="0" column="3">
-               <widget class="QPushButton" name="select_material_discount_account_btn">
+               <widget class="QToolButton" name="select_material_discount_account_btn">
                 <property name="text">
-                 <string>...اختيار</string>
+                 <string>🔎</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_49">
+                <property name="text">
+                 <string>حساب إضافات المادة:</string>
                 </property>
                </widget>
               </item>
@@ -1392,30 +1257,177 @@ border-style: none;</string>
          </layout>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QGroupBox" name="groupBox_6">
+       <item row="3" column="1">
+        <widget class="QPushButton" name="save_btn">
+         <property name="text">
+          <string>حفظ</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="maximumSize">
+          <size>
+           <width>700</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="title">
           <string/>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="5">
-           <widget class="QCheckBox" name="groupped_material_checkbox">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
             <property name="text">
-             <string>مادة تجميعية</string>
+             <string>رمز المادة:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="6">
-           <widget class="QPushButton" name="groupped_material_btn">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>...التركيب</string>
-            </property>
-           </widget>
+          <item row="0" column="1" colspan="2">
+           <widget class="QLineEdit" name="code_input"/>
           </item>
           <item row="0" column="3">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>المصدر/المصنع:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLineEdit" name="manufacturer_input"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>اسم المادة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QLineEdit" name="name_input"/>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>اللون:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLineEdit" name="color_input"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>المجموعة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="group_combobox"/>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="select_group_btn">
+            <property name="text">
+             <string>...اختيار</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>بلد المنشأ:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QLineEdit" name="origin_input"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>المواصفات:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QLineEdit" name="specs_input"/>
+          </item>
+          <item row="3" column="3">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>الجودة:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QLineEdit" name="quality_input"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>القياس:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QLineEdit" name="size_input"/>
+          </item>
+          <item row="4" column="3">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>الطراز:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4">
+           <widget class="QLineEdit" name="model_input"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_34">
+            <property name="text">
+             <string>النوع:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QComboBox" name="type_combobox"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="maximumSize">
+          <size>
+           <width>600</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_48">
+            <property name="maximumSize">
+             <size>
+              <width>70</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>الصلاحية:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLineEdit" name="expiry_input">
             <property name="minimumSize">
              <size>
@@ -1431,41 +1443,44 @@ border-style: none;</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_48">
+          <item>
+           <widget class="QCheckBox" name="groupped_material_checkbox">
+            <property name="text">
+             <string>مادة تجميعية</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="groupped_material_btn">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="maximumSize">
              <size>
-              <width>70</width>
+              <width>16777215</width>
               <height>16777215</height>
              </size>
             </property>
             <property name="text">
-             <string>الصلاحية:</string>
+             <string>...التركيب</string>
             </property>
            </widget>
           </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QPushButton" name="save_btn">
-         <property name="text">
-          <string>حفظ</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <spacer name="horizontalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -1474,8 +1489,8 @@ border-style: none;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>983</width>
-        <height>686</height>
+        <width>974</width>
+        <height>850</height>
        </rect>
       </property>
       <attribute name="label">

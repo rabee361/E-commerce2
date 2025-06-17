@@ -15,7 +15,7 @@ class Ui_Loans(object):
     def setupUi(self, Loans):
         Loans.setObjectName("Loans")
         Loans.setWindowModality(QtCore.Qt.WindowModal)
-        Loans.resize(984, 557)
+        Loans.resize(984, 558)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("graphics/icon.xpm"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Loans.setWindowIcon(icon)

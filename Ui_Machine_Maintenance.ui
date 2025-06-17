@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>954</width>
-    <height>600</height>
+    <width>1047</width>
+    <height>682</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -92,7 +92,7 @@
        <widget class="QPushButton" name="delete_maintenance_operation_btn">
         <property name="maximumSize">
          <size>
-          <width>50</width>
+          <width>16777215</width>
           <height>16777215</height>
          </size>
         </property>
@@ -105,7 +105,7 @@
        <widget class="QPushButton" name="add_machine_maintenance">
         <property name="maximumSize">
          <size>
-          <width>50</width>
+          <width>16777215</width>
           <height>16777215</height>
          </size>
         </property>
@@ -129,148 +129,6 @@
       <string>اضافة عملية صيانة</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QGroupBox" name="groupBox_5">
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>الاسم:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" colspan="2">
-          <widget class="QLineEdit" name="maintenance_operation_name_input">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>البيان:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4" rowspan="7">
-          <widget class="QTextEdit" name="report_input"/>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>بداية العملية:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" colspan="2">
-          <widget class="QDateTimeEdit" name="maintenance_start_date_input"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>نهاية العملية:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" colspan="2">
-          <widget class="QDateTimeEdit" name="maintenance_end_date_input"/>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>طبيعة العملية</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="maintenance_type_combobox"/>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_11">
-           <property name="text">
-            <string>الحساب:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QComboBox" name="account_combobox"/>
-         </item>
-         <item row="4" column="2" colspan="2">
-          <widget class="QPushButton" name="select_account_btn">
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QComboBox" name="opposite_account_combobox"/>
-         </item>
-         <item row="6" column="2" colspan="2">
-          <widget class="QPushButton" name="select_opposite_account_btn">
-           <property name="text">
-            <string>...اختيار</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="label_13">
-           <property name="text">
-            <string>الكلفة:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1" colspan="2">
-          <widget class="QLineEdit" name="cost_input">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="4">
-          <widget class="QPushButton" name="save_maintenance_info_btn">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>700</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>حفظ</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_12">
-           <property name="text">
-            <string>الحساب المقابل:</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QGroupBox" name="groupBox_3">
         <property name="sizePolicy">
@@ -295,25 +153,25 @@
          <string/>
         </property>
         <layout class="QGridLayout" name="gridLayout_7">
+         <item row="0" column="5">
+          <widget class="QPushButton" name="add_employee_btn">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>إضافة</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_18">
            <property name="text">
             <string>إضافة عامل:</string>
            </property>
           </widget>
-         </item>
-         <item row="2" column="0" colspan="5">
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>441</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
          <item row="1" column="0" colspan="6">
           <widget class="QTableWidget" name="employees_table">
@@ -338,35 +196,6 @@
            </column>
           </widget>
          </item>
-         <item row="2" column="5">
-          <widget class="QPushButton" name="delete_employee_btn">
-           <property name="maximumSize">
-            <size>
-             <width>9999999</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>حذف</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <widget class="QPushButton" name="add_employee_btn">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>إضافة</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QComboBox" name="employees_combobox"/>
-         </item>
          <item row="0" column="4">
           <spacer name="horizontalSpacer">
            <property name="orientation">
@@ -379,6 +208,35 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item row="2" column="0" colspan="5">
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>441</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="3">
+          <widget class="QComboBox" name="employees_combobox"/>
+         </item>
+         <item row="2" column="5">
+          <widget class="QPushButton" name="delete_employee_btn">
+           <property name="maximumSize">
+            <size>
+             <width>9999999</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>حذف</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -509,6 +367,148 @@
             <string>حذف</string>
            </property>
           </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="7" column="1" colspan="3">
+          <widget class="QLineEdit" name="cost_input">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" colspan="3">
+          <widget class="QDateTimeEdit" name="maintenance_start_date_input"/>
+         </item>
+         <item row="6" column="1">
+          <widget class="QComboBox" name="opposite_account_combobox"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="maintenance_type_combobox"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>بداية العملية:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>الكلفة:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>الحساب المقابل:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>نهاية العملية:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5" rowspan="7">
+          <widget class="QTextEdit" name="report_input"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>الاسم:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" colspan="3">
+          <widget class="QLineEdit" name="maintenance_operation_name_input">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>البيان:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" colspan="3">
+          <widget class="QDateTimeEdit" name="maintenance_end_date_input"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>طبيعة العملية</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>الحساب:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="5">
+          <widget class="QPushButton" name="save_maintenance_info_btn">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>700</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>حفظ</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QToolButton" name="select_account_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="3">
+          <widget class="QToolButton" name="select_opposite_account_btn">
+           <property name="text">
+            <string>🔎</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="account_combobox"/>
          </item>
         </layout>
        </widget>

@@ -11,12 +11,13 @@ from PyQt5.QtGui import QDoubleValidator
 import win32api
 
 class Ui_ReOrderMaterialReport_Logic(QDialog, UiStyles):
-    def __init__(self, sql_connector):
+    def __init__(self, sql_connector,filemanager=''):
         super().__init__()
         self.sql_connector = sql_connector
         self.database_operations = DatabaseOperations(self.sql_connector)
         self.ui = Ui_ReOrderMaterialReport()
         self.translator = QTranslator()
+        self.filemanager = filemanager
         self.language_manager = LanguageManager(self.translator)
 
     def showUi(self):

@@ -20,8 +20,8 @@ class Ui_About_Logic(object):
         window_about.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window_about)
         window_about.setWindowIcon(QIcon('icons/help.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_about) 
+        self.initialize()
         window_about.exec()
 
     def initialize(self):

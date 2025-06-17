@@ -40,6 +40,8 @@ class Ui_Salary_Report_Logic(object):
         self.fetchDepartments()
         self.fetchPositions()
         self.fetchCurrencies()
+        self.ui.from_date_input.setDate(QDate.currentDate())
+        self.ui.to_date_input.setDate(QDate.currentDate())
         self.ui.salary_cycle_combobox.addItem(self.language_manager.translate("HOUR"), "hour")
         self.ui.salary_cycle_combobox.addItem(self.language_manager.translate("DAY"), "day")
         self.ui.salary_cycle_combobox.addItem(self.language_manager.translate("MONTH"), "month")

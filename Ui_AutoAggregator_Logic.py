@@ -31,8 +31,8 @@ class Ui_AutoAggregator_Logic(QDialog):
         window_aggregator.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window_aggregator)
         window_aggregator.setWindowIcon(QIcon('icons/task_report.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_aggregator)
+        self.initialize()
         window_aggregator.exec()
 
     def initialize(self):

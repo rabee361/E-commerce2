@@ -27,11 +27,14 @@ class Ui_CostCentersReport_Logic(QDialog):
         window.setWindowState(Qt.WindowMaximized)
         window.setWindowIcon(QIcon(':/icons/dispatch_order.png'))
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):
+        # Hide Cost Center ID Column
+        self.ui.cost_centers_tree.hideColumn(1)
+
         self.fetchCostCenters()
         self.fetchCurrencies()
         self.ui.calculate_btn.clicked.connect(lambda: self.calculate())

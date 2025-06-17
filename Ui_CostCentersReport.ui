@@ -10,13 +10,13 @@
     <x>0</x>
     <y>0</y>
     <width>1535</width>
-    <height>841</height>
+    <height>901</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1535</width>
-    <height>841</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -32,192 +32,132 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <property name="leftMargin">
-    <number>3</number>
-   </property>
-   <property name="topMargin">
-    <number>3</number>
-   </property>
-   <property name="rightMargin">
-    <number>3</number>
-   </property>
-   <property name="bottomMargin">
-    <number>3</number>
-   </property>
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <item row="3" column="0">
-    <widget class="QGroupBox" name="groupBox_4">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>150</height>
-      </size>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox_10">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
      </property>
      <property name="title">
-      <string>الربح</string>
+      <string>التواريخ</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_6">
-      <property name="leftMargin">
-       <number>3</number>
-      </property>
-      <property name="topMargin">
-       <number>3</number>
-      </property>
-      <property name="rightMargin">
-       <number>3</number>
-      </property>
-      <property name="bottomMargin">
-       <number>3</number>
-      </property>
+     <layout class="QGridLayout" name="gridLayout_10">
       <item row="0" column="0">
-       <widget class="QTableWidget" name="result_win_table">
-        <property name="styleSheet">
-         <string notr="true">QScrollBar:vertical {
-    background-color: #f1f1f1;
-    width: 12px;
-    margin: 12px 0 12px 0;
-}
-
-QScrollBar::handle:vertical {
-    background-color: #888;
-    min-height: 20px;
-    border-radius: 4px;
-}
-
-QScrollBar::handle:vertical:hover {
-    background-color: #555;
-}
-
-QTableWidget{background-color:rgb(214, 255, 225)}</string>
+       <widget class="QLabel" name="label_4">
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>16777215</height>
+         </size>
         </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
+        <property name="text">
+         <string>من:</string>
         </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
-        </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
-        </property>
-        <property name="textElideMode">
-         <enum>Qt::ElideMiddle</enum>
-        </property>
-        <property name="verticalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <attribute name="horizontalHeaderStretchLastSection">
-         <bool>true</bool>
-        </attribute>
-        <column>
-         <property name="text">
-          <string>معرف العملة</string>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>العملة</string>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>القيمة</string>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QTableWidget" name="result_loss_table">
-        <property name="styleSheet">
-         <string notr="true">QScrollBar:vertical {
-    background-color: #f1f1f1;
-    width: 12px;
-    margin: 12px 0 12px 0;
-}
-
-QScrollBar::handle:vertical {
-    background-color: #888;
-    min-height: 20px;
-    border-radius: 4px;
-}
-
-QScrollBar::handle:vertical:hover {
-    background-color: #555;
-}
-
-QTableWidget{background-color:rgb(214, 255, 225)}</string>
+       <widget class="QDateEdit" name="from_date_input">
+        <property name="displayFormat">
+         <string>d/M/yyyy</string>
         </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-        <property name="alternatingRowColors">
+        <property name="calendarPopup">
          <bool>true</bool>
         </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>16777215</height>
+         </size>
         </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
+        <property name="text">
+         <string>إلى:</string>
         </property>
-        <property name="textElideMode">
-         <enum>Qt::ElideMiddle</enum>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateEdit" name="to_date_input">
+        <property name="displayFormat">
+         <string>d/M/yyyy</string>
         </property>
-        <property name="verticalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
-        </property>
-        <attribute name="horizontalHeaderStretchLastSection">
+        <property name="calendarPopup">
          <bool>true</bool>
-        </attribute>
-        <column>
-         <property name="text">
-          <string>معرف العملة</string>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>العملة</string>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>القيمة</string>
-         </property>
-         <property name="textAlignment">
-          <set>AlignTrailing|AlignVCenter</set>
-         </property>
-        </column>
+        </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="0" column="2">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>المصادر</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="source_period_start_material_checkbox">
+        <property name="text">
+         <string>بضاعة أول المدة</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="source_journal_checkbox">
+        <property name="text">
+         <string>سندات القيد</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="select_invoices_btn">
+        <property name="text">
+         <string>...فواتير</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="source_period_start_checkbox">
+        <property name="text">
+         <string>القيود الافتتاحية</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="source_manufacture_checkbox">
+        <property name="text">
+         <string> عمليات التصنيع</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="source_loans_checkbox">
+        <property name="text">
+         <string>القروض</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="4">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="maximumSize">
       <size>
@@ -386,312 +326,12 @@ QTableWidget{background-color:rgb(224, 250, 255)}</string>
      </layout>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>50</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>125</height>
-      </size>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <property name="horizontalSpacing">
-       <number>5</number>
-      </property>
-      <property name="verticalSpacing">
-       <number>0</number>
-      </property>
-      <item row="1" column="1">
-       <widget class="QLabel" name="label_5">
-        <property name="maximumSize">
-         <size>
-          <width>30</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>إلى:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" rowspan="3">
-       <widget class="QTreeWidget" name="cost_centers_tree">
-        <property name="maximumSize">
-         <size>
-          <width>400</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <attribute name="headerStretchLastSection">
-         <bool>true</bool>
-        </attribute>
-        <column>
-         <property name="text">
-          <string>اسم مركز الكلفة</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>معرف مركز الكلفة</string>
-         </property>
-        </column>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QDateEdit" name="to_date_input">
-        <property name="displayFormat">
-         <string>d/M/yyyy</string>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" rowspan="3">
-       <widget class="QGroupBox" name="groupBox_5">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <item row="1" column="0">
-          <widget class="QGroupBox" name="groupBox_7">
-           <property name="title">
-            <string/>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_8">
-            <item row="0" column="1">
-             <widget class="QDateEdit" name="exchange_date_input"/>
-            </item>
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="unified_exchange_date_radio">
-              <property name="text">
-               <string>:اعتماد تعادل العملة في التاريخ التالي</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QRadioButton" name="distinct_exchange_date_radio">
-              <property name="text">
-               <string>اعتماد التاريخ الخاص بكل سجل قيد كتاريخ لتعادل العملة</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="label_4">
-        <property name="maximumSize">
-         <size>
-          <width>30</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>من:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="6">
-       <widget class="QPushButton" name="calculate_btn">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>حساب</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QDateEdit" name="from_date_input">
-        <property name="displayFormat">
-         <string>d/M/yyyy</string>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QGroupBox" name="groupBox_8">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>121</height>
-         </size>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_9">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="unified_currency_radio">
-           <property name="maximumSize">
-            <size>
-             <width>150</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>استخدام عملة واحدة</string>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="currency_combobox">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="distinct_currency_radio">
-           <property name="maximumSize">
-            <size>
-             <width>180</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>حساب كل عملة  على حدى</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="5" rowspan="3">
-       <widget class="QGroupBox" name="groupBox_2">
-        <property name="title">
-         <string>المصادر</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="source_period_start_material_checkbox">
-           <property name="text">
-            <string>بضاعة أول المدة</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="source_journal_checkbox">
-           <property name="text">
-            <string>سندات القيد</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QPushButton" name="select_invoices_btn">
-           <property name="text">
-            <string>...فواتير</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="source_period_start_checkbox">
-           <property name="text">
-            <string>القيود الافتتاحية</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="source_manufacture_checkbox">
-           <property name="text">
-            <string> عمليات التصنيع</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QCheckBox" name="source_loans_checkbox">
-           <property name="text">
-            <string>القروض</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0">
+   <item row="5" column="0" colspan="4">
     <widget class="QGroupBox" name="groupBox_6">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>180</height>
+       <height>16777215</height>
       </size>
      </property>
      <property name="title">
@@ -710,21 +350,21 @@ QTableWidget{background-color:rgb(224, 250, 255)}</string>
       <property name="bottomMargin">
        <number>3</number>
       </property>
-      <item row="0" column="0">
+      <item row="1" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
          <string>دائن</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="1" column="1">
        <widget class="QLabel" name="label_2">
         <property name="text">
          <string>مدين</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="QTreeWidget" name="creditor_accounts_tree">
         <property name="styleSheet">
          <string notr="true">QScrollBar:vertical {
@@ -792,7 +432,7 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
         </column>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="2" column="1">
        <widget class="QTreeWidget" name="debtor_accounts_tree">
         <property name="styleSheet">
          <string notr="true">QScrollBar:vertical {
@@ -861,6 +501,312 @@ QTreeWidget{background-color:rgb(252, 255, 210);}</string>
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>121</height>
+      </size>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_9">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="unified_currency_radio">
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>استخدام عملة واحدة</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="currency_combobox">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QRadioButton" name="distinct_currency_radio">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>حساب كل عملة  على حدى</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="4">
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>الربح</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <property name="leftMargin">
+       <number>3</number>
+      </property>
+      <property name="topMargin">
+       <number>3</number>
+      </property>
+      <property name="rightMargin">
+       <number>3</number>
+      </property>
+      <property name="bottomMargin">
+       <number>3</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QTableWidget" name="result_win_table">
+        <property name="styleSheet">
+         <string notr="true">QScrollBar:vertical {
+    background-color: #f1f1f1;
+    width: 12px;
+    margin: 12px 0 12px 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #888;
+    min-height: 20px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #555;
+}
+
+QTableWidget{background-color:rgb(214, 255, 225)}</string>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <property name="textElideMode">
+         <enum>Qt::ElideMiddle</enum>
+        </property>
+        <property name="verticalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="horizontalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>معرف العملة</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>العملة</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>القيمة</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QTableWidget" name="result_loss_table">
+        <property name="styleSheet">
+         <string notr="true">QScrollBar:vertical {
+    background-color: #f1f1f1;
+    width: 12px;
+    margin: 12px 0 12px 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #888;
+    min-height: 20px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #555;
+}
+
+QTableWidget{background-color:rgb(214, 255, 225)}</string>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <property name="textElideMode">
+         <enum>Qt::ElideMiddle</enum>
+        </property>
+        <property name="verticalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="horizontalScrollMode">
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>معرف العملة</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>العملة</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>القيمة</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignTrailing|AlignVCenter</set>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_8">
+      <item row="1" column="0" colspan="2">
+       <widget class="QRadioButton" name="distinct_exchange_date_radio">
+        <property name="text">
+         <string>اعتماد التاريخ الخاص بكل سجل قيد كتاريخ لتعادل العملة</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QRadioButton" name="unified_exchange_date_radio">
+        <property name="text">
+         <string>:اعتماد تعادل العملة في التاريخ التالي</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QDateEdit" name="exchange_date_input"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="3">
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="maximumSize">
+      <size>
+       <width>700</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>مركز الكلفة</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QTreeWidget" name="cost_centers_tree">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <attribute name="headerStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>اسم مركز الكلفة</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>معرف مركز الكلفة</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="calculate_btn">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>حساب</string>
+     </property>
     </widget>
    </item>
   </layout>

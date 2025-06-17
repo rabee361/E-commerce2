@@ -25,8 +25,8 @@ class Ui_Users_Logic(QDialog, UiStyles):
     def showUi(self):
         window_users = QDialog()
         self.ui.setupUi(window_users)
-        self.initialize(window_users)
         self.language_manager.load_translated_ui(self.ui, window_users)
+        self.initialize(window_users)
         window_users.exec()
 
     def initialize(self, window):

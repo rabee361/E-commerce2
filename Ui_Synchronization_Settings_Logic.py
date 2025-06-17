@@ -23,8 +23,8 @@ class Ui_Synchronization_Settings_Logic(QDialog):
         window = QDialog()
         window.setWindowModality(QtCore.Qt.WindowModal)
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):

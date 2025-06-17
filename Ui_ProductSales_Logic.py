@@ -87,8 +87,8 @@ class Ui_ProductSales_Logic(object):
         self.ui.sales_table.setRowCount(0)
 
         product_id = self.ui.products_combobox.itemData(self.ui.products_combobox.currentIndex())[0]
-        from_date = self.ui.from_date_input.text()
-        to_date = self.ui.to_date_input.text()
+        from_date = self.ui.from_date_input.date().toString(Qt.ISODate)
+        to_date = self.ui.to_date_input.date().toString(Qt.ISODate)
         invoice_sell_id = self.database_operations.fetchInvoiceTypes(name='sell')[0]['id']
         sales = self.database_operations.fetchSalesInvoices(product_id, from_date, to_date, invoice_sell_id)
         counter = 0

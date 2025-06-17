@@ -28,8 +28,8 @@ class Ui_Expenses_Logic(QDialog):
         window_expenses.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window_expenses)
         window_expenses.setWindowIcon(QIcon('icons/coin_dollar _silver.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_expenses)
+        self.initialize()
         window_expenses.exec()
 
     def initialize(self):

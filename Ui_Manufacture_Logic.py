@@ -846,7 +846,7 @@ class Ui_Manufacture_Logic(QDialog):
                             unit_cost = float(price) / quantity3
                         cost = round((unit_cost * quantity_required), 4)
                 else:
-                    warning = f"{self.language_manager.translate('ALERT_NO_AVERAGE_INVOICE_PRICE')}"
+                    warning = f"{self.language_manager.translate('ALERT_NO_LAST_INVOICE_PRICE')}"
                     self.ui.composition_tree.clear()
                     continue
 

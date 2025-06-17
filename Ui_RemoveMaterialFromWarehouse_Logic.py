@@ -22,12 +22,13 @@ class Ui_RemoveMaterialFromWarehouse_Logic(QDialog):
     def showUi(self):
         window = QDialog()
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):
         self.ui.quantity_input.setValidator(QDoubleValidator())
+        self.ui.price_input.setValidator(QDoubleValidator())
         self.ui.select_account_btn.clicked.connect(lambda: self.openSelectAccountWindow())
         self.ui.save_btn.clicked.connect(lambda: self.outputMaterial(window))
         self.fetchCurrencies()

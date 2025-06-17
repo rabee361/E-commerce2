@@ -63,7 +63,7 @@ class ChatBotAdapter(QObject):
         try:
             # Get response from chatbot
             print(message)
-            response = await self.chatbot.chat_with_llama(message)
+            response = await self.chatbot._chat_with_return(message)
             # Emit the signal with the response
             self.response_ready.emit(response)
         except Exception as e:

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1333</width>
-    <height>820</height>
+    <height>833</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -148,14 +148,45 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="2" column="1" colspan="2">
-       <spacer name="horizontalSpacer">
+      <item row="1" column="2">
+       <widget class="QPushButton" name="delete_journal_entry_btn">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #FFCDD2;
+    color: black;
+    border: 1px solid #E57373;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #EF9A9A;
+}
+
+QPushButton:pressed {
+    background-color: #E57373;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>حذف</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <spacer name="horizontalSpacer_4">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>40</width>
+          <width>300</width>
           <height>20</height>
          </size>
         </property>
@@ -252,13 +283,25 @@
         </column>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QPushButton" name="delete_journal_entry_btn">
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="1">
+       <widget class="QPushButton" name="add_journal_entry_item_btn">
         <property name="styleSheet">
          <string notr="true">QPushButton {
-    background-color: #FFCDD2;
-    color: black;
-    border: 1px solid #E57373;
+    background-color: #FFF9C4;
+    color: #000000;
+    border: 1px solid #E0E0E0;
     border-radius: 0px;
     padding: 8px 16px;
     font-family: Arial;
@@ -267,48 +310,20 @@
 }
 
 QPushButton:hover {
-    background-color: #EF9A9A;
+    background-color: #FFECB3;
 }
 
 QPushButton:pressed {
-    background-color: #E57373;
+    background-color: #FFE082;
 }
 </string>
         </property>
         <property name="text">
-         <string>حذف</string>
+         <string>...إضافة عنصر</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>300</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" colspan="3">
+      <item row="0" column="0" colspan="4">
        <widget class="QTableWidget" name="journal_entries_items_table">
         <property name="layoutDirection">
          <enum>Qt::RightToLeft</enum>
@@ -423,64 +438,14 @@ QPushButton:pressed {
         </column>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="delete_journal_entry_item_btn">
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-    background-color: #FFCDD2;
-    color: black;
-    border: 1px solid #E57373;
-    border-radius: 0px;
-    padding: 8px 16px;
-    font-family: Arial;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #EF9A9A;
-}
-
-QPushButton:pressed {
-    background-color: #E57373;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>حذف</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="add_journal_entry_item_btn">
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-    background-color: #FFF9C4;
-    color: #000000;
-    border: 1px solid #E0E0E0;
-    border-radius: 0px;
-    padding: 8px 16px;
-    font-family: Arial;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #FFECB3;
-}
-
-QPushButton:pressed {
-    background-color: #FFE082;
-}
-</string>
-        </property>
-        <property name="text">
-         <string>...إضافة عنصر</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="2">
+      <item row="1" column="3">
        <widget class="QPushButton" name="save_btn">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">QPushButton {
     background-color: #C8E6C9;
@@ -507,7 +472,41 @@ QPushButton:pressed {
         </property>
        </widget>
       </item>
-      <item row="2" column="2">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="delete_journal_entry_item_btn">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: #FFCDD2;
+    color: black;
+    border: 1px solid #E57373;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #EF9A9A;
+}
+
+QPushButton:pressed {
+    background-color: #E57373;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>حذف</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>

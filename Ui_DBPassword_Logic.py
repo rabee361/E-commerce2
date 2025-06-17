@@ -23,8 +23,8 @@ class Ui_DBPassword_Logic(QDialog, UiStyles):
     def showUi(self):
         window_db_password = QDialog()
         self.ui.setupUi(window_db_password)
-        self.initialize(window_db_password)
         self.language_manager.load_translated_ui(self.ui, window_db_password)
+        self.initialize(window_db_password)
         return window_db_password.exec()
 
     def initialize(self, window):

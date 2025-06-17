@@ -20,8 +20,8 @@ class Ui_AddMaterial_Logic(QDialog):
         window = QDialog()
         window.setWindowTitle("add material")
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):

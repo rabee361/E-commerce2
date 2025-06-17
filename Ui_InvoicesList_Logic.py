@@ -23,8 +23,8 @@ class Ui_InvoicesList_Logic(QDialog):
         self.window.setWindowState(Qt.WindowMaximized)
         self.window.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(self.window)
-        self.initialize(self.window)
         self.language_manager.load_translated_ui(self.ui, self.window)
+        self.initialize(self.window)
         self.window.show()
 
     def initialize(self, window):

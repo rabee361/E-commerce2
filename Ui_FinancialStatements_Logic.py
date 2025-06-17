@@ -24,13 +24,12 @@ class Ui_FinancialStatements_Logic(QDialog):
         self.translator = QTranslator()
         self.language_manager = LanguageManager(self.translator)
 
-
     def showUi(self):
         window = QDialog()
         window.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window)
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):

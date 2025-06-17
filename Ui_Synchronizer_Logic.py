@@ -139,8 +139,8 @@ class Ui_Synchronizer_Logic(QDialog):
                     parent_name = parent.text()
                     dep_names = [dep.text() for dep in missing_deps]
                     
-                    message = f"{parent_name} requires the following to be checked:\n- " + "\n- ".join(dep_names)
-                    win32api.MessageBox(None, message, "Dependency Error", win32con.MB_OK | win32con.MB_ICONERROR)
+                    message = f"{parent_name} {self.language_manager.translate('SYNC_DEPENDENCY_ERROR')}:\n- " + "\n- ".join(dep_names)
+                    win32api.MessageBox(None, message, self.language_manager.translate('ERROR'), win32con.MB_OK | win32con.MB_ICONERROR)
                     return False
         
         return True
@@ -255,7 +255,7 @@ class Ui_Synchronizer_Logic(QDialog):
             Returns:
             --------
             Tuple
-                A tuple containing a list of IDs of the inserted (or already found) rows in the destination table, or a list of values of the specified columns of table1 for the queries that were executed, and a boolean indicating if the row was inserted or updated.
+                A tuple containing a list of IDs of the inserted (or already found) rows in the destination table, or a list of values of the specified columns of table1 for the queries that were executed, and a boolean indicating if the row was inserted or not (updated).
             """
             table1_query, table1_cursor = table1_info
             if "SELECT" in table1_query.upper():
@@ -556,20 +556,40 @@ class Ui_Synchronizer_Logic(QDialog):
 
         # Groupped Materials
         if self.ui.sync_groupped_materials_checkBox.isChecked():
-            cols_dict = {
+            # Sync the compositions
+            cols_dict_compositions = {
+                "id": "factory_dossier_id",
+                "material_id": "material",
+                "name": "name"
+            }
+            table1_info_compositions = ['SELECT `dossiers`.`id`, `dossiers`.`product_id` AS `material_id`, `codes`.`name` FROM `dossiers` INNER JOIN `codes` ON `dossiers`.`product_id` = `codes`.`id`', 'factory']
+            table2_info_compositions = ['compositions', 'accountant']
+
+            fks = []
+            fks.append([1, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True])
+
+            compositions_ids = transfer_data_between_tables(table1_info_compositions, table2_info_compositions, cols_dict_compositions, [0], fks=fks, result=["id", "factory_dossier_id"])
+
+            for composition in compositions_ids:
+                composition_id = composition[0][0]
+                factory_dossier_id = composition[0][1]
+
+                cols_dict = {
                     "output_material_id":"groupped_material_id",
                     "input_material_id":"composition_material_id",
                     "quantity": "quantity",
                     "unit_id":"unit"
                 }
-            factory_groupped_materials_query = f"SELECT `dossiers`.`product_id` AS `output_material_id`, `dossiers.stages.inputs`.`material_id` AS `input_material_id`, `dossiers.stages.inputs`.`quantity`, `dossiers.stages.inputs`.`unit_id` FROM `dossiers` INNER JOIN `dossiers.stages` ON `dossiers`.`id` = `dossiers.stages`.`dossier_id` INNER JOIN `dossiers.stages.inputs` ON `dossiers.stages`.`id` = `dossiers.stages.inputs`.`stage_id`"
-            table1_info = [factory_groupped_materials_query, 'factory']
-            table2_info = ['groupped_materials_composition', 'accountant']
-            fks = []
-            fks.append([0, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True])
-            fks.append([1, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True])
-            fks.append([3, 'units', 'units', ['id', 'id'], ['name', 'name'], True])
-            transfer_data_between_tables(table1_info, table2_info, cols_dict, [0, 1, 2, 3], fks=fks)
+                factory_groupped_materials_query = f"SELECT `dossiers`.`product_id` AS `output_material_id`, `dossiers.stages.inputs`.`material_id` AS `input_material_id`, `dossiers.stages.inputs`.`quantity`, `dossiers.stages.inputs`.`unit_id` FROM `dossiers` INNER JOIN `dossiers.stages` ON `dossiers`.`id` = `dossiers.stages`.`dossier_id` INNER JOIN `dossiers.stages.inputs` ON `dossiers.stages`.`id` = `dossiers.stages.inputs`.`stage_id` WHERE `dossiers`.`id` = {factory_dossier_id} AND `dossiers.stages.inputs`.`source` IS NOT NULL"
+                table1_info = [factory_groupped_materials_query, 'factory']
+                table2_info = ['groupped_materials_composition', 'accountant']
+                fks = []
+                fks.append([0, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True])
+                fks.append([1, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True])
+                fks.append([3, 'units', 'units', ['id', 'id'], ['name', 'name'], True])
+
+                additional_columns = {"composition_id": composition_id}
+                transfer_data_between_tables(table1_info, table2_info, cols_dict, [0, 1, 2, 3], fks=fks, additional_columns=additional_columns)
         
         # Currencies
         if self.ui.sync_currencies_checkBox.isChecked():
@@ -596,7 +616,7 @@ class Ui_Synchronizer_Logic(QDialog):
             additional_columns = {"client_type": "supplier"}
             transfer_data_between_tables(table1_info, table2_info, cols_dict, [0], additional_columns=additional_columns)
 
-        #Clients
+        # Clients
         if self.ui.sync_clients_checkBox.isChecked():
             cols_dict = {
                 "name": "name",
@@ -710,9 +730,15 @@ class Ui_Synchronizer_Logic(QDialog):
                 'SELECT `deals`.`id`, `priceoffers`.`supplier_id`, CASE WHEN LOWER(`deals`.`payment`) = "immediately" THEN "cash" ELSE "postponed" END AS `payment`, CASE WHEN LOWER(`deals`.`paid`) = "yes" THEN 1 ELSE 0 END AS `paid`, `deals`.`currency`, `receipt_docs`.`target_warehouse_id` AS `warehouse_id`, `deals`.`group_number`, `receipt_docs`.`date` FROM `deals` JOIN `priceoffers` ON `priceoffers`.`id` = `deals`.`priceoffer_id` JOIN `suppliers` ON `suppliers`.`id` = `priceoffers`.`supplier_id` JOIN `receipt_docs` ON `receipt_docs`.`deal_id` = `deals`.`id` JOIN `warehouseslist` ON `warehouseslist`.`id` = `receipt_docs`.`target_warehouse_id`', 'factory']
             table2_info = ['invoices', 'accountant']
 
-            # Get "Buy" invoice type ID from accountant, since all invoices are "Buy" in factory
-            buy_invoice_type_id = executeQuery("accountant", "SELECT `id` FROM `invoice_types` WHERE `name` = 'buy'")[0][0]
-            additional_columns = {"type_col": buy_invoice_type_id}  
+            try:
+                # Get "Buy" invoice type ID from accountant, since all invoices are "Buy" in factory
+                buy_invoice_type_id = executeQuery("accountant", "SELECT `id` FROM `invoice_types` WHERE `name` = 'buy'")[0][0]
+                buy_materials_account = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'buy_materials_account'")[0][0]
+                buy_monetary_account = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'buy_monetary_account'")[0][0]
+            except:
+                raise Exception("Please make sure to set the invoice defaults for buy invoices in the settings")
+
+            additional_columns = {"monetary_account": buy_monetary_account, "materials_account": buy_materials_account , "type_col": buy_invoice_type_id}  
 
             invoices_ids = transfer_data_between_tables(table1_info, table2_info, cols_dict, [0], fks, result=["id", "factory_id"], additional_columns=additional_columns)
             for item in invoices_ids:
@@ -725,7 +751,7 @@ class Ui_Synchronizer_Logic(QDialog):
                 executeQuery("accountant", f"UPDATE `invoices` SET `number` = {invoice_number} WHERE `id` = {invoice_id}")
 
                 cols_dict = {
-                    #factory : accountant
+                    # factory : accountant
                     "id": "factory_id",
                     "material_id": "material_id", #fk
                     "warehouse_id": "warehouse_id", #fk
@@ -759,17 +785,22 @@ class Ui_Synchronizer_Logic(QDialog):
             fks = []  # fk_index, ref_table_origin, ref_table_dest, ref_col_origin_dest (usually ID cols), match_col_origin_dest, copy_missing_fks
             # last value, if True, it copies missing fks. else, it checks if they exist, their IDs are used
             fks.append([1, 'clients', 'clients', ['id', 'id'], ['name', 'name'], self.ui.sync_clients_checkBox.isChecked()])
-            table1_info = ['invoices', 'factory']
+            table1_info = ['SELECT `invoices`.`id`, `invoices`.`client_id`, `invoices`.`notes`, `invoices`.`date` FROM `invoices` WHERE `invoices`.`state` = "finalized"', 'factory']
             table2_info = ['invoices', 'accountant']
 
-            # Get "Sell" invoice type ID from accountant, since all invoices are "Sell" in factory
-            sale_invoice_type_id = executeQuery("accountant", "SELECT `id` FROM `invoice_types` WHERE `name` = 'sell'")[0][0]
-            sell_materials_account = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'sell_materials_account'")[0][0]
-            sell_monetary_account = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'sell_monetary_account'")[0][0]
-            sell_invoice_default_currency = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'sell_currency'")[0][0]
-            additional_columns = {"paid": 1 ,"monetary_account": sell_monetary_account, "materials_account": sell_materials_account ,"payment": "cash", "type_col": sale_invoice_type_id, "client_account": 0, "currency": sell_invoice_default_currency}  
+            try:
+                # Get "Sell" invoice type ID from accountant, since all invoices are "Sell" in factory
+                sale_invoice_type_id = executeQuery("accountant", "SELECT `id` FROM `invoice_types` WHERE `name` = 'sell'")[0][0]
+                sell_materials_account = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'sell_materials_account'")[0][0]
+                sell_monetary_account = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'sell_monetary_account'")[0][0]
+                sell_invoice_default_currency = executeQuery("accountant", "SELECT `value_col` FROM `settings` WHERE `name` = 'sell_currency'")[0][0]
+            except:
+                raise Exception("Please make sure to set the invoice defaults for sell invoices in the settings")
+            
+            additional_columns = {"monetary_account": sell_monetary_account, "materials_account": sell_materials_account, "type_col": sale_invoice_type_id, "currency": sell_invoice_default_currency}  
 
             invoices_ids = transfer_data_between_tables(table1_info, table2_info, cols_dict, [0], fks, result=["id", "factory_id"], additional_columns=additional_columns)
+
             for item in invoices_ids:
                 invoice_id = item[0][0]
                 factory_invoice_id = item[0][1]
@@ -780,7 +811,7 @@ class Ui_Synchronizer_Logic(QDialog):
                 executeQuery("accountant", f"UPDATE `invoices` SET `number` = {invoice_number} WHERE `id` = {invoice_id}")
 
                 cols_dict = {
-                    #factory : accountant
+                    # factory : accountant
                     "id": "factory_id",
                     "item_id": "material_id", #fk
                     "warehouse_id": "warehouse_id", #fk
@@ -791,8 +822,8 @@ class Ui_Synchronizer_Logic(QDialog):
                 table1_info=[f"SELECT `invoices.items`.id, `invoices.items`.item_id, `invoices.items`.warehouse_id, `invoices.items`.invoice_id, `invoices.items`.quantity, codes.unit_id FROM `invoices.items` JOIN codes ON `invoices.items`.item_id = codes.id WHERE invoice_id='{factory_invoice_id}'", 'factory']
                 table2_info=['invoice_items', 'accountant']
                 
-                fks.append([1, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True, [["name","name"]]]) #TODO: read value from check materials sync
-                fks.append([2, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], True, [["name","name"]]]) #TODO: read value from check materials sync
+                fks.append([1, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True]) #TODO: read value from check materials sync
+                fks.append([2, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], True]) #TODO: read value from check materials sync
                 fks.append([4, 'units', 'units', ['id', 'id'], ['name', 'name'], True]) #TODO: read value from check unit sync
 
                 additional_columns = {"invoice_id": invoice_id}
@@ -809,14 +840,16 @@ class Ui_Synchronizer_Logic(QDialog):
                 "unit_id": "unit_id",
                 "target_warehouse_id": "target_warehouse_id",
                 "rejection_warehouse_id": "rejection_warehouse_id",
+                "deal_id": "invoice_item_id"
             }
             fks = []
             fks.append([2, 'codes', 'materials', ['id', 'id'], ['code', 'code'], True])
             fks.append([4, 'units', 'units', ['id', 'id'], ['name', 'name'], True])
             fks.append([5, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], True])
             fks.append([6, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], True])
+            fks.append([7, 'deals', 'invoice_items', ['id', 'id'], ['id', 'factory_id'], True])
             
-            query = "SELECT receipt_docs.id, receipt_docs.date, receipt_docs.material_id, (COALESCE(receipt_docs.first_batch_accepted_quantity, 0) + COALESCE(receipt_docs.second_batch_accepted_quantity, 0) + COALESCE(receipt_docs.third_batch_accepted_quantity, 0) + COALESCE(receipt_docs.fourth_batch_accepted_quantity, 0) + COALESCE(receipt_docs.fifth_batch_accepted_quantity, 0)) AS quantity, deals.unit as unit_id, receipt_docs.target_warehouse_id, receipt_docs.rejection_warehouse_id FROM receipt_docs JOIN deals ON deals.id = receipt_docs.deal_id"
+            query = "SELECT receipt_docs.id, receipt_docs.deal_id, receipt_docs.date, receipt_docs.material_id, (COALESCE(receipt_docs.first_batch_accepted_quantity, 0) + COALESCE(receipt_docs.second_batch_accepted_quantity, 0) + COALESCE(receipt_docs.third_batch_accepted_quantity, 0) + COALESCE(receipt_docs.fourth_batch_accepted_quantity, 0) + COALESCE(receipt_docs.fifth_batch_accepted_quantity, 0)) AS quantity, deals.unit as unit_id, receipt_docs.target_warehouse_id, receipt_docs.rejection_warehouse_id FROM receipt_docs JOIN deals ON deals.id = receipt_docs.deal_id"
             
             table1_info = [query, 'factory']
             table2_info = ['receipt_docs', 'accountant']
@@ -1067,29 +1100,199 @@ class Ui_Synchronizer_Logic(QDialog):
     
         # Materials' Movement
         if self.ui.sync_moves_checkbox.isChecked():
-            # moves resulted from production 
+            # # moves resulted from production 
+            # cols_dict={
+            #     "source_warehouse_entry_id": "source_warehouse_entry_id",
+            #     "source_warehouse_id":"source_warehouse",
+            #     "destination_warehouse_entry_id": "destination_warehouse_entry_id",
+            #     "target_warehouse_id":"destination_warehouse",
+            #     "quantity":"quantity",
+            #     "unit_id":"unit",
+            #     "batch_id":"origin_id",
+            #     "date":"date_col"
+            # }
+
+            # factory_production_resulted_moves_query = "SELECT pulloutrequests_items.warehouse_item_id AS source_warehouse_entry_id, pulloutrequests.warehouse_id AS source_warehouse_id, NULL AS destination_warehouse_entry_id, NULL AS target_warehouse_id, pulloutrequests_items.quantity, `production.batches.stages.inputs`.unit_id, `production.batches.stages`.batch_id, pulloutrequests.date FROM `pulloutrequests` JOIN `pulloutrequests_items` ON pulloutrequests.id = pulloutrequests_items.pulloutrequest_id JOIN `production.batches.stages.inputs` ON pulloutrequests.id = `production.batches.stages.inputs`.pullout_id JOIN `production.batches.stages` ON `production.batches.stages.inputs`.stage_id = `production.batches.stages`.id JOIN `production.batches` ON `production.batches.stages`.batch_id = `production.batches`.id WHERE pulloutrequests.state = 'done' UNION ALL SELECT NUll AS source_warehouse_entry_id, NULL AS source_warehouse_id, `production.store`.warehouse_item_id AS destination_warehouse_entry_id, `production.store`.target_warehouse_id, `production.store`.quantity, `production.batches.stages.outputs`.unit_id, `production.batches.stages`.batch_id, `production.store`.date FROM `production.store` JOIN `production.batches.stages.outputs` ON `production.store`.stage_output_id = `production.batches.stages.outputs`.id JOIN `production.batches.stages` ON `production.batches.stages.outputs`.stage_id = `production.batches.stages`.id JOIN `production.batches` ON `production.batches.stages`.batch_id = `production.batches`.id WHERE `production.store`.received = 1"
+
+            # table1_info = [factory_production_resulted_moves_query, 'factory']
+            # table2_info = ['material_moves', 'accountant']
+
+            # fks=[]
+            # fks.append([1, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
+            # fks.append([3, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
+            # fks.append([5, f"units", 'units', ['id', 'id'], ['name', 'name'], False])  
+            # fks.append([6, f"production.batches", 'manufacture', ['id', 'id'], ['id', 'factory_id'], False])
+            # additional_columns = {"origin":'manufacture'}
+            # moves = transfer_data_between_tables(table1_info, table2_info, cols_dict, fks=fks, result=['id', 'source_warehouse_entry_id', 'source_warehouse_id', 'destination_warehouse_entry_id', 'target_warehouse_id'], additional_columns=additional_columns)
+
+            # for move in moves:
+            #     move_id = move[0][0]
+            #     source_warehouse_entry_id = move[0][1]
+            #     source_warehouse_id = move[0][2]
+            #     destination_warehouse_entry_id = move[0][3]
+            #     destination_warehouse_id = move[0][4]
+
+            #     # Update the move source warehouse entry
+            #     if source_warehouse_id:
+            #         source_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {source_warehouse_id}")
+            #         if not source_warehouse_codename:
+            #             raise Exception(f"Source warehouse {source_warehouse_id} is not synced")
+            #         source_warehouse_codename = source_warehouse_codename[0][0]
+
+            #         source_warehouse_entry = executeQuery("accountant", f"SELECT `{source_warehouse_codename}`.`id` FROM `{source_warehouse_codename}` WHERE `{source_warehouse_codename}`.`factory_id` = {source_warehouse_entry_id}")
+            #         if not source_warehouse_entry:
+            #             executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = NULL WHERE `id` = {move_id}")
+            #             continue
+            #         source_warehouse_entry = source_warehouse_entry[0][0]
+
+            #         executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = {source_warehouse_entry} AND `destination_warehouse_entry_id` = NULL WHERE `id` = {move_id}")
+
+            #     # Update the move destination warehouse entry
+            #     if destination_warehouse_id:
+            #         # Get the destination warehouse codename in the factory
+            #         destination_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {destination_warehouse_id}")
+            #         if not destination_warehouse_codename:
+            #             raise Exception(f"Destination warehouse {destination_warehouse_id} is not synced")
+            #         destination_warehouse_codename = destination_warehouse_codename[0][0]
+
+            #         destination_warehouse_entry = executeQuery("accountant", f"SELECT `{destination_warehouse_codename}`.`id` FROM `{destination_warehouse_codename}` WHERE `{destination_warehouse_codename}`.`id` = {destination_warehouse_entry_id}")
+            #         if not destination_warehouse_entry:
+            #             executeQuery("accountant", f"UPDATE `material_moves` SET `destination_warehouse_entry_id` = NULL WHERE `id` = {move_id}")
+            #             continue
+            #         destination_warehouse_entry = destination_warehouse_entry[0][0]
+
+            #         executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = NULL AND `destination_warehouse_entry_id` = {destination_warehouse_entry} WHERE `id` = {move_id}")
+
+            # # moves resulted from purchase invoices 
+            # cols_dict={
+            #     "material_id": "source_warehouse_entry_id",
+            #     "source_warehouse_id":"source_warehouse",
+            #     "target_warehouse_id":"destination_warehouse",
+            #     "quantity":"quantity",
+            #     "unit_id":"unit",
+            #     "deal_id":"origin_id",
+            #     "date":"date_col"
+            # }
+
+            # factory_production_resulted_moves_query = "SELECT `deals`.`material_id`, NULL AS `source_warehouse_id`, `receipt_docs`.`target_warehouse_id`, `deals`.`quantity`, `deals`.`unit` AS `unit_id`, `deals`.`id` AS `deal_id`, `receipt_docs`.`date` FROM `deals` JOIN `priceoffers` ON `priceoffers`.`id` = `deals`.`priceoffer_id` JOIN `suppliers` ON `suppliers`.`id` = `priceoffers`.`supplier_id` JOIN `receipt_docs` ON `receipt_docs`.`deal_id` = `deals`.`id` JOIN `warehouseslist` ON `warehouseslist`.`id` = `receipt_docs`.`target_warehouse_id` WHERE `receipt_docs`.`received` = 1"
+            # table1_info = [factory_production_resulted_moves_query, 'factory']
+            # table2_info = ['material_moves', 'accountant']
+
+            # fks=[]
+            # fks.append([1, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
+            # fks.append([2, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
+            # fks.append([4, 'units', 'units', ['id', 'id'], ['name ', 'name '], True])
+            # fks.append([5, 'deals', 'invoices', ['id', 'id'], ['id', 'factory_id'], True])  
+            
+            # additional_columns = {"origin":'invoice_buy'}
+            # moves = transfer_data_between_tables(table1_info, table2_info, cols_dict, [5], fks=fks, result=['id', 'material_id', 'source_warehouse_id', 'target_warehouse_id', 'deal_id'], additional_columns=additional_columns)
+
+            # for move in moves:
+            #     move_id = move[0][0]
+            #     material_id_factory = move[0][1]
+            #     source_warehouse_id = move[0][2]
+            #     destination_warehouse_id = move[0][3]
+            #     deal_id = move[0][4]
+
+            #     # Get the material id in the accountant
+            #     material_code = executeQuery("factory", f"SELECT `codes`.`code` FROM `codes` WHERE `codes`.`id` = {material_id_factory}")
+            #     if not material_code:
+            #         raise Exception(f"Material {material_id_factory} is not synced")
+            #     material_code = material_code[0][0]
+
+            #     material_id_accountant = executeQuery("accountant", f"SELECT `id` FROM `materials` WHERE `code` = '{material_code}'")
+            #     if not material_id_accountant:  
+            #         raise Exception(f"Material {material_code} is not synced")
+            #     material_id_accountant = material_id_accountant[0][0]
+
+            #     # Get the receipt doc id in the factory
+            #     receipt_doc_id_factory = executeQuery("factory", f"SELECT `receipt_docs`.`id` FROM `receipt_docs` WHERE `receipt_docs`.`deal_id` = {deal_id}")
+            #     if not receipt_doc_id_factory:
+            #         raise Exception(f"Receipt doc {deal_id} is not synced")
+            #     receipt_doc_id_factory = receipt_doc_id_factory[0][0]
+
+            #     # Get the receipt doc id in the accountant
+            #     receipt_doc_id_accountant = executeQuery("accountant", f"SELECT `receipt_docs`.`id` FROM `receipt_docs` WHERE `receipt_docs`.`factory_id` = {receipt_doc_id_factory}")
+            #     if not receipt_doc_id_accountant:
+            #         raise Exception(f"Receipt doc {deal_id} is not synced")
+            #     receipt_doc_id_accountant = receipt_doc_id_accountant[0][0]
+
+            #     # Get the destination warehouse codename in the factory
+            #     destination_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {destination_warehouse_id}")
+            #     if not destination_warehouse_codename:
+            #         raise Exception(f"Destination warehouse {destination_warehouse_id} is not synced")
+            #     destination_warehouse_codename = destination_warehouse_codename[0][0]
+
+            #     destination_warehouse_entry = executeQuery("accountant", f"SELECT `{destination_warehouse_codename}`.`id` FROM `{destination_warehouse_codename}` WHERE `{destination_warehouse_codename}`.`material_id` = {material_id_accountant} AND `{destination_warehouse_codename}`.`receipt_doc_id` = {receipt_doc_id_accountant}")
+            #     if not destination_warehouse_entry:
+            #         continue
+            #     destination_warehouse_entry = destination_warehouse_entry[0][0]
+
+            #     executeQuery("accountant", f"UPDATE `material_moves` SET `destination_warehouse_entry_id` = {destination_warehouse_entry} WHERE `id` = {move_id}")
+
+            # # moves resulted from sales invoices
+            # cols_dict={
+            #     "warehouse_item_id":"source_warehouse_entry_id",
+            #     "warehouse_id":"source_warehouse",
+            #     "quantity":"quantity",
+            #     "unit_id":"unit",
+            #     "invoice_id":"origin_id",
+            #     "date":"date_col"
+            # }
+
+            # factory_sales_invoices_moves_query = "SELECT `invoices.items`.`warehouse_item_id`, `invoices.items`.`warehouse_id`, `invoices.items`.`quantity`, `units`.`id` AS `unit_id`, `invoices`.`id` AS `invoice_id`, `invoices`.`date` FROM `invoices.items` JOIN `invoices` ON `invoices.items`.`invoice_id` = `invoices`.`id` JOIN `codes` ON `codes`.`id` = `invoices.items`.`item_id` JOIN `units` ON `units`.`id` = `codes`.`unit_id` WHERE `invoices.items`.`state` = 'done'"
+            # table1_info = [factory_sales_invoices_moves_query, 'factory']
+            # table2_info = ['material_moves', 'accountant']
+
+            # fks=[]
+            # fks.append([1, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])
+            # fks.append([3, 'units', 'units', ['id', 'id'], ['name', 'name'], True])
+            # fks.append([4, 'invoices', 'invoices', ['id', 'id'], ['id', 'factory_id'], True])
+
+            # additional_columns = {"origin":'invoice_sell'}
+            # moves = transfer_data_between_tables(table1_info, table2_info, cols_dict, fks=fks, result=['id', 'warehouse_item_id', 'warehouse_id'], additional_columns=additional_columns)
+            
+            # for move in moves:
+            #     move_id = move[0][0]
+            #     warehouse_item_id = move[0][1]
+            #     warehouse_id = move[0][2]
+
+            #     # Get the warehouse codename in the factory
+            #     warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {warehouse_id}")
+            #     if not warehouse_codename:
+            #         raise Exception(f"Warehouse {warehouse_id} is not synced")
+            #     warehouse_codename = warehouse_codename[0][0]
+                
+            #     # Get the warehouse entry id in the accountant
+            #     warehouse_entry = executeQuery("accountant", f"SELECT `{warehouse_codename}`.`id` FROM `{warehouse_codename}` WHERE `{warehouse_codename}`.`factory_id` = {warehouse_item_id}")
+            #     if not warehouse_entry:
+            #         continue
+            #     warehouse_entry = warehouse_entry[0][0]
+
+            #     # Update the move source warehouse entry
+            #     executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = {warehouse_entry} WHERE `id` = {move_id}")
+
+            # moves from materials being transferred between warehouses
             cols_dict={
-                "source_warehouse_entry_id": "source_warehouse_entry_id",
+                "source_warehouse_entry_id":"source_warehouse_entry_id",
                 "source_warehouse_id":"source_warehouse",
-                "destination_warehouse_entry_id": "destination_warehouse_entry_id",
-                "target_warehouse_id":"destination_warehouse",
+                "destination_warehouse_entry_id":"destination_warehouse_entry_id",
+                "target_warehouse_id":"target_warehouse",
                 "quantity":"quantity",
                 "unit_id":"unit",
-                "batch_id":"origin_id",
                 "date":"date_col"
             }
 
-            factory_production_resulted_moves_query = "SELECT pulloutrequests_items.warehouse_item_id AS source_warehouse_entry_id, pulloutrequests.warehouse_id AS source_warehouse_id, NULL AS destination_warehouse_entry_id, NULL AS target_warehouse_id, pulloutrequests_items.quantity, `production.batches.stages.inputs`.unit_id, `production.batches.stages`.batch_id, pulloutrequests.date FROM `pulloutrequests` JOIN `pulloutrequests_items` ON pulloutrequests.id = pulloutrequests_items.pulloutrequest_id JOIN `production.batches.stages.inputs` ON pulloutrequests.id = `production.batches.stages.inputs`.pullout_id JOIN `production.batches.stages` ON `production.batches.stages.inputs`.stage_id = `production.batches.stages`.id JOIN `production.batches` ON `production.batches.stages`.batch_id = `production.batches`.id WHERE pulloutrequests.state = 'done' UNION ALL SELECT NUll AS source_warehouse_entry_id, NULL AS source_warehouse_id, `production.store`.warehouse_item_id AS destination_warehouse_entry_id, `production.store`.target_warehouse_id, `production.store`.quantity, `production.batches.stages.outputs`.unit_id, `production.batches.stages`.batch_id, `production.store`.date FROM `production.store` JOIN `production.batches.stages.outputs` ON `production.store`.stage_output_id = `production.batches.stages.outputs`.id JOIN `production.batches.stages` ON `production.batches.stages.outputs`.stage_id = `production.batches.stages`.id JOIN `production.batches` ON `production.batches.stages`.batch_id = `production.batches`.id WHERE `production.store`.received = 1"
-
-            table1_info = [factory_production_resulted_moves_query, 'factory']
+            factory_materials_transfer_moves_query = "SELECT `moves`.`source_warehouse_entry_id`, `moves`.`source_warehouse_id`, `moves`.`destination_warehouse_entry_id`, `moves`.`target_warehouse_id`, `moves`.`quantity`, `units`.`id` AS `unit_id`, `moves`.`date` FROM `moves` JOIN `codes` ON `codes`.`id` = `moves`.`material_id` JOIN `units` ON `units`.`id` = `codes`.`unit_id` WHERE `moves`.`state` = 'done'"
+            table1_info = [factory_materials_transfer_moves_query, 'factory']
             table2_info = ['material_moves', 'accountant']
 
             fks=[]
-            fks.append([1, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
-            fks.append([3, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
-            fks.append([5, f"units", 'units', ['id', 'id'], ['name', 'name'], False])  
-            fks.append([6, f"production.batches", 'manufacture', ['id', 'id'], ['id', 'factory_id'], False])
-            additional_columns = {"origin":'manufacture'}
+            fks.append([1, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])
+            fks.append([3, 'units', 'units', ['id', 'id'], ['name', 'name'], True])
+
+            additional_columns = {"origin":'transfer'}
+            
             moves = transfer_data_between_tables(table1_info, table2_info, cols_dict, fks=fks, result=['id', 'source_warehouse_entry_id', 'source_warehouse_id', 'destination_warehouse_entry_id', 'target_warehouse_id'], additional_columns=additional_columns)
 
             for move in moves:
@@ -1097,112 +1300,41 @@ class Ui_Synchronizer_Logic(QDialog):
                 source_warehouse_entry_id = move[0][1]
                 source_warehouse_id = move[0][2]
                 destination_warehouse_entry_id = move[0][3]
-                destination_warehouse_id = move[0][4]
+                target_warehouse_id = move[0][4]
 
-                # Update the move source warehouse entry
-                if source_warehouse_id:
-                    source_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {source_warehouse_id}")
-                    if not source_warehouse_codename:
-                        raise Exception(f"Source warehouse {source_warehouse_id} is not synced")
-                    source_warehouse_codename = source_warehouse_codename[0][0]
+                # Get the warehouse codename in the factory
+                source_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {source_warehouse_id}")
+                if not source_warehouse_codename:
+                    raise Exception(f"Warehouse {source_warehouse_id} is not synced")
+                source_warehouse_codename = source_warehouse_codename[0][0]
 
-                    source_warehouse_entry = executeQuery("accountant", f"SELECT `{source_warehouse_codename}`.`id` FROM `{source_warehouse_codename}` WHERE `{source_warehouse_codename}`.`factory_id` = {source_warehouse_entry_id}")
-                    if not source_warehouse_entry:
-                        executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = NULL WHERE `id` = {move_id}")
-                        continue
-                    source_warehouse_entry = source_warehouse_entry[0][0]
-
-                    executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = {source_warehouse_entry} AND `destination_warehouse_entry_id` = NULL WHERE `id` = {move_id}")
+                # Get the warehouse entry id in the accountant
+                source_warehouse_entry = executeQuery("accountant", f"SELECT `{source_warehouse_codename}`.`id` FROM `{source_warehouse_codename}` WHERE `{source_warehouse_codename}`.`factory_id` = {source_warehouse_entry_id}")
+                if not source_warehouse_entry:
+                    continue
+                source_warehouse_entry = source_warehouse_entry[0][0]
+                
+                # Get the warehouse codename in the factory
+                target_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {target_warehouse_id}")
+                if not target_warehouse_codename:
+                    raise Exception(f"Warehouse {target_warehouse_id} is not synced")
+                target_warehouse_codename = target_warehouse_codename[0][0]
+                
+                # Get the warehouse entry id in the accountant
+                target_warehouse_entry = executeQuery("accountant", f"SELECT `{target_warehouse_codename}`.`id` FROM `{target_warehouse_codename}` WHERE `{target_warehouse_codename}`.`factory_id` = {destination_warehouse_entry_id}")
+                if not target_warehouse_entry:
+                    continue
+                target_warehouse_entry = target_warehouse_entry[0][0]
 
                 # Update the move destination warehouse entry
-                if destination_warehouse_id:
-                    # Get the destination warehouse codename in the factory
-                    destination_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {destination_warehouse_id}")
-                    if not destination_warehouse_codename:
-                        raise Exception(f"Destination warehouse {destination_warehouse_id} is not synced")
-                    destination_warehouse_codename = destination_warehouse_codename[0][0]
-
-                    destination_warehouse_entry = executeQuery("accountant", f"SELECT `{destination_warehouse_codename}`.`id` FROM `{destination_warehouse_codename}` WHERE `{destination_warehouse_codename}`.`id` = {destination_warehouse_entry_id}")
-                    if not destination_warehouse_entry:
-                        executeQuery("accountant", f"UPDATE `material_moves` SET `destination_warehouse_entry_id` = NULL WHERE `id` = {move_id}")
-                        continue
-                    destination_warehouse_entry = destination_warehouse_entry[0][0]
-
-                    executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = NULL AND `destination_warehouse_entry_id` = {destination_warehouse_entry} WHERE `id` = {move_id}")
-
-            # moves resulted from purchase invoices 
-            cols_dict={
-                "material_id": "source_warehouse_entry_id",
-                "source_warehouse_id":"source_warehouse",
-                "target_warehouse_id":"destination_warehouse",
-                "quantity":"quantity",
-                "unit_id":"unit",
-                "deal_id":"origin_id",
-                "date":"date_col"
-            }
-
-            factory_production_resulted_moves_query = "SELECT `deals`.`material_id`, NULL AS `source_warehouse_id`, `receipt_docs`.`target_warehouse_id`, `deals`.`quantity`, `deals`.`unit` AS `unit_id`, `deals`.`id` AS `deal_id`, `receipt_docs`.`date` FROM `deals` JOIN `priceoffers` ON `priceoffers`.`id` = `deals`.`priceoffer_id` JOIN `suppliers` ON `suppliers`.`id` = `priceoffers`.`supplier_id` JOIN `receipt_docs` ON `receipt_docs`.`deal_id` = `deals`.`id` JOIN `warehouseslist` ON `warehouseslist`.`id` = `receipt_docs`.`target_warehouse_id` WHERE `receipt_docs`.`received` = 1"
-            table1_info = [factory_production_resulted_moves_query, 'factory']
-            table2_info = ['material_moves', 'accountant']
-
-            fks=[]
-            fks.append([1, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
-            fks.append([2, 'warehouseslist', 'warehouseslist', ['id', 'id'], ['code_name', 'codename'], False])  
-            fks.append([4, 'units', 'units', ['id', 'id'], ['name ', 'name '], True])
-            fks.append([5, 'deals', 'invoices', ['id', 'id'], ['id', 'factory_id'], True])  
-            
-            additional_columns = {"origin":'invoice_buy'}
-            moves = transfer_data_between_tables(table1_info, table2_info, cols_dict, [5], fks=fks, result=['id', 'material_id', 'source_warehouse_id', 'target_warehouse_id', 'deal_id'], additional_columns=additional_columns)
-
-            for move in moves:
-                move_id = move[0][0]
-                material_id_factory = move[0][1]
-                source_warehouse_id = move[0][2]
-                destination_warehouse_id = move[0][3]
-                deal_id = move[0][4]
-
-                # Get the material id in the accountant
-                material_code = executeQuery("factory", f"SELECT `codes`.`code` FROM `codes` WHERE `codes`.`id` = {material_id_factory}")
-                if not material_code:
-                    raise Exception(f"Material {material_id_factory} is not synced")
-                material_code = material_code[0][0]
-
-                material_id_accountant = executeQuery("accountant", f"SELECT `id` FROM `materials` WHERE `code` = '{material_code}'")
-                if not material_id_accountant:  
-                    raise Exception(f"Material {material_code} is not synced")
-                material_id_accountant = material_id_accountant[0][0]
-
-                # Get the receipt doc id in the factory
-                receipt_doc_id_factory = executeQuery("factory", f"SELECT `receipt_docs`.`id` FROM `receipt_docs` WHERE `receipt_docs`.`deal_id` = {deal_id}")
-                if not receipt_doc_id_factory:
-                    raise Exception(f"Receipt doc {deal_id} is not synced")
-                receipt_doc_id_factory = receipt_doc_id_factory[0][0]
-
-                # Get the receipt doc id in the accountant
-                receipt_doc_id_accountant = executeQuery("accountant", f"SELECT `receipt_docs`.`id` FROM `receipt_docs` WHERE `receipt_docs`.`factory_id` = {receipt_doc_id_factory}")
-                if not receipt_doc_id_accountant:
-                    raise Exception(f"Receipt doc {deal_id} is not synced")
-                receipt_doc_id_accountant = receipt_doc_id_accountant[0][0]
-
-                # Get the destination warehouse codename in the factory
-                destination_warehouse_codename = executeQuery("factory", f"SELECT `warehouseslist`.`code_name` FROM `warehouseslist` WHERE `warehouseslist`.`id` = {destination_warehouse_id}")
-                if not destination_warehouse_codename:
-                    raise Exception(f"Destination warehouse {destination_warehouse_id} is not synced")
-                destination_warehouse_codename = destination_warehouse_codename[0][0]
-
-                destination_warehouse_entry = executeQuery("accountant", f"SELECT `{destination_warehouse_codename}`.`id` FROM `{destination_warehouse_codename}` WHERE `{destination_warehouse_codename}`.`material_id` = {material_id_accountant} AND `{destination_warehouse_codename}`.`receipt_doc_id` = {receipt_doc_id_accountant}")
-                if not destination_warehouse_entry:
-                    continue
-                destination_warehouse_entry = destination_warehouse_entry[0][0]
-
-                executeQuery("accountant", f"UPDATE `material_moves` SET `destination_warehouse_entry_id` = {destination_warehouse_entry} WHERE `id` = {move_id}")
-
+                executeQuery("accountant", f"UPDATE `material_moves` SET `source_warehouse_entry_id` = {source_warehouse_entry} AND `destination_warehouse_entry_id` = {target_warehouse_entry} WHERE `id` = {move_id}")
+                
         # If everything went well, commit the transactions
         self.accountant_cursor.execute("COMMIT")
         if self.factory_connection and self.factory_connection.is_connected():
             self.factory_cursor.execute("COMMIT")
             
-            win32api.MessageBox(None, "Synchronization completed successfully", "Success", win32con.MB_OK)
+            win32api.MessageBox(None, self.language_manager.translate("SYNC_SUCCESS"), self.language_manager.translate("SUCCESS"), win32con.MB_OK)
         
         # except Exception as e:
         #     # Roll back both transactions if an error occurs
@@ -1211,4 +1343,4 @@ class Ui_Synchronizer_Logic(QDialog):
         #         self.factory_cursor.execute("ROLLBACK")
 
         #     print(e)
-        #     win32api.MessageBox(None, f"Error during synchronization: {str(e)}", "Synchronization Error", win32con.MB_OK | win32con.MB_ICONERROR)
+        #     win32api.MessageBox(None, str(e), self.language_manager.translate("ERROR"), win32con.MB_OK | win32con.MB_ICONERROR)

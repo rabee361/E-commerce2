@@ -30,8 +30,8 @@ class Ui_Sales_Target_Report_Logic(object):
         dialog.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(dialog)
         dialog.setWindowIcon(QIcon('icons/project.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, dialog)
+        self.initialize()
         dialog.exec()
 
     def initialize(self):

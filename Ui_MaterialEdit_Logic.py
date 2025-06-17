@@ -21,8 +21,8 @@ class Ui_MaterialEdit_Logic(QDialog):
     def showUi(self):   
         window_raw_edit = QDialog()
         self.ui.setupUi(window_raw_edit)
-        self.initialize(window_raw_edit)
         self.language_manager.load_translated_ui(self.ui, window_raw_edit)
+        self.initialize(window_raw_edit)
         window_raw_edit.exec()
 
     def initialize(self, window):

@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>824</width>
-    <height>864</height>
+    <height>916</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>600</width>
-    <height>650</height>
+    <height>750</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -44,63 +44,70 @@
          </size>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::RightToLeft</enum>
         </property>
         <property name="title">
          <string/>
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
-          <widget class="QLineEdit" name="manufacturer_input"/>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>المصدر/الشركة المصنعة:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3" colspan="2">
-          <widget class="QLineEdit" name="code_input"/>
-         </item>
-         <item row="0" column="5">
           <widget class="QLabel" name="label">
            <property name="text">
             <string>رمز المادة:</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLineEdit" name="color_input"/>
+         <item row="0" column="1" colspan="2">
+          <widget class="QLineEdit" name="code_input"/>
          </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="label_7">
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>اللون:</string>
+            <string>المصدر/الشركة المصنعة:</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="3" colspan="2">
-          <widget class="QLineEdit" name="name_input"/>
+         <item row="0" column="5">
+          <widget class="QLineEdit" name="manufacturer_input"/>
          </item>
-         <item row="1" column="5">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_2">
            <property name="text">
             <string>اسم المادة:</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLineEdit" name="origin_input"/>
+         <item row="1" column="1" colspan="2">
+          <widget class="QLineEdit" name="name_input"/>
          </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="label_8">
+         <item row="1" column="4">
+          <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>بلد المنشأ:</string>
+            <string>اللون:</string>
            </property>
           </widget>
          </item>
+         <item row="1" column="5">
+          <widget class="QLineEdit" name="color_input"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>المجموعة:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="group_combobox"/>
+         </item>
          <item row="2" column="2">
+          <widget class="QPushButton" name="select_group_btn">
+           <property name="text">
+            <string>...اختيار</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -116,72 +123,65 @@
            </property>
           </spacer>
          </item>
-         <item row="2" column="3">
-          <widget class="QPushButton" name="select_group_btn">
+         <item row="2" column="4">
+          <widget class="QLabel" name="label_8">
            <property name="text">
-            <string>...اختيار</string>
+            <string>بلد المنشأ:</string>
            </property>
           </widget>
-         </item>
-         <item row="2" column="4">
-          <widget class="QComboBox" name="group_combobox"/>
          </item>
          <item row="2" column="5">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>المجموعة:</string>
-           </property>
-          </widget>
+          <widget class="QLineEdit" name="origin_input"/>
          </item>
          <item row="3" column="0">
-          <widget class="QLineEdit" name="quality_input"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>الجودة:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3" colspan="2">
-          <widget class="QLineEdit" name="specs_input"/>
-         </item>
-         <item row="3" column="5">
           <widget class="QLabel" name="label_4">
            <property name="text">
             <string>المواصفات:</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="0">
-          <widget class="QLineEdit" name="model_input"/>
+         <item row="3" column="1" colspan="2">
+          <widget class="QLineEdit" name="specs_input"/>
          </item>
-         <item row="4" column="1">
-          <widget class="QLabel" name="label_10">
+         <item row="3" column="4">
+          <widget class="QLabel" name="label_9">
            <property name="text">
-            <string>الطراز:</string>
+            <string>الجودة:</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="3" colspan="2">
-          <widget class="QLineEdit" name="size_input"/>
+         <item row="3" column="5">
+          <widget class="QLineEdit" name="quality_input"/>
          </item>
-         <item row="4" column="5">
+         <item row="4" column="0">
           <widget class="QLabel" name="label_5">
            <property name="text">
             <string>القياس:</string>
            </property>
           </widget>
          </item>
-         <item row="5" column="3" colspan="2">
-          <widget class="QComboBox" name="type_combobox"/>
+         <item row="4" column="1" colspan="2">
+          <widget class="QLineEdit" name="size_input"/>
          </item>
-         <item row="5" column="5">
+         <item row="4" column="4">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>الطراز:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="5">
+          <widget class="QLineEdit" name="model_input"/>
+         </item>
+         <item row="5" column="0">
           <widget class="QLabel" name="label_34">
            <property name="text">
             <string>النوع:</string>
            </property>
           </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="type_combobox"/>
          </item>
         </layout>
        </widget>
@@ -189,7 +189,7 @@
       <item row="1" column="0" colspan="3">
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab">
          <attribute name="title">
@@ -935,26 +935,6 @@ border-style: none;</string>
              <string/>
             </property>
             <layout class="QGridLayout" name="gridLayout_15">
-             <item row="0" column="0">
-              <spacer name="horizontalSpacer_7">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>246</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="0" column="1">
-              <widget class="QPushButton" name="select_material_discount_account_btn">
-               <property name="text">
-                <string>...اختيار</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="2">
               <widget class="QComboBox" name="material_discount_account_combobox">
                <property name="enabled">
@@ -968,10 +948,17 @@ border-style: none;</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="3">
-              <widget class="QLabel" name="label_46">
+             <item row="1" column="3">
+              <widget class="QLabel" name="label_49">
                <property name="text">
-                <string>حساب حسم المادة:</string>
+                <string>حساب إضافات المادة:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QToolButton" name="select_material_discount_account_btn">
+               <property name="text">
+                <string>🔎</string>
                </property>
               </widget>
              </item>
@@ -988,10 +975,23 @@ border-style: none;</string>
                </property>
               </spacer>
              </item>
+             <item row="0" column="0">
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>246</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
              <item row="1" column="1">
-              <widget class="QPushButton" name="select_material_addition_account_btn">
+              <widget class="QToolButton" name="select_material_addition_account_btn">
                <property name="text">
-                <string>...اختيار</string>
+                <string>🔎</string>
                </property>
               </widget>
              </item>
@@ -1002,10 +1002,10 @@ border-style: none;</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="3">
-              <widget class="QLabel" name="label_49">
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_46">
                <property name="text">
-                <string>حساب إضافات المادة:</string>
+                <string>حساب حسم المادة:</string>
                </property>
               </widget>
              </item>

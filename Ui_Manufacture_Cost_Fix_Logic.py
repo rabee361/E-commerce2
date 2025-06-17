@@ -24,8 +24,8 @@ class Ui_Manufacture_Cost_Fix_Logic(object):
         window = QDialog()
         window.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window)
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize()
         window.setWindowIcon(QIcon('icons/equipment.png'))
         window.exec()
 

@@ -285,8 +285,7 @@ class Ui_Warehouses_Logic(QDialog):
                 item = QTreeWidgetItem([str(code), str(name), str(id)])
                 self.ui.warehouses_tree.addTopLevelItem(item)
             else:
-                items_already_in_tree = self.ui.warehouses_tree.findItems(str(parent_id),
-                                                                          Qt.MatchExactly | Qt.MatchRecursive, 2)
+                items_already_in_tree = self.ui.warehouses_tree.findItems(str(parent_id),Qt.MatchExactly | Qt.MatchRecursive, 2)
 
                 if (len(items_already_in_tree) > 0):  # Parent already exists in tree, so append its child
                     for item in items_already_in_tree:
@@ -334,19 +333,19 @@ class Ui_Warehouses_Logic(QDialog):
                     top_item.setExpanded(True)
 
     def openInventoryReportWindow(self):
-        Ui_InventoryReport_Logic.showUi()
+        Ui_InventoryReport_Logic(self.sql_connector, self.filemanager).showUi()
 
     def openReORderReportWindow(self):
-        Ui_ReOrderMaterialReport_Logic.showUi()
+        Ui_ReOrderMaterialReport_Logic(self.sql_connector, self.filemanager).showUi()
 
     def openValueReportWindow(self):
-        Ui_Value_Report_Logic.showUi()
+        Ui_Value_Report_Logic(self.sql_connector, self.filemanager).showUi()
 
     def openQuantitesReportWindow(self):
-        Ui_QuantitiesReport_Logic.showUi()
+        Ui_QuantitiesReport_Logic(self.sql_connector, self.filemanager).showUi()
 
     def openMaterialMoveReportWindow(self):
-        Ui_MaterialMoveReport_Logic.showUi()
+        Ui_MaterialMoveReport_Logic(self.sql_connector, self.filemanager).showUi()
 
     def openSelectAccountWindow(self):
         data_picker = Ui_DataPicker_Logic(self.sql_connector, 'accounts', include_none_option=True)

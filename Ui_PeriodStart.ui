@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>953</width>
-    <height>637</height>
+    <width>1113</width>
+    <height>647</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -212,27 +212,20 @@
       <string>المواد</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="4" column="2">
-       <widget class="QDateEdit" name="date_input">
+      <item row="4" column="5">
+       <widget class="QLabel" name="label_18">
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
+          <width>50</width>
           <height>16777215</height>
          </size>
         </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
+        <property name="text">
+         <string>التسعير:</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="16" rowspan="4" colspan="4">
-       <widget class="Line" name="line_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
+      <item row="0" column="1">
        <widget class="QComboBox" name="material_warehouse_combobox">
         <property name="minimumSize">
          <size>
@@ -249,226 +242,34 @@
         <property name="layoutDirection">
          <enum>Qt::RightToLeft</enum>
         </property>
-       </widget>
-      </item>
-      <item row="4" column="9">
-       <widget class="QComboBox" name="material_currency_combobox">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="21">
-       <widget class="QPushButton" name="select_period_start_account">
+      <item row="3" column="3">
+       <widget class="QToolButton" name="select_cost_center_btn">
         <property name="text">
-         <string>...اختيار</string>
+         <string>🔎</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_67">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
+      <item row="0" column="3">
+       <widget class="QToolButton" name="select_material_warehouse_btn">
         <property name="text">
-         <string>مركز الكلفة</string>
+         <string>🔎</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="5">
-       <widget class="QPushButton" name="select_cost_center_btn">
-        <property name="text">
-         <string>...اختيار</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="21">
-       <widget class="QPushButton" name="select_capital_account_btn">
-        <property name="text">
-         <string>...اختيار</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="12" colspan="2">
-       <widget class="QLineEdit" name="material_quantity_input">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="20">
-       <widget class="QComboBox" name="period_start_account_combobox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>10</width>
-          <height>10</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="9">
-       <widget class="QComboBox" name="material_unit_combobox"/>
-      </item>
-      <item row="2" column="21">
-       <widget class="QPushButton" name="add_material_btn">
-        <property name="text">
-         <string>اضافة المادة</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="maximumSize">
-         <size>
-          <width>35</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>التاريخ:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLineEdit" name="material_notes_input">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="19">
-       <widget class="QLabel" name="label_72">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>حساب أول مدة:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QComboBox" name="cost_center_combobox"/>
-      </item>
-      <item row="1" column="19">
-       <widget class="QLabel" name="label_73">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>حساب رأس المال:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="7" colspan="2">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>10</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="1" column="20">
-       <widget class="QComboBox" name="capital_account_combobox">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>10</width>
-          <height>10</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_66">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>ملاحظات:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="13">
-       <widget class="QPushButton" name="select_material_btn">
-        <property name="text">
-         <string>...اختيار</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="12">
+      <item row="0" column="7">
        <widget class="QComboBox" name="material_combobox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -491,6 +292,120 @@
         <property name="layoutDirection">
          <enum>Qt::RightToLeft</enum>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7">
+       <widget class="QComboBox" name="material_unit_combobox"/>
+      </item>
+      <item row="3" column="5">
+       <widget class="QLabel" name="label_16">
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>الكمية:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5">
+       <widget class="QLabel" name="label_17">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>الواحدة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="9">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDateEdit" name="date_input">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="10">
+       <widget class="QLabel" name="label_19">
+        <property name="maximumSize">
+         <size>
+          <width>90</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>السعر الإفرادي:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="material_notes_input">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_66">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>ملاحظات:</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="0">
@@ -506,8 +421,21 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="7">
-       <widget class="QLabel" name="label_17">
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_12">
+        <property name="maximumSize">
+         <size>
+          <width>35</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>التاريخ:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="label_15">
         <property name="maximumSize">
          <size>
           <width>50</width>
@@ -515,26 +443,46 @@
          </size>
         </property>
         <property name="text">
-         <string>الواحدة:</string>
+         <string>المادة:</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="20">
-       <widget class="QCheckBox" name="generate_period_opening_entry_checkbox">
-        <property name="text">
-         <string>توليد قيد افتتاحي</string>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="cost_center_combobox">
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <widget class="QPushButton" name="select_material_warehouse_btn">
-        <property name="text">
-         <string>...اختيار</string>
+      <item row="6" column="7">
+       <widget class="QComboBox" name="material_currency_combobox">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
         </property>
        </widget>
       </item>
-      <item row="4" column="12" colspan="2">
-       <widget class="QLineEdit" name="material_unit_price_input">
+      <item row="3" column="7">
+       <widget class="QLineEdit" name="material_quantity_input">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="maximumSize">
          <size>
           <width>200</width>
@@ -543,7 +491,14 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="12" colspan="2">
+      <item row="0" column="8">
+       <widget class="QToolButton" name="select_material_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="7">
        <widget class="QComboBox" name="material_default_price_type_combobox">
         <property name="maximumSize">
          <size>
@@ -556,20 +511,14 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="11">
-       <widget class="QLabel" name="label_19">
-        <property name="maximumSize">
-         <size>
-          <width>90</width>
-          <height>16777215</height>
-         </size>
-        </property>
+      <item row="6" column="12">
+       <widget class="QPushButton" name="add_material_btn">
         <property name="text">
-         <string>السعر الإفرادي:</string>
+         <string>اضافة المادة</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="7">
+      <item row="6" column="5">
        <widget class="QLabel" name="label_26">
         <property name="maximumSize">
          <size>
@@ -582,42 +531,152 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="11">
-       <widget class="QLabel" name="label_18">
+      <item row="0" column="4">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_67">
         <property name="maximumSize">
          <size>
-          <width>50</width>
+          <width>16777215</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="text">
-         <string>التسعير:</string>
+         <string>مركز الكلفة</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="11">
-       <widget class="QLabel" name="label_16">
+      <item row="0" column="12">
+       <widget class="QLineEdit" name="material_unit_price_input">
         <property name="maximumSize">
          <size>
-          <width>40</width>
+          <width>200</width>
           <height>16777215</height>
          </size>
-        </property>
-        <property name="text">
-         <string>الكمية:</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="11">
-       <widget class="QLabel" name="label_15">
+      <item row="1" column="10">
+       <widget class="QLabel" name="label_72">
         <property name="maximumSize">
          <size>
-          <width>50</width>
+          <width>100</width>
           <height>16777215</height>
          </size>
         </property>
         <property name="text">
-         <string>المادة:</string>
+         <string>حساب أول مدة:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="12">
+       <widget class="QComboBox" name="period_start_account_combobox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="13">
+       <widget class="QToolButton" name="select_period_start_account">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="10">
+       <widget class="QLabel" name="label_73">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>حساب رأس المال:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="12">
+       <widget class="QComboBox" name="capital_account_combobox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+        background-color: #fafafa;
+        border: 1px solid lightgrey;		
+		height: 22px;
+		color: black;
+    }
+    QComboBox::drop-down {
+        border: none;
+    }</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="13">
+       <widget class="QToolButton" name="select_capital_account_btn">
+        <property name="text">
+         <string>🔎</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="12">
+       <widget class="QCheckBox" name="generate_period_opening_entry_checkbox">
+        <property name="text">
+         <string>توليد قيد افتتاحي</string>
         </property>
        </widget>
       </item>

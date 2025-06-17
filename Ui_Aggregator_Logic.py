@@ -10,6 +10,7 @@ from DatabaseOperations import DatabaseOperations
 from MyTableWidgetItem import MyTableWidgetItem
 from Ui_Aggregator import Ui_Aggregator
 from Ui_AggregatorResult_Logic import Ui_AggregatorResult_Logic
+from Ui_DataPicker_Logic import Ui_DataPicker_Logic
 
 
 class Ui_Aggregator_Logic(object):
@@ -28,8 +29,8 @@ class Ui_Aggregator_Logic(object):
         window_aggregator.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window_aggregator)
         window_aggregator.setWindowIcon(QIcon('icons/resources.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_aggregator)
+        self.initialize()
         window_aggregator.exec()
 
     def initialize(self):
@@ -46,6 +47,7 @@ class Ui_Aggregator_Logic(object):
         self.ui.target_input.setValidator(QIntValidator())
 
         self.ui.add_btn.clicked.connect(lambda: self.addAggregatorItem())
+        self.ui.products_btn.clicked.connect(lambda: self.openSelectProduct())
 
         self.ui.delete_btn.clicked.connect(lambda: self.removeAggregatorItem())
         self.ui.clear_btn.clicked.connect(lambda: self.clearAggregatorItems())
@@ -65,6 +67,15 @@ class Ui_Aggregator_Logic(object):
             data = [id, work_hours, code, yearly_required]
 
             self.ui.products.addItem(name, data)
+
+    def openSelectProduct(self):
+        data_picker = Ui_DataPicker_Logic(self.sqlconnector, 'groupped_materials')
+        result = data_picker.showUi()
+        if result is not None:
+            for i in range(self.ui.products.count()):
+                if self.ui.products.itemData(i)[0] == result['id']:
+                    self.ui.products.setCurrentIndex(i)
+                    break
 
     def addAggregatorItem(self):
         target = self.ui.target_input.text()

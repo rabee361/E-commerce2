@@ -102,6 +102,9 @@
          </item>
          <item row="0" column="3">
           <widget class="QComboBox" name="position_combobox">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="styleSheet">
             <string notr="true">QComboBox {
         background-color: #fafafa;
@@ -140,6 +143,9 @@
          </item>
          <item row="0" column="6">
           <widget class="QComboBox" name="department_combobox">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="styleSheet">
             <string notr="true">QComboBox {
         background-color: #fafafa;

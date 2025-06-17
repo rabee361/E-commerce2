@@ -25,8 +25,8 @@ class Ui_CostViewEdit_Logic(object):
     def showUi(self):
         window_costViewEdit = QDialog()
         self.ui.setupUi(window_costViewEdit)
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_costViewEdit)
+        self.initialize()
         window_costViewEdit.exec()
 
     def initialize(self):

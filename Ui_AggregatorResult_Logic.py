@@ -23,8 +23,8 @@ class Ui_AggregatorResult_Logic(QDialog):
     def showUi(self):
         aggregator_result = QDialog()
         self.ui.setupUi(aggregator_result)
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, aggregator_result)
+        self.initialize()
         aggregator_result.exec()
 
     def initialize(self):

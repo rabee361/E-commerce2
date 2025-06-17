@@ -26,19 +26,22 @@ class Statistics():
         self.fetchWarehouses()
         self.ui.select_chart_btn.setEnabled(True)
         self.ui.select_chart_btn.clicked.connect(self.showChart)
-        try:
-            self.fetchInvoicesCount()
-            # self.fetchEmployeesCount()
-            self.fetchDepartmentsCount()
-            self.fetchEmploymentRequestsCount()
-            self.fetchGroupsCount()
-            self.fetchCostCentersCount()
-            self.fetchLastManufatureProcess()
-            self.showChart()
-        except:
-            MessageBox(0, self.language_manager.translate(key="STATS_PERMISSION_DENIED"), self.language_manager.translate("ALERT"))
-        # self.fetchLastMaterialMovement()
 
+        # try:
+        self.fetchInvoicesCount()
+        # self.fetchEmployeesCount()
+        self.fetchDepartmentsCount()
+        # self.fetchEmploymentRequestsCount()
+        self.fetchGroupsCount()
+        self.fetchLastManufatureProcess()
+        self.fetchLastMaterialMovement()
+        self.showChart()
+        # except Exception as e:
+        #     print(f"Error refreshing statistics: {str(e)}")
+        #     MessageBox(0, self.language_manager.translate(key="STATS_PERMISSION_DENIED"), self.language_manager.translate("ALERT"))
+
+            
+       
     # def fetchMaterialsCount(self):
     #     if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
     #         materials_count = self.database_operations.fetchMaterialsCount()
@@ -77,13 +80,6 @@ class Statistics():
         else:
             pass
 
-    def fetchCostCentersCount(self):
-        cost_centers_count = self.database_operations.fetchCostCentersCount()
-        if cost_centers_count:
-            self.ui.distribution_center_count.setText(str(cost_centers_count['distributor']))
-            self.ui.aggregation_center_count.setText(str(cost_centers_count['aggregator']))
-            self.ui.normal_center_count.setText(str(cost_centers_count['normal']))
-
     def fetchGroupsCount(self):
         groups_count = self.database_operations.fetchGroupsCount()
     
@@ -109,9 +105,10 @@ class Statistics():
     def fetchLastManufatureProcess(self):
         last_manufature_process = self.database_operations.fetchLastManufatureProcess()
         if last_manufature_process: 
+            manufacture_cost = last_manufature_process['machines_operation_cost'] + last_manufature_process['salaries_cost'] + last_manufature_process['machines_operation_cost'] + last_manufature_process['expenses_cost']
             self.ui.manufacture_material.setText(str(last_manufature_process['material_name']))
             self.ui.manufacture_date.setText(str(last_manufature_process['manufacture_date']))
-            self.ui.manufature_warehouse.setText(str(last_manufature_process['warehouse_name']))
+            self.ui.manufature_cost.setText(str(manufacture_cost))
             self.ui.manufature_quantity.setText(str(last_manufature_process['quantity']))
         else:
             pass
@@ -252,12 +249,18 @@ class Statistics():
         if chart_view:
             chart = chart_view.chart()
             chart.removeAllSeries()
-            
+
+        # try:
         self.fetchInvoicesCount()
-        self.fetchEmployeesCount()
+        # self.fetchEmployeesCount()
         self.fetchDepartmentsCount()
-        self.fetchEmploymentRequestsCount()
+        # self.fetchEmploymentRequestsCount()
         self.fetchGroupsCount()
-        self.fetchCostCentersCount()
-        self.fetchLastManufatureProcess()
+        # self.fetchLastManufatureProcess()
         self.showChart()
+        # except Exception as e:
+        #     print(f"Error refreshing statistics: {str(e)}")
+        #     MessageBox(0, self.language_manager.translate(key="STATS_PERMISSION_DENIED"), self.language_manager.translate("ALERT"))
+
+            
+        

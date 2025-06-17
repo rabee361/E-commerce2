@@ -25,8 +25,8 @@ class Ui_ShortCutSettings_Logic(QDialog):
         self.window = QDialog()
         self.window.setWindowModality(QtCore.Qt.WindowModal)
         self.ui.setupUi(self.window)
-        self.initialize(self.window)
         self.language_manager.load_translated_ui(self.ui, self.window)
+        self.initialize(self.window)
         self.window.exec()
 
     def initialize(self, window):
@@ -101,7 +101,6 @@ class Ui_ShortCutSettings_Logic(QDialog):
             label = QLabel()
             label.setText(self.language_manager.translate(translated_name))
             label.setMinimumWidth(max_width)
-            label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
             checkbox = QCheckBox()
             
             # Load existing setting from database
@@ -114,8 +113,8 @@ class Ui_ShortCutSettings_Logic(QDialog):
             self.checkboxes[name] = checkbox
             
             # Add widgets to container
-            container_layout.addWidget(label)
             container_layout.addWidget(checkbox)
+            container_layout.addWidget(label)
             
             # Add to appropriate column
             if counter < midpoint:

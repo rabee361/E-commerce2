@@ -32,8 +32,8 @@ class Ui_Account_Movements_Logic(QDialog):
         window = QDialog()
         self.ui.setupUi(window)
         window.setWindowIcon(QIcon('icons/move.png'))
-        self.initialize(window)
         self.language_manager.load_translated_ui(self.ui, window)
+        self.initialize(window)
         window.exec()
 
     def initialize(self, window):

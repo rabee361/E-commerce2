@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Settings(object):
     def setupUi(self, Settings):
         Settings.setObjectName("Settings")
-        Settings.resize(717, 659)
+        Settings.resize(717, 667)
         Settings.setMinimumSize(QtCore.QSize(0, 0))
         Settings.setMaximumSize(QtCore.QSize(1857564, 1857546))
         icon = QtGui.QIcon()
@@ -264,10 +264,6 @@ class Ui_Settings(object):
         self.synchronization_settings_btn = QtWidgets.QPushButton(self.groupBox_4)
         self.synchronization_settings_btn.setObjectName("synchronization_settings_btn")
         self.gridLayout_3.addWidget(self.synchronization_settings_btn, 0, 3, 1, 1)
-        self.media_btn = QtWidgets.QPushButton(self.groupBox_4)
-        self.media_btn.setMinimumSize(QtCore.QSize(110, 0))
-        self.media_btn.setObjectName("media_btn")
-        self.gridLayout_3.addWidget(self.media_btn, 1, 0, 1, 1)
         self.shortcut_settings_btn = QtWidgets.QPushButton(self.groupBox_4)
         self.shortcut_settings_btn.setMinimumSize(QtCore.QSize(175, 0))
         self.shortcut_settings_btn.setObjectName("shortcut_settings_btn")
@@ -397,7 +393,6 @@ class Ui_Settings(object):
         self.set_warehouses_variables_btn.setText(_translate("Settings", "ضبط متغيرات المستودعات"))
         self.expenses_types_btn.setText(_translate("Settings", "...انواع المصاريف"))
         self.synchronization_settings_btn.setText(_translate("Settings", "ضبط افتراضيات المزامنة"))
-        self.media_btn.setText(_translate("Settings", "إعدادات الصور"))
         self.shortcut_settings_btn.setText(_translate("Settings", "إعدادات الاختصارات"))
         self.invoices_settings_btn.setText(_translate("Settings", "ضبط افتراضيات الفواتير"))
         self.api_keys_btn.setText(_translate("Settings", "ضبط المفاتيح"))

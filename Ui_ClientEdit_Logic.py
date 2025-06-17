@@ -24,8 +24,8 @@ class Ui_ClientEdit_Logic(object):
     def showUi(self):
         window_edit_client = QDialog()
         self.ui.setupUi(window_edit_client)
-        self.initialize(window_edit_client)
         self.language_manager.load_translated_ui(self.ui, window_edit_client)
+        self.initialize(window_edit_client)
         window_edit_client.exec()
         
     def initialize(self, window):

@@ -44,7 +44,7 @@ class Ui_CostCenters_Logic(QDialog):
         self.ui.save_btn.clicked.connect(lambda: self.save())
         self.ui.add_btn.clicked.connect(lambda: self.addAggregationDistributiveCostCenter())
         self.ui.delete_btn.clicked.connect(lambda: self.deleteCostCenter())
-        self.ui.new_btn.clicked.connect(lambda: self.openAddCostCenterWindow())
+        self.ui.add_new_btn.clicked.connect(lambda: self.openAddCostCenterWindow())
         self.ui.cost_centers_tree.clicked.connect(lambda: self.fetchSelectedCostCenter())
         self.ui.type_combobox.currentIndexChanged.connect(lambda: self.uiElementsEnabler())
         self.ui.select_cost_center_btn.clicked.connect(lambda: self.openSelectCostCenterWindow())
@@ -80,8 +80,10 @@ class Ui_CostCenters_Logic(QDialog):
         cost_centers = self.database_operations.fetchCostCenters(cost_center_type=['distributor', 'aggregator'])
         for cost_center in cost_centers:
             exclusions.append(cost_center[0])
-        selected_cost_center_id = int(self.ui.cost_centers_tree.currentItem().text(1))
-        exclusions.append(selected_cost_center_id)
+            selected_cost_center = self.ui.cost_centers_tree.currentItem()
+            if selected_cost_center:
+                selected_cost_center_id = int(selected_cost_center.text(1))
+                exclusions.append(selected_cost_center_id)
         data_picker = Ui_DataPicker_Logic(self.sql_connector, 'cost_centers', include_none_option=True, exclusions=exclusions)
         result = data_picker.showUi()
         if result is not None:

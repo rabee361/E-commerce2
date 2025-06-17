@@ -29,8 +29,8 @@ class Ui_PlanPercent_Logic(QDialog):
         window_plan_percent.setWindowFlags(Qt.Window | Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint | Qt.WindowCloseButtonHint)
         self.ui.setupUi(window_plan_percent)
         window_plan_percent.setWindowIcon(QIcon('icons/project_stats.png'))
-        self.initialize()
         self.language_manager.load_translated_ui(self.ui, window_plan_percent)
+        self.initialize()
         window_plan_percent.exec()
 
     def initialize(self):
