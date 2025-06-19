@@ -15,7 +15,7 @@ class Ui_ReOrderMaterialReport(object):
     def setupUi(self, ReOrderMaterialReport):
         ReOrderMaterialReport.setObjectName("ReOrderMaterialReport")
         ReOrderMaterialReport.setWindowModality(QtCore.Qt.WindowModal)
-        ReOrderMaterialReport.resize(953, 583)
+        ReOrderMaterialReport.resize(940, 554)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("graphics/icon.xpm"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         ReOrderMaterialReport.setWindowIcon(icon)
@@ -28,7 +28,7 @@ class Ui_ReOrderMaterialReport(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.materials_table = QtWidgets.QTableWidget(self.groupBox_2)
-        self.materials_table.setMaximumSize(QtCore.QSize(16777215, 500))
+        self.materials_table.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.materials_table.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.materials_table.setObjectName("materials_table")
         self.materials_table.setColumnCount(5)
@@ -70,6 +70,7 @@ class Ui_ReOrderMaterialReport(object):
         self.percent_input.setObjectName("percent_input")
         self.gridLayout.addWidget(self.percent_input, 0, 1, 1, 1)
         self.warehouse_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.warehouse_combobox.setEnabled(False)
         self.warehouse_combobox.setMinimumSize(QtCore.QSize(125, 0))
         self.warehouse_combobox.setStyleSheet("QComboBox {\n"
 "        background-color: #fafafa;\n"
@@ -104,5 +105,5 @@ class Ui_ReOrderMaterialReport(object):
         item.setText(_translate("ReOrderMaterialReport", "الكمية الحالية"))
         self.label_2.setText(_translate("ReOrderMaterialReport", "المستودع:"))
         self.select_warehouse_btn.setText(_translate("ReOrderMaterialReport", "🔎"))
-        self.label_3.setText(_translate("ReOrderMaterialReport", "النسبة:"))
+        self.label_3.setText(_translate("ReOrderMaterialReport", "النسبة المئوية:"))
         self.calc_btn.setText(_translate("ReOrderMaterialReport", "حساب النتيجة"))

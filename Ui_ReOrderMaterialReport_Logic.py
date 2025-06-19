@@ -41,13 +41,13 @@ class Ui_ReOrderMaterialReport_Logic(QDialog, UiStyles):
             name = warehouse['name']
             self.ui.warehouse_combobox.addItem(str(name), id)
          
-    def openSelectWarehouseWindow(self, combobox):
+    def openSelectWarehouseWindow(self):
         data_picker = Ui_DataPicker_Logic(self.sql_connector, 'warehouses')
         result = data_picker.showUi()
         if result is not None:
             for i in range(self.ui.warehouse_combobox.count()):
                 warehouse_data = self.ui.warehouse_combobox.itemData(i)
-                if warehouse_data[0] == result['id']:
+                if warehouse_data == result['id']:
                     self.ui.warehouse_combobox.setCurrentIndex(i)
                     return
 
@@ -61,16 +61,10 @@ class Ui_ReOrderMaterialReport_Logic(QDialog, UiStyles):
                 if not min_quantity:
                     continue
                 calculated_quantity = min_quantity * (float(percent) / 100) + min_quantity
-                # Check if total quantity exceeds capacity
                 if calculated_quantity > current_quantity:
                     row = self.ui.materials_table.rowCount()
                     self.ui.materials_table.insertRow(row)
                     
-                    # Set values in table
-                    self.ui.materials_table.setItem(row, 0, QTableWidgetItem(str(material['id'])))  # Code column
-                    self.ui.materials_table.setItem(row, 1, QTableWidgetItem(material['name']))  # 
-                    self.ui.materials_table.setItem(row, 2, QTableWidgetItem(material['code']))  # 
-                    self.ui.materials_table.setItem(row, 3, QTableWidgetItem(min_quantity))  # 
-                    self.ui.materials_table.setItem(row, 4, QTableWidgetItem(current_quantity))  # 
-        else:
-            pass
+                    self.ui.materials_table.setItem(row, 0, QTableWidgetItem(str(material['id'])))
+                    self.ui.materials_table.setItem(row, 3, QTableWidgetItem(min_quantity))
+

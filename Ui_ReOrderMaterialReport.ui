@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>953</width>
-    <height>583</height>
+    <width>940</width>
+    <height>554</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,7 +35,7 @@
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>500</height>
+          <height>16777215</height>
          </size>
         </property>
         <property name="layoutDirection">
@@ -109,7 +109,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>النسبة:</string>
+         <string>النسبة المئوية:</string>
         </property>
        </widget>
       </item>
@@ -125,6 +125,9 @@
       </item>
       <item row="0" column="3">
        <widget class="QComboBox" name="warehouse_combobox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="minimumSize">
          <size>
           <width>125</width>

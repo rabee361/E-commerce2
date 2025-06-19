@@ -218,6 +218,9 @@
       </item>
       <item row="0" column="4">
        <widget class="QComboBox" name="clients_combobox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="minimumSize">
          <size>
           <width>150</width>

@@ -56,6 +56,9 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="1">
        <widget class="QComboBox" name="department_combobox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="minimumSize">
          <size>
           <width>125</width>

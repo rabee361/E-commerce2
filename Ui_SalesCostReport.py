@@ -51,6 +51,7 @@ class Ui_SalesCostReport(object):
         self.select_product_btn.setObjectName("select_product_btn")
         self.gridLayout.addWidget(self.select_product_btn, 0, 2, 1, 1)
         self.product_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.product_combobox.setEnabled(False)
         self.product_combobox.setMinimumSize(QtCore.QSize(125, 0))
         self.product_combobox.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.product_combobox.setStyleSheet("QComboBox {\n"

@@ -48,6 +48,7 @@ class Ui_QuantitiesReport(object):
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.product_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.product_combobox.setEnabled(False)
         self.product_combobox.setMinimumSize(QtCore.QSize(125, 0))
         self.product_combobox.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.product_combobox.setStyleSheet("QComboBox {\n"

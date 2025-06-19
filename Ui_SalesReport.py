@@ -115,6 +115,7 @@ class Ui_SalesReport(object):
         self.label.setObjectName("label")
         self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
         self.clients_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.clients_combobox.setEnabled(False)
         self.clients_combobox.setMinimumSize(QtCore.QSize(150, 0))
         self.clients_combobox.setStyleSheet("QComboBox {\n"
 "        background-color: #fafafa;\n"

@@ -37,8 +37,8 @@ class Ui_Value_Report_Logic(object):
         self.ui.pricing_method_combobox.addItem(self.language_manager.translate("PRICING_METHOD_MEDIAN"), "avg_invoice")
         self.ui.pricing_method_combobox.addItem(self.language_manager.translate("PRICING_METHOD_LAST_BUY"), "last_invoice")
         self.ui.to_date.setDate(QDate.currentDate())
-        self.ui.select_warehouse_btn.clicked.connect(lambda: self.openSelectWarehouseWindow)
-        self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow)
+        self.ui.select_warehouse_btn.clicked.connect(lambda: self.openSelectWarehouseWindow())
+        self.ui.select_material_btn.clicked.connect(lambda: self.openSelectMaterialWindow())
         self.ui.calc_btn.clicked.connect(lambda: self.calculate())
 
     def fetchCurrencies(self):
@@ -53,7 +53,7 @@ class Ui_Value_Report_Logic(object):
         result = data_picker.showUi()
         if result is not None:
             for i in range(self.ui.material_combobox.count()):
-                if self.ui.material_combobox.itemData(i)[0] == result['id']:
+                if self.ui.material_combobox.itemData(i) == result['id']:
                     self.ui.material_combobox.setCurrentIndex(i)
                     break
 
@@ -76,7 +76,7 @@ class Ui_Value_Report_Logic(object):
         result = data_picker.showUi()
         if result is not None:
             for i in range(self.ui.warehouses_combobox.count()):
-                if self.ui.warehouses_combobox.itemData(i)[0] == result['id']:
+                if self.ui.warehouses_combobox.itemData(i) == result['id']:
                     self.ui.warehouses_combobox.setCurrentIndex(i)
                     break
  
@@ -103,7 +103,6 @@ class Ui_Value_Report_Logic(object):
         # 2- get the last purchase price of the material from invoices
         elif pricing_method == 'last_invoice':
             self.material_pricing_method = 'last_invoice'
-            manufacture_date = self.ui.manufacture_date_input.date().toString(Qt.ISODate)
             price_data = self.database_operations.fetchLastInvoiceOfMaterial(material_id)
             if price_data:
                 quantity1 = price_data['quantity1']
@@ -120,7 +119,7 @@ class Ui_Value_Report_Logic(object):
                 invoice_item_id = price_data['invoice_item_id']
                 invoice_id = price_data['invoices_id']
 
-                material_move_id = self.database_operations.fetchMaterialMove(origin='invoice',origin_id=invoice_item_id)
+                material_move_id = self.database_operations.fetchMaterialMove(origin_type='invoice',origin_id=invoice_item_id)
 
                 if material_move_id:
                     warehouse_data = self.database_operations.fetchInvoiceItemWarehouse(material_move_id['id'])

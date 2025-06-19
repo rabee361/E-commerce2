@@ -163,15 +163,15 @@ class Ui_ClientReport_Logic(object):
             if client_account is None:
                 win32api.MessageBox(0, self.language_manager.translate("CLIENT_ACCOUNT_NOT_FOUND"), self.language_manager.translate("ERROR"), 0x00000010)
                 return
-            from_date = self.ui.from_date_input.text()
-            to_date = self.ui.to_date_input.text()
+            from_date = self.ui.from_date_input.date().toString(Qt.ISODate)
+            to_date = self.ui.to_date_input.date().toString(Qt.ISODate)
 
             invoices = self.database_operations.fetchInvoicesValues(client_id=client_id)
 
             invoices_payments = self.getInvoicesPaymentsDict(client_id)
                 
             for invoice in invoices:
-                date_col = datetime.datetime.strptime(invoice['date_col'], '%Y-%m-%d').date()
+                date_col = invoice['date_col']
 
                 from_date_obj = datetime.datetime.strptime(from_date, '%Y-%m-%d').date()
                 to_date_obj = datetime.datetime.strptime(to_date, '%Y-%m-%d').date()

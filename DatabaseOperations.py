@@ -889,7 +889,6 @@ class DatabaseOperations(object):
         print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
-        self.sqlconnector.conn.commit()
         return rows
 
 
@@ -1728,7 +1727,7 @@ class DatabaseOperations(object):
     def fetchSimplePlanItems(self) -> list:
         print("DATABASE> Fetch simple plan items")
         query = "SELECT plans.*, materials.name, materials.code FROM plans join materials on plans.material=materials.id ORDER BY plans.priority"
-        # print(query)
+        print(query)
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         self.sqlconnector.conn.commit()
@@ -7221,13 +7220,6 @@ class DatabaseOperations(object):
                     for material in materials:
                         warehouse_entry_id = material['id']
                         warehouse_material_id = material['material_id']
-                        # quantity = material['quantity']
-                        # unit = material['unit']
-                        # production_batch_id = material['production_batch_id']
-                        # receipt_doc_id = material['receipt_doc_id']
-                        # batch_number = material['batch_number']
-                        # batch_mfg = material['batch_mfg']
-                        # batch_exp = material['batch_exp']
 
                         # Check for moves related to this warehouse entry
                         moves = "SELECT * FROM material_moves WHERE ((source_warehouse_entry_id = " + str(warehouse_entry_id) + " AND source_warehouse = " + str(id) + ") OR (destination_warehouse_entry_id = " + str(warehouse_entry_id) + " AND destination_warehouse = " + str(id) + ")) AND date_col BETWEEN COALESCE(NULLIF('" + str(from_date) + "',''),'1000-01-01') AND COALESCE(NULLIF('" + str(to_date) + "',''),'9999-12-31')" + ((" AND source_warehouse = " + str(from_warehouse)) if from_warehouse else "") + ((" AND destination_warehouse = " + str(to_warehouse)) if to_warehouse else "")

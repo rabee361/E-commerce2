@@ -80,6 +80,7 @@ class Ui_Value_Report(object):
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
         self.material_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.material_combobox.setEnabled(False)
         self.material_combobox.setMinimumSize(QtCore.QSize(125, 0))
         self.material_combobox.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.material_combobox.setStyleSheet("QComboBox {\n"

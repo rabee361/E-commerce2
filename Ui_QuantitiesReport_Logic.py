@@ -48,7 +48,7 @@ class Ui_QuantitiesReport_Logic(QDialog, UiStyles):
         result = data_picker.showUi()
         if result:
             for i in range(self.ui.product_combobox.count()):
-                if self.ui.product_combobox.itemData(i)[0] == result['id']:
+                if self.ui.product_combobox.itemData(i) == result['id']:
                     self.ui.product_combobox.setCurrentIndex(i)
                     break
     

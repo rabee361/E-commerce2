@@ -33,6 +33,7 @@ class Ui_Department_Report(object):
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout.setObjectName("gridLayout")
         self.department_combobox = QtWidgets.QComboBox(self.groupBox)
+        self.department_combobox.setEnabled(False)
         self.department_combobox.setMinimumSize(QtCore.QSize(125, 0))
         self.department_combobox.setStyleSheet("QComboBox {\n"
 "        background-color: #fafafa;\n"

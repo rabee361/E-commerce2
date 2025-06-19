@@ -137,7 +137,7 @@ class Ui_Mer_Logic(QObject):
     def showUi(self):
         app = QApplication(sys.argv)
         window = QMainWindow()
-        StyleApplicator.apply_global_style()
+        # StyleApplicator.apply_global_style()
         self.filemanager = FileManager()
         self.app = app
         self.window = window
@@ -155,21 +155,14 @@ class Ui_Mer_Logic(QObject):
         self.default_language = self.language_manager.load_default_language()
         self.current_language = self.default_language
         
-        # Create digital displays
-        self.digital_clock = DigitalDisplay(display_type='time')
-        self.digital_date = DigitalDisplay(display_type='date')
-        
-        if hasattr(self.ui, 'clock_label'):
-            # Get the parent layout of clock_label
-            parent_layout = self.ui.clock_label.parent().layout()
-            # Remove the old labels
-            self.ui.clock_label.hide()
-            if hasattr(self.ui, 'date_label'):
-                self.ui.date_label.hide()
-            
+        if hasattr(self.ui, 'chat_groupbox'):
+            layout = self.ui.chat_groupbox.layout()
+            # Create digital displays
+            self.digital_clock = DigitalDisplay(display_type='time')
+            self.digital_date = DigitalDisplay(display_type='date')
             # Add the new digital displays
-            parent_layout.addWidget(self.digital_date)
-            parent_layout.addWidget(self.digital_clock)
+            layout.addWidget(self.digital_date)
+            layout.addWidget(self.digital_clock)
 
         self.ui.option_new.triggered.connect(lambda: self.closeAllWindows() and self.createFile(self.window))
         self.ui.option_new.setShortcut(QKeySequence("Ctrl+N"))
@@ -384,31 +377,31 @@ class Ui_Mer_Logic(QObject):
             print(e)
             return False  # Return False if an exception occurs
             
-    def setupChatComponent(self):
-            # Add stretch to push messages to the top
-            self.ui.messagesLayout.addStretch()
+    # def setupChatComponent(self):
+    #         # Add stretch to push messages to the top
+    #         self.ui.messagesLayout.addStretch()
                     
-            # Create new chat component
-            # self.chat_component = ChatComponent(self.ui.messagesLayout, self.ui.message_input, self.ui.messagesScrollArea)
+    #         # Create new chat component
+    #         self.chat_component = ChatComponent(self.ui.messagesLayout, self.ui.message_input, self.ui.messagesScrollArea)
             
-            # Chat send message
-            self.ui.send_message_btn.clicked.connect(lambda: self.chat_component.send_message(self.ui.message_input.text().strip()))
-            self.ui.message_input.returnPressed.connect(lambda: self.chat_component.send_message(self.ui.message_input.text().strip()))
+    #         # Chat send message
+    #         self.ui.send_message_btn.clicked.connect(lambda: self.chat_component.send_message(self.ui.message_input.text().strip()))
+    #         self.ui.message_input.returnPressed.connect(lambda: self.chat_component.send_message(self.ui.message_input.text().strip()))
 
-            # Connect signals
-            # self.chat_component.message_sent.connect(self.handleUserMessage)
-            # self.chatbot.response_ready.connect(self.handleBotResponse)
+    #         # Connect signals
+    #         self.chat_component.message_sent.connect(self.handleUserMessage)
+    #         self.chatbot.response_ready.connect(self.handleBotResponse)
                 
     def handleUserMessage(self, message):
         """Handle new message from the user"""
         # Process the message with the chatbot
-        # self.chatbot.process_message(message)
+        self.chatbot.process_message(message)
         
     def handleBotResponse(self, response):
         """Handle bot response"""
         # Set the response in the chat component with a random delay between 1-3 seconds
         delay = random.randint(1000, 3000)
-        # self.chat_component.set_pending_response(response, delay)
+        self.chat_component.set_pending_response(response, delay)
 
     def openSelectInventoryTypeWindow(self):
         Ui_Configuration_Logic(self.sql_connector).showUi()
