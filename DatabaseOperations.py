@@ -309,21 +309,7 @@ class DatabaseOperations(object):
     @check_permission('invoices', 'R')
     def fetchInvoicesCount(self) -> dict:
         print("DATABASE> Fetch invoices count.")
-        query = """SELECT
-                CASE
-                    WHEN it.name = 'buy_return' THEN 'buy_return'
-                    WHEN it.name = 'sell_return' THEN 'sell_return'
-                    WHEN it.name = 'sell' THEN 'sell'
-                    WHEN it.name = 'buy' THEN 'buy'
-                    WHEN it.name = 'input' THEN 'input'
-                    WHEN it.name = 'output' THEN 'output'
-                    ELSE 'other'
-                END AS invoice_type,
-                COUNT(i.id) AS invoice_count
-            FROM invoice_types it
-            LEFT JOIN invoices i ON it.id = i.type_col
-            GROUP BY invoice_type;
-        """
+        query = "SELECT CASE WHEN `invoice_types`.`name` = 'buy_return' THEN 'buy_return' WHEN `invoice_types`.`name` = 'sell_return' THEN 'sell_return' WHEN `invoice_types`.`name` = 'sell' THEN 'sell' WHEN `invoice_types`.`name` = 'buy' THEN 'buy' WHEN `invoice_types`.`name` = 'input' THEN 'input' WHEN `invoice_types`.`name` = 'output' THEN 'output' ELSE 'other' END AS `invoice_type`, COUNT(`invoices`.`id`) AS `invoice_count` FROM `invoice_types` LEFT JOIN `invoices` ON `invoice_types`.`id` = `invoices`.`type_col` GROUP BY `invoice_type`"
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
         self.sqlconnector.conn.commit()

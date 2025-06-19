@@ -28,12 +28,12 @@ class Statistics():
 
         # try:
         self.fetchInvoicesCount()
-        # self.fetchEmployeesCount()
-        self.fetchDepartmentsCount()
-        # self.fetchEmploymentRequestsCount()
-        self.fetchGroupsCount()
-        self.fetchLastManufatureProcess()
-        self.fetchLastMaterialMovement()
+        # # self.fetchEmployeesCount()
+        # self.fetchDepartmentsCount()
+        # # self.fetchEmploymentRequestsCount()
+        # self.fetchGroupsCount()
+        # self.fetchLastManufatureProcess()
+        # self.fetchLastMaterialMovement()
         self.showChart()
         # except Exception as e:
         #     print(f"Error refreshing statistics: {str(e)}")
@@ -62,14 +62,21 @@ class Statistics():
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:
             invoices_count = self.database_operations.fetchInvoicesCount()
             if invoices_count:
-                self.ui.invoice_buy_return_count.setText(str(invoices_count['buy_return'])) # edit in ui to make the container a label
-                self.ui.invoice_sell_return_count.setText(str(invoices_count['sell_return']))
-                self.ui.invoice_sell_count.setText(str(invoices_count['sell']))
-                self.ui.invoice_buy_count.setText(str(invoices_count['buy']))
-                self.ui.invoice_input_count.setText(str(invoices_count['input']))
-                self.ui.invoice_output_count.setText(str(invoices_count['output']))
-        else:
-            pass
+                buy_return_invoice_count = str(invoices_count['buy_return']) or 0
+                sell_return_invoice_count = str(invoices_count['sell_return']) or 0
+                buy_invoice_count = str(invoices_count['buy']) or 0
+                sell_invoice_count = str(invoices_count['sell']) or 0
+                input_invoice_count = str(invoices_count['input']) or 0
+                output_invoice_count = str(invoices_count['output']) or 0
+                other_count = int(buy_return_invoice_count) + int(sell_invoice_count) + int(buy_invoice_count) + int(sell_return_invoice_count) + int(input_invoice_count) + int(output_invoice_count)
+    
+                self.ui.buy_return_invoice_count.setText(buy_return_invoice_count)
+                self.ui.sell_return_invoice_count.setText(sell_return_invoice_count)
+                self.ui.sell_invoice_count.setText(sell_invoice_count)
+                self.ui.buy_invoice_count.setText(buy_invoice_count)
+                self.ui.input_invoice_count.setText(input_invoice_count)
+                self.ui.output_invoice_count.setText(output_invoice_count)
+                # self.ui.other_invoice_count.setText(other_count)
 
     def fetchDepartmentsCount(self):
         departments_count = self.database_operations.fetchDepartmentsCount()
@@ -251,13 +258,13 @@ class Statistics():
             chart.removeAllSeries()
 
         # try:
-        self.fetchInvoicesCount()
-        # self.fetchEmployeesCount()
-        self.fetchDepartmentsCount()
-        # self.fetchEmploymentRequestsCount()
-        self.fetchGroupsCount()
-        self.fetchLastManufatureProcess()
-        self.fetchLastMaterialMovement()
+        # self.fetchInvoicesCount()
+        # # self.fetchEmployeesCount()
+        # self.fetchDepartmentsCount()
+        # # self.fetchEmploymentRequestsCount()
+        # self.fetchGroupsCount()
+        # self.fetchLastManufatureProcess()
+        # self.fetchLastMaterialMovement()
         self.showChart()
         # except Exception as e:
         #     print(f"Error refreshing statistics: {str(e)}")

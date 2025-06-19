@@ -30,7 +30,7 @@ class ToolbarManager:
     - `add_toolbar_actions()`: Adds all defined actions to the toolbar.
     - `create_action(name, icon, text)`: Helper to create and add a toolbar action.
     - `retranslateToolbar()`: Updates action texts when the language changes.
-    - `hideToolBar()`: Hides all toolbar actions.
+    - `hideToolBarActions()`: Hides all toolbar actions.
     - `showToolBar(action_handlers)`: Shows actions based on provided handlers or shows all if none.
 
     ## Example Usage
@@ -97,7 +97,7 @@ class ToolbarManager:
             for action in self.actions[4:]:
                 if action.objectName() == prefrence:
                     action.setVisible(True)
-                    
+
     def clearToolBar(self):
         # Remove all actions except the first 4 and the separator
         for action in self.toolbar.actions()[5:]:
@@ -243,6 +243,9 @@ class ToolbarManager:
                 action.setText(self.language_manager.translate(translation_key))
 
     def hideToolBar(self):
+        self.toolbar.hide()
+
+    def hideToolBarActions(self):
         # Hide all toolbar actions
         for action in self.actions:
             action.setVisible(False)

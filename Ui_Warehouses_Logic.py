@@ -32,8 +32,12 @@ from Ui_AuthenticateUser_Logic import Ui_AuthenticateUser_Logic
 from PyQt5.QtGui import QColor, QFont, QIcon
 from Ui_Select_Language_Logic import Ui_Select_Language_Logic
 from LanguageManager import LanguageManager
-
+from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QComboBox
+from Ui_InvoicesList_Logic import Ui_InvoicesList_Logic
+from Ui_Clients_Logic import Ui_Clients_Logic
+from Ui_Payments_Logic import Ui_Payments_Logic
+from Ui_ClientInvoices_Logic import Ui_ClientInvoices_Logic
 
 class Ui_Warehouses_Logic(QDialog):
     def __init__(self, sql_connector='', warehouse_id=None, independent=False):
@@ -77,9 +81,26 @@ class Ui_Warehouses_Logic(QDialog):
             self.fetchData()
 
         self.ui.warehouses_tree.hideColumn(2)
+
         self.ui.option_new.triggered.connect(lambda: self.createFile(self.window))
         self.ui.option_open.triggered.connect(lambda: self.openFile(self.window))
         self.ui.option_connect_to_database.triggered.connect(lambda: self.openDatabaseSettings())
+
+        self.ui.option_invoices_view.triggered.connect(lambda: self.openInvoicesListWindow())
+        self.ui.option_invoices_view.setShortcut(QKeySequence("Alt+F1"))
+        self.ui.option_customers.triggered.connect(lambda: self.openCustomersWindow())
+        self.ui.option_customers.setShortcut(QKeySequence("Alt+F3"))
+        self.ui.option_suppliers.triggered.connect(lambda: self.openSuppliersWindow())
+        self.ui.option_suppliers.setShortcut(QKeySequence("Alt+F4"))
+        self.ui.option_invoice_receipt_vouchers.triggered.connect(lambda: self.openPaymentsWindow('receipt'))
+        self.ui.option_invoice_receipt_vouchers.setShortcut(QKeySequence("Alt+F7"))
+        self.ui.option_invoice_payment_vouchers.triggered.connect(lambda: self.openPaymentsWindow('payment'))
+        self.ui.option_invoice_payment_vouchers.setShortcut(QKeySequence("Alt+F8"))
+        self.ui.option_customers_invoices.triggered.connect(lambda: self.openClientsInvoicesWindow(client_type='customer'))
+        self.ui.option_customers_invoices.setShortcut(QKeySequence("Alt+F5"))
+        self.ui.option_suppliers_invoices.triggered.connect(lambda: self.openClientsInvoicesWindow(client_type='supplier'))
+        self.ui.option_suppliers_invoices.setShortcut(QKeySequence("Alt+F6"))
+
         self.ui.account_combobox.setEnabled(False)
         self.ui.parent_combobox.setEnabled(False)
         self.ui.inventory_report_btn.clicked.connect(lambda: self.openInventoryReportWindow())
@@ -109,9 +130,6 @@ class Ui_Warehouses_Logic(QDialog):
             if items:
                 self.ui.warehouses_tree.setCurrentItem(items[0])
             self.fetchWarehouseMaterials()
-
-
-
 
     def closeAllWindows(self, event=None):
         if self.windows_manager.checkForOpenWindows(self.window) is False:
@@ -156,6 +174,20 @@ class Ui_Warehouses_Logic(QDialog):
         else:
             win32api.MessageBox(0, self.language_manager.translate( 'ALERT_OPEN_DATABASE'), self.language_manager.translate( 'ERROR'))
 
+    def openInvoicesListWindow(self):
+        Ui_InvoicesList_Logic(self.sql_connector, self.windows_manager).showUi()
+
+    def openCustomersWindow(self):
+        Ui_Clients_Logic(self.sql_connector, client_type='customer').showUi()
+
+    def openSuppliersWindow(self):
+        Ui_Clients_Logic(self.sql_connector, client_type='supplier').showUi()
+
+    def openPaymentsWindow(self, payment_type):
+        Ui_Payments_Logic(self.sql_connector, payment_type).showUi()
+
+    def openClientsInvoicesWindow(self, client_type='customer'):
+        Ui_ClientInvoices_Logic(self.sql_connector, client_type=client_type).showUi()
 
     def openJournalWindow(self):
         if self.sql_connector != '' and self.sql_connector.is_connected_to_database:

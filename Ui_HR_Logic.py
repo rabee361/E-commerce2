@@ -1775,13 +1775,7 @@ class Ui_HR_Logic(QObject):
             selected_department_id = self.ui.departments_table.item(selected_department.row(),0).text()
             if department_name and department_name != '' and department_day_hours and department_day_hours != '' and selected_department_id and selected_department_id != '':
                 # Call the saveDepartment function in database_operations module with the extracted values
-                self.database_operations.saveDepartment(selected_department_id, department_name, department_day_hours,
-                                                        department_account,
-                                                        department_opposite_account,
-                                                        department_notes, departments_work_day_friday,
-                                                        departments_work_day_tuesday, departments_work_day_thursday,
-                                                        departments_work_day_wednesday, departments_work_day_monday,
-                                                        departments_work_day_sunday, departments_work_day_saturday)
+                self.database_operations.saveDepartment(selected_department_id, department_name, department_day_hours, department_account,department_opposite_account, department_notes, departments_work_day_friday, departments_work_day_tuesday, departments_work_day_thursday,departments_work_day_wednesday, departments_work_day_monday, departments_work_day_sunday, departments_work_day_saturday)
 
                 self.ui.departments_work_day_saturday_checkbox.setChecked(False)
                 self.ui.departments_work_day_sunday_checkbox.setChecked(False)
@@ -1899,10 +1893,7 @@ class Ui_HR_Logic(QObject):
             department_leave_duration_days = float(self.ui.department_leaves_duration_days_input.text())
             department_leave_start_date = self.ui.department_leaves_start_date_input.date().toString(Qt.ISODate)
             if department_leave_duration_hours:
-                self.database_operations.saveDepartmentLeave(selected_department_id, department_leave_statement,
-                                                             department_leave_duration_hours,
-                                                             department_leave_duration_days,
-                                                             department_leave_start_date)
+                self.database_operations.saveDepartmentLeave(selected_department_id, department_leave_statement,department_leave_duration_hours, department_leave_duration_days, department_leave_start_date)
 
     def removeDepartmentAdditionAndDiscount(self):
         selected_department_additions_discounts = self.ui.department_discounts_additions_table.currentItem()
@@ -1977,10 +1968,7 @@ class Ui_HR_Logic(QObject):
                     self.ui.position_discounts_additions_table.setItem(numRows, 9, QTableWidgetItem(str(opposite_account_id)))
                     self.ui.position_discounts_additions_table.setItem(numRows, 10, QTableWidgetItem(str(opposite_account)))
                     self.ui.position_discounts_additions_table.setItem(numRows, 11, QTableWidgetItem(str(date)))
-
                     self.fetchPositionLeaves()
-
-
 
     def savePositionLeave(self):
         selected_position = self.ui.positions_table.currentItem()
@@ -2021,8 +2009,6 @@ class Ui_HR_Logic(QObject):
                 self.ui.position_leaves_table.setItem(numRows, 4, QTableWidgetItem(str(start_date)))
                 self.ui.position_leaves_table.setItem(numRows, 5, QTableWidgetItem(str(date)))
 
-
-
     def savePositionFinance(self):
         positions_additions_discounts_currency = self.ui.position_additions_discounts_currency_combobox.currentData()
         positions_additions_discounts_statement = self.ui.position_additions_discounts_statement_input.text()
@@ -2040,7 +2026,6 @@ class Ui_HR_Logic(QObject):
             selected_position_id = self.ui.positions_table.item(selected_position.row(), 0).text()
             if positions_additions_discounts_value and positions_additions_discounts_value != '' and selected_position_id and selected_position_id != '':
                 self.database_operations.savePositionFinance(selected_position_id,positions_additions_discounts_currency, positions_additions_discounts_statement,positions_additions_discounts_value,positions_additions_discounts_start_date,positions_additions_discounts_end_date,positions_additions_discounts_type,positions_additions_discounts_account,positions_additions_discounts_opposite_account)
-
                 self.fetchSelectedPosition()
 
 
@@ -2205,7 +2190,6 @@ class Ui_HR_Logic(QObject):
                     self.ui.unpaid_leave_remaining_days_balance_input.clear()
                     self.ui.paid_leave_remaining_days_balance_input.clear()
 
-
     def removeSelectedLeave(self):
         message_result = win32api.MessageBox(0, self.language_manager.translate("HR_LEAVE_DELETE"), self.language_manager.translate("ALERT"), MB_YESNO)
         if message_result == IDYES:
@@ -2220,17 +2204,9 @@ class Ui_HR_Logic(QObject):
         self.ui.courses_table.setRowCount(0)
         courses = self.database_operations.fetchCourses()
         for course in courses:
-            id = course[0]
-            title = course[1]
-            # providor = course[2]
-            # account_id = course[3]
-            # opposite_account_id = course[4]
-            # cost = course[5]
-            # currency_id = course[6]
-            date = course[7]
-            # location = course[8]
-            # account_name = course[9]
-            # opposite_account = course[10]
+            id = course['id']
+            title = course['title']
+            date = course['date_col']
 
             # Create a empty row at bottom of table
             numRows = self.ui.courses_table.rowCount()
@@ -2289,7 +2265,7 @@ class Ui_HR_Logic(QObject):
                 win32api.MessageBox(0, self.language_manager.translate('INVALID_DATA'), self.language_manager.translate('ALERT'))
 
     def removeCourseEmployee(self):
-        message_result = win32api.MessageBox(0, self.language_manager.translate('CONFIRM'), self.language_manager.translate( 'ALERT'), MB_YESNO)
+        message_result = win32api.MessageBox(0, self.language_manager.translate('CONFIRM'), self.language_manager.translate('ALERT'), MB_YESNO)
         if message_result == IDYES:
             selected_course_employee = self.ui.course_employees_table.currentItem()
             if selected_course_employee is not None:
@@ -2304,11 +2280,10 @@ class Ui_HR_Logic(QObject):
             self.ui.course_employees_table.setRowCount(0)
             course_employees = self.database_operations.fetchCourseEmployees(selected_course_id)
             for course_employees in course_employees:
-                id = course_employees[0]
-                course_id = course_employees[1]
-                employee_id = course_employees[2]
-                gpa = course_employees[3]
-                employee_name = course_employees[4]
+                id = course_employees['id']
+                employee_id = course_employees['employee_id']
+                gpa = course_employees['gpa']
+                employee_name = course_employees['employee_name']
 
                 # Create a empty row at bottom of table
                 numRows = self.ui.course_employees_table.rowCount()
@@ -2343,19 +2318,9 @@ class Ui_HR_Logic(QObject):
         # check if subtracted value is less than employee's salary
         employee_finance_info = self.database_operations.fetchEmployeeFinanceInfo(selected_employee_id)
         if employee_finance_info:
-            # bank = employee_finance_info[0]
-            # bank_account_number = employee_finance_info[1]
-            # bank_notes = employee_finance_info[2]
-            salary = employee_finance_info[3]
-            salary_cycle = employee_finance_info[4]
-            salary_currency = employee_finance_info[5]
-            # insurance = employee_finance_info[6]
-            # salary_account_id = employee_finance_info[7]
-            # salary_opposite_account_id = employee_finance_info[8]
-            # insurance_account_id = employee_finance_info[9]
-            # insurance_opposite_account_id = employee_finance_info[10]
-            # insurance_currency = employee_finance_info[11]
-            # insurance_cycle = employee_finance_info[12]
+            salary = employee_finance_info['salary']
+            salary_cycle = employee_finance_info['salary_cycle']
+            salary_currency = employee_finance_info['salary_currency']
 
             if salary and salary_cycle and salary_currency:
                 self.ui.add_loan_groupbox.setEnabled(True)
@@ -2388,19 +2353,9 @@ class Ui_HR_Logic(QObject):
             # check if subtracted value is less than employee's salary
             employee_finance_info = self.database_operations.fetchEmployeeFinanceInfo(selected_employee_id)
             if employee_finance_info:
-                # bank = employee_finance_info['bank']
-                # bank_account_number = employee_finance_info['bank_account_number']
-                # bank_notes = employee_finance_info['bank_notes']
                 salary = employee_finance_info['salary']
                 salary_cycle = employee_finance_info['salary_cycle']
                 salary_currency = employee_finance_info['salary_currency']
-                # insurance = employee_finance_info['insurance']
-                # salary_account_id = employee_finance_info['salary_account_id']
-                # salary_opposite_account_id = employee_finance_info['salary_opposite_account_id']
-                # insurance_account_id = employee_finance_info['insurance_account_id']
-                # insurance_opposite_account_id = employee_finance_info['insurance_opposite_account_id']
-                # insurance_currency = employee_finance_info['insurance_currency']
-                # insurance_cycle = employee_finance_info['insurance_cycle']
 
                 loan_value = self.ui.loan_value_input.text()
                 loan_currency = self.ui.loan_currency_combobox.currentData()
@@ -2518,13 +2473,13 @@ class Ui_HR_Logic(QObject):
             loan_payments = self.database_operations.fetchHRLoanPayments(loan_id)
             self.ui.loan_payments_table.setRowCount(len(loan_payments))
             for i, loan_payment in enumerate(loan_payments):
-                id = loan_payment[0]
-                loan_id = loan_payment[1]
-                value = loan_payment[2]
-                currency = loan_payment[3]
-                source = loan_payment[4]
-                date = loan_payment[5]
-                currency_name = loan_payment[6]
+                id = loan_payment['id']
+                loan_id = loan_payment['loan_id']
+                value = loan_payment['value_col']
+                currency = loan_payment['currency']
+                source = loan_payment['source']
+                date = loan_payment['date_col']
+                currency_name = loan_payment['currency_name']
                 self.ui.loan_payments_table.setItem(i, 0, QTableWidgetItem(str(id)))
                 self.ui.loan_payments_table.setItem(i, 1, QTableWidgetItem(str(value)))
                 self.ui.loan_payments_table.setItem(i, 2, QTableWidgetItem(currency_name))
@@ -4380,9 +4335,6 @@ class Ui_HR_Logic(QObject):
 
                                 if entry_id:
                                     self.database_operations.addJournalEntryItem(entry_id,currency_id, 'creditor', 'base_salary', salary_account_id, salary_opposite_account_id, self.base_salary[employee_id])
-
-
-
         elif (messagebox_result == IDNO):
             pass
 
@@ -4488,7 +4440,6 @@ class Ui_HR_Logic(QObject):
         brush_dark_blue = QBrush(color_dark_blue)
         brush_white = QBrush(Qt.white)
 
-
         insurnace_delta = (insurance_from_date.daysTo(insurance_to_date)) + 1
         insurance_duration_days = insurnace_delta
         for data in employees_finance_info:
@@ -4584,19 +4535,8 @@ class Ui_HR_Logic(QObject):
                 if insurance_cycle == 'hour':
                     department = self.database_operations.fetchDepartment(department_id)
                     if department:
-                        # department_id = department[0]
-                        department_name = department[1]
-                        department_day_hours = department[2]
-                        # department_account_id = department[3]
-                        # department_opposite_account_id = department[4]
-                        # department_notes = department[5]
-                        # department_work_day_saturday = department[6]
-                        # department_work_day_sunday = department[7]
-                        # department_work_day_monday = department[8]
-                        # department_work_day_tuesday = department[9]
-                        # department_work_day_wednesday = department[10]
-                        # department_work_day_thursday = department[11]
-                        # department_work_day_friday = department[12]
+                        department_name = department['name']
+                        department_day_hours = department['day_hours']
 
                     if department_day_hours:
                         insurance_duration_hours = insurance_duration_days * department_day_hours

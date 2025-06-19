@@ -562,6 +562,21 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>فواتير</string>
+    </property>
+    <addaction name="option_invoices_view"/>
+    <addaction name="option_new_invoice"/>
+    <addaction name="option_customers"/>
+    <addaction name="option_suppliers"/>
+    <addaction name="option_customers_invoices"/>
+    <addaction name="option_suppliers_invoices"/>
+    <addaction name="option_invoice_receipt_vouchers"/>
+    <addaction name="option_invoice_payment_vouchers"/>
+    <addaction name="option_material_receipt_docs"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="option_new">
@@ -592,6 +607,56 @@
   <action name="backup_option">
    <property name="text">
     <string>...النسخ الاحتياطي و الاستعادة</string>
+   </property>
+  </action>
+  <action name="option_invoices_view">
+   <property name="text">
+    <string>...استعراض الفواتير</string>
+   </property>
+  </action>
+  <action name="option_new_invoice">
+   <property name="text">
+    <string>...فاتورة جديدة</string>
+   </property>
+  </action>
+  <action name="option_customers">
+   <property name="text">
+    <string>...الزبائن</string>
+   </property>
+  </action>
+  <action name="option_suppliers">
+   <property name="text">
+    <string>...الموردون</string>
+   </property>
+  </action>
+  <action name="option_invoice_receipt_vouchers">
+   <property name="text">
+    <string>...قبض مبلغ فاتورة</string>
+   </property>
+  </action>
+  <action name="option_invoice_payment_vouchers">
+   <property name="text">
+    <string>...سداد مبلغ فاتورة</string>
+   </property>
+  </action>
+  <action name="action_7">
+   <property name="text">
+    <string>...سندات الاستلام</string>
+   </property>
+  </action>
+  <action name="option_customers_invoices">
+   <property name="text">
+    <string>...فواتير الزبائن</string>
+   </property>
+  </action>
+  <action name="option_suppliers_invoices">
+   <property name="text">
+    <string>...فواتير الموردين</string>
+   </property>
+  </action>
+  <action name="option_material_receipt_docs">
+   <property name="text">
+    <string>...سندات الاستلام</string>
    </property>
   </action>
  </widget>

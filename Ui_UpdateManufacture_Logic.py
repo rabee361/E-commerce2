@@ -2306,13 +2306,11 @@ class Ui_UpdateManufacture_Logic(QDialog):
             )
 
 
-
-
-
     def addToWarehouse(self, manufacture_process_id, manufacture_currency):
         output_warehouse_id = self.ui.output_warehouse_combobox.currentData()
         root = self.ui.produced_materials_tree.invisibleRootItem()
         for i in range(root.childCount()):
+            item = root.child(i)
             produced_material_id = item.text(0)
             produced_quantity1 = item.child(1).text(2)
             produced_unit1 = item.child(1).text(4)

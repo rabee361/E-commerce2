@@ -84,6 +84,7 @@ class AccountImporter:
             account_code = row.find("./code").text if row.find("./code") is not None else ""
             final_account = row.find("./final_account").text if row.find("./final_account") is not None else ""
             parent_account_name = row.find("./main_account").text if row.find("./main_account") is not None else ""
+            account_type = "normal" if final_account else "final"
 
             if not account_name:
                 print("Row missing account element, skipping")
@@ -92,6 +93,7 @@ class AccountImporter:
             accounts.append({
                 "name": account_name,
                 "code": account_code,
+                "account_type": account_type,
                 "final_account": final_account,
                 "parent_account_name": parent_account_name.strip() if parent_account_name else ""
             })
@@ -106,6 +108,7 @@ class AccountImporter:
             account_code = account["code"]
             final_account = account["final_account"]
             parent_account_name = account["parent_account_name"]
+            account_type = account["account_type"]
 
             # Determine parent account based on main_account tag
             parent_account_id = ""
@@ -132,7 +135,7 @@ class AccountImporter:
                     details="Imported from XML",
                     code=account_code,
                     parent_account=str(parent_account_id),
-                    account_type="normal",
+                    account_type=account_type,
                     final_account=final_account_id,
                     financial_statement="",
                     financial_statement_block="",
